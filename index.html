@@ -80,8 +80,8 @@
           HelpCircle, ChevronDown, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink,
           Edit3, Eye, Sparkles
         } from 'lucide-react';
-
-        // --- Constants Data (Merged from constants.ts) ---
+        
+        // --- Constants Data ---
         const TEXTURES = [
             { label: '水彩紙 (Watercolor Paper)', val: 'on watercolor paper texture' },
             { label: '油畫布 (Canvas)', val: 'on canvas texture' },
@@ -379,12 +379,42 @@
                     sections: [],
                     ar: '16:9',
                     texture: ''
+                },
+                tw_dome_of_light: {
+                    name: '光之穹頂 (Dome of Light)',
+                    desc: '高雄美麗島捷運站著名的光之穹頂彩繪玻璃藝術，廣角對稱構圖。The famous Dome of Light stained glass art at Kaohsiung Formosa Boulevard MRT station, wide-angle symmetrical composition.',
+                    subject: 'Dome of Light stained glass ceiling',
+                    title: 'Formosa Boulevard',
+                    styles: ['Stained Glass', 'Vibrant Colors', 'Symmetrical', 'Wide Angle'],
+                    sections: [],
+                    ar: '1:1',
+                    texture: ''
+                },
+                tw_kaohsiung_sticker: {
+                    name: '高雄旅遊貼圖 (Kaohsiung Sticker)',
+                    desc: '高雄地標（龍虎塔、85大樓）的可愛卡通貼圖，鮮豔色彩，白色邊框。Cute cartoon sticker of Kaohsiung landmarks (Dragon and Tiger Pagodas, 85 Sky Tower), vibrant colors, white border.',
+                    subject: 'Cartoon sticker of Kaohsiung landmarks',
+                    title: 'Kaohsiung Travel',
+                    styles: ['Cartoon', 'Sticker Art', 'Vector Art', 'Cute'],
+                    sections: [],
+                    ar: '1:1',
+                    texture: 'on white background'
+                },
+                tw_kaohsiung_bear_sticker: {
+                    name: '高雄熊貼圖 (Kaohsiung Bear)',
+                    desc: '高雄觀光大使「高雄熊」在愛河畔喝珍珠奶茶的可愛貼圖，向量風格。Cute sticker of "Kaohsiung Bear" drinking bubble tea by the Love River, vector art style.',
+                    subject: 'Kaohsiung Bear character drinking bubble tea',
+                    title: 'Kaohsiung Bear',
+                    styles: ['Cartoon', 'Sticker Art', 'Cute', 'Vector Art'],
+                    sections: [],
+                    ar: '1:1',
+                    texture: 'on white background'
                 }
             },
             "✈️ 旅行與手帳 (Travel & Journal)": {
                 travel_kyoto_sketch: {
                     name: '京都街頭速寫 (Kyoto Sketch)',
-                    desc: 'Detailed urban sketch of Kyoto streets with traditional buildings using ink and watercolor.',
+                    desc: '使用水墨與水彩繪製的京都老街與傳統建築細節速寫。Detailed urban sketch of Kyoto streets with traditional buildings using ink and watercolor.',
                     subject: 'Old street in Kyoto with wooden machiya',
                     title: 'Kyoto Memories',
                     styles: ['Ink Illustration', 'Watercolor', 'Sketch', 'Urban Sketching'],
@@ -394,7 +424,7 @@
                 },
                 travel_food_diary: {
                     name: '美食手帳 (Food Diary)',
-                    desc: 'Cute colored pencil illustration of a ramen bowl, top-down view.',
+                    desc: '可愛色鉛筆繪製的拉麵碗俯視圖。Cute colored pencil illustration of a ramen bowl, top-down view.',
                     subject: 'Delicious ramen bowl with toppings',
                     title: 'Oishii!',
                     styles: ['Colored Pencil Sketch', 'Food Illustration', 'Cute', 'Top Down'],
@@ -404,7 +434,7 @@
                 },
                 travel_map_doodle: {
                     name: '旅行地圖 (Map Doodle)',
-                    desc: 'Hand-drawn map with cute icons of landmarks on kraft paper.',
+                    desc: '牛皮紙上手繪的巴黎地圖與可愛地標圖示。Hand-drawn map with cute icons of landmarks on kraft paper.',
                     subject: 'Tourist map of Paris',
                     title: 'Paris Map',
                     styles: ['Doodle Art', 'Map Design', 'Cute Icons', 'Handwritten'],
@@ -414,7 +444,7 @@
                 },
                 travel_cafe_moment: {
                     name: '咖啡廳時光 (Cafe)',
-                    desc: 'Relaxing marker pen drawing of coffee and cake on a wooden table.',
+                    desc: '木桌上咖啡與蛋糕的放鬆麥克筆畫。Relaxing marker pen drawing of coffee and cake on a wooden table.',
                     subject: 'Coffee cup and strawberry cake',
                     title: 'Afternoon Tea',
                     styles: ['Marker Pen Art', 'Relaxing', 'Warm Colors'],
@@ -424,7 +454,7 @@
                 },
                 travel_landscape_charcoal: {
                     name: '山水炭筆 (Charcoal Landscape)',
-                    desc: 'Dramatic charcoal sketch of mountain scenery.',
+                    desc: '戲劇性的阿爾卑斯山風景炭筆速寫。Dramatic charcoal sketch of mountain scenery.',
                     subject: 'Swiss Alps mountains',
                     title: 'The Alps',
                     styles: ['Charcoal Drawing', 'High Contrast', 'Dramatic', 'Sketch'],
@@ -434,7 +464,7 @@
                 },
                 travel_botanical_ink: {
                     name: '植物標本 (Botanical)',
-                    desc: 'Vintage style botanical ink drawing of local flora.',
+                    desc: '復古風格的熱帶蕨類植物水墨畫。Vintage style botanical ink drawing of local flora.',
                     subject: 'Tropical fern leaves',
                     title: 'Flora',
                     styles: ['Ink Illustration', 'Vintage Scientific', 'Detailed', 'Botanical'],
@@ -444,7 +474,7 @@
                 },
                 travel_blueprint_museum: {
                     name: '博物館藍圖 (Blueprint)',
-                    desc: 'Architectural blueprint style drawing of a famous museum facade.',
+                    desc: '著名博物館立面的建築藍圖風格繪畫。Architectural blueprint style drawing of a famous museum facade.',
                     subject: 'British Museum facade',
                     title: 'Architecture',
                     styles: ['Blueprint Style', 'Architectural Drawing', 'Technical', 'Blue'],
@@ -454,7 +484,7 @@
                 },
                 travel_postcard_gouache: {
                     name: '風景明信片 (Gouache)',
-                    desc: 'Vibrant gouache painting of a seaside town like Cinque Terre.',
+                    desc: '五漁村懸崖房屋的鮮豔不透明水彩畫。Vibrant gouache painting of a seaside town like Cinque Terre.',
                     subject: 'Cinque Terre houses on cliff',
                     title: 'Summer',
                     styles: ['Gouache Painting', 'Vibrant Colors', 'Flat Style', 'Travel Poster'],
@@ -466,7 +496,7 @@
             "📐 專業排版 (Professional Layouts)": {
                 layout_swiss_grid: {
                     name: '瑞士風格 (Swiss Style)',
-                    desc: 'International Typographic Style using asymmetric grids and sans-serif typography.',
+                    desc: '使用非對稱網格與無襯線字體的國際字體風格。International Typographic Style using asymmetric grids and sans-serif typography.',
                     subject: 'Abstract geometric shapes',
                     title: 'Modernism',
                     styles: ['Swiss Design', 'Bauhaus', 'Grid System', 'Helvetica'],
@@ -476,7 +506,7 @@
                 },
                 layout_bento_grid: {
                     name: '便當盒佈局 (Bento Grid)',
-                    desc: 'Apple-style modular grid layout for showcasing features or products.',
+                    desc: '蘋果風格的模組化網格佈局，用於展示功能或產品。Apple-style modular grid layout for showcasing features or products.',
                     subject: 'Tech product features',
                     title: 'Features',
                     styles: ['Bento Grid', 'Rounded Corners', 'Glassmorphism', 'Clean UI'],
@@ -486,7 +516,7 @@
                 },
                 layout_split_screen: {
                     name: '左右分割 (Split Screen)',
-                    desc: 'High contrast split screen composition, ideal for comparisons.',
+                    desc: '高對比的分割畫面構圖，適合用於比較。High contrast split screen composition, ideal for comparisons.',
                     subject: 'Day vs Night landscape',
                     title: 'Duality',
                     styles: ['Split Screen', 'Contrast', 'Symmetrical'],
@@ -496,7 +526,7 @@
                 },
                 layout_magazine_spread: {
                     name: '雜誌跨頁 (Mag Spread)',
-                    desc: 'Two-page layout look with text column and full bleed image.',
+                    desc: '包含文字欄與滿版圖片的跨頁設計外觀。Two-page layout look with text column and full bleed image.',
                     subject: 'Fashion editorial',
                     title: 'Interview',
                     styles: ['Magazine Layout', 'Editorial', 'Typography'],
@@ -506,7 +536,7 @@
                 },
                 layout_z_pattern: {
                     name: 'Z型視覺 (Z-Pattern)',
-                    desc: 'Guide the eye from top-left to bottom-right, standard for landing pages.',
+                    desc: '引導視線從左上到右下的佈局，著陸頁標準設計。Guide the eye from top-left to bottom-right, standard for landing pages.',
                     subject: 'Website landing page',
                     title: 'Landing',
                     styles: ['Web UI', 'UX Design', 'Clean'],
@@ -516,7 +546,7 @@
                 },
                 layout_central_hero: {
                     name: '中心英雄 (Central Hero)',
-                    desc: 'Subject centered with radiating elements, strong focal point.',
+                    desc: '主體居中，帶有放射狀元素，強烈的視覺焦點。Subject centered with radiating elements, strong focal point.',
                     subject: 'Super hero character',
                     title: 'Hero',
                     styles: ['Symmetrical', 'Central Composition', 'Epic Lighting'],
@@ -526,7 +556,7 @@
                 },
                 layout_diagonal_tension: {
                     name: '對角線張力 (Diagonal)',
-                    desc: 'Dynamic composition using diagonal lines to create movement.',
+                    desc: '利用對角線創造動感的動態構圖。Dynamic composition using diagonal lines to create movement.',
                     subject: 'Sports car drifting',
                     title: 'Speed',
                     styles: ['Dynamic Angle', 'Motion Blur', 'Action'],
@@ -536,7 +566,7 @@
                 },
                 layout_white_space: {
                     name: '極致留白 (White Space)',
-                    desc: 'Minimalist layout with massive negative space for elegance.',
+                    desc: '極簡佈局，大面積負空間展現優雅感。Minimalist layout with massive negative space for elegance.',
                     subject: 'Small perfume bottle',
                     title: 'Essence',
                     styles: ['Minimalist', 'Negative Space', 'High Key'],
@@ -546,7 +576,7 @@
                 },
                 layout_typographic_poster: {
                     name: '文字海報 (Typographic)',
-                    desc: 'Image constructed primarily from large, bold typography.',
+                    desc: '主要由巨大粗體字構成的圖像。Image constructed primarily from large, bold typography.',
                     subject: 'Typography art',
                     title: 'BOLD',
                     styles: ['Typography', 'Poster Design', 'Contrast'],
@@ -556,7 +586,7 @@
                 },
                 layout_collage_art: {
                     name: '拼貼藝術 (Collage)',
-                    desc: 'Mixed media layered look, chaotic but artistic.',
+                    desc: '混合媒材的層疊外觀，混亂但充滿藝術感。Mixed media layered look, chaotic but artistic.',
                     subject: 'Vintage retro futuristic collage',
                     title: 'Memory',
                     styles: ['Collage', 'Mixed Media', 'Dadaism', 'Retro'],
@@ -566,7 +596,7 @@
                 },
                 layout_rule_thirds: {
                     name: '三分法 (Rule of Thirds)',
-                    desc: 'Subject placed at intersection points for balanced composition.',
+                    desc: '將主體放置在交叉點以獲得平衡的構圖。Subject placed at intersection points for balanced composition.',
                     subject: 'Lonely tree in field',
                     title: 'Solitude',
                     styles: ['Photography Rule', 'Balanced', 'Golden Hour'],
@@ -576,7 +606,7 @@
                 },
                 layout_frame_in_frame: {
                     name: '框中框 (Frame in Frame)',
-                    desc: 'Using environmental elements to frame the subject.',
+                    desc: '利用環境元素作為框架來框住主體。Using environmental elements to frame the subject.',
                     subject: 'View through a window',
                     title: 'Perspective',
                     styles: ['Depth', 'Framing', 'Interior'],
@@ -586,7 +616,7 @@
                 },
                 layout_infographic_step: {
                     name: '步驟圖 (Step Process)',
-                    desc: 'Sequential layout showing a process (1-2-3).',
+                    desc: '展示過程（1-2-3）的順序佈局。Sequential layout showing a process (1-2-3).',
                     subject: 'Coffee brewing process',
                     title: 'How to Brew',
                     styles: ['Infographic', 'Flat Design', 'Vector'],
@@ -596,7 +626,7 @@
                 },
                 layout_isometric_room: {
                     name: '等角房間 (Isometric Room)',
-                    desc: '3D cutaway view of a room in isometric projection.',
+                    desc: '等角投影下的房間 3D 剖視圖。3D cutaway view of a room in isometric projection.',
                     subject: 'Gamer room setup',
                     title: 'My Setup',
                     styles: ['Isometric', '3D Render', 'Cute', 'Low Poly'],
@@ -606,7 +636,7 @@
                 },
                 layout_knolling_flat: {
                     name: '開箱平鋪 (Knolling)',
-                    desc: 'Items arranged at 90 degree angles, organized flat lay.',
+                    desc: '物品以90度角整齊排列的平鋪佈局。Items arranged at 90 degree angles, organized flat lay.',
                     subject: 'Travel essentials',
                     title: 'EDC',
                     styles: ['Knolling', 'Flat Lay', 'Organized', 'Top Down'],
@@ -618,7 +648,7 @@
             "🏥 醫療與科學 (Medical & Science)": {
                 med_cardio_stent: {
                     name: '心臟支架 (Stent)',
-                    desc: 'Detailed 3D cross-section of a coronary artery with a mesh stent.',
+                    desc: '冠狀動脈與金屬支架的詳細 3D 剖面圖。Detailed 3D cross-section of a coronary artery with a mesh stent.',
                     subject: 'Coronary artery with stent',
                     title: 'Heart Health',
                     styles: ['3D Render', 'Medical Illustration', 'Cross Section', 'Detailed'],
@@ -628,7 +658,7 @@
                 },
                 med_neuro_synapse: {
                     name: '神經突觸 (Synapse)',
-                    desc: 'Close-up of a chemical synapse releasing neurotransmitters.',
+                    desc: '釋放神經傳導物質的化學突觸特寫。Close-up of a chemical synapse releasing neurotransmitters.',
                     subject: 'Chemical synapse',
                     title: 'Neurotransmission',
                     styles: ['Microscopic', 'Bioluminescent', 'Particles', 'Depth of Field'],
@@ -638,27 +668,27 @@
                 },
                 med_mri: {
                     name: 'MRI 腦部掃描 (MRI Scan)',
-                    desc: 'High-contrast, realistic MRI scan of human brain.',
+                    desc: '高對比、寫實的人腦 MRI 掃描影像。High-contrast, realistic MRI scan of human brain.',
                     subject: 'Human brain', title: '', styles: ['MRI Scan', 'Medical Imaging', 'Blue and Black', 'Detailed'], sections: [], ar: '4:5', texture: ''
                 },
                 med_surgery: {
                     name: '手術機器人 (Surgery Robot)',
-                    desc: 'Futuristic, sterile view of robotic surgery arms in action.',
+                    desc: '機器手臂進行手術的未來感、無菌視角。Futuristic, sterile view of robotic surgery arms in action.',
                     subject: 'Robotic arm performing surgery', title: 'Future Med', styles: ['High Tech', 'Sterile', 'Bright', 'Depth of Field'], sections: [], ar: '21:9', texture: ''
                 },
                 med_virus: {
                     name: '病毒微觀 (Virus)',
-                    desc: 'Electron microscope style view of virus structure.',
+                    desc: '病毒結構的電子顯微鏡風格視圖。Electron microscope style view of virus structure.',
                     subject: 'Virus cell structure', title: '', styles: ['Microscopic', 'Electron Microscope', 'Detailed Texture', 'Danger'], sections: [], ar: '4:3', texture: ''
                 },
                 med_anatomy: {
                     name: '心臟解剖圖 (Heart Anatomy)',
-                    desc: 'Educational cutaway illustration of human heart chambers.',
+                    desc: '人類心臟腔室的教育用剖面插圖。Educational cutaway illustration of human heart chambers.',
                     subject: 'Human heart', title: 'Cardiology', styles: ['Medical Illustration', 'Cutaway', 'Educational', 'Clean'], sections: [{ visual: 'Ventricles and atria', param:'', textBlocks: [{ content: 'Aorta', level: 'Caption', font:'' }] }], ar: '4:3', texture: ''
                 },
                 med_pharma_pill: {
                     name: '藥物溶解 (Pill Dissolving)',
-                    desc: 'Macro shot of a capsule dissolving in water, releasing particles.',
+                    desc: '膠囊在水中溶解並釋放微粒的微距攝影。Macro shot of a capsule dissolving in water, releasing particles.',
                     subject: 'Pill capsule dissolving',
                     title: '',
                     styles: ['Macro', 'High Speed Photography', 'Water Bubbles', 'Studio Light'],
@@ -668,7 +698,7 @@
                 },
                 med_conf_slide: {
                     name: '醫學研討會 (Conference)',
-                    desc: 'Abstract neural network visualization with clean space for presentation titles.',
+                    desc: '抽象神經網絡視覺化，保留簡報標題空間。Abstract neural network visualization with clean space for presentation titles.',
                     subject: 'Abstract neural networks and synapses',
                     title: 'Conference Slide',
                     styles: ['Medical Imaging', 'Minimalist', 'Blue and White', 'Clean'],
@@ -681,7 +711,7 @@
                 },
                 med_micro_bacteria: {
                     name: '細菌培養 (Bacteria Culture)',
-                    desc: 'Petri dish with colorful bacterial colonies under studio light.',
+                    desc: '攝影棚光線下，培養皿中色彩繽紛的細菌菌落。Petri dish with colorful bacterial colonies under studio light.',
                     subject: 'Bacteria in Petri dish',
                     title: 'Microbio',
                     styles: ['Macro', 'Vibrant Colors', 'Scientific', 'Top Down'],
@@ -691,7 +721,7 @@
                 },
                 med_consult: {
                     name: '醫生問診 (Consultation)',
-                    desc: 'Warm, professional shot of a doctor holding a tablet speaking to a patient.',
+                    desc: '醫生手持平板與病人交談的溫暖專業鏡頭。Warm, professional shot of a doctor holding a tablet speaking to a patient.',
                     subject: 'Doctor consulting patient',
                     title: 'Patient Care',
                     styles: ['Portrait Photography', 'Warm Light', 'Bokeh', 'Trustworthy'],
@@ -703,7 +733,7 @@
             "📊 海報與平面設計 (Posters & Layouts)": {
                 layout_biz_poster: {
                     name: '商業海報 (Business Poster)',
-                    desc: 'Professional poster with high fidelity text placeholders for business events.',
+                    desc: '具有高保真文字預留位置的商業活動專業海報。Professional poster with high fidelity text placeholders for business events.',
                     subject: 'Modern office building low angle',
                     title: 'Business Event',
                     styles: ['Poster Design', 'Bold Typography', 'High Resolution', 'Sans-serif'],
@@ -715,22 +745,22 @@
                 },
                 movie_action: {
                     name: '動作片海報 (Action)',
-                    desc: 'Gritty blockbuster poster with teal & orange grading.',
+                    desc: '帶有青橙色調的粗獷大片海報。Gritty blockbuster poster with teal & orange grading.',
                     subject: 'Hero in debris', title: 'LAST STAND', styles: ['Movie Poster Composition', 'Cinematic Lighting', 'Teal and Orange', 'Hyperrealistic'], sections: [{ visual: 'Hero holding weapon', param: 'dirty face, scars', textBlocks: [] }, { visual: '', param: '', textBlocks: [{ content: 'LAST STAND', level: 'H1', font: 'Bold Display' }, { content: 'Coming Soon', level: 'Body', font: 'Sans-serif' }] }], ar: '2:3', texture: ''
                 },
                 movie_horror: {
                     name: '恐怖片海報 (Horror)',
-                    desc: 'Dark, foggy gothic atmosphere with glowing eyes.',
+                    desc: '黑暗、霧氣瀰漫、發光眼睛的哥德式氛圍。Dark, foggy gothic atmosphere with glowing eyes.',
                     subject: 'Haunted house silhouette', title: 'THE ECHO', styles: ['Low Key', 'Foggy', 'Grainy', 'Vintage', 'Gothic'], sections: [{ visual: 'Ghostly figure in window', param: 'red glowing eyes', textBlocks: [{ content: 'THE ECHO', level: 'H1', font: 'Serif' }] }], ar: '2:3', texture: ''
                 },
                 poster_minimal: {
                     name: '極簡海報 (Minimalist)',
-                    desc: 'Clean Bauhaus style poster with geometric elements.',
+                    desc: '帶有幾何元素的乾淨包浩斯風格海報。Clean Bauhaus style poster with geometric elements.',
                     subject: 'Single chair', title: 'DESIGN', styles: ['Minimalist', 'Bauhaus', 'Flat Design', 'Pastel Colors'], sections: [{ visual: 'Chair in center', param:'', textBlocks: [{ content: 'DESIGN WEEK', level: 'H1', font: 'Helvetica' }] }], ar: '2:3', texture: ''
                 },
                 layout_mag_cover: {
                     name: '雜誌封面 (Magazine)',
-                    desc: 'High-fashion magazine cover layout with model and headlines.',
+                    desc: '包含模特兒與標題的高級時尚雜誌封面佈局。High-fashion magazine cover layout with model and headlines.',
                     subject: 'Fashion model close up',
                     title: 'VOGUE Style',
                     styles: ['Magazine Layout', 'High Key', 'Fashion Photography', 'Elegant'],
@@ -742,7 +772,7 @@
             "📢 社群媒體 (Social Media)": {
                 social_lifestyle_vibe: {
                     name: '氛圍感貼文 (Vibe Post)',
-                    desc: 'Lifestyle photography with aesthetic signage text in background.',
+                    desc: '背景帶有美學招牌文字的生活風格攝影。Lifestyle photography with aesthetic signage text in background.',
                     subject: 'Coffee shop window with neon sign',
                     title: 'Weekend Vibe',
                     styles: ['Lifestyle', 'Depth of Field', 'Natural Light', 'Handwritten'],
@@ -752,7 +782,7 @@
                 },
                 social_linkedin_award: {
                     name: 'LinkedIn 成就 (Award)',
-                    desc: 'Professional award trophy on a modern desk with bokeh, ideal for career milestones.',
+                    desc: '現代辦公桌上的專業獎盃，背景散景，適合職涯里程碑。Professional award trophy on a modern desk with bokeh, ideal for career milestones.',
                     subject: 'Crystal award trophy',
                     title: 'Achievement',
                     styles: ['Professional', 'Bokeh', 'Office Setting', 'Bright'],
@@ -762,12 +792,12 @@
                 },
                 social_ig_story: {
                     name: 'IG 限動 (Story)',
-                    desc: 'Vibrant fashion sale layout for Instagram Stories.',
+                    desc: '用於 Instagram 限時動態的鮮豔時尚特賣版面。Vibrant fashion sale layout for Instagram Stories.',
                     subject: 'Fashion model', title: 'SALE', styles: ['Magazine Layout', 'Vibrant', 'Lifestyle'], sections: [{ visual: 'Model posing', param:'', textBlocks: [{ content: 'SUMMER SALE', level: 'H1', font: 'Bold Display' }, { content: '50% OFF', level: 'H2', font:'' }] }], ar: '9:16', texture: ''
                 },
                 social_tiktok_bg: {
                     name: 'TikTok 背景 (Background)',
-                    desc: 'Abstract neon gradients with motion blur, perfect for video text overlays.',
+                    desc: '帶有動態模糊的抽象霓虹漸層，適合影片文字疊加。Abstract neon gradients with motion blur, perfect for video text overlays.',
                     subject: 'Abstract fluid gradients',
                     title: '',
                     styles: ['Neon Lights', 'Motion Blur', 'Vibrant', 'Abstract'],
@@ -777,7 +807,7 @@
                 },
                 social_twitter_header: {
                     name: 'Twitter 頁首 (Header)',
-                    desc: 'Minimalist workspace flat lay with coffee and laptop, clean and professional.',
+                    desc: '包含咖啡與筆電的極簡工作區平鋪，乾淨專業。Minimalist workspace flat lay with coffee and laptop, clean and professional.',
                     subject: 'Minimalist desk flat lay',
                     title: '',
                     styles: ['Flat Lay', 'Minimalist', 'Top Down', 'Natural Light'],
@@ -787,7 +817,7 @@
                 },
                 social_fb_event: {
                     name: 'FB 活動封面 (Event)',
-                    desc: 'Energetic concert crowd silhouette with stage lights for event pages.',
+                    desc: '充滿活力的演唱會人群剪影與舞台燈光，適合活動頁面。Energetic concert crowd silhouette with stage lights for event pages.',
                     subject: 'Concert crowd silhouette',
                     title: 'Live Music',
                     styles: ['Silhouette', 'Stage Lights', 'Energetic', 'Wide Angle'],
@@ -797,7 +827,7 @@
                 },
                 social_pinterest_diy: {
                     name: 'Pinterest 教學 (DIY)',
-                    desc: 'Knolling layout of crafting tools and materials, organized and aesthetic.',
+                    desc: '手作工具與材料的平鋪佈局，整齊且具美感。Knolling layout of crafting tools and materials, organized and aesthetic.',
                     subject: 'Crafting tools knolling',
                     title: 'DIY Guide',
                     styles: ['Knolling', 'Bright', 'Organized', 'Pastel Colors'],
@@ -809,7 +839,7 @@
             "💼 商務與簡報 (Business & Slides)": {
                 layout_slide_bg: {
                     name: '簡報背景 (Clean Slide)',
-                    desc: 'Minimalist background with large negative space for text overlays.',
+                    desc: '帶有大面積負空間用於文字疊加的極簡背景。Minimalist background with large negative space for text overlays.',
                     subject: 'Abstract geometric shapes',
                     title: 'Presentation',
                     styles: ['Minimalist', 'Soft Gradient', 'Negative Space', 'Clean'],
@@ -822,7 +852,7 @@
                 },
                 slide_tech_dark: {
                     name: '科技簡報 (Tech Dark)',
-                    desc: 'Dark mode tech background with circuit patterns.',
+                    desc: '帶有電路圖案的深色模式科技背景。Dark mode tech background with circuit patterns.',
                     subject: 'Circuit board abstract pattern',
                     title: 'Tech Slide',
                     styles: ['Cyberpunk', 'Dark Mode', 'Blue and Purple', 'High Tech'],
@@ -834,46 +864,46 @@
             "📷 攝影與藝術 (Photography & Art)": {
                 prod_watch: {
                     name: '精品手錶 (Luxury Watch)',
-                    desc: 'Macro luxury product shot with gold reflections.',
+                    desc: '帶有金色反光的奢華產品微距攝影。Macro luxury product shot with gold reflections.',
                     subject: 'Gold wrist watch', title: '', styles: ['Product Photography', 'Macro', 'Reflection', 'Luxurious'], sections: [], ar: '4:5', texture: ''
                 },
                 prod_perfume: {
                     name: '香水廣告 (Perfume)',
-                    desc: 'Elegant product shot on water surface with ripples.',
+                    desc: '水面上有漣漪的優雅產品攝影。Elegant product shot on water surface with ripples.',
                     subject: 'Perfume bottle on water', title: '', styles: ['Product Photography', 'Water Ripples', 'Soft Light', 'Elegant'], sections: [], ar: '4:5', texture: ''
                 },
                 nature_macro: {
                     name: '生態微距 (Nature Macro)',
-                    desc: 'Fresh close-up of nature details like dew drops.',
+                    desc: '露珠等自然細節的清新特寫。Fresh close-up of nature details like dew drops.',
                     subject: 'Dew drop on leaf', title: '', styles: ['Macro', 'Natural Light', 'Green', 'Fresh'], sections: [], ar: '4:5', texture: ''
                 },
                 art_riso: {
                     name: '孔版印刷 (Risograph)',
-                    desc: 'Grainy, vibrant retro print style with offset colors.',
+                    desc: '帶有錯位色彩的粗糙、鮮豔復古印刷風格。Grainy, vibrant retro print style with offset colors.',
                     subject: 'Abstract shapes', title: '', styles: ['Risograph', 'Grainy', 'Vibrant Colors', 'Retro'], sections: [], ar: '2:3', texture: ''
                 }
             },
             "📱 UI 與網頁設計 (UI/Web)": {
                 ui_app_fin: {
                     name: '金融 App (Fintech)',
-                    desc: 'Modern flat UI for banking apps with vector elements.',
+                    desc: '帶有向量元素的銀行 App 現代扁平化 UI。Modern flat UI for banking apps with vector elements.',
                     subject: 'Banking app interface', title: 'Wallet', styles: ['Web UI Layout', 'Flat Design', 'Vector Art', 'High Key'], sections: [{ visual: 'Header section', param:'', textBlocks: [{ content: 'Total Balance', level: 'Body', font:'' }, { content: '$12,450.00', level: 'H1', font:'' }] }], ar: '9:16', texture: ''
                 },
                 ui_web_hero: {
                     name: '網頁首圖 (Hero)',
-                    desc: 'Clean, minimalist website hero section with soft light.',
+                    desc: '柔和光線下的乾淨極簡網站首圖區塊。Clean, minimalist website hero section with soft light.',
                     subject: 'Modern office desk', title: 'Future', styles: ['Web UI Layout', 'Minimalist', 'Clean', 'Soft Light'], sections: [{ visual:'', param:'', textBlocks: [{ content: 'We Build Future', level: 'H1', font: 'Sans-serif' }, { content: 'Start Now', level: 'Body', font: 'Sans-serif' }] }], ar: '21:9', texture: ''
                 }
             },
             "🎮 遊戲與動漫 (Game)": {
                 game_iso: {
                     name: '等角地圖 (Isometric)',
-                    desc: 'Cute low-poly 3D isometric game asset.',
+                    desc: '可愛的低多邊形 3D 等角遊戲資產。Cute low-poly 3D isometric game asset.',
                     subject: 'Medieval village', title: '', styles: ['Isometric', 'Low Poly', '3D Render', 'Cute'], sections: [], ar: '4:5', texture: ''
                 },
                 game_char: {
                     name: '角色設定 (Char Sheet)',
-                    desc: 'Detailed character concept art with front/side views.',
+                    desc: '包含正視圖與側視圖的詳細角色概念藝術。Detailed character concept art with front/side views.',
                     subject: 'Cyberpunk warrior', title: '', styles: ['Concept Art', 'T-Pose', 'Front/Side View', 'Detailed'], sections: [], ar: '21:9', texture: ''
                 }
             }
@@ -888,7 +918,7 @@
             const [hoveredPreset, setHoveredPreset] = useState(null);
             const [expandedCategories, setExpandedCategories] = useState(['藝術風格 (Styles)', '版型與構圖 (Layout)']);
             const [manualPrompt, setManualPrompt] = useState('');
-            const [activeMobileTab, setActiveMobileTab] = useState('edit'); // 'edit' or 'preview'
+            const [activeMobileTab, setActiveMobileTab] = useState('edit'); 
             
             // Feature state
             const [isAvoidSimplifiedChinese, setIsAvoidSimplifiedChinese] = useState(true);
