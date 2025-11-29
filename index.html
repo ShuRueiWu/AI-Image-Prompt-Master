@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Image Prompt Master</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 3px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        select option {
+            background-color: #1f2937;
+            color: white;
+        }
+        
+        /* Tooltip Arrow */
+        .tooltip-arrow {
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+            border-right: 1px solid #374151;
+            border-bottom: 1px solid #374151;
+        }
+    </style>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-gray-900 text-gray-100 overflow-hidden">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect, useRef } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { 
+          HelpCircle, ChevronDown, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink
+        } from 'lucide-react';
+
+        // --- Constants Data (Merged from constants.ts) ---
+        const TEXTURES = [
+            { label: '水彩紙 (Watercolor Paper)', val: 'on watercolor paper texture' },
+            { label: '油畫布 (Canvas)', val: 'on canvas texture' },
+            { label: '皺紙 (Crumpled Paper)', val: 'on crumpled paper texture' },
+            { label: '舊羊皮紙 (Old Parchment)', val: 'on old parchment paper' },
+            { label: '牛皮紙 (Kraft Paper)', val: 'on kraft paper texture' },
+            { label: '黑紙 (Black Paper)', val: 'on black paper texture' },
+            { label: '方格紙 (Graph Paper)', val: 'on graph paper' },
+            { label: '筆記本紙 (Notebook Paper)', val: 'on lined notebook paper' },
+            { label: '厚紙板 (Cardboard)', val: 'on cardboard texture' },
+            { label: '木紋 (Wood)', val: 'on wood texture' },
+            { label: '水泥牆 (Concrete)', val: 'on concrete wall texture' },
+            { label: '布料 (Fabric)', val: 'on fabric texture' }
+        ];
+
+        const FONT_LIST = [
+            'Microsoft JhengHei', 'Sans-serif', 'Serif', 'Slab Serif', 'Monospace', 
+            'Bold Display', 'Handwritten', 'Calligraphy', 'Graffiti', 'Futura', 
+            'Helvetica', 'Garamond', 'Roboto', 'Noto Sans TC', 'KaiTi'
+        ];
+
+        const CATEGORIES = {
+            "藝術風格 (Styles)": [
+                { label: '色鉛筆速寫 (Colored Pencil)', val: 'Colored Pencil Sketch', desc: '細膩的線條與溫暖的筆觸，適合手帳與插畫。' },
+                { label: '水墨插畫 (Ink Wash)', val: 'Ink Illustration', desc: '黑白對比強烈，流動感強，適合東方風格。' },
+                { label: '炭筆素描 (Charcoal)', val: 'Charcoal Drawing', desc: '粗獷、高對比的黑白質感，強調光影。' },
+                { label: '蠟筆畫 (Crayon)', val: 'Crayon Drawing', desc: '童趣、色彩飽和且帶有粗糙顆粒感。' },
+                { label: '麥克筆 (Marker)', val: 'Marker Pen Art', desc: '色彩鮮豔、筆觸明顯，適合工業設計或時尚插畫。' },
+                { label: '原子筆畫 (Ballpoint)', val: 'Ballpoint Pen Art', desc: '使用藍色或黑色原子筆的精細線條排線。' },
+                { label: '塗鴉 (Doodle)', val: 'Doodle Art', desc: '隨興、可愛、無拘無束的線條塗鴉。' },
+                { label: '不透明水彩 (Gouache)', val: 'Gouache Painting', desc: '色彩飽和不透明，筆觸平滑，適合平面設計風格。' },
+                { label: '街頭塗鴉 (Graffiti)', val: 'Graffiti Art', desc: '噴漆質感，色彩大膽，充滿街頭文化氣息。' },
+                { label: '模版塗鴉 (Stencil)', val: 'Stencil Art', desc: '邊緣清晰的噴漆風格，類似 Banksy 作品。' },
+                { label: '亞麻版畫 (Linocut)', val: 'Linocut Print', desc: '黑白分明，帶有雕刻刀痕跡的印刷質感。' },
+                { label: '木刻版畫 (Woodblock)', val: 'Woodblock Print', desc: '古樸的木紋質感與印刷痕跡。' },
+                { label: '馬賽克 (Mosaic)', val: 'Mosaic Art', desc: '由小石塊或磁磚拼貼而成的影像。' },
+                { label: '彩繪玻璃 (Stained Glass)', val: 'Stained Glass', desc: '透過光線照射的彩色玻璃拼貼效果，神聖莊嚴。' },
+                { label: '黏土動畫 (Claymation)', val: 'Claymation Style', desc: '像黏土捏成的人物，帶有指紋與材質感。' },
+                { label: '羊毛氈 (Felt)', val: 'Felt Art', desc: '毛絨絨的質感，溫暖且可愛。' },
+                { label: '刺繡 (Embroidery)', val: 'Embroidery Art', desc: '用針線縫製的質感，具有立體感與織紋。' },
+                { label: '針織 (Knitting)', val: 'Knitting Pattern', desc: '毛線編織的紋理，溫暖舒適。' },
+                { label: '工程藍圖 (Blueprint)', val: 'Blueprint Style', desc: '藍底白線的建築或機械設計圖風格。' },
+                { label: '黑板粉筆 (Chalkboard)', val: 'Chalkboard Art', desc: '黑板背景配上白色粉筆線條。' },
+                { label: '日式手繪 (Japanese Hand-Drawn)', val: 'Japanese Hand-Drawn Style', desc: '柔和的鉛筆或鋼筆線條，呈現手繪插畫的溫暖質感。' },
+                { label: '浮世繪 (Ukiyo-e)', val: 'Ukiyo-e Style', desc: '日本江戶時代木刻版畫風格，線條鮮明，色彩平塗。' },
+                { label: '水墨畫 (Sumi-e)', val: 'Sumi-e Ink Wash', desc: '使用墨的濃淡來表現層次，留白與意境為主。' },
+                { label: '日本畫 (Nihonga)', val: 'Nihonga', desc: '使用天然礦物顏料，質感細膩，傳統日式美學。' },
+                { label: '金繼 (Kintsugi)', val: 'Kintsugi', desc: '用金漆修補陶器裂痕的藝術，象徵不完美之美。' },
+                { label: '侘寂 (Wabi-sabi)', val: 'Wabi-sabi', desc: '接受短暫與不完美，呈現枯淡、樸素的自然美。' },
+                { label: '昭和復古 (Showa Retro)', val: 'Showa Retro', desc: '日本 60-80 年代的懷舊風格，溫暖泛黃的色調。' },
+                { label: '城市流行 (City Pop)', val: 'City Pop Aesthetic', desc: '80 年代 City Pop 音樂封面風格，都會、度假、清爽。' },
+                { label: '卡哇伊 (Kawaii)', val: 'Kawaii Style', desc: '強調可愛、粉嫩色彩、圓潤造型的風格。' },
+                { label: '原宿風 (Harajuku)', val: 'Harajuku Fashion', desc: '色彩繽紛、大膽誇張的日本街頭時尚風格。' },
+                { label: '少年漫畫 (Shonen Manga)', val: 'Shonen Manga Style', desc: '強調熱血、動作線、黑白對比強烈的漫畫風格。' },
+                { label: '少女漫畫 (Shojo Manga)', val: 'Shojo Manga Style', desc: '大眼睛、華麗網點、唯美浪漫的氛圍。' },
+                { label: '吉卜力 (Studio Ghibli)', val: 'Studio Ghibli', desc: '宮崎駿動畫風格，細膩的手繪背景與鮮活的角色。' },
+                { label: '新海誠 (Makoto Shinkai)', val: 'Makoto Shinkai', desc: '極致的光影細節，如照片般寫實但更唯美的天空與背景。' },
+                { label: '摺紙藝術 (Origami)', val: 'Origami Style', desc: '模擬紙張折疊的幾何質感與立體構造。' },
+                { label: '剪紙 (Kirigami)', val: 'Kirigami', desc: '層疊的紙張質感，利用陰影創造深度的藝術。' },
+                { label: '孔版印刷 (Risograph)', val: 'Risograph', desc: '類似絹印的粗糙顆粒感，色彩鮮豔且常有錯位效果。' },
+                { label: '特攝怪獸 (Kaiju)', val: 'Kaiju Movie Style', desc: '模擬日本特攝電影（如哥吉拉）的皮套與微縮模型質感。' },
+                { label: '日式和柄 (Japanese Pattern)', val: 'Japanese Traditional Pattern', desc: '傳統日本圖騰（如青海波、麻葉紋）的裝飾風格。' },
+                { label: '日式賽博龐克 (JP Cyberpunk)', val: 'Japanese Cyberpunk', desc: '結合高科技與日本傳統元素（如霓虹鳥居）的風格。' },
+                { label: 'Q版角色 (Chibi)', val: 'Chibi Character', desc: '頭大身小的二頭身可愛角色造型。' },
+                { label: '照片寫實 (Photorealistic)', val: 'Photorealistic', desc: '像照片一樣真實，難以分辨是繪圖。' },
+                { label: '超寫實 (Hyperrealistic)', val: 'Hyperrealistic', desc: '比照片更真實，強調毛孔、紋理等極致細節。' },
+                { label: '虛幻引擎5 (UE5)', val: 'Unreal Engine 5', desc: '次世代遊戲引擎的渲染質感，光影物理極度真實。' },
+                { label: '8K 解析度 (8k)', val: '8k Resolution', desc: '極高解析度，確保細節銳利清晰。' },
+                { label: '歐美動漫 (Anime)', val: 'Anime', desc: '類似美式卡通或現代動畫的風格。' },
+                { label: '賽博龐克 (Cyberpunk)', val: 'Cyberpunk', desc: '高科技低生活，霓虹燈、雨夜、機械義肢。' },
+                { label: '蒸氣龐克 (Steampunk)', val: 'Steampunk', desc: '維多利亞時代結合蒸汽動力的復古科幻。' },
+                { label: '合成波 (Synthwave)', val: 'Synthwave', desc: '80 年代復古未來主義，紫色與洋紅色的霓虹網格。' },
+                { label: '蒸氣波 (Vaporwave)', val: 'Vaporwave', desc: '結合 90 年代網路文化、雕像、粉色調的迷幻風格。' },
+                { label: '科幻 (Sci-Fi)', val: 'Sci-Fi', desc: '未來科技、太空船、外星文明的視覺風格。' },
+                { label: '油畫 (Oil Painting)', val: 'Oil Painting', desc: '厚重的顏料堆疊質感，經典繪畫風格。' },
+                { label: '印象派 (Impressionism)', val: 'Impressionism', desc: '強調光影變化，筆觸明顯，不拘泥於細節。' },
+                { label: '水彩 (Watercolor)', val: 'Watercolor', desc: '顏料流動與暈染的透明質感，清透柔和。' },
+                { label: '素描 (Sketch)', val: 'Sketch', desc: '鉛筆或炭筆的單色線條繪畫。' },
+                { label: '普普藝術 (Pop Art)', val: 'Pop Art', desc: '高飽和度色彩，大眾文化符號，類似安迪沃荷風格。' },
+                { label: '超現實主義 (Surrealism)', val: 'Surrealism', desc: '夢境般的畫面，不合邏輯的物體組合（如達利）。' },
+                { label: '極簡主義 (Minimalist)', val: 'Minimalist', desc: '去除多餘元素，強調簡單的幾何與色彩。' },
+                { label: '包浩斯 (Bauhaus)', val: 'Bauhaus', desc: '功能主義，幾何造型，紅黃藍三原色搭配。' },
+                { label: '像素藝術 (Pixel Art)', val: 'Pixel Art', desc: '復古 8-bit 或 16-bit 遊戲的點陣圖風格。' },
+                { label: '低面數 (Low Poly)', val: 'Low Poly', desc: '由多邊形組成的 3D 模型風格，稜角分明。' },
+                { label: '3D 渲染 (3D Render)', val: '3D Render', desc: '通用的 3D 電腦繪圖質感。' },
+                { label: 'Blender', val: 'Blender', desc: '開源 3D 軟體的典型渲染風格，乾淨現代。' },
+                { label: '概念藝術 (Concept Art)', val: 'Concept Art', desc: '電影或遊戲開發初期的設計稿風格，強調氛圍。' },
+                { label: '向量圖 (Vector Art)', val: 'Vector Art', desc: '數學計算的平滑線條，無限放大不失真，類似 Illustrator。' },
+                { label: '扁平設計 (Flat Design)', val: 'Flat Design', desc: '無陰影、無漸層，簡潔的現代 UI 插畫風格。' },
+                { label: '哥德式 (Gothic)', val: 'Gothic', desc: '黑暗、神秘、尖塔、彩色玻璃，中世紀風格。' },
+                { label: '黑色電影 (Noir)', val: 'Noir', desc: '高對比黑白攝影，強調陰影與懸疑感。' },
+                { label: '復古 (Vintage)', val: 'Vintage', desc: '泛指舊時代的質感，帶有歲月痕跡。' },
+                { label: '拍立得 (Polaroid)', val: 'Polaroid', desc: '模擬即顯底片的色彩偏移與邊框質感。' }
+            ],
+            "版型與構圖 (Layout)": [
+                { label: '三分法構圖 (Rule of Thirds)', val: 'Rule of Thirds', desc: '將畫面分為九宮格，主體放在交叉點上。' },
+                { label: '中心構圖 (Center)', val: 'Center Composition', desc: '主體位於畫面正中央，強調對稱與專注。' },
+                { label: '黃金比例 (Golden Ratio)', val: 'Golden Ratio', desc: '符合數學美學的螺旋構圖，視覺最和諧的比例。' },
+                { label: '平鋪排列 (Knolling)', val: 'Knolling', desc: '將物體拆解並整齊平行排列（開箱照風格）。' },
+                { label: '等角視圖 (Isometric)', val: 'Isometric', desc: '2.5D 視角，無近大遠小，常用於遊戲地圖。' },
+                { label: '負空間/留白 (Negative Space)', val: 'Negative Space', desc: '大面積空白，強調孤獨感或極簡美。' },
+                { label: '填滿畫面 (Fill the Frame)', val: 'Fill the Frame', desc: '主體佔滿整個版面，無背景，強調細節。' },
+                { label: '對稱構圖 (Symmetrical)', val: 'Symmetrical', desc: '左右或上下完全鏡像，莊重且平衡。' },
+                { label: '拼貼風格 (Collage)', val: 'Collage', desc: '將不同材質或照片剪貼組合的藝術效果。' },
+                { label: '全景圖 (Panorama)', val: 'Panorama', desc: '極寬的長寬比，展示宏偉的風景。' },
+                { label: '魚眼視角 (Fisheye)', val: 'Fisheye', desc: '極度扭曲的廣角效果，中心凸起。' },
+                { label: '三聯畫 (Triptych)', val: 'Triptych', desc: '由三幅畫組成一個完整作品。' },
+                { label: '四格網格 (2x2 Grid)', val: 'Grid 2x2', desc: '2x2 的漫畫或普普藝術排列。' },
+                { label: '九宮格 (3x3 Grid)', val: 'Grid 3x3', desc: '3x3 的多圖排列。' },
+                { label: '垂直分割 (Split V)', val: 'Split Screen Vertical', desc: '畫面左右分割，對比兩個場景。' },
+                { label: '水平分割 (Split H)', val: 'Split Screen Horizontal', desc: '畫面上下分割，如水上水下。' },
+                { label: '雜誌排版 (Magazine)', val: 'Magazine Layout', desc: '結合標題文字與圖片的時尚排版。' },
+                { label: '網頁介面 (Web UI)', val: 'Web UI Layout', desc: '模擬網站或 App 的 UI 設計佈局。' },
+                { label: '儀表板 (Dashboard)', val: 'Dashboard UI', desc: '充滿數據圖表與控制面板的介面。' },
+                { label: '資訊圖表 (Infographic)', val: 'Infographic', desc: '用圖形解釋數據或流程的設計。' },
+                { label: '電影海報 (Movie Poster)', val: 'Movie Poster Composition', desc: '強調標題空間與視覺衝擊力的構圖。' },
+                { label: '雙重曝光 (Double Exposure)', val: 'Double Exposure', desc: '兩張影像重疊（如人影中有森林）。' },
+                { label: '框中框 (Frame in Frame)', val: 'Frame within a Frame', desc: '利用門窗或洞口作為前景框架觀察主體。' }
+            ],
+            "鏡頭語言 (Camera)": [
+                { label: '廣角鏡頭 (Wide Angle)', val: 'Wide Angle', desc: '視野寬廣，強調空間感。' },
+                { label: '超廣角 (Ultra Wide)', val: 'Ultra Wide Angle', desc: '極度寬廣的視野，邊緣可能變形。' },
+                { label: '長焦鏡頭 (Telephoto)', val: 'Telephoto', desc: '壓縮空間感，拉近遠處物體，背景模糊。' },
+                { label: '微距攝影 (Macro)', val: 'Macro', desc: '極近距離拍攝微小物體（如昆蟲複眼）。' },
+                { label: '顯微視角 (Microscopic)', val: 'Microscopic', desc: '顯微鏡下的細胞或細菌視角。' },
+                { label: '散景/淺景深 (Bokeh)', val: 'Bokeh', desc: '背景模糊成光斑，凸顯清晰的主體。' },
+                { label: '深景深 (Deep Focus)', val: 'Deep Focus', desc: '從前景到背景都清晰銳利（如風景照）。' },
+                { label: '低角度 (Low Angle)', val: 'Low Angle', desc: '從下往上拍，讓主體看起來高大威嚴。' },
+                { label: '高角度 (High Angle)', val: 'High Angle', desc: '從上往下拍，讓主體看起來渺小。' },
+                { label: '鳥瞰圖 (Bird\'s Eye)', val: 'Bird\'s Eye View', desc: '正上方的垂直俯視圖。' },
+                { label: '空拍機 (Drone Shot)', val: 'Drone Shot', desc: '像無人機在空中拍攝的廣闊視角。' },
+                { label: '蟲視角 (Worm\'s Eye)', val: 'Worm\'s Eye View', desc: '貼在地面向上仰望的視角。' },
+                { label: '荷蘭式傾斜 (Dutch Angle)', val: 'Dutch Angle', desc: '鏡頭歪斜，創造不安或動態感。' },
+                { label: '第一人稱 (POV)', val: 'POV', desc: '模擬人眼看到的視角（看到自己的手）。' },
+                { label: '越肩視角 (Over Shoulder)', val: 'Over the Shoulder', desc: '隔著角色肩膀看對面，對話常見鏡頭。' },
+                { label: '側面視角 (Profile)', val: 'Profile Shot', desc: '完全側面的視角，像剪影或通緝照。' },
+                { label: '熱成像 (Thermal)', val: 'Thermal Imaging', desc: '模擬紅外線熱感應儀的色彩（紅熱藍冷）。' },
+                { label: '監視器視角 (CCTV)', val: 'CCTV View', desc: '模擬 CCTV 低畫質與俯視角度。' },
+                { label: '動態模糊 (Motion Blur)', val: 'Motion Blur', desc: '物體移動產生的拖影，表現速度感。' },
+                { label: '長曝光 (Long Exposure)', val: 'Long Exposure', desc: '讓流水變霧狀或車燈變光軌的慢快門效果。' },
+                { label: '移軸攝影 (Tilt-Shift)', val: 'Tilt-Shift', desc: '讓真實場景看起來像微縮玩具模型。' }
+            ],
+            "光影氛圍 (Lighting)": [
+                { label: '黃金時刻 (Golden Hour)', val: 'Golden Hour', desc: '日出日落時的金黃色柔光。' },
+                { label: '藍色時刻 (Blue Hour)', val: 'Blue Hour', desc: '日落後天空呈現深藍色的魔幻時刻。' },
+                { label: '正午光 (Noon)', val: 'Noon', desc: '頂光，陰影強烈且短，高對比。' },
+                { label: '自然光 (Natural Light)', val: 'Natural Light', desc: '模擬太陽或月亮的真實光線。' },
+                { label: '影棚光 (Studio Light)', val: 'Studio Lighting', desc: '專業攝影棚的完美控光。' },
+                { label: '柔光箱 (Softbox)', val: 'Softbox', desc: '柔和無陰影的人像光線。' },
+                { label: '倫勃朗光 (Rembrandt)', val: 'Rembrandt Lighting', desc: '臉頰上有倒三角形光斑的經典戲劇光。' },
+                { label: '輪廓光 (Rim Light)', val: 'Rim Light', desc: '從背後勾勒物體邊緣的亮光。' },
+                { label: '逆光 (Backlighting)', val: 'Backlighting', desc: '光源在主體後方，使主體變暗或產生光暈。' },
+                { label: '體積光 (Volumetric)', val: 'Volumetric Lighting', desc: '空氣中有灰塵或霧氣時形成的可見光束（丁達爾效應）。' },
+                { label: '耶穌光 (God Rays)', val: 'God Rays', desc: '雲層縫隙撒下的壯麗光束。' },
+                { label: '霓虹燈 (Neon Lights)', val: 'Neon Lights', desc: '賽博龐克風格的高飽和度彩色光。' },
+                { label: '賽博龐克光 (Cyberpunk)', val: 'Cyberpunk Lighting', desc: '藍紫與青色對比的冷酷光線。' },
+                { label: '電影光感 (Cinematic)', val: 'Cinematic Lighting', desc: '高動態範圍，戲劇性強的電影級打光。' },
+                { label: '燭光 (Candlelight)', val: 'Candlelight', desc: '溫暖、搖曳、微弱的火光。' },
+                { label: '火光 (Firelight)', val: 'Firelight', desc: '橙紅色、動態強烈的燃燒光線。' },
+                { label: '生物發光 (Bioluminescent)', val: 'Bioluminescent', desc: '像螢火蟲或深海魚發出的冷光。' },
+                { label: '暗調 (Low Key)', val: 'Low Key', desc: '畫面大部分是黑色的，強調神秘感。' },
+                { label: '亮調 (High Key)', val: 'High Key', desc: '畫面明亮潔白，強調純淨感。' },
+                { label: '剪影 (Silhouette)', val: 'Silhouette', desc: '主體全黑，只看得到輪廓。' }
+            ],
+            "材質質感 (Materials)": [
+                { label: '玻璃 (Glass)', val: 'Glass', desc: '透明、反光、折射質感。' },
+                { label: '霧面玻璃 (Frosted)', val: 'Frosted Glass', desc: '半透明、模糊的柔和質感。' },
+                { label: '金屬 (Metal)', val: 'Metal', desc: '硬朗、反光的冷質感。' },
+                { label: '髮絲紋 (Brushed Metal)', val: 'Brushed Metal', desc: '帶有細微平行紋路的金屬質感。' },
+                { label: '黃金 (Gold)', val: 'Gold', desc: '金黃色、高貴、強烈反光。' },
+                { label: '鉻金屬 (Chrome)', val: 'Chrome', desc: '銀色鏡面反射的科幻質感。' },
+                { label: '鐵鏽 (Rust)', val: 'Rust', desc: '粗糙、紅褐色的氧化質感。' },
+                { label: '木頭 (Wood)', val: 'Wood', desc: '溫暖、自然的紋理。' },
+                { label: '大理石 (Marble)', val: 'Marble', desc: '高雅的石材紋路，通常為白底灰紋。' },
+                { label: '混凝土 (Concrete)', val: 'Concrete', desc: '粗獷、灰色的工業風質感。' },
+                { label: '磚塊 (Brick)', val: 'Brick', desc: '規律排列的建築質感。' },
+                { label: '布料 (Fabric)', val: 'Fabric', desc: '柔軟、有纖維細節的材質。' },
+                { label: '絲綢 (Silk)', val: 'Silk', desc: '光滑、有光澤的柔軟布料。' },
+                { label: '皮革 (Leather)', val: 'Leather', desc: '有毛孔紋理的厚實質感。' },
+                { label: '塑膠 (Plastic)', val: 'Plastic', desc: '光滑、人造、色彩飽和的質感。' },
+                { label: '碳纖維 (Carbon Fiber)', val: 'Carbon Fiber', desc: '黑灰交織的高科技編織紋路。' },
+                { label: '雷射全像 (Holographic)', val: 'Holographic', desc: '隨角度變色的彩虹光澤（像雷射貼紙）。' },
+                { label: '亮粉 (Glitter)', val: 'Glitter', desc: '閃爍的細小顆粒質感。' },
+                { label: '蠟質感 (Wax)', val: 'Wax', desc: '半透明、溫潤的質感。' },
+                { label: '冰 (Ice)', val: 'Ice', desc: '晶瑩剔透、寒冷的質感。' },
+                { label: '水 (Water)', val: 'Water', desc: '流動、透明、反光的液體。' },
+                { label: '煙霧 (Smoke)', val: 'Smoke', desc: '飄渺、無定形的氣體質感。' }
+            ]
+        };
+
+        const PRESET_GROUPS = {
+            "✈️ 旅行與手帳 (Travel & Journal)": {
+                travel_kyoto_sketch: {
+                    name: '京都街頭速寫 (Kyoto Sketch)',
+                    desc: 'Detailed urban sketch of Kyoto streets with traditional buildings using ink and watercolor.',
+                    subject: 'Old street in Kyoto with wooden machiya',
+                    title: 'Kyoto Memories',
+                    styles: ['Ink Illustration', 'Watercolor', 'Sketch', 'Urban Sketching'],
+                    sections: [],
+                    ar: '4:5',
+                    texture: 'on watercolor paper texture'
+                },
+                travel_food_diary: {
+                    name: '美食手帳 (Food Diary)',
+                    desc: 'Cute colored pencil illustration of a ramen bowl, top-down view.',
+                    subject: 'Delicious ramen bowl with toppings',
+                    title: 'Oishii!',
+                    styles: ['Colored Pencil Sketch', 'Food Illustration', 'Cute', 'Top Down'],
+                    sections: [{ visual: '', param: '', textBlocks: [{ content: 'Tonkotsu Ramen', level: 'Caption', font: 'Handwritten' }] }],
+                    ar: '1:1',
+                    texture: 'on lined notebook paper'
+                },
+                travel_map_doodle: {
+                    name: '旅行地圖 (Map Doodle)',
+                    desc: 'Hand-drawn map with cute icons of landmarks on kraft paper.',
+                    subject: 'Tourist map of Paris',
+                    title: 'Paris Map',
+                    styles: ['Doodle Art', 'Map Design', 'Cute Icons', 'Handwritten'],
+                    sections: [],
+                    ar: '4:3',
+                    texture: 'on kraft paper texture'
+                },
+                travel_cafe_moment: {
+                    name: '咖啡廳時光 (Cafe)',
+                    desc: 'Relaxing marker pen drawing of coffee and cake on a wooden table.',
+                    subject: 'Coffee cup and strawberry cake',
+                    title: 'Afternoon Tea',
+                    styles: ['Marker Pen Art', 'Relaxing', 'Warm Colors'],
+                    sections: [],
+                    ar: '3:4',
+                    texture: 'on notebook paper'
+                },
+                travel_landscape_charcoal: {
+                    name: '山水炭筆 (Charcoal Landscape)',
+                    desc: 'Dramatic charcoal sketch of mountain scenery.',
+                    subject: 'Swiss Alps mountains',
+                    title: 'The Alps',
+                    styles: ['Charcoal Drawing', 'High Contrast', 'Dramatic', 'Sketch'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: 'on textured paper'
+                },
+                travel_botanical_ink: {
+                    name: '植物標本 (Botanical)',
+                    desc: 'Vintage style botanical ink drawing of local flora.',
+                    subject: 'Tropical fern leaves',
+                    title: 'Flora',
+                    styles: ['Ink Illustration', 'Vintage Scientific', 'Detailed', 'Botanical'],
+                    sections: [],
+                    ar: '2:3',
+                    texture: 'on old parchment paper'
+                },
+                travel_blueprint_museum: {
+                    name: '博物館藍圖 (Blueprint)',
+                    desc: 'Architectural blueprint style drawing of a famous museum facade.',
+                    subject: 'British Museum facade',
+                    title: 'Architecture',
+                    styles: ['Blueprint Style', 'Architectural Drawing', 'Technical', 'Blue'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: 'on blueprint paper'
+                },
+                travel_postcard_gouache: {
+                    name: '風景明信片 (Gouache)',
+                    desc: 'Vibrant gouache painting of a seaside town like Cinque Terre.',
+                    subject: 'Cinque Terre houses on cliff',
+                    title: 'Summer',
+                    styles: ['Gouache Painting', 'Vibrant Colors', 'Flat Style', 'Travel Poster'],
+                    sections: [],
+                    ar: '2:3',
+                    texture: 'on watercolor paper texture'
+                }
+            },
+            "📐 專業排版 (Professional Layouts)": {
+                layout_swiss_grid: {
+                    name: '瑞士風格 (Swiss Style)',
+                    desc: 'International Typographic Style using asymmetric grids and sans-serif typography.',
+                    subject: 'Abstract geometric shapes',
+                    title: 'Modernism',
+                    styles: ['Swiss Design', 'Bauhaus', 'Grid System', 'Helvetica'],
+                    sections: [{ visual: 'Geometric shapes', param: 'Red and Black', textBlocks: [{ content: 'HELVETICA', level: 'H1', font: 'Helvetica' }] }],
+                    ar: '2:3',
+                    texture: ''
+                },
+                layout_bento_grid: {
+                    name: '便當盒佈局 (Bento Grid)',
+                    desc: 'Apple-style modular grid layout for showcasing features or products.',
+                    subject: 'Tech product features',
+                    title: 'Features',
+                    styles: ['Bento Grid', 'Rounded Corners', 'Glassmorphism', 'Clean UI'],
+                    sections: [],
+                    ar: '4:3',
+                    texture: ''
+                },
+                layout_split_screen: {
+                    name: '左右分割 (Split Screen)',
+                    desc: 'High contrast split screen composition, ideal for comparisons.',
+                    subject: 'Day vs Night landscape',
+                    title: 'Duality',
+                    styles: ['Split Screen', 'Contrast', 'Symmetrical'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                },
+                layout_magazine_spread: {
+                    name: '雜誌跨頁 (Mag Spread)',
+                    desc: 'Two-page layout look with text column and full bleed image.',
+                    subject: 'Fashion editorial',
+                    title: 'Interview',
+                    styles: ['Magazine Layout', 'Editorial', 'Typography'],
+                    sections: [{ visual: 'Full page photo left', param:'', textBlocks: [] }, { visual: 'Text columns right', param:'', textBlocks: [{ content: 'The Interview', level: 'H1', font: '' }] }],
+                    ar: '3:2',
+                    texture: ''
+                },
+                layout_z_pattern: {
+                    name: 'Z型視覺 (Z-Pattern)',
+                    desc: 'Guide the eye from top-left to bottom-right, standard for landing pages.',
+                    subject: 'Website landing page',
+                    title: 'Landing',
+                    styles: ['Web UI', 'UX Design', 'Clean'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                },
+                layout_central_hero: {
+                    name: '中心英雄 (Central Hero)',
+                    desc: 'Subject centered with radiating elements, strong focal point.',
+                    subject: 'Super hero character',
+                    title: 'Hero',
+                    styles: ['Symmetrical', 'Central Composition', 'Epic Lighting'],
+                    sections: [],
+                    ar: '2:3',
+                    texture: ''
+                },
+                layout_diagonal_tension: {
+                    name: '對角線張力 (Diagonal)',
+                    desc: 'Dynamic composition using diagonal lines to create movement.',
+                    subject: 'Sports car drifting',
+                    title: 'Speed',
+                    styles: ['Dynamic Angle', 'Motion Blur', 'Action'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                },
+                layout_white_space: {
+                    name: '極致留白 (White Space)',
+                    desc: 'Minimalist layout with massive negative space for elegance.',
+                    subject: 'Small perfume bottle',
+                    title: 'Essence',
+                    styles: ['Minimalist', 'Negative Space', 'High Key'],
+                    sections: [],
+                    ar: '4:5',
+                    texture: ''
+                },
+                layout_typographic_poster: {
+                    name: '文字海報 (Typographic)',
+                    desc: 'Image constructed primarily from large, bold typography.',
+                    subject: 'Typography art',
+                    title: 'BOLD',
+                    styles: ['Typography', 'Poster Design', 'Contrast'],
+                    sections: [{ visual:'', param:'', textBlocks: [{ content: 'FUTURE', level: 'H1', font: 'Bold Display' }] }],
+                    ar: '2:3',
+                    texture: ''
+                },
+                layout_collage_art: {
+                    name: '拼貼藝術 (Collage)',
+                    desc: 'Mixed media layered look, chaotic but artistic.',
+                    subject: 'Vintage retro futuristic collage',
+                    title: 'Memory',
+                    styles: ['Collage', 'Mixed Media', 'Dadaism', 'Retro'],
+                    sections: [],
+                    ar: '3:4',
+                    texture: ''
+                },
+                layout_rule_thirds: {
+                    name: '三分法 (Rule of Thirds)',
+                    desc: 'Subject placed at intersection points for balanced composition.',
+                    subject: 'Lonely tree in field',
+                    title: 'Solitude',
+                    styles: ['Photography Rule', 'Balanced', 'Golden Hour'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                },
+                layout_frame_in_frame: {
+                    name: '框中框 (Frame in Frame)',
+                    desc: 'Using environmental elements to frame the subject.',
+                    subject: 'View through a window',
+                    title: 'Perspective',
+                    styles: ['Depth', 'Framing', 'Interior'],
+                    sections: [],
+                    ar: '4:5',
+                    texture: ''
+                },
+                layout_infographic_step: {
+                    name: '步驟圖 (Step Process)',
+                    desc: 'Sequential layout showing a process (1-2-3).',
+                    subject: 'Coffee brewing process',
+                    title: 'How to Brew',
+                    styles: ['Infographic', 'Flat Design', 'Vector'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                },
+                layout_isometric_room: {
+                    name: '等角房間 (Isometric Room)',
+                    desc: '3D cutaway view of a room in isometric projection.',
+                    subject: 'Gamer room setup',
+                    title: 'My Setup',
+                    styles: ['Isometric', '3D Render', 'Cute', 'Low Poly'],
+                    sections: [],
+                    ar: '1:1',
+                    texture: ''
+                },
+                layout_knolling_flat: {
+                    name: '開箱平鋪 (Knolling)',
+                    desc: 'Items arranged at 90 degree angles, organized flat lay.',
+                    subject: 'Travel essentials',
+                    title: 'EDC',
+                    styles: ['Knolling', 'Flat Lay', 'Organized', 'Top Down'],
+                    sections: [],
+                    ar: '4:3',
+                    texture: ''
+                }
+            },
+            "🏥 醫療與科學 (Medical & Science)": {
+                edu_asthma: {
+                    name: '氣喘衛教 (Asthma)',
+                    desc: 'Clear illustration of airway inflammation for patient education.',
+                    subject: 'Pediatric asthma airway comparison',
+                    title: 'Asthma Care',
+                    styles: ['Japanese Hand-Drawn Style', 'Educational', 'Soft Colors', 'Clean Outline'],
+                    sections: [
+                        { visual: 'Normal airway vs Inflamed airway', param: 'cross-section illustration, pink vs red', textBlocks: [{ content: '健康氣管 vs 發炎氣管', level: 'H2', font: 'Microsoft JhengHei' }] },
+                        { visual: 'Inhaler device', param: 'simple vector style', textBlocks: [{ content: '使用吸入器', level: 'Caption', font: 'Microsoft JhengHei' }] }
+                    ],
+                    ar: '4:5',
+                    texture: ''
+                },
+                med_cardio_stent: {
+                    name: '心臟支架 (Stent)',
+                    desc: 'Detailed 3D cross-section of a coronary artery with a mesh stent.',
+                    subject: 'Coronary artery with stent',
+                    title: 'Heart Health',
+                    styles: ['3D Render', 'Medical Illustration', 'Cross Section', 'Detailed'],
+                    sections: [{ visual: 'Metal mesh stent expanding artery', param:'', textBlocks: [{ content: 'Coronary Stent', level: 'Caption', font:'' }] }],
+                    ar: '4:3',
+                    texture: ''
+                },
+                med_neuro_synapse: {
+                    name: '神經突觸 (Synapse)',
+                    desc: 'Close-up of a chemical synapse releasing neurotransmitters.',
+                    subject: 'Chemical synapse',
+                    title: 'Neurotransmission',
+                    styles: ['Microscopic', 'Bioluminescent', 'Particles', 'Depth of Field'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                },
+                med_mri: {
+                    name: 'MRI 腦部掃描 (MRI Scan)',
+                    desc: 'High-contrast, realistic MRI scan of human brain.',
+                    subject: 'Human brain', title: '', styles: ['MRI Scan', 'Medical Imaging', 'Blue and Black', 'Detailed'], sections: [], ar: '4:5', texture: ''
+                },
+                med_surgery: {
+                    name: '手術機器人 (Surgery Robot)',
+                    desc: 'Futuristic, sterile view of robotic surgery arms in action.',
+                    subject: 'Robotic arm performing surgery', title: 'Future Med', styles: ['High Tech', 'Sterile', 'Bright', 'Depth of Field'], sections: [], ar: '21:9', texture: ''
+                },
+                med_virus: {
+                    name: '病毒微觀 (Virus)',
+                    desc: 'Electron microscope style view of virus structure.',
+                    subject: 'Virus cell structure', title: '', styles: ['Microscopic', 'Electron Microscope', 'Detailed Texture', 'Danger'], sections: [], ar: '4:3', texture: ''
+                },
+                med_anatomy: {
+                    name: '心臟解剖圖 (Heart Anatomy)',
+                    desc: 'Educational cutaway illustration of human heart chambers.',
+                    subject: 'Human heart', title: 'Cardiology', styles: ['Medical Illustration', 'Cutaway', 'Educational', 'Clean'], sections: [{ visual: 'Ventricles and atria', param:'', textBlocks: [{ content: 'Aorta', level: 'Caption', font:'' }] }], ar: '4:3', texture: ''
+                },
+                med_pharma_pill: {
+                    name: '藥物溶解 (Pill Dissolving)',
+                    desc: 'Macro shot of a capsule dissolving in water, releasing particles.',
+                    subject: 'Pill capsule dissolving',
+                    title: '',
+                    styles: ['Macro', 'High Speed Photography', 'Water Bubbles', 'Studio Light'],
+                    sections: [],
+                    ar: '1:1',
+                    texture: ''
+                },
+                med_conf_slide: {
+                    name: '醫學研討會 (Conference)',
+                    desc: 'Abstract neural network visualization with clean space for presentation titles.',
+                    subject: 'Abstract neural networks and synapses',
+                    title: 'Conference Slide',
+                    styles: ['Medical Imaging', 'Minimalist', 'Blue and White', 'Clean'],
+                    sections: [
+                        { visual: 'Neural networks on right side', param: 'Soft blue glow', textBlocks: [] },
+                        { visual: 'Empty white space on left', param: 'For text overlay', textBlocks: [] }
+                    ],
+                    ar: '16:9',
+                    texture: ''
+                },
+                med_micro_bacteria: {
+                    name: '細菌培養 (Bacteria Culture)',
+                    desc: 'Petri dish with colorful bacterial colonies under studio light.',
+                    subject: 'Bacteria in Petri dish',
+                    title: 'Microbio',
+                    styles: ['Macro', 'Vibrant Colors', 'Scientific', 'Top Down'],
+                    sections: [],
+                    ar: '1:1',
+                    texture: ''
+                },
+                med_consult: {
+                    name: '醫生問診 (Consultation)',
+                    desc: 'Warm, professional shot of a doctor holding a tablet speaking to a patient.',
+                    subject: 'Doctor consulting patient',
+                    title: 'Patient Care',
+                    styles: ['Portrait Photography', 'Warm Light', 'Bokeh', 'Trustworthy'],
+                    sections: [],
+                    ar: '3:2',
+                    texture: ''
+                }
+            },
+            "📊 海報與平面設計 (Posters & Layouts)": {
+                layout_biz_poster: {
+                    name: '商業海報 (Business Poster)',
+                    desc: 'Professional poster with high fidelity text placeholders for business events.',
+                    subject: 'Modern office building low angle',
+                    title: 'Business Event',
+                    styles: ['Poster Design', 'Bold Typography', 'High Resolution', 'Sans-serif'],
+                    sections: [
+                        { visual: 'Main text overlay', param:'', textBlocks: [{ content: 'INNOVATION SUMMIT', level: 'H1', font: 'Bold Display' }, { content: '2025 World Tour', level: 'H2', font: 'Sans-serif' }] }
+                    ],
+                    ar: '2:3',
+                    texture: ''
+                },
+                movie_action: {
+                    name: '動作片海報 (Action)',
+                    desc: 'Gritty blockbuster poster with teal & orange grading.',
+                    subject: 'Hero in debris', title: 'LAST STAND', styles: ['Movie Poster Composition', 'Cinematic Lighting', 'Teal and Orange', 'Hyperrealistic'], sections: [{ visual: 'Hero holding weapon', param: 'dirty face, scars', textBlocks: [] }, { visual: '', param: '', textBlocks: [{ content: 'LAST STAND', level: 'H1', font: 'Bold Display' }, { content: 'Coming Soon', level: 'Body', font: 'Sans-serif' }] }], ar: '2:3', texture: ''
+                },
+                movie_horror: {
+                    name: '恐怖片海報 (Horror)',
+                    desc: 'Dark, foggy gothic atmosphere with glowing eyes.',
+                    subject: 'Haunted house silhouette', title: 'THE ECHO', styles: ['Low Key', 'Foggy', 'Grainy', 'Vintage', 'Gothic'], sections: [{ visual: 'Ghostly figure in window', param: 'red glowing eyes', textBlocks: [{ content: 'THE ECHO', level: 'H1', font: 'Serif' }] }], ar: '2:3', texture: ''
+                },
+                poster_minimal: {
+                    name: '極簡海報 (Minimalist)',
+                    desc: 'Clean Bauhaus style poster with geometric elements.',
+                    subject: 'Single chair', title: 'DESIGN', styles: ['Minimalist', 'Bauhaus', 'Flat Design', 'Pastel Colors'], sections: [{ visual: 'Chair in center', param:'', textBlocks: [{ content: 'DESIGN WEEK', level: 'H1', font: 'Helvetica' }] }], ar: '2:3', texture: ''
+                },
+                layout_mag_cover: {
+                    name: '雜誌封面 (Magazine)',
+                    desc: 'High-fashion magazine cover layout with model and headlines.',
+                    subject: 'Fashion model close up',
+                    title: 'VOGUE Style',
+                    styles: ['Magazine Layout', 'High Key', 'Fashion Photography', 'Elegant'],
+                    sections: [{ visual: 'Model gazing at camera', param:'', textBlocks: [{ content: 'SUMMER TRENDS', level: 'H1', font: 'Serif' }] }],
+                    ar: '3:4',
+                    texture: ''
+                }
+            },
+            "📢 社群媒體 (Social Media)": {
+                social_lifestyle_vibe: {
+                    name: '氛圍感貼文 (Vibe Post)',
+                    desc: 'Lifestyle photography with aesthetic signage text in background.',
+                    subject: 'Coffee shop window with neon sign',
+                    title: 'Weekend Vibe',
+                    styles: ['Lifestyle', 'Depth of Field', 'Natural Light', 'Handwritten'],
+                    sections: [{ visual: 'Neon sign in background', param:'', textBlocks: [{ content: 'Chill Vibes', level: 'Caption', font: 'Handwritten' }] }],
+                    ar: '4:5',
+                    texture: ''
+                },
+                social_linkedin_award: {
+                    name: 'LinkedIn 成就 (Award)',
+                    desc: 'Professional award trophy on a modern desk with bokeh, ideal for career milestones.',
+                    subject: 'Crystal award trophy',
+                    title: 'Achievement',
+                    styles: ['Professional', 'Bokeh', 'Office Setting', 'Bright'],
+                    sections: [{ visual: 'Award on desk', param:'', textBlocks: [{ content: 'Honored to receive...', level: 'Caption', font:'' }] }],
+                    ar: '4:5',
+                    texture: ''
+                },
+                social_ig_story: {
+                    name: 'IG 限動 (Story)',
+                    desc: 'Vibrant fashion sale layout for Instagram Stories.',
+                    subject: 'Fashion model', title: 'SALE', styles: ['Magazine Layout', 'Vibrant', 'Lifestyle'], sections: [{ visual: 'Model posing', param:'', textBlocks: [{ content: 'SUMMER SALE', level: 'H1', font: 'Bold Display' }, { content: '50% OFF', level: 'H2', font:'' }] }], ar: '9:16', texture: ''
+                },
+                social_tiktok_bg: {
+                    name: 'TikTok 背景 (Background)',
+                    desc: 'Abstract neon gradients with motion blur, perfect for video text overlays.',
+                    subject: 'Abstract fluid gradients',
+                    title: '',
+                    styles: ['Neon Lights', 'Motion Blur', 'Vibrant', 'Abstract'],
+                    sections: [],
+                    ar: '9:16',
+                    texture: ''
+                },
+                social_twitter_header: {
+                    name: 'Twitter 頁首 (Header)',
+                    desc: 'Minimalist workspace flat lay with coffee and laptop, clean and professional.',
+                    subject: 'Minimalist desk flat lay',
+                    title: '',
+                    styles: ['Flat Lay', 'Minimalist', 'Top Down', 'Natural Light'],
+                    sections: [],
+                    ar: '3:1',
+                    texture: ''
+                },
+                social_fb_event: {
+                    name: 'FB 活動封面 (Event)',
+                    desc: 'Energetic concert crowd silhouette with stage lights for event pages.',
+                    subject: 'Concert crowd silhouette',
+                    title: 'Live Music',
+                    styles: ['Silhouette', 'Stage Lights', 'Energetic', 'Wide Angle'],
+                    sections: [{ visual:'', param:'', textBlocks: [{ content: 'LIVE TONIGHT', level: 'H1', font: 'Bold Display' }] }],
+                    ar: '16:9',
+                    texture: ''
+                },
+                social_pinterest_diy: {
+                    name: 'Pinterest 教學 (DIY)',
+                    desc: 'Knolling layout of crafting tools and materials, organized and aesthetic.',
+                    subject: 'Crafting tools knolling',
+                    title: 'DIY Guide',
+                    styles: ['Knolling', 'Bright', 'Organized', 'Pastel Colors'],
+                    sections: [{ visual:'', param:'', textBlocks: [{ content: 'How to Make', level: 'H1', font: 'Handwritten' }] }],
+                    ar: '2:3',
+                    texture: ''
+                }
+            },
+            "💼 商務與簡報 (Business & Slides)": {
+                layout_slide_bg: {
+                    name: '簡報背景 (Clean Slide)',
+                    desc: 'Minimalist background with large negative space for text overlays.',
+                    subject: 'Abstract geometric shapes',
+                    title: 'Presentation',
+                    styles: ['Minimalist', 'Soft Gradient', 'Negative Space', 'Clean'],
+                    sections: [
+                        { visual: 'Shapes on bottom right', param:'', textBlocks: [] },
+                        { visual: 'Empty space on top left', param:'', textBlocks: [] }
+                    ],
+                    ar: '16:9',
+                    texture: ''
+                },
+                slide_tech_dark: {
+                    name: '科技簡報 (Tech Dark)',
+                    desc: 'Dark mode tech background with circuit patterns.',
+                    subject: 'Circuit board abstract pattern',
+                    title: 'Tech Slide',
+                    styles: ['Cyberpunk', 'Dark Mode', 'Blue and Purple', 'High Tech'],
+                    sections: [],
+                    ar: '16:9',
+                    texture: ''
+                }
+            },
+            "📷 攝影與藝術 (Photography & Art)": {
+                prod_watch: {
+                    name: '精品手錶 (Luxury Watch)',
+                    desc: 'Macro luxury product shot with gold reflections.',
+                    subject: 'Gold wrist watch', title: '', styles: ['Product Photography', 'Macro', 'Reflection', 'Luxurious'], sections: [], ar: '4:5', texture: ''
+                },
+                prod_perfume: {
+                    name: '香水廣告 (Perfume)',
+                    desc: 'Elegant product shot on water surface with ripples.',
+                    subject: 'Perfume bottle on water', title: '', styles: ['Product Photography', 'Water Ripples', 'Soft Light', 'Elegant'], sections: [], ar: '4:5', texture: ''
+                },
+                nature_macro: {
+                    name: '生態微距 (Nature Macro)',
+                    desc: 'Fresh close-up of nature details like dew drops.',
+                    subject: 'Dew drop on leaf', title: '', styles: ['Macro', 'Natural Light', 'Green', 'Fresh'], sections: [], ar: '4:5', texture: ''
+                },
+                art_riso: {
+                    name: '孔版印刷 (Risograph)',
+                    desc: 'Grainy, vibrant retro print style with offset colors.',
+                    subject: 'Abstract shapes', title: '', styles: ['Risograph', 'Grainy', 'Vibrant Colors', 'Retro'], sections: [], ar: '2:3', texture: ''
+                }
+            },
+            "📱 UI 與網頁設計 (UI/Web)": {
+                ui_app_fin: {
+                    name: '金融 App (Fintech)',
+                    desc: 'Modern flat UI for banking apps with vector elements.',
+                    subject: 'Banking app interface', title: 'Wallet', styles: ['Web UI Layout', 'Flat Design', 'Vector Art', 'High Key'], sections: [{ visual: 'Header section', param:'', textBlocks: [{ content: 'Total Balance', level: 'Body', font:'' }, { content: '$12,450.00', level: 'H1', font:'' }] }], ar: '9:16', texture: ''
+                },
+                ui_web_hero: {
+                    name: '網頁首圖 (Hero)',
+                    desc: 'Clean, minimalist website hero section with soft light.',
+                    subject: 'Modern office desk', title: 'Future', styles: ['Web UI Layout', 'Minimalist', 'Clean', 'Soft Light'], sections: [{ visual:'', param:'', textBlocks: [{ content: 'We Build Future', level: 'H1', font: 'Sans-serif' }, { content: 'Start Now', level: 'Body', font: 'Sans-serif' }] }], ar: '21:9', texture: ''
+                }
+            },
+            "🎮 遊戲與動漫 (Game)": {
+                game_iso: {
+                    name: '等角地圖 (Isometric)',
+                    desc: 'Cute low-poly 3D isometric game asset.',
+                    subject: 'Medieval village', title: '', styles: ['Isometric', 'Low Poly', '3D Render', 'Cute'], sections: [], ar: '4:5', texture: ''
+                },
+                game_char: {
+                    name: '角色設定 (Char Sheet)',
+                    desc: 'Detailed character concept art with front/side views.',
+                    subject: 'Cyberpunk warrior', title: '', styles: ['Concept Art', 'T-Pose', 'Front/Side View', 'Detailed'], sections: [], ar: '21:9', texture: ''
+                }
+            }
+        };
+
+        // --- App Component Logic ---
+        const App = () => {
+            const [showHelp, setShowHelp] = useState(false);
+            const [copied, setCopied] = useState(false);
+            const [isPresetDropdownOpen, setIsPresetDropdownOpen] = useState(false);
+            const [currentPresetName, setCurrentPresetName] = useState('');
+            const [hoveredPreset, setHoveredPreset] = useState(null);
+            const [expandedCategories, setExpandedCategories] = useState(['藝術風格 (Styles)', '版型與構圖 (Layout)']);
+            const [manualPrompt, setManualPrompt] = useState('');
+            
+            // Feature state: Traditional Chinese optimization
+            const [isTraditionalChinese, setIsTraditionalChinese] = useState(true);
+
+            const [form, setForm] = useState({
+                subject: '',
+                title: '',
+                body: '',
+                selectedStyles: [],
+                sections: [],
+                ar: '16:9',
+                resolution: '4K',
+                seed: '',
+                stylize: '',
+                texture: '',
+                negative: 'blur, watermark, bad anatomy, text error' 
+            });
+
+            const presetDropdownRef = useRef(null);
+
+            useEffect(() => {
+                function handleClickOutside(event) {
+                    if (presetDropdownRef.current && !presetDropdownRef.current.contains(event.target)) {
+                        setIsPresetDropdownOpen(false);
+                    }
+                }
+                document.addEventListener("mousedown", handleClickOutside);
+                return () => {
+                    document.removeEventListener("mousedown", handleClickOutside);
+                };
+            }, []);
+
+            useEffect(() => {
+                let parts = [];
+
+                if (form.subject) parts.push(`**Subject:** ${form.subject}`);
+                if (form.title) parts.push(`**Title:** "${form.title}"`);
+                if (form.body) parts.push(`**Body:** ${form.body}`);
+
+                if (form.selectedStyles.length > 0) {
+                    parts.push(`**Art Styles & Tech:** ${form.selectedStyles.join(', ')}`);
+                }
+
+                if (form.texture) {
+                    parts.push(`**Texture:** ${form.texture}`);
+                }
+
+                if (form.sections.length > 0) {
+                    parts.push('\n--- LAYOUT SECTIONS ---');
+                    form.sections.forEach((sec, idx) => {
+                        let header = `[Section ${idx + 1}]`;
+                        let lines = [];
+
+                        if (sec.visual) lines.push(`Visual: ${sec.visual}`);
+                        if (sec.param) lines.push(`Param: ${sec.param}`);
+
+                        if (sec.textBlocks && sec.textBlocks.length > 0) {
+                            sec.textBlocks.forEach(tb => {
+                                if (tb.content) {
+                                    let meta = [];
+                                    if (tb.level) meta.push(tb.level);
+                                    if (tb.font) meta.push(`Font: ${tb.font}`);
+                                    let metaStr = meta.length > 0 ? ` (${meta.join(', ')})` : '';
+                                    lines.push(`Text: "${tb.content}"${metaStr}`);
+                                }
+                            });
+                        }
+
+                        if (lines.length > 0) {
+                            parts.push(`${header}\n* ${lines.join(' | ')}`);
+                        }
+                    });
+                }
+
+                parts.push('\n--- PARAMETERS ---');
+                let params = [];
+                if (form.ar) params.push(`--ar ${form.ar}`);
+                if (form.resolution) params.push(form.resolution);
+                if (form.stylize) params.push(`--s ${form.stylize}`);
+                if (form.seed) params.push(`--seed ${form.seed}`);
+                
+                // Negative Prompt Logic
+                let negativeStr = form.negative;
+                if (isTraditionalChinese) {
+                     const suffix = "Simplified Chinese";
+                     if (!negativeStr.toLowerCase().includes(suffix.toLowerCase())) {
+                         negativeStr = negativeStr ? `${negativeStr}, ${suffix}` : suffix;
+                     }
+                }
+                if (negativeStr) params.push(`--no ${negativeStr}`);
+
+                parts.push(params.join(' '));
+
+                setManualPrompt(parts.join('\n'));
+            }, [form, isTraditionalChinese]);
+
+            const toggleCategory = (name) => {
+                setExpandedCategories(prev => 
+                    prev.includes(name) 
+                        ? prev.filter(c => c !== name) 
+                        : [...prev, name]
+                );
+            };
+
+            const toggleStyle = (val) => {
+                setForm(prev => ({
+                    ...prev,
+                    selectedStyles: prev.selectedStyles.includes(val)
+                        ? prev.selectedStyles.filter(s => s !== val)
+                        : [...prev.selectedStyles, val]
+                }));
+            };
+
+            const applyPreset = (key) => {
+                setIsPresetDropdownOpen(false);
+                setHoveredPreset(null);
+
+                if (!key) {
+                    setCurrentPresetName('');
+                    setForm({
+                        subject: '',
+                        title: '',
+                        body: '',
+                        selectedStyles: [],
+                        sections: [],
+                        ar: '16:9',
+                        resolution: '4K',
+                        seed: '',
+                        stylize: '',
+                        texture: '',
+                        negative: 'blur, watermark, bad anatomy, text error'
+                    });
+                    return;
+                }
+
+                let p = null;
+                for (const group in PRESET_GROUPS) {
+                    if (PRESET_GROUPS[group][key]) {
+                        p = PRESET_GROUPS[group][key];
+                        break;
+                    }
+                }
+
+                if (p) {
+                    setCurrentPresetName(p.name);
+                    setForm(prev => ({
+                        ...prev,
+                        subject: p.subject,
+                        title: p.title,
+                        selectedStyles: [...p.styles],
+                        sections: p.sections.map(s => ({
+                            visual: s.visual || '',
+                            param: s.param || '',
+                            textBlocks: s.textBlocks ? s.textBlocks.map(tb => ({ ...tb })) : []
+                        })),
+                        ar: p.ar,
+                        texture: p.texture || ''
+                    }));
+                }
+            };
+
+            const addSection = () => {
+                setForm(prev => ({
+                    ...prev,
+                    sections: [...prev.sections, { visual: '', param: '', textBlocks: [] }]
+                }));
+            };
+
+            const removeSection = (idx) => {
+                setForm(prev => ({
+                    ...prev,
+                    sections: prev.sections.filter((_, i) => i !== idx)
+                }));
+            };
+
+            const addTextBlock = (sectionIndex) => {
+                setForm(prev => {
+                    const newSections = [...prev.sections];
+                    newSections[sectionIndex].textBlocks.push({
+                        content: '',
+                        level: 'Body',
+                        font: ''
+                    });
+                    return { ...prev, sections: newSections };
+                });
+            };
+
+            const removeTextBlock = (sectionIndex, blockIndex) => {
+                setForm(prev => {
+                    const newSections = [...prev.sections];
+                    newSections[sectionIndex].textBlocks.splice(blockIndex, 1);
+                    return { ...prev, sections: newSections };
+                });
+            };
+            
+            const updateSectionField = (idx, field, value) => {
+                setForm(prev => {
+                     const newSections = [...prev.sections];
+                     newSections[idx][field] = value;
+                     return { ...prev, sections: newSections };
+                });
+            };
+
+            const updateTextBlock = (sectionIndex, blockIndex, field, value) => {
+                setForm(prev => {
+                    const newSections = [...prev.sections];
+                    newSections[sectionIndex].textBlocks[blockIndex][field] = value;
+                    return { ...prev, sections: newSections };
+                });
+            };
+
+            const copyToClipboard = () => {
+                navigator.clipboard.writeText(manualPrompt).then(() => {
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                });
+            };
+
+            return (
+                <div className="flex h-screen w-full relative">
+                    {/* Help Modal */}
+                    {showHelp && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowHelp(false)}></div>
+                            <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar relative z-10 flex flex-col">
+                                 <div className="p-5 border-b border-gray-700 flex justify-between items-center bg-gray-900 sticky top-0">
+                                    <h3 className="text-xl font-bold text-blue-400">📖 使用說明 (User Guide)</h3>
+                                    <button onClick={() => setShowHelp(false)} className="text-gray-400 hover:text-white text-2xl leading-none">
+                                        <X size={24} />
+                                    </button>
+                                </div>
+                                <div className="p-6 space-y-6 text-sm text-gray-300 leading-relaxed">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h4 className="font-bold text-white mb-2 text-base">✨ 核心概念 (Core Concept)</h4>
+                                            <p className="mb-2">本工具基於 <span className="text-yellow-400">Google 黃金公式</span> 設計，協助您結構化地生成高品質的 AI 繪圖提示詞 (Prompt)。</p>
+                                            <div className="bg-gray-900 p-3 rounded border border-gray-700 font-mono text-xs">
+                                                [Subject] + [Action/Context] + [Art Style] + [Lighting] + [Camera]
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-white mb-2 text-base">🚀 快速上手 (Quick Start)</h4>
+                                            <ol className="list-decimal pl-4 space-y-1">
+                                                <li>從上方 <strong>"⚡ 選擇預設"</strong> 挑選一個接近的範本。</li>
+                                                <li>修改 <strong>"主體描述"</strong> 為您想要的內容。</li>
+                                                <li>在 <strong>"風格與技術"</strong> 點選更多標籤來強化視覺。</li>
+                                                <li>點擊右下角 <strong>"複製提示詞"</strong> 貼上至 AI 生圖工具。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-5 border-t border-gray-700 bg-gray-900 flex justify-end">
+                                    <button onClick={() => setShowHelp(false)} className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded font-bold transition">開始使用 (Got it)</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Left Panel: Form */}
+                    <div className="w-3/5 lg:w-2/3 flex flex-col border-r border-gray-700 h-full overflow-y-auto custom-scrollbar bg-gray-800">
+                        
+                        {/* Header */}
+                        <div className="p-5 border-b border-gray-700 bg-gray-900 sticky top-0 z-20 shadow-md">
+                            <div className="flex justify-between items-center mb-3">
+                                <div className="flex items-center gap-2">
+                                    <h1 className="text-xl font-bold text-blue-400 tracking-wide">AI Image Prompt Master <span className="text-xs text-gray-500 font-normal">v4.1.0 (Single)</span></h1>
+                                    <button onClick={() => setShowHelp(true)} className="text-gray-500 hover:text-white transition" title="使用說明">
+                                        <HelpCircle size={18} />
+                                    </button>
+                                </div>
+
+                                {/* Preset Selector */}
+                                <div className="w-72 relative" ref={presetDropdownRef}>
+                                    <button onClick={() => setIsPresetDropdownOpen(!isPresetDropdownOpen)}
+                                        className="w-full bg-gray-800 border border-blue-500 text-white text-xs rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center relative z-50 hover:bg-gray-700 transition">
+                                        <span className="truncate">{currentPresetName || '⚡ 選擇預設 / 重置 (Reset)...'}</span>
+                                        <ChevronDown size={14} className="text-gray-400 ml-2" />
+                                    </button>
+
+                                    {isPresetDropdownOpen && (
+                                        <div className="absolute top-full right-0 w-80 bg-gray-800 border border-gray-600 mt-1 rounded shadow-2xl z-50 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                                            <div onClick={() => applyPreset('')} onMouseEnter={() => setHoveredPreset(null)}
+                                                className="px-4 py-3 text-xs text-gray-400 hover:bg-gray-700 hover:text-white cursor-pointer border-b border-gray-700">
+                                                ⚡ 取消選擇 / 重置 (Reset)...
+                                            </div>
+                                            {Object.entries(PRESET_GROUPS).map(([groupName, groupPresets]) => (
+                                                <div key={groupName}>
+                                                    <div className="px-4 py-1.5 text-[10px] font-bold text-blue-400 bg-gray-900 uppercase tracking-wider sticky top-0 z-10 border-b border-gray-800">
+                                                        {groupName}
+                                                    </div>
+                                                    {Object.entries(groupPresets).map(([key, preset]) => (
+                                                        <div key={key}
+                                                            onClick={() => applyPreset(key)}
+                                                            onMouseEnter={() => setHoveredPreset(preset)}
+                                                            className="px-4 py-2.5 text-xs text-gray-200 hover:bg-blue-600 hover:text-white cursor-pointer border-b border-gray-700/50 transition-colors flex justify-between items-center group">
+                                                            <span>{preset.name}</span>
+                                                            <ChevronRight size={10} className="opacity-0 group-hover:opacity-100" />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* Hover Preview Tooltip */}
+                                    {isPresetDropdownOpen && hoveredPreset && (
+                                        <div className="absolute top-0 right-full mr-3 w-64 bg-black/95 backdrop-blur border border-yellow-500/50 p-4 rounded-lg shadow-2xl z-50 pointer-events-none transform transition-all duration-200">
+                                            <h4 className="font-bold text-yellow-400 text-sm mb-1 border-b border-gray-800 pb-1">{hoveredPreset.name}</h4>
+                                            <p className="text-xs text-gray-300 mb-3 leading-relaxed">{hoveredPreset.desc || hoveredPreset.subject}</p>
+                                            <div className="mb-2">
+                                                <span className="text-[10px] text-gray-500 uppercase font-bold block mb-1">Styles & Vibes</span>
+                                                <div className="flex flex-wrap gap-1">
+                                                    {hoveredPreset.styles.slice(0, 4).map((s, i) => (
+                                                        <span key={i} className="inline-block bg-gray-800 text-blue-300 text-[10px] px-1.5 py-0.5 rounded border border-gray-700">{s}</span>
+                                                    ))}
+                                                    {hoveredPreset.styles.length > 4 && (
+                                                        <span className="text-[10px] text-gray-600 px-1">+{hoveredPreset.styles.length - 4}</span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between items-end mt-2 pt-2 border-t border-gray-800">
+                                                <span className="text-[10px] text-gray-500">Ratio: <span className="text-gray-300 font-mono">{hoveredPreset.ar}</span></span>
+                                                <span className="text-[10px] text-gray-500">Sections: <span className="text-gray-300 font-mono">{hoveredPreset.sections.length}</span></span>
+                                            </div>
+                                            <div className="tooltip-arrow !-right-1.5 !left-auto !border-l-0 !border-b-0 !border-t !border-r !border-yellow-500/50 !bg-black"></div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-6 space-y-8 pb-20">
+                            
+                            {/* Section 1: Global Context */}
+                            <section>
+                                <h2 className="text-base font-bold text-blue-300 mb-3 flex items-center">
+                                    <span className="w-2 h-6 bg-blue-500 mr-2 rounded-sm"></span>
+                                    1. 全域描述 (Global Context)
+                                </h2>
+                                <div className="space-y-3">
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold block mb-1">主體描述 (Subject)</label>
+                                        <input value={form.subject} onChange={(e) => setForm({...form, subject: e.target.value})} type="text"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none transition"
+                                            placeholder="描述畫面的核心主體..." />
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold block mb-1">作品標題 (Title)</label>
+                                        <input value={form.title} onChange={(e) => setForm({...form, title: e.target.value})} type="text"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none transition" />
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold block mb-1">內文/背景 (Body Context)</label>
+                                        <textarea value={form.body} onChange={(e) => setForm({...form, body: e.target.value})} rows={3}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none custom-scrollbar transition"
+                                            placeholder="輸入詳細的背景故事、情境描述或補充說明..."></textarea>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Section 2: Styles & Tech */}
+                            <section>
+                                <div className="flex justify-between items-center mb-3">
+                                    <h2 className="text-base font-bold text-green-300 flex items-center">
+                                        <span className="w-2 h-6 bg-green-500 mr-2 rounded-sm"></span>
+                                        2. 風格與技術 (Styles & Tech)
+                                    </h2>
+                                    <div className="relative">
+                                        <select value={form.texture} onChange={(e) => setForm({...form, texture: e.target.value})}
+                                            className="bg-gray-800 text-xs text-gray-300 border border-gray-600 rounded px-2 py-1 focus:border-green-500 focus:outline-none appearance-none pr-8 cursor-pointer">
+                                            <option value="">無特定材質 (None)</option>
+                                            {TEXTURES.map(t => (
+                                                <option key={t.val} value={t.val}>{t.label}</option>
+                                            ))}
+                                        </select>
+                                        <ChevronDown size={12} className="absolute right-2 top-1.5 text-gray-500 pointer-events-none" />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {Object.entries(CATEGORIES).map(([categoryName, items]) => (
+                                        <div key={categoryName} className="bg-gray-750 rounded border border-gray-700">
+                                            <div onClick={() => toggleCategory(categoryName)}
+                                                className="bg-gray-800 p-3 cursor-pointer flex justify-between items-center hover:bg-gray-700 transition rounded-t select-none">
+                                                <h3 className="text-xs font-bold text-gray-300 uppercase">{categoryName} <span className="text-gray-500 ml-1">({items.length})</span></h3>
+                                                <span className="text-gray-500 text-xs">{expandedCategories.includes(categoryName) ? '▼' : '▶'}</span>
+                                            </div>
+
+                                            {expandedCategories.includes(categoryName) && (
+                                                <div className="p-3 bg-gray-900 border-t border-gray-700 rounded-b">
+                                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                                                        {items.map(item => (
+                                                            <div key={item.val} className="group relative inline-block">
+                                                                <button onClick={() => toggleStyle(item.val)}
+                                                                    className={`w-full px-2 py-2 rounded transition border btn-truncate text-center text-xs truncate
+                                                                        ${form.selectedStyles.includes(item.val) 
+                                                                            ? 'bg-green-700 text-white border-green-500' 
+                                                                            : 'bg-gray-800 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-gray-200'
+                                                                        }`}>
+                                                                    {item.label}
+                                                                </button>
+                                                                <div className="hidden group-hover:block absolute bottom-[115%] left-1/2 -translate-x-1/2 w-56 bg-black text-gray-200 text-[11px] p-3 rounded shadow-2xl z-50 pointer-events-none border border-gray-600 whitespace-normal leading-relaxed text-left">
+                                                                    <span className="block font-bold text-green-400 mb-1 text-xs border-b border-gray-700 pb-1">{item.label}</span>
+                                                                    {item.desc}
+                                                                    <div className="tooltip-arrow"></div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            {/* Section 3: Layout Sections */}
+                            <section>
+                                <div className="flex justify-between items-center mb-3">
+                                    <h2 className="text-base font-bold text-purple-300 flex items-center">
+                                        <span className="w-2 h-6 bg-purple-500 mr-2 rounded-sm"></span>
+                                        3. 版面分區 (Layout Sections)
+                                    </h2>
+                                    <button onClick={addSection}
+                                        className="bg-purple-700 hover:bg-purple-600 px-3 py-1.5 rounded text-xs text-white font-bold transition shadow-sm border border-purple-500 flex items-center gap-1">
+                                        <Plus size={12} /> 新增分區
+                                    </button>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {form.sections.map((section, sIdx) => (
+                                        <div key={sIdx} className="bg-gray-800 p-3 rounded border border-gray-600 relative group transition hover:shadow-lg">
+                                            <button onClick={() => removeSection(sIdx)}
+                                                className="absolute top-2 right-2 text-gray-600 hover:text-red-400 transition bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-red-400 z-10">
+                                                <X size={12} />
+                                            </button>
+
+                                            <div className="mb-2 text-[10px] text-purple-400 font-bold uppercase tracking-widest flex items-center gap-2">
+                                                <span className="bg-purple-900/50 px-1.5 py-0.5 rounded">SECTION {sIdx + 1}</span>
+                                            </div>
+
+                                            <div className="mb-3 grid grid-cols-12 gap-2 bg-gray-900/50 p-2 rounded border border-gray-700/50">
+                                                <div className="col-span-12 md:col-span-6">
+                                                    <label className="text-[10px] text-gray-500 block mb-0.5">視覺主體 (Visual)</label>
+                                                    <input value={section.visual} onChange={(e) => updateSectionField(sIdx, 'visual', e.target.value)}
+                                                        placeholder="例如: Hero silhouette..."
+                                                        className="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs focus:border-purple-500 text-gray-300 outline-none" />
+                                                </div>
+                                                <div className="col-span-12 md:col-span-6">
+                                                    <label className="text-[10px] text-gray-500 block mb-0.5">參數/細節 (Params)</label>
+                                                    <input value={section.param} onChange={(e) => updateSectionField(sIdx, 'param', e.target.value)}
+                                                        placeholder="例如: red lighting..."
+                                                        className="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs focus:border-purple-500 text-gray-300 outline-none" />
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                {section.textBlocks.map((block, bIdx) => (
+                                                    <div key={bIdx} className="flex gap-2 items-start bg-gray-900 p-2 rounded border border-gray-700 border-dashed hover:border-gray-500 transition">
+                                                        <select value={block.level} onChange={(e) => updateTextBlock(sIdx, bIdx, 'level', e.target.value)}
+                                                            className="w-24 bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-blue-300 font-bold h-8 cursor-pointer outline-none">
+                                                            <option value="Body">內文</option>
+                                                            <option value="H1">H1 大標</option>
+                                                            <option value="H2">H2 副標</option>
+                                                            <option value="H3">H3 小標</option>
+                                                            <option value="Caption">註解</option>
+                                                            <option value="Quote">引言</option>
+                                                        </select>
+                                                        <textarea value={block.content} onChange={(e) => updateTextBlock(sIdx, bIdx, 'content', e.target.value)}
+                                                            placeholder="輸入文字內容..." rows={1}
+                                                            className="flex-1 bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-white placeholder-gray-600 custom-scrollbar resize-y outline-none" />
+
+                                                        <div className="relative w-32 hidden md:block">
+                                                            <input list={`fontList-${sIdx}-${bIdx}`} value={block.font} onChange={(e) => updateTextBlock(sIdx, bIdx, 'font', e.target.value)}
+                                                                placeholder="字體 (Font)..."
+                                                                className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-gray-300 h-8 focus:outline-none focus:border-blue-500" />
+                                                            <datalist id={`fontList-${sIdx}-${bIdx}`}>
+                                                                {FONT_LIST.map((f, i) => <option key={i} value={f} />)}
+                                                            </datalist>
+                                                        </div>
+
+                                                        <button onClick={() => removeTextBlock(sIdx, bIdx)}
+                                                            className="text-gray-600 hover:text-red-400 px-1 pt-1 transition">
+                                                            <Trash2 size={14} />
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <button onClick={() => addTextBlock(sIdx)}
+                                                className="mt-2 text-[10px] text-gray-400 hover:text-white flex items-center gap-1 transition px-2 py-1 rounded hover:bg-gray-700 w-full justify-center border border-transparent hover:border-gray-600">
+                                                <Plus size={10} /> <span>新增文字行 (Add Text Line)</span>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            {/* Section 4: Parameters */}
+                            <section>
+                                <h2 className="text-base font-bold text-yellow-300 mb-3 flex items-center">
+                                    <span className="w-2 h-6 bg-yellow-500 mr-2 rounded-sm"></span>
+                                    4. 技術參數 (Parameters)
+                                </h2>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-gray-800 p-4 rounded border border-gray-700">
+                                    <div className="col-span-1">
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">長寬比 (Aspect Ratio)</label>
+                                        <select value={form.ar} onChange={(e) => setForm({...form, ar: e.target.value})}
+                                            className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-gray-300 outline-none">
+                                            <option value="" disabled>選擇比例...</option>
+                                            {['1:1', '2:3', '3:2', '3:4', '4:3', '4:5', '5:4', '9:16', '16:9', '21:9'].map(r => (
+                                                <option key={r} value={r}>{r}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">解析度 (Resolution)</label>
+                                        <select value={form.resolution} onChange={(e) => setForm({...form, resolution: e.target.value})}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none">
+                                            <option value="">預設 (Default)</option>
+                                            {['1K', '2K', '4K', '8K'].map(r => <option key={r} value={r}>{r}</option>)}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">種子碼 (Seed)</label>
+                                        <input value={form.seed} onChange={(e) => setForm({...form, seed: e.target.value})} type="text" placeholder="隨機 (Random)"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">風格化 (Stylize)</label>
+                                        <input value={form.stylize} onChange={(e) => setForm({...form, stylize: e.target.value})} type="number" placeholder="100"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none" />
+                                    </div>
+                                    
+                                    {/* Negative Prompt & Traditional Chinese Option */}
+                                    <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <label className="block text-[10px] text-gray-400 font-bold">負面提示詞 (Negative --no)</label>
+                                            
+                                            {/* Traditional Chinese Optimization Checkbox */}
+                                            <div className="flex items-center space-x-2">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="tc-opt" 
+                                                    checked={isTraditionalChinese} 
+                                                    onChange={(e) => setIsTraditionalChinese(e.target.checked)}
+                                                    className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
+                                                />
+                                                <label htmlFor="tc-opt" className="text-[10px] text-yellow-400 cursor-pointer select-none flex items-center gap-1" title="選取時，自動加入 'Simplified Chinese' 到負面提示詞中">
+                                                    <span>繁體中文優化 (Trad. Chinese Mode)</span>
+                                                    <Info size={10} />
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <input value={form.negative} onChange={(e) => setForm({...form, negative: e.target.value})} type="text"
+                                            className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-red-400"
+                                            placeholder="blur, watermark, bad anatomy, text error..." />
+                                        <div className="text-[9px] text-gray-500 mt-1 flex gap-2">
+                                           <span>* 將自動加入: </span>
+                                           {isTraditionalChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">Simplified Chinese</span>}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Copyright Footer */}
+                            <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center">
+                                <div className="flex flex-col items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                                    <p className="text-xs text-gray-500 font-medium tracking-wide">
+                                        Developed by <span className="text-blue-400 font-bold ml-1">Shu-Ruei Wu</span>
+                                    </p>
+                                    <a href="https://allergy.tw" target="_blank" rel="noopener noreferrer" 
+                                       className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-900 border border-gray-700 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all group">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 group-hover:animate-pulse"></span>
+                                        <span className="text-[10px] font-mono text-gray-400 group-hover:text-blue-300">https://allergy.tw</span>
+                                        <ExternalLink size={10} className="text-gray-600 group-hover:text-blue-400 ml-0.5" />
+                                    </a>
+                                    <p className="text-[9px] text-gray-700 mt-2 font-mono">
+                                        &copy; {new Date().getFullYear()} AI Prompt Master
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Panel: Preview & Copy */}
+                    <div className="w-2/5 lg:w-1/3 bg-black flex flex-col h-full border-l border-gray-700 shadow-2xl z-30">
+                        <div className="bg-gray-800/80 border-b border-gray-700 p-4">
+                            <h3 className="text-base font-bold text-yellow-400 mb-2 flex items-center">
+                                <span className="mr-1">💡</span> Google 建議黃金公式
+                            </h3>
+                            <div className="text-sm md:text-base text-gray-300 font-mono bg-gray-900 p-2 rounded border border-gray-600 mb-2 leading-relaxed text-[11px] md:text-xs">
+                                <span className="text-blue-400">[Subject]</span> +
+                                <span className="text-green-400">[Action]</span> +
+                                <span className="text-purple-400">[Style]</span> +
+                                <span className="text-yellow-400">[Light]</span> +
+                                <span className="text-red-400">[Camera]</span>
+                            </div>
+                        </div>
+
+                        <div className="p-4 border-b border-gray-800 bg-gray-900 flex justify-between items-end">
+                            <div>
+                                <h2 className="text-lg font-bold text-white">最終提示詞 (Final Prompt)</h2>
+                                <p className="text-[10px] text-gray-500">可直接編輯 (Editable)</p>
+                            </div>
+                            <div className="text-[10px] text-gray-500 font-mono">
+                                {manualPrompt.length} 字元
+                            </div>
+                        </div>
+
+                        <div className="flex-1 bg-gray-900 relative">
+                            <textarea value={manualPrompt} onChange={(e) => setManualPrompt(e.target.value)}
+                                className="w-full h-full bg-gray-900 text-gray-300 p-5 font-mono text-sm resize-none focus:outline-none focus:bg-gray-800 transition leading-relaxed custom-scrollbar"
+                                spellCheck={false} />
+                        </div>
+
+                        <div className="p-5 bg-gray-900 border-t border-gray-800">
+                            <button onClick={copyToClipboard}
+                                className={`w-full py-3 font-bold rounded shadow-lg transform active:scale-95 transition flex items-center justify-center gap-2
+                                    ${copied 
+                                        ? 'bg-green-600 hover:bg-green-500 text-white' 
+                                        : 'bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white'
+                                    }`}>
+                                {copied ? <><Check size={18} /> ✅ 已複製 (Copied)!</> : <><Copy size={18} /> 📋 複製提示詞 (Copy Prompt)</>}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const rootElement = document.getElementById('root');
+        if (!rootElement) {
+            throw new Error("Could not find root element to mount to");
+        }
+
+        const root = createRoot(rootElement);
+        root.render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        );
+    </script>
+  </body>
+</html>
