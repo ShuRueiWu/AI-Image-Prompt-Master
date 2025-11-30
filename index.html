@@ -180,6 +180,30 @@
                     { label: '復古 (Vintage)', val: 'Vintage', desc: '泛指舊時代的質感，帶有歲月痕跡。' },
                     { label: '拍立得 (Polaroid)', val: 'Polaroid', desc: '模擬即顯底片的色彩偏移與邊框質感。' }
                 ],
+                "色彩色調 (Colors & Tones)": [
+                    { label: '柔和粉彩 (Pastel Colors)', val: 'Pastel Colors', desc: '低飽和度的柔和色彩，給人夢幻、溫柔的感覺。' },
+                    { label: '大地色系 (Earth Tones)', val: 'Earth Tones', desc: '棕色、綠色、米色等源於自然的色彩，沉穩舒適。' },
+                    { label: '霓虹配色 (Neon Palette)', val: 'Neon Palette', desc: '高亮度的螢光色彩，常見於賽博龐克風格。' },
+                    { label: '黑白單色 (Monochrome)', val: 'Monochrome', desc: '只有黑、白、灰的單色調，強調光影與構圖。' },
+                    { label: '復古色調 (Sepia)', val: 'Sepia', desc: '泛黃的棕褐色調，營造懷舊的歷史感。' },
+                    { label: '鮮豔色彩 (Vibrant)', val: 'Vibrant Colors', desc: '高飽和度的鮮明色彩，充滿活力與能量。' },
+                    { label: '莫蘭迪色 (Morandi Colors)', val: 'Morandi Colors', desc: '帶有灰調的低飽和色彩，高級、寧靜且和諧。' },
+                    { label: '青橙色調 (Teal and Orange)', val: 'Teal and Orange', desc: '電影常用的調色手法，冷暖對比強烈。' },
+                    { label: '冷色調 (Cool Tones)', val: 'Cool Tones', desc: '藍色、青色為主的色調，營造冷靜、科技或憂鬱氛圍。' },
+                    { label: '暖色調 (Warm Tones)', val: 'Warm Tones', desc: '紅色、橘色、黃色為主的色調，營造溫暖、熱情氛圍。' }
+                ],
+                "藝術家風格 (Artist Styles)": [
+                    { label: '梵谷 (Vincent van Gogh)', val: 'by Vincent van Gogh', desc: '厚重的筆觸、旋轉的線條與強烈的對比色（星夜風格）。' },
+                    { label: '莫內 (Claude Monet)', val: 'by Claude Monet', desc: '印象派風格，強調光影變化與色彩的朦朧美（睡蓮）。' },
+                    { label: '慕夏 (Alphonse Mucha)', val: 'by Alphonse Mucha', desc: '新藝術運動風格，華麗的裝飾線條與花卉圖騰。' },
+                    { label: '達利 (Salvador Dalí)', val: 'by Salvador Dalí', desc: '超現實主義，夢境般的場景與扭曲的物體（融化的時鐘）。' },
+                    { label: '韋斯·安德森 (Wes Anderson)', val: 'by Wes Anderson', desc: '對稱構圖、粉彩色調、置中視角與古怪的幽默感。' },
+                    { label: '宮崎駿 (Hayao Miyazaki)', val: 'by Hayao Miyazaki', desc: '吉卜力風格，細膩的自然背景、飛行器與懷舊氛圍。' },
+                    { label: '新海誠 (Makoto Shinkai)', val: 'by Makoto Shinkai', desc: '極致寫實的光影、絕美的天空與鏡頭光暈。' },
+                    { label: '提姆·波頓 (Tim Burton)', val: 'by Tim Burton', desc: '哥德式黑暗風格，瘦長的角色、螺旋紋路與陰鬱氣氛。' },
+                    { label: '葛飾北齋 (Hokusai)', val: 'by Katsushika Hokusai', desc: '浮世繪風格，線條鮮明，經典的海浪與富士山畫風。' },
+                    { label: '賽博龐克 (Syd Mead)', val: 'by Syd Mead', desc: '未來主義概念藝術，工業設計感的科幻載具與城市。' }
+                ],
                 "版型與構圖 (Layout)": [
                     { label: '三分法構圖 (Rule of Thirds)', val: 'Rule of Thirds', desc: '將畫面分為九宮格，主體放在交叉點上。' },
                     { label: '中心構圖 (Center)', val: 'Center Composition', desc: '主體位於畫面正中央，強調對稱與專注。' },
@@ -226,7 +250,8 @@
                     { label: '監視器視角 (CCTV)', val: 'CCTV View', desc: '模擬 CCTV 低畫質與俯視角度。' },
                     { label: '動態模糊 (Motion Blur)', val: 'Motion Blur', desc: '物體移動產生的拖影，表現速度感。' },
                     { label: '長曝光 (Long Exposure)', val: 'Long Exposure', desc: '讓流水變霧狀或車燈變光軌的慢快門效果。' },
-                    { label: '移軸攝影 (Tilt-Shift)', val: 'Tilt-Shift', desc: '讓真實場景看起來像微縮玩具模型。' }
+                    { label: '移軸攝影 (Tilt-Shift)', val: 'Tilt-Shift', desc: '讓真實場景看起來像微縮玩具模型。' },
+                    { label: '魚眼鏡頭 (Fisheye Lens)', val: 'Fisheye Lens', desc: '極度寬廣的視野，產生球形扭曲效果。' }
                 ],
                 "光影氛圍 (Lighting)": [
                     { label: '黃金時刻 (Golden Hour)', val: 'Golden Hour', desc: '日出日落時的金黃色柔光。' },
@@ -248,7 +273,9 @@
                     { label: '生物發光 (Bioluminescent)', val: 'Bioluminescent', desc: '像螢火蟲或深海魚發出的冷光。' },
                     { label: '暗調 (Low Key)', val: 'Low Key', desc: '畫面大部分是黑色的，強調神秘感。' },
                     { label: '亮調 (High Key)', val: 'High Key', desc: '畫面明亮潔白，強調純淨感。' },
-                    { label: '剪影 (Silhouette)', val: 'Silhouette', desc: '主體全黑，只看得到輪廓。' }
+                    { label: '剪影 (Silhouette)', val: 'Silhouette', desc: '主體全黑，只看得到輪廓。' },
+                    { label: '明暗對照法 (Chiaroscuro)', val: 'Chiaroscuro', desc: '強烈的明暗對比，營造戲劇性與立體感（如卡拉瓦喬畫作）。' },
+                    { label: '丁達爾效應 (Tyndall Effect)', val: 'Tyndall Effect', desc: '光線穿過膠體（如霧氣、灰塵）時形成的可見光束。' }
                 ],
                 "材質質感 (Materials)": [
                     { label: '玻璃 (Glass)', val: 'Glass', desc: '透明、反光、折射質感。' },
@@ -374,6 +401,20 @@
                     prod_perfume: { name: '香水廣告 (Perfume)', desc: '水面上有漣漪的優雅產品攝影。Elegant product shot on water surface with ripples.', subject: 'Perfume bottle on water', title: '', styles: ['Product Photography', 'Water Ripples', 'Soft Light', 'Elegant'], sections: [], ar: '4:5', texture: '' },
                     nature_macro: { name: '生態微距 (Nature Macro)', desc: '露珠等自然細節的清新特寫。Fresh close-up of nature details like dew drops.', subject: 'Dew drop on leaf', title: '', styles: ['Macro', 'Natural Light', 'Green', 'Fresh'], sections: [], ar: '4:5', texture: '' },
                     art_riso: { name: '孔版印刷 (Risograph)', desc: '帶有錯位色彩的粗糙、鮮豔復古印刷風格。Grainy, vibrant retro print style with offset colors.', subject: 'Abstract shapes', title: '', styles: ['Risograph', 'Grainy', 'Vibrant Colors', 'Retro'], sections: [], ar: '2:3', texture: '' }
+                },
+                "📸 人物寫真 (Portrait Photography)": {
+                    port_studio: { name: '專業形象照 (Studio Headshot)', desc: '專業燈光下的半身形象照，中性背景，眼神銳利。Professional headshot with studio lighting, neutral background, sharp focus.', subject: 'Professional business portrait', title: 'Headshot', styles: ['Studio Lighting', 'Portrait Photography', 'Sharp Focus', 'Neutral Background'], sections: [], ar: '4:5', texture: '' },
+                    port_fashion: { name: '時尚大片 (Fashion Editorial)', desc: '高級時尚雜誌風格，戲劇性姿勢與光影，戶外或城市背景。High fashion editorial style, dramatic pose and lighting, outdoor or urban setting.', subject: 'Fashion model in urban setting', title: 'Vogue', styles: ['Fashion Photography', 'Dramatic Lighting', 'High Fashion', 'Stylish'], sections: [], ar: '2:3', texture: '' },
+                    port_street: { name: '街頭抓拍 (Candid Street)', desc: '自然捕捉的街頭瞬間，不看鏡頭，背景有散景。Candid street photography moment, looking away, urban background with bokeh.', subject: 'Person laughing on street', title: 'Candid', styles: ['Street Photography', 'Candid', 'Bokeh', 'Natural Light'], sections: [], ar: '3:2', texture: '' },
+                    port_env: { name: '職人寫真 (Environmental)', desc: '在工作環境中的人物肖像（如廚師在廚房），講述故事。Environmental portrait of a person in their workspace (e.g., chef in kitchen), telling a story.', subject: 'Chef cooking in kitchen', title: 'Chef Life', styles: ['Environmental Portrait', 'Storytelling', 'Cinematic Lighting', 'Context'], sections: [], ar: '16:9', texture: '' },
+                    port_cinematic: { name: '電影感肖像 (Cinematic)', desc: '電影劇照風格，情緒飽滿，35mm 膠片質感。Cinematic movie still style, emotional expression, 35mm film look.', subject: 'Emotional close-up portrait', title: 'Movie Star', styles: ['Cinematic Lighting', '35mm Lens', 'Film Grain', 'Emotional'], sections: [], ar: '2.39:1', texture: '' }
+                },
+                "🏠 建築與室內設計 (Architecture & Interior)": {
+                    arch_modern: { name: '現代建築 (Modern Arch)', desc: '極簡主義的現代建築外觀，玻璃與混凝土，藍色時刻。Minimalist modern architecture exterior, glass and concrete, blue hour.', subject: 'Modern glass building facade', title: 'Modernism', styles: ['Architecture Photography', 'Minimalist', 'Blue Hour', 'Clean Lines'], sections: [], ar: '16:9', texture: '' },
+                    arch_scandi: { name: '北歐風客廳 (Scandinavian)', desc: '溫馨明亮的北歐風格室內設計，木質紋理與綠色植物。Cozy and bright Scandinavian interior design, wood textures and plants.', subject: 'Cozy living room interior', title: 'Home', styles: ['Interior Design', 'Scandinavian', 'Natural Light', 'Cozy'], sections: [], ar: '4:3', texture: '' },
+                    arch_loft: { name: '工業風 (Industrial Loft)', desc: '磚牆、外露管線與金屬家具的工業風公寓，戲劇性光影。Industrial loft with brick walls, exposed pipes, metal furniture, dramatic lighting.', subject: 'Industrial loft interior', title: 'Loft', styles: ['Interior Design', 'Industrial Style', 'Dramatic Lighting', 'Texture'], sections: [], ar: '16:9', texture: '' },
+                    arch_zen: { name: '日式庭園 (Zen Garden)', desc: '寧靜的日式枯山水庭園，岩石、沙紋與盆栽，柔和光線。Peaceful Japanese Zen garden, rocks, sand patterns, bonsai, soft light.', subject: 'Japanese Zen garden', title: 'Zen', styles: ['Landscape Architecture', 'Zen', 'Peaceful', 'Soft Light'], sections: [], ar: '3:2', texture: '' },
+                    arch_future: { name: '未來城市 (Futuristic City)', desc: '高聳入雲的摩天大樓，飛行車與霓虹燈，俯瞰視角。Skyscrapers reaching the clouds, flying cars and neon lights, high angle view.', subject: 'Futuristic cyberpunk city', title: 'Future City', styles: ['Futuristic', 'Cyberpunk', 'Neon Lights', 'High Angle'], sections: [], ar: '21:9', texture: '' }
                 },
                 "📱 UI 與網頁設計 (UI/Web)": {
                     ui_app_fin: { name: '金融 App (Fintech)', desc: '帶有向量元素的銀行 App 現代扁平化 UI。Modern flat UI for banking apps with vector elements.', subject: 'Banking app interface', title: 'Wallet', styles: ['Web UI Layout', 'Flat Design', 'Vector Art', 'High Key'], sections: [{ visual: 'Header section', param: '', textBlocks: [{ content: 'Total Balance', level: 'Body', font: '' }, { content: '$12,450.00', level: 'H1', font: '' }] }], ar: '9:16', texture: '' },
