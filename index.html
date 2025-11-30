@@ -125,9 +125,18 @@
                     { label: '3D 渲染 (3D Render)', val: '3D Render', desc: '通用的 3D 電腦繪圖質感。' },
                     { label: 'Blender', val: 'Blender', desc: '開源 3D 軟體的典型渲染風格，乾淨現代。' },
                     { label: '虛幻引擎5 (UE5)', val: 'Unreal Engine 5', desc: '次世代遊戲引擎的渲染質感，光影物理極度真實。' },
+                    { label: 'Unity引擎 (Unity)', val: 'Unity Engine', desc: 'Unity遊戲引擎渲染風格，廣泛應用於遊戲開發。' },
+                    { label: '光線追蹤 (Ray Tracing)', val: 'Ray Tracing', desc: '真實模擬光線反射折射的高階渲染技術，極致寫實。' },
+                    { label: 'Octane渲染 (Octane)', val: 'Octane Render', desc: 'GPU加速的照片級渲染器，色彩鮮豔且逼真。' },
+                    { label: '皮克斯風格 (Pixar Style)', val: 'Pixar Style 3D', desc: '皮克斯動畫的3D渲染風格，圓潤可愛且質感細膩。' },
+                    { label: '黏土動畫 (Claymation)', val: 'Claymation Style', desc: '定格動畫風格，像用黏土手工捏製的質感。' },
+                    { label: '黏土渲染 (Clay Render)', val: 'Clay Render', desc: '純色啞光材質的3D渲染，常用於展示模型形狀。' },
                     { label: '低面數 (Low Poly)', val: 'Low Poly', desc: '由多邊形組成的 3D 模型風格，稜角分明。' },
                     { label: '體素藝術 (Voxel Art)', val: 'Voxel Art', desc: '像 Minecraft 的 3D 像素方塊風格。' },
-                    { label: '等角視圖 (Isometric)', val: 'Isometric', desc: '2.5D 視角，無近大遠小，常用於遊戲地圖。' }
+                    { label: '等角視圖 (Isometric)', val: 'Isometric', desc: '2.5D 視角，無近大遠小，常用於遊戲地圖。' },
+                    { label: '神經渲染 (Neural Render)', val: 'Neural Rendering', desc: 'AI神經網絡輔助的新世代渲染技術。' },
+                    { label: '攝影測量 (Photogrammetry)', val: 'Photogrammetry', desc: '從真實照片重建的超寫實3D模型質感。' },
+                    { label: 'AI升頻 (AI Upscaled)', val: 'AI Upscaled', desc: 'AI提升解析度後的超清晰質感。' }
                 ],
                 "傳統繪畫 (Traditional Art)": [
                     { label: '素描 (Sketch)', val: 'Sketch', desc: '鉛筆或炭筆的單色線條繪畫。' },
@@ -166,10 +175,21 @@
                     { label: '概念藝術 (Concept Art)', val: 'Concept Art', desc: '電影或遊戲開發初期的設計稿風格，強調氛圍。' },
                     { label: '普普藝術 (Pop Art)', val: 'Pop Art', desc: '高飽和度色彩，大眾文化符號，類似安迪沃荷風格。' },
                     { label: '超現實主義 (Surrealism)', val: 'Surrealism', desc: '夢境般的畫面，不合邏輯的物體組合（如達利）。' },
+                    { label: '立體主義 (Cubism)', val: 'Cubism', desc: '畢卡索風格，將物體分解為幾何形狀，多視角同時呈現。' },
+                    { label: '表現主義 (Expressionism)', val: 'Expressionism', desc: '扭曲變形的主觀情感表現，強烈色彩與粗獷筆觸。' },
+                    { label: '未來主義 (Futurism)', val: 'Futurism', desc: '強調速度、動態與機械美學的現代藝術運動。' },
+                    { label: '新藝術 (Art Nouveau)', val: 'Art Nouveau', desc: '流動的曲線、自然花卉圖案，19世紀末裝飾藝術風格。' },
+                    { label: '裝飾藝術 (Art Deco)', val: 'Art Deco', desc: '幾何對稱、奢華金屬質感，1920年代摩登風格。' },
+                    { label: '構成主義 (Constructivism)', val: 'Constructivism', desc: '蘇聯前衛藝術，幾何抽象與工業元素結合。' },
+                    { label: '風格派 (De Stijl)', val: 'De Stijl', desc: '蒙德里安風格，純色方格與黑色線條的抽象構成。' },
                     { label: '包浩斯 (Bauhaus)', val: 'Bauhaus', desc: '功能主義，幾何造型，紅黃藍三原色搭配。' },
                     { label: '哥德式 (Gothic)', val: 'Gothic', desc: '黑暗、神秘、尖塔、彩色玻璃，中世紀風格。' },
                     { label: '黑色電影 (Noir)', val: 'Noir', desc: '高對比黑白攝影，強調陰影與懸疑感。' },
                     { label: '復古 (Vintage)', val: 'Vintage', desc: '泛指舊時代的質感，帶有歲月痕跡。' },
+                    { label: '蒸汽波 (Vaporwave)', val: 'Vaporwave', desc: '90年代網路美學，粉紫色調、希臘雕像與復古電腦圖形。' },
+                    { label: '合成波 (Synthwave)', val: 'Synthwave', desc: '80年代復古未來主義，霓虹網格、紫粉漸層與棕櫚樹剪影。' },
+                    { label: '蒸汽龐克 (Steampunk)', val: 'Steampunk', desc: '維多利亞時代蒸汽機械美學，齒輪、銅管與復古科幻。' },
+                    { label: '柴油龐克 (Dieselpunk)', val: 'Dieselpunk', desc: '二戰時期柴油引擎美學，軍事工業風與粗獷機械。' },
                     { label: '故障藝術 (Glitch Art)', val: 'Glitch Art', desc: '模擬數位訊號錯誤產生的破碎、扭曲視覺效果。' },
                     { label: '迷幻藝術 (Psychedelic)', val: 'Psychedelic Art', desc: '高飽和度、旋轉流動的色彩，模擬迷幻體驗。' }
                 ],
@@ -188,14 +208,24 @@
                 "藝術家風格 (Artist Styles)": [
                     { label: '梵谷 (Vincent van Gogh)', val: 'by Vincent van Gogh', desc: '厚重的筆觸、旋轉的線條與強烈的對比色（星夜風格）。' },
                     { label: '莫內 (Claude Monet)', val: 'by Claude Monet', desc: '印象派風格，強調光影變化與色彩的朦朧美（睡蓮）。' },
+                    { label: '畢卡索 (Pablo Picasso)', val: 'by Pablo Picasso', desc: '立體主義大師，多視角幾何分解與強烈色彩對比。' },
                     { label: '慕夏 (Alphonse Mucha)', val: 'by Alphonse Mucha', desc: '新藝術運動風格，華麗的裝飾線條與花卉圖騰。' },
                     { label: '達利 (Salvador Dalí)', val: 'by Salvador Dalí', desc: '超現實主義，夢境般的場景與扭曲的物體（融化的時鐘）。' },
+                    { label: '芙烈達 (Frida Kahlo)', val: 'by Frida Kahlo', desc: '墨西哥女性藝術家，強烈的自畫像與超現實主義元素。' },
+                    { label: '安迪沃荷 (Andy Warhol)', val: 'by Andy Warhol', desc: '普普藝術之王，重複絲網印刷與大眾文化符號（如夢露）。' },
+                    { label: '班克斯 (Banksy)', val: 'by Banksy', desc: '神秘街頭藝術家，黑白模板噴漆與諷刺社會議題。' },
+                    { label: '凱斯哈林 (Keith Haring)', val: 'by Keith Haring', desc: '粗黑線條、簡化人形與鮮豔色彩的塗鴉藝術。' },
+                    { label: '諾曼洛克威爾 (Norman Rockwell)', val: 'by Norman Rockwell', desc: '美式寫實插畫，溫馨的日常生活場景與細膩筆觸。' },
+                    { label: '詹姆士琴 (James Jean)', val: 'by James Jean', desc: '當代插畫大師，夢幻流動的線條與細膩的奇幻元素。' },
                     { label: '韋斯·安德森 (Wes Anderson)', val: 'by Wes Anderson', desc: '對稱構圖、粉彩色調、置中視角與古怪的幽默感。' },
                     { label: '宮崎駿 (Hayao Miyazaki)', val: 'by Hayao Miyazaki', desc: '吉卜力風格，細膩的自然背景、飛行器與懷舊氛圍。' },
                     { label: '新海誠 (Makoto Shinkai)', val: 'by Makoto Shinkai', desc: '極致寫實的光影、絕美的天空與鏡頭光暈。' },
                     { label: '提姆·波頓 (Tim Burton)', val: 'by Tim Burton', desc: '哥德式黑暗風格，瘦長的角色、螺旋紋路與陰鬱氣氛。' },
                     { label: '葛飾北齋 (Hokusai)', val: 'by Katsushika Hokusai', desc: '浮世繪風格，線條鮮明，經典的海浪與富士山畫風。' },
-                    { label: '賽博龐克 (Syd Mead)', val: 'by Syd Mead', desc: '未來主義概念藝術，工業設計感的科幻載具與城市。' }
+                    { label: '賽博龐克 (Syd Mead)', val: 'by Syd Mead', desc: '未來主義概念藝術，工業設計感的科幻載具與城市。' },
+                    { label: '皮克斯 (Pixar)', val: 'Pixar Animation Style', desc: '皮克斯動畫工作室風格，溫馨感人的故事與精緻3D渲染。' },
+                    { label: '迪士尼 (Disney)', val: 'Disney Animation Style', desc: '迪士尼經典動畫風格，圓潤可愛的角色與夢幻氛圍。' },
+                    { label: 'Trigger動畫 (Studio Trigger)', val: 'Studio Trigger Style', desc: '日本動畫公司Trigger風格，瘋狂動態與誇張表現力。' }
                 ],
                 "版型與構圖 (Layout)": [
                     { label: '三分法構圖 (Rule of Thirds)', val: 'Rule of Thirds', desc: '將畫面分為九宮格，主體放在交叉點上。' },
@@ -300,6 +330,35 @@
                     { label: '冰 (Ice)', val: 'Ice', desc: '晶瑩剔透、寒冷的質感。' },
                     { label: '水 (Water)', val: 'Water', desc: '流動、透明、反光的液體。' },
                     { label: '煙霧 (Smoke)', val: 'Smoke', desc: '飄渺、無定形的氣體質感。' }
+                ],
+                "日本與台灣流行風格 (JP & TW Popular)": [
+                    { label: 'Pixiv風格 (Pixiv Style)', val: 'Pixiv Style', desc: 'Pixiv繪師常見的高品質動漫插畫風格，細緻且色彩豐富。' },
+                    { label: '厚塗 (Thick Paint)', val: 'Thick Paint Digital Art', desc: '油畫式厚重筆觸的數位繪畫，質感強烈。' },
+                    { label: '賽璐珞著色 (Cel Shading)', val: 'Cel Shading', desc: '動畫風格的平面著色技法，色塊分明。' },
+                    { label: 'Anime Diffusion', val: 'Anime Diffusion Style', desc: 'AI生成常見的現代動漫風格，色彩鮮豔且細節豐富。' },
+                    { label: '背景美術 (Anime BG Art)', val: 'Anime Background Art', desc: '動畫背景的寫實風格，細膩的場景描繪。' },
+                    { label: 'CLIP Studio風格', val: 'CLIP Studio Paint Style', desc: '使用CLIP Studio Paint的數位繪畫風格，筆刷質感明顯。' },
+                    { label: 'VTuber立繪 (VTuber)', val: 'VTuber Character Design', desc: '虛擬YouTuber角色設計風格，色彩鮮明且活潑。' },
+                    { label: 'Live2D風格', val: 'Live2D Style', desc: 'Live2D動態立繪風格，適合角色設計。' },
+                    { label: 'City Pop (City Pop)', val: 'City Pop Aesthetic', desc: '80年代日本都會流行風格，霓虹燈、老爺車與夏日海灘。' },
+                    { label: '昭和復古 (Showa Retro)', val: 'Showa Era Style', desc: '日本昭和時代的懷舊氛圍，泛黃色調與古樸招牌。' },
+                    { label: '原宿時尚 (Harajuku)', val: 'Harajuku Fashion', desc: '色彩繽紛、誇張且充滿個性的原宿街頭時尚風格。' },
+                    { label: '京阿尼 (Kyoto Animation)', val: 'Kyoto Animation Style', desc: '京都動畫風格，極致細膩的人物表情與唯美的光影背景。' },
+                    { label: '細田守 (Mamoru Hosoda)', val: 'Mamoru Hosoda Style', desc: '細田守動畫風格，簡潔的人物線條與無陰影的藍天白雲。' },
+                    { label: 'JoJo風格 (JoJo Style)', val: 'Hirohiko Araki Style', desc: '荒木飛呂彥風格，粗獷線條、誇張姿勢與獨特擬聲詞。' },
+                    { label: '文創插畫 (Cultural Creative)', val: 'Taiwan Cultural Creative Illustration', desc: '台灣文創產業的插畫風格，融合在地元素與現代設計。' },
+                    { label: '手繪塗鴉 (Hand-drawn Doodle)', val: 'Hand-drawn Doodle Style', desc: '手繪質感的隨興插畫，自然且溫暖。' },
+                    { label: '手帳風格 (Journal Style)', val: 'Bullet Journal Style', desc: '手帳日記的裝飾性插畫，可愛且實用。' },
+                    { label: '復古台灣味 (Retro Taiwan)', val: 'Retro Taiwan Aesthetic', desc: '懷舊台灣風情，帶有70-80年代的復古質感。' },
+                    { label: '台式Line貼圖 (LINE Sticker)', val: 'Taiwan LINE Sticker Style', desc: '台灣Line貼圖的可愛風格，表情豐富且討喜。' },
+                    { label: '原住民圖騰 (Indigenous)', val: 'Taiwan Indigenous Pattern', desc: '台灣原住民傳統圖騰，幾何且色彩鮮明。' },
+                    { label: '插畫繪本風 (Picture Book)', val: 'Taiwan Picture Book Style', desc: '台灣繪本插畫風格，溫馨且富有故事性。' },
+                    { label: '水墨現代感 (Modern Ink)', val: 'Modern Chinese Ink', desc: '結合傳統水墨與現代設計的風格。' },
+                    { label: '霹靂布袋戲 (Pili Puppetry)', val: 'Pili Puppetry Style', desc: '台灣布袋戲風格，華麗精緻的偶頭與服裝，武俠奇幻氛圍。' },
+                    { label: '客家花布 (Hakka Floral)', val: 'Hakka Floral Pattern', desc: '台灣客家傳統花布圖案，鮮豔的牡丹花與紅色基調。' },
+                    { label: '花磚 (Majolica Tile)', val: 'Vintage Majolica Tile', desc: '台灣老屋常見的彩色花磚圖案，幾何與花卉的重複排列。' },
+                    { label: '台灣街景 (TW Streetscape)', val: 'Taiwan Streetscape', desc: '充滿招牌、機車與電線的台灣獨特街道景觀。' },
+                    { label: '台灣新浪潮 (New Wave Cinema)', val: 'Taiwan New Wave Cinema Style', desc: '侯孝賢、楊德昌電影風格，寫實長鏡頭與沉靜氛圍。' }
                 ]
             },
 
@@ -312,19 +371,23 @@
                 },
                 "🏥 衛教與醫療宣導 (Health & Medical)": {
                     he_fb_watercolor: { name: '衛教: 水彩插畫 (Watercolor FB)', desc: '柔和水彩插畫風格，手繪質感，暖色粉彩調，療癒氛圍。Soft watercolor illustration style, sketch texture, warm pastel color palette, soothing atmosphere.', subject: 'Soft watercolor illustration of health concept', title: 'Health Post', styles: ['Watercolor', 'Sketch', 'Pastel Colors', 'Cute', 'Soothing'], sections: [], ar: '4:3', resolution: '4K', texture: 'on white background' },
-                    he_fb_handwash: { name: '衛教: 洗手衛教 (Handwash FB)', desc: '現代扁平向量插畫，可愛卡通男孩在洗手台用肥皂泡泡仔細洗手。Modern flat vector illustration, a cute cartoon boy washing his hands thoroughly with soap bubbles at a sink.', subject: 'Cute cartoon boy washing hands with soap bubbles', title: 'Wash Hands', styles: ['Flat Design', 'Vector Art', 'Minimalist', 'Clean UI'], sections: [], ar: '4:3', resolution: '4K', texture: '' },
-                    he_fb_baby_hero: { name: '衛教: 寶寶超人 (Hero Baby FB)', desc: '3D 黏土渲染，可愛皮克斯風格，一個穿著超人披風的迷你可愛寶寶，柔和影棚光，英雄姿勢。3D clay render, cute Pixar style, a tiny cute baby wearing a superhero cape and mask, standing confidently in a heroic pose, soft studio lighting.', subject: 'Tiny cute baby wearing superhero cape and mask', title: 'Super Baby', styles: ['3D Render', 'Pixar Style', 'Claymation Style', 'Bright', 'Cute', 'Studio Lighting'], sections: [], ar: '4:3', resolution: '4K', texture: '' },
-                    he_poster_diet: { name: '海報: 均衡飲食 (Balanced Diet)', desc: '均衡飲食餐盤的俯視攝影，包含豐富蔬菜、蛋白質與全穀物。Top-down photography of a balanced diet plate with rich vegetables, protein, and whole grains.', subject: 'Healthy balanced meal plate with vegetables', title: 'Eat Well', styles: ['Food Photography', 'Top Down', 'Bright', 'Fresh', 'Healthy'], sections: [], ar: '2:3', texture: '' },
-                    he_poster_dental: { name: '海報: 牙齒保健 (Dental Care)', desc: '可愛的擬人化牙齒正在刷牙的 3D 渲染圖，藍色背景。3D render of a cute anthropomorphic tooth brushing itself, blue background.', subject: 'Cute anthropomorphic tooth brushing itself', title: 'Dental Care', styles: ['3D Render', 'Cute', 'Educational', 'Blue Background'], sections: [], ar: '2:3', texture: '' },
-                    he_poster_mental: { name: '海報: 心理健康 (Mental Health)', desc: '向量藝術插畫，一個人在大自然中平靜地冥想，綠色調。Vector art illustration of a person meditating peacefully in nature, green tones.', subject: 'Person meditating peacefully in nature', title: 'Inner Peace', styles: ['Vector Art', 'Soothing', 'Green', 'Minimalist'], sections: [], ar: '2:3', texture: '' },
-                    he_poster_vaccine: { name: '海報: 疫苗防護 (Vaccination)', desc: '扁平設計插畫，醫生拿著盾牌保護家庭，溫暖色調。Flat design illustration of a doctor holding a shield protecting a family, warm tones.', subject: 'Doctor holding a shield protecting a family', title: 'Protection', styles: ['Flat Design', 'Trustworthy', 'Warm Colors', 'Protection'], sections: [], ar: '2:3', texture: '' },
-                    he_poster_senior: { name: '海報: 銀髮運動 (Senior Exercise)', desc: '快樂的年長者在公園做伸展運動的照片，明亮自然光。Photo of happy senior citizens stretching in a park, bright natural light.', subject: 'Happy senior citizens stretching in a park', title: 'Stay Active', styles: ['Lifestyle', 'Natural Light', 'Positive', 'Healthy'], sections: [], ar: '2:3', texture: '' },
-                    med_cardio_stent: { name: '心臟支架 (Stent)', desc: '冠狀動脈與金屬支架的詳細 3D 剖面圖。Detailed 3D cross-section of a coronary artery with a mesh stent.', subject: 'Coronary artery with stent', title: 'Heart Health', styles: ['3D Render', 'Medical Illustration', 'Cross Section', 'Detailed'], sections: [{ visual: 'Metal mesh stent expanding artery', param: '', textBlocks: [{ content: 'Coronary Stent', level: 'Caption', font: '' }] }], ar: '4:3', texture: '' },
-                    med_neuro_synapse: { name: '神經突觸 (Synapse)', desc: '釋放神經傳導物質的化學突觸特寫。Close-up of a chemical synapse releasing neurotransmitters.', subject: 'Chemical synapse', title: 'Neurotransmission', styles: ['Microscopic', 'Bioluminescent', 'Particles', 'Depth of Field'], sections: [], ar: '16:9', texture: '' },
-                    med_surgery: { name: '手術機器人 (Surgery Robot)', desc: '機器手臂進行手術的未來感、無菌視角。Futuristic, sterile view of robotic surgery arms in action.', subject: 'Robotic arm performing surgery', title: 'Future Med', styles: ['High Tech', 'Sterile', 'Bright', 'Depth of Field'], sections: [], ar: '21:9', texture: '' },
-                    med_anatomy: { name: '心臟解剖圖 (Heart Anatomy)', desc: '人類心臟腔室的教育用剖面插圖。Educational cutaway illustration of human heart chambers.', subject: 'Human heart', title: 'Cardiology', styles: ['Medical Illustration', 'Cutaway', 'Educational', 'Clean'], sections: [{ visual: 'Ventricles and atria', param: '', textBlocks: [{ content: 'Aorta', level: 'Caption', font: '' }] }], ar: '4:3', texture: '' },
-                    med_conf_slide: { name: '醫學研討會 (Conference)', desc: '抽象神經網絡視覺化，保留簡報標題空間。Abstract neural network visualization with clean space for presentation titles.', subject: 'Abstract neural networks and synapses', title: 'Conference Slide', styles: ['Medical Imaging', 'Minimalist', 'Blue and White', 'Clean'], sections: [{ visual: 'Neural networks on right side', param: 'Soft blue glow', textBlocks: [] }, { visual: 'Empty white space on left', param: 'For text overlay', textBlocks: [] }], ar: '16:9', texture: '' },
-                    med_consult: { name: '醫生問診 (Consultation)', desc: '醫生手持平板與病人交談的溫暖專業鏡頭。Warm, professional shot of a doctor holding a tablet speaking to a patient.', subject: 'Doctor consulting patient', title: 'Patient Care', styles: ['Portrait Photography', 'Warm Light', 'Bokeh', 'Trustworthy'], sections: [], ar: '3:2', texture: '' }
+                    he_fb_handwash: { name: '衛教: 洗手衛教 (Handwash FB)', desc: '現代扁平向量插畫，可愛卡通男孩在洗手台用肥皂泡泡仔細洗手。Modern flat vector illustration, a cute cartoon boy washing his hands thoroughly with soap bubbles at a sink.', subject: 'Cute cartoon boy washing hands with soap bubbles', title: 'Wash Hands', styles: ['Flat Design', 'Vector Art', 'Minimalist', 'Clean UI'], sections: [{ visual: 'Step-by-step hand washing illustration', param: '', textBlocks: [{ content: '步驟1: 濁濕雙手', level: 'Caption', font: 'Noto Sans TC' }, { content: '步驟2: 塗抹肥皂', level: 'Caption', font: 'Noto Sans TC' }, { content: '步驟3: 揉搇20秒', level: 'Caption', font: 'Noto Sans TC' }] }], ar: '4:3', resolution: '4K', texture: '' },
+                    he_fb_baby_hero: { name: '衛教: 寶寶超人 (Hero Baby FB)', desc: '3D 黏土渲染，可愛皮克斯風格，一個穿著超人披風的迷你可愛寶寶，柔和影棚光，英雄姿勢。', subject: 'Tiny cute baby wearing superhero cape and mask', title: 'Super Baby', styles: ['3D Render', 'Pixar Style 3D', 'Claymation Style', 'Bright', 'Cute', 'Studio Lighting'], sections: [{ visual: 'Baby superhero in heroic pose', param: '', textBlocks: [{ content: '健康寶寶超人🦸', level: 'H1', font: 'Noto Sans TC' }, { content: '多吃蔬果，充足睡眠', level: 'Body', font: 'Noto Sans TC' }] }], ar: '4:3', resolution: '4K', texture: '' },
+                    he_poster_diet: { name: '海報: 均衡飲食 (Balanced Diet)', desc: '均衡飲食餐盤的俗視攝影，包含豐富蔬菜、蛋白質與全穀物。', subject: 'Healthy balanced meal plate with vegetables', title: 'Eat Well', styles: ['Food Photography', 'Top Down', 'Bright', 'Fresh', 'Healthy'], sections: [{ visual: 'Balanced meal plate arrangement', param: '', textBlocks: [{ content: '均衡飲食🥗', level: 'H1', font: 'Bold Display' }, { content: '每日五蔬果', level: 'H2', font: 'Noto Sans TC' }] }], ar: '2:3', texture: '' },
+                    he_poster_dental: { name: '海報: 牙齒保健 (Dental Care)', desc: '可愛的擬人化牙齒正在刷牙的 3D 渲染圖，藍色背景。', subject: 'Cute anthropomorphic tooth brushing itself', title: 'Dental Care', styles: ['3D Render', 'Cute', 'Educational', 'Blue Background'], sections: [{ visual: 'Happy tooth character brushing', param: '', textBlocks: [{ content: '每日刷牙三次🦷', level: 'H1', font: 'Noto Sans TC' }, { content: '健康的牙齒，照亮你的笑容', level: 'Body', font: 'Noto Sans TC' }] }], ar: '2:3', texture: '' },
+                    he_poster_mental: { name: '海報: 心理健康 (Mental Health)', desc: '向量藝術插畫，一個人在大自然中平靜地冥想，綠色調。', subject: 'Person meditating peacefully in nature', title: 'Inner Peace', styles: ['Vector Art', 'Soothing', 'Green', 'Minimalist'], sections: [{ visual: 'Person meditating in nature', param: '', textBlocks: [{ content: '心理健康很重要🌿', level: 'H1', font: 'Noto Sans TC' }, { content: '適當休息，放鬆身心', level: 'Body', font: 'Noto Sans TC' }] }], ar: '2:3', texture: '' },
+                    he_poster_vaccine: { name: '海報: 疫苗防護 (Vaccination)', desc: '扁平設計插畫，醫生拿著盾牌保護家庭，溫暖色調。', subject: 'Doctor holding a shield protecting a family', title: 'Protection', styles: ['Flat Design', 'Trustworthy', 'Warm Colors', 'Protection'], sections: [{ visual: 'Doctor with shield protecting family', param: '', textBlocks: [{ content: '疫苗保護🛡️', level: 'H1', font: 'Bold Display' }, { content: '守護您與家人的健康', level: 'Body', font: 'Noto Sans TC' }] }], ar: '2:3', texture: '' },
+                    he_poster_senior: { name: '海報: 銀髮運動 (Senior Exercise)', desc: '快樂的年長者在公園做伸展運動的照片，明亮自然光。', subject: 'Happy senior citizens stretching in a park', title: 'Stay Active', styles: ['Lifestyle', 'Natural Light', 'Positive', 'Healthy'], sections: [{ visual: 'Seniors exercising together', param: '', textBlocks: [{ content: '活躍老化👵', level: 'H1', font: 'Noto Sans TC' }, { content: '每天運動30分鐘', level: 'H2', font: 'Noto Sans TC' }] }], ar: '2:3', texture: '' },
+                    med_cardio_stent: { name: '心臟支架 (Stent)', desc: '冠狀動脈與金屬支架的詳細 3D 剖面圖。', subject: 'Coronary artery with stent', title: 'Heart Health', styles: ['3D Render', 'Medical Illustration', 'Cross Section', 'Detailed'], sections: [{ visual: 'Metal mesh stent expanding artery', param: '', textBlocks: [{ content: 'Coronary Stent', level: 'Caption', font: '' }] }], ar: '4:3', texture: '' },
+                    med_neuro_synapse: { name: '神經突觸 (Synapse)', desc: '釋放神經傳導物質的化學突觸特寫。', subject: 'Chemical synapse', title: 'Neurotransmission', styles: ['Microscopic', 'Bioluminescent', 'Particles', 'Depth of Field'], sections: [], ar: '16:9', texture: '' },
+                    med_surgery: { name: '手術機器人 (Surgery Robot)', desc: '機器手臂進行手術的未來感、無菌視角。', subject: 'Robotic arm performing surgery', title: 'Future Med', styles: ['High Tech', 'Sterile', 'Bright', 'Depth of Field'], sections: [], ar: '21:9', texture: '' },
+                    med_anatomy: { name: '心臟解剖圖 (Heart Anatomy)', desc: '人類心臟腔室的教育用剖面插畫。', subject: 'Human heart', title: 'Cardiology', styles: ['Medical Illustration', 'Cutaway', 'Educational', 'Clean'], sections: [{ visual: 'Ventricles and atria', param: '', textBlocks: [{ content: 'Aorta', level: 'Caption', font: '' }] }], ar: '4:3', texture: '' },
+                    med_conf_slide: { name: '醫學研討會 (Conference)', desc: '抽象神經網絡視覺化，保留簡報標題空間。', subject: 'Abstract neural networks and synapses', title: 'Conference Slide', styles: ['Medical Imaging', 'Minimalist', 'Blue and White', 'Clean'], sections: [{ visual: 'Neural networks on right side', param: 'Soft blue glow', textBlocks: [] }, { visual: 'Empty white space on left', param: 'For text overlay', textBlocks: [] }], ar: '16:9', texture: '' },
+                    med_consult: { name: '醫生問診 (Consultation)', desc: '醫生手持平板與病人交談的溫暖專業鏡頭。', subject: 'Doctor consulting patient', title: 'Patient Care', styles: ['Portrait Photography', 'Warm Light', 'Bokeh', 'Trustworthy'], sections: [], ar: '3:2', texture: '' },
+                    info_nutrition_chart: { name: '資訊圖: 營養金字塔 (Nutrition)', desc: '向量風格的營養金字塔圖表，使用溫暖色彩與清晰分類。Vector style nutrition pyramid chart with warm colors and clear categories.', subject: 'Nutrition pyramid infographic', title: 'Healthy Eating', styles: ['Infographic', 'Vector Art', 'Warm Colors', 'Educational', 'Clean'], sections: [{ visual: 'Pyramid diagram with food groups', param: '', textBlocks: [{ content: '營養金字塔', level: 'H1', font: 'Bold Display' }, { content: '全穀雜糧', level: 'Caption', font: 'Noto Sans TC' }, { content: '蔬果類', level: 'Caption', font: 'Noto Sans TC' }, { content: '蛋豆魚肉', level: 'Caption', font: 'Noto Sans TC' }] }], ar: '4:5', texture: '' },
+                    info_workout_routine: { name: '資訊圖: 運動流程 (Workout)', desc: '淺色漸層背景的現代運動流程資訊圖，包含人物圖示與時間表。Modern workout routine infographic with gradient background, character illustrations and timeline.', subject: 'Weekly workout routine infographic', title: '7-Day Plan', styles: ['Infographic', 'Flat Design', 'Vibrant Colors', 'Modern', 'Fitness'], sections: [{ visual: 'Header with title', param: '', textBlocks: [{ content: '七天運動計劃', level: 'H1', font: 'Bold Display' }] }, { visual: 'Daily workout icons and descriptions', param: '', textBlocks: [{ content: '星期一: 有氧運動30min', level: 'Body', font: 'Noto Sans TC' }, { content: '星期三: 重訓45min', level: 'Body', font: 'Noto Sans TC' }, { content: '星期五: 瑜伽60min', level: 'Body', font: 'Noto Sans TC' }] }], ar: '9:16', texture: '' },
+                    info_data_viz: { name: '資訊圖: 數據視覺化 (Data Viz)', desc: '商業風格的數據視覺化資訊圖，包含圖表、百分比與趨勢線。Business style data visualization infographic with charts, percentages and trend lines.', subject: 'Business data visualization infographic', title: 'Q4 Report', styles: ['Infographic', 'Dashboard UI', 'Blue and Orange', 'Professional', 'Clean'], sections: [{ visual: 'Title and key metrics', param: '', textBlocks: [{ content: '季度報告', level: 'H1', font: 'Sans-serif' }, { content: '85% 增長', level: 'H2', font: 'Bold Display' }] }, { visual: 'Chart section with graphs', param: '', textBlocks: [{ content: '業績趨勢', level: 'Caption', font: 'Noto Sans TC' }] }], ar: '16:9', texture: '' },
+                    info_mindfulness: { name: '資訊圖: 正念步驟 (Mindfulness)', desc: '柔和粉彩色調的正念冥想步驟資訊圖，手繪風格元素。Soft pastel colored mindfulness meditation steps infographic with hand-drawn style elements.', subject: 'Mindfulness meditation steps infographic', title: 'Be Present', styles: ['Infographic', 'Watercolor', 'Pastel Colors', 'Hand-drawn Doodle Style', 'Soothing'], sections: [{ visual: 'Circular flow diagram', param: '', textBlocks: [{ content: '正念冥想五步驟', level: 'H1', font: 'Handwritten' }, { content: '1. 找個安靜的地方', level: 'Body', font: 'Noto Sans TC' }, { content: '2. 調整呼吸', level: 'Body', font: 'Noto Sans TC' }, { content: '3. 觀察思緒', level: 'Body', font: 'Noto Sans TC' }] }], ar: '1:1', texture: '' }
                 },
                 "🎮 漫畫與二次元 (Manga & Anime)": {
                     manga_shonen: { name: '少年漫畫 (Shonen Manga)', desc: '熱血少年漫畫風格，強烈的黑白對比與速度線。Shonen manga style, intense black and white contrast with speed lines.', subject: 'Hero preparing for battle', title: 'Shonen Action', styles: ['Shonen Manga', 'Action Lines', 'Black and White', 'High Contrast'], sections: [], ar: '2:3', texture: '' },
@@ -333,7 +396,10 @@
                     manga_retro_90s: { name: '90年代動畫 (90s Anime)', desc: '90年代賽璐珞動畫風格，低傳真質感，蒸汽波配色。90s cel-shaded anime style, lo-fi texture, vaporwave color scheme.', subject: '90s anime city street', title: 'Retro Vibes', styles: ['Showa Retro', 'Cel Shading', 'Lo-Fi', 'Vaporwave'], sections: [], ar: '4:3', texture: '' },
                     manga_webtoon: { name: '韓漫條漫 (Webtoon)', desc: '現代全彩條漫風格，乾淨線條與鮮豔色彩。Modern full-color webtoon style, clean lines and vibrant colors.', subject: 'Modern office romance scene', title: 'Webtoon', styles: ['Webtoon Style', 'Full Color', 'Digital Art', 'Clean'], sections: [], ar: '9:16', texture: '' },
                     game_iso: { name: '等角地圖 (Isometric)', desc: '可愛的低多邊形 3D 等角遊戲資產。Cute low-poly 3D isometric game asset.', subject: 'Medieval village', title: '', styles: ['Isometric', 'Low Poly', '3D Render', 'Cute'], sections: [], ar: '4:5', texture: '' },
-                    game_char: { name: '角色設定 (Char Sheet)', desc: '包含正視圖與側視圖的詳細角色概念藝術。Detailed character concept art with front/side views.', subject: 'Cyberpunk warrior', title: '', styles: ['Concept Art', 'T-Pose', 'Front/Side View', 'Detailed'], sections: [], ar: '21:9', texture: '' }
+                    game_char: { name: '角色設定 (Char Sheet)', desc: '包含正視圖與側視圖的詳細角色概念藝術。Detailed character concept art with front/side views.', subject: 'Cyberpunk warrior', title: '', styles: ['Concept Art', 'T-Pose', 'Front/Side View', 'Detailed'], sections: [], ar: '21:9', texture: '' },
+                    anime_city_pop: { name: 'City Pop 兜風 (City Pop)', desc: '80年代 City Pop 風格，開著敞篷車在海濱公路兜風，霓虹燈與棕櫚樹。80s City Pop aesthetic, driving a convertible on a coastal highway, neon lights and palm trees.', subject: 'Driving convertible on coastal highway', title: 'Plastic Love', styles: ['City Pop Aesthetic', 'Showa Retro', 'Neon Palette', 'Summer Vibes'], sections: [], ar: '16:9', texture: '' },
+                    anime_kyoani: { name: '京阿尼校園 (KyoAni)', desc: '京都動畫風格的校園生活，細膩的光影與飄落的櫻花。Kyoto Animation style school life, delicate lighting and falling cherry blossoms.', subject: 'Students walking in school hallway', title: 'School Days', styles: ['Kyoto Animation Style', 'Anime', 'Soft Light', 'Emotional'], sections: [], ar: '16:9', texture: '' },
+                    anime_jojo: { name: 'JoJo 立 (JoJo Pose)', desc: '荒木飛呂彥風格，角色擺出誇張的時尚姿勢，背景有擬聲詞。Hirohiko Araki style, character striking a dramatic fashion pose, menacing sound effects in background.', subject: 'Character striking a dramatic pose', title: 'Menacing', styles: ['Hirohiko Araki Style', 'JoJo Style', 'Vibrant Colors', 'Dramatic'], sections: [], ar: '2:3', texture: '' }
                 },
                 "📝 繁中應用與筆記 (TC Notes & Diagrams)": {
                     note_study_bio: { name: '手寫生物筆記 (Bio Notes)', desc: '手寫的生物學筆記，關於細胞結構，有螢光筆劃記與可愛插圖。Handwritten biology study notes about cell structure with highlighter marks and cute illustrations.', subject: 'Biology cell structure study notes', title: 'Study Hard', styles: ['Handwritten', 'Notebook Paper', 'Cute', 'Educational'], sections: [], ar: '3:4', texture: 'on lined notebook paper' },
@@ -349,7 +415,10 @@
                     tw_tea_plantation: { name: '阿里山茶園 (Tea Plantation)', desc: '阿里山雲霧繚繞的高山茶園，梯田景觀，綠意盎然。Misty high mountain tea plantation in Alishan, terraced fields, lush green.', subject: 'Terraced tea plantation in fog', title: 'Alishan Tea', styles: ['Landscape Photography', 'Atmospheric', 'Green', 'Nature'], sections: [], ar: '16:9', texture: '' },
                     tw_dome_of_light: { name: '光之穹頂 (Dome of Light)', desc: '高雄美麗島捷運站著名的光之穹頂彩繪玻璃藝術，廣角對稱構圖。The famous Dome of Light stained glass art at Kaohsiung Formosa Boulevard MRT station, wide-angle symmetrical composition.', subject: 'Dome of Light stained glass ceiling', title: 'Formosa Boulevard', styles: ['Stained Glass', 'Vibrant Colors', 'Symmetrical', 'Wide Angle'], sections: [], ar: '1:1', texture: '' },
                     tw_kaohsiung_sticker: { name: '高雄旅遊貼圖 (Kaohsiung Sticker)', desc: '高雄地標（龍虎塔、85大樓）的可愛卡通貼圖，鮮豔色彩，白色邊框。Cute cartoon sticker of Kaohsiung landmarks (Dragon and Tiger Pagodas, 85 Sky Tower), vibrant colors, white border.', subject: 'Cartoon sticker of Kaohsiung landmarks', title: 'Kaohsiung Travel', styles: ['Cartoon', 'Sticker Art', 'Vector Art', 'Cute'], sections: [], ar: '1:1', texture: 'on white background' },
-                    tw_kaohsiung_bear_sticker: { name: '高雄熊貼圖 (Kaohsiung Bear)', desc: '高雄觀光大使「高雄熊」在愛河畔喝珍珠奶茶的可愛貼圖，向量風格。Cute sticker of "Kaohsiung Bear" drinking bubble tea by the Love River, vector art style.', subject: 'Kaohsiung Bear character drinking bubble tea', title: 'Kaohsiung Bear', styles: ['Cartoon', 'Sticker Art', 'Cute', 'Vector Art'], sections: [], ar: '1:1', texture: 'on white background' }
+                    tw_kaohsiung_bear_sticker: { name: '高雄熊貼圖 (Kaohsiung Bear)', desc: '高雄觀光大使「高雄熊」在愛河畔喝珍珠奶茶的可愛貼圖，向量風格。Cute sticker of "Kaohsiung Bear" drinking bubble tea by the Love River, vector art style.', subject: 'Kaohsiung Bear character drinking bubble tea', title: 'Kaohsiung Bear', styles: ['Cartoon', 'Sticker Art', 'Cute', 'Vector Art'], sections: [], ar: '1:1', texture: 'on white background' },
+                    tw_pili_hero: { name: '霹靂布袋戲 (Pili Hero)', desc: '台灣布袋戲風格的英雄角色，精緻的偶頭、華麗的服裝與特效。Pili puppetry style hero character, exquisite puppet head, elaborate costume, special effects.', subject: 'Pili puppetry hero character', title: 'Wuxia Puppet', styles: ['Pili Puppetry Style', 'Fantasy', 'Detailed', 'Dramatic Lighting'], sections: [], ar: '2:3', texture: '' },
+                    tw_majolica_tile: { name: '復古花磚 (Majolica Tile)', desc: '台灣老屋的彩色花磚圖案，幾何花卉設計，復古質感。Vintage Majolica tile pattern from old Taiwan houses, geometric floral design, retro texture.', subject: 'Vintage Majolica tile pattern', title: 'Old Tile', styles: ['Vintage Majolica Tile', 'Pattern Design', 'Retro', 'Colorful'], sections: [], ar: '1:1', texture: '' },
+                    tw_street_scooter: { name: '機車瀑布 (Scooter Waterfall)', desc: '台北橋機車瀑布的壯觀景象，晨間通勤時間，充滿活力的城市街景。Spectacular view of the scooter waterfall at Taipei Bridge, morning commute, vibrant city street scene.', subject: 'Scooter waterfall at Taipei Bridge', title: 'Taipei Commute', styles: ['Taiwan Streetscape', 'Urban Photography', 'Busy', 'Perspective'], sections: [], ar: '4:3', texture: '' }
                 },
                 "✈️ 旅行與手帳 (Travel & Journal)": {
                     travel_kyoto_sketch: { name: '京都街頭速寫 (Kyoto Sketch)', desc: '使用水墨與水彩繪製的京都老街與傳統建築細節速寫。Detailed urban sketch of Kyoto streets with traditional buildings using ink and watercolor.', subject: 'Old street in Kyoto with wooden machiya', title: 'Kyoto Memories', styles: ['Ink Illustration', 'Watercolor', 'Sketch', 'Urban Sketching'], sections: [], ar: '4:5', texture: 'on watercolor paper texture' },
@@ -439,9 +508,9 @@
         const App = () => {
             const [showHelp, setShowHelp] = useState(false);
             const [copied, setCopied] = useState(false);
-            const [isPresetDropdownOpen, setIsPresetDropdownOpen] = useState(false);
+            const [showPresetModal, setShowPresetModal] = useState(false);
+            const [presetSearchQuery, setPresetSearchQuery] = useState('');
             const [currentPresetName, setCurrentPresetName] = useState('');
-            const [hoveredPreset, setHoveredPreset] = useState(null);
             const [expandedCategories, setExpandedCategories] = useState(configData.ui.defaultExpandedCategories);
             const [manualPrompt, setManualPrompt] = useState('');
             const [activeMobileTab, setActiveMobileTab] = useState('edit');
@@ -464,19 +533,7 @@
                 negative: 'blur, watermark, bad anatomy, text error'
             });
 
-            const presetDropdownRef = useRef(null);
 
-            useEffect(() => {
-                function handleClickOutside(event) {
-                    if (presetDropdownRef.current && !presetDropdownRef.current.contains(event.target)) {
-                        setIsPresetDropdownOpen(false);
-                    }
-                }
-                document.addEventListener("mousedown", handleClickOutside);
-                return () => {
-                    document.removeEventListener("mousedown", handleClickOutside);
-                };
-            }, []);
 
             useEffect(() => {
                 let parts = [];
@@ -572,8 +629,8 @@
             };
 
             const applyPreset = (key) => {
-                setIsPresetDropdownOpen(false);
-                setHoveredPreset(null);
+                setShowPresetModal(false);
+                setPresetSearchQuery('');
 
                 if (!key) {
                     setCurrentPresetName('');
@@ -618,6 +675,34 @@
                         texture: p.texture || ''
                     }));
                 }
+            };
+
+            // Filter presets based on search query
+            const getFilteredPresets = () => {
+                if (!presetSearchQuery.trim()) {
+                    return configData.presetGroups;
+                }
+
+                const query = presetSearchQuery.toLowerCase();
+                const filtered = {};
+
+                Object.entries(configData.presetGroups).forEach(([groupName, presets]) => {
+                    const matchingPresets = {};
+                    Object.entries(presets).forEach(([key, preset]) => {
+                        if (
+                            preset.name.toLowerCase().includes(query) ||
+                            preset.desc?.toLowerCase().includes(query) ||
+                            preset.subject?.toLowerCase().includes(query)
+                        ) {
+                            matchingPresets[key] = preset;
+                        }
+                    });
+                    if (Object.keys(matchingPresets).length > 0) {
+                        filtered[groupName] = matchingPresets;
+                    }
+                });
+
+                return filtered;
             };
 
             const addSection = () => {
@@ -787,6 +872,100 @@
                         </div>
                     )}
 
+                    {/* Preset Modal */}
+                    {showPresetModal && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }}></div>
+                            <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden relative z-10 flex flex-col">
+                                {/* Header */}
+                                <div className="p-4 lg:p-5 border-b border-gray-700 bg-gray-900 sticky top-0 z-20">
+                                    <div className="flex justify-between items-center gap-3 mb-3">
+                                        <h3 className="text-lg lg:text-xl font-bold text-blue-400 flex items-center gap-2">
+                                            <Sparkles size={24} />
+                                            <span>選擇預設範本 (Select Preset)</span>
+                                        </h3>
+                                        <button onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }} className="text-gray-400 hover:text-white transition">
+                                            <X size={24} />
+                                        </button>
+                                    </div>
+                                    {/* Search Bar */}
+                                    <input
+                                        type="text"
+                                        value={presetSearchQuery}
+                                        onChange={(e) => setPresetSearchQuery(e.target.value)}
+                                        placeholder="🔍 搜尋預設 (Search presets)..."
+                                        className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-300 focus:border-blue-500 outline-none transition"
+                                    />
+                                </div>
+
+                                {/* Content */}
+                                <div className="flex-1 overflow-y-auto custom-scrollbar p-4 lg:p-6">
+                                    {/* Reset Option */}
+                                    <div className="mb-6">
+                                        <div
+                                            onClick={() => applyPreset('')}
+                                            className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition group"
+                                        >
+                                            <div className="flex items-center justify-between">
+                                                <div>
+                                                    <h4 className="text-sm font-bold text-gray-300 group-hover:text-white mb-1">⚡ 取消選擇 / 重置 (Reset)</h4>
+                                                    <p className="text-xs text-gray-500">清除所有預設，從頭開始</p>
+                                                </div>
+                                                <ChevronRight className="text-gray-600 group-hover:text-blue-400" size={20} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Preset Groups */}
+                                    {Object.entries(getFilteredPresets()).map(([groupName, groupPresets]) => (
+                                        <div key={groupName} className="mb-8">
+                                            <h3 className="text-sm font-bold text-blue-400 mb-3 pb-2 border-b border-gray-700 uppercase tracking-wide">
+                                                {groupName}
+                                            </h3>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                                                {Object.entries(groupPresets).map(([key, preset]) => (
+                                                    <div
+                                                        key={key}
+                                                        onClick={() => applyPreset(key)}
+                                                        className="bg-gray-900 border border-gray-700 rounded-lg p-3 cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition group"
+                                                    >
+                                                        <h4 className="text-sm font-bold text-gray-200 group-hover:text-white mb-1.5 truncate" title={preset.name}>
+                                                            {preset.name}
+                                                        </h4>
+                                                        <p className="text-xs text-gray-500 mb-2 line-clamp-2 leading-relaxed" title={preset.desc}>
+                                                            {preset.desc || preset.subject}
+                                                        </p>
+                                                        <div className="flex flex-wrap gap-1 mb-2">
+                                                            {preset.styles.slice(0, 3).map((style, idx) => (
+                                                                <span key={idx} className="inline-block bg-gray-800 text-blue-300 text-[10px] px-1.5 py-0.5 rounded border border-gray-700 truncate max-w-[80px]" title={style}>
+                                                                    {style}
+                                                                </span>
+                                                            ))}
+                                                            {preset.styles.length > 3 && (
+                                                                <span className="text-[10px] text-gray-600 px-1">+{preset.styles.length - 3}</span>
+                                                            )}
+                                                        </div>
+                                                        <div className="flex justify-between items-center text-[10px] text-gray-600 pt-2 border-t border-gray-800">
+                                                            <span className="font-mono">{preset.ar}</span>
+                                                            <span>{preset.sections?.length || 0} sections</span>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                    {Object.keys(getFilteredPresets()).length === 0 && (
+                                        <div className="text-center py-12">
+                                            <p className="text-gray-500 text-sm">找不到符合的預設 😢</p>
+                                            <p className="text-gray-600 text-xs mt-2">試試其他關鍵字</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* LEFT PANEL: FORM EDITOR */}
                     <div className={`${activeMobileTab === 'edit' ? 'flex' : 'hidden'} lg:flex w-full lg:flex-[2] flex-col border-r border-gray-700 h-full overflow-y-auto custom-scrollbar bg-gray-800 pb-20 lg:pb-0 min-w-0`}>
 
@@ -803,61 +982,12 @@
                                 </div>
 
                                 {/* Preset Selector */}
-                                <div className="w-full lg:w-72 relative" ref={presetDropdownRef}>
-                                    <button onClick={() => setIsPresetDropdownOpen(!isPresetDropdownOpen)}
-                                        className="w-full bg-gray-800 border border-blue-500 text-white text-xs rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center relative z-50 hover:bg-gray-700 transition">
+                                <div className="w-full lg:w-72">
+                                    <button onClick={() => setShowPresetModal(true)}
+                                        className="w-full bg-gray-800 border border-blue-500 text-white text-xs rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center hover:bg-gray-700 transition">
                                         <span className="truncate">{currentPresetName || '⚡ 選擇預設 / 重置 (Reset)...'}</span>
                                         <ChevronDown size={14} className="text-gray-400 ml-2" />
                                     </button>
-
-                                    {isPresetDropdownOpen && (
-                                        <div className="absolute top-full left-0 lg:left-auto right-0 w-full lg:w-80 bg-gray-800 border border-gray-600 mt-1 rounded shadow-2xl z-50 max-h-[50vh] overflow-y-auto custom-scrollbar">
-                                            <div onClick={() => applyPreset('')} onMouseEnter={() => setHoveredPreset(null)}
-                                                className="px-4 py-3 text-xs text-gray-400 hover:bg-gray-700 hover:text-white cursor-pointer border-b border-gray-700">
-                                                ⚡ 取消選擇 / 重置 (Reset)...
-                                            </div>
-                                            {Object.entries(configData.presetGroups).map(([groupName, groupPresets]) => (
-                                                <div key={groupName}>
-                                                    <div className="px-4 py-1.5 text-[10px] font-bold text-blue-400 bg-gray-900 uppercase tracking-wider sticky top-0 z-10 border-b border-gray-800">
-                                                        {groupName}
-                                                    </div>
-                                                    {Object.entries(groupPresets).map(([key, preset]) => (
-                                                        <div key={key}
-                                                            onClick={() => applyPreset(key)}
-                                                            onMouseEnter={() => setHoveredPreset(preset)}
-                                                            className="px-4 py-2.5 text-xs text-gray-200 hover:bg-blue-600 hover:text-white cursor-pointer border-b border-gray-700/50 transition-colors flex justify-between items-center group">
-                                                            <span>{preset.name}</span>
-                                                            <ChevronRight size={10} className="opacity-0 group-hover:opacity-100" />
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {/* Hover Preview Tooltip */}
-                                    {isPresetDropdownOpen && hoveredPreset && (
-                                        <div className="hidden lg:block absolute top-0 right-full mr-3 w-64 bg-black/95 backdrop-blur border border-yellow-500/50 p-4 rounded-lg shadow-2xl z-50 pointer-events-none transform transition-all duration-200">
-                                            <h4 className="font-bold text-yellow-400 text-sm mb-1 border-b border-gray-800 pb-1">{hoveredPreset.name}</h4>
-                                            <p className="text-xs text-gray-300 mb-3 leading-relaxed">{hoveredPreset.desc || hoveredPreset.subject}</p>
-                                            <div className="mb-2">
-                                                <span className="text-[10px] text-gray-500 uppercase font-bold block mb-1">Styles & Vibes</span>
-                                                <div className="flex flex-wrap gap-1">
-                                                    {hoveredPreset.styles.slice(0, 4).map((s, i) => (
-                                                        <span key={i} className="inline-block bg-gray-800 text-blue-300 text-[10px] px-1.5 py-0.5 rounded border border-gray-700">{s}</span>
-                                                    ))}
-                                                    {hoveredPreset.styles.length > 4 && (
-                                                        <span className="text-[10px] text-gray-600 px-1">+{hoveredPreset.styles.length - 4}</span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                            <div className="flex justify-between items-end mt-2 pt-2 border-t border-gray-800">
-                                                <span className="text-[10px] text-gray-500">Ratio: <span className="text-gray-300 font-mono">{hoveredPreset.ar}</span></span>
-                                                <span className="text-[10px] text-gray-500">Sections: <span className="text-gray-300 font-mono">{hoveredPreset.sections.length}</span></span>
-                                            </div>
-                                            <div className="tooltip-arrow !-right-1.5 !left-auto !border-l-0 !border-b-0 !border-t !border-r !border-yellow-500/50 !bg-black"></div>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                         </div>
