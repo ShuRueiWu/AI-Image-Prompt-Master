@@ -1460,595 +1460,595 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Section 2: Quick Start */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                                        <span className="text-green-400">🚀</span> {t('快速上手 (Quick Start)', 'Quick Start')}
-                                    </h4>
-                                    <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                                        <li>
-                                            <strong className="text-white">{t('瀏覽預設範本:', 'Browse Presets:')}</strong> {t('點擊上方按鈕開啟範本庫，點擊標題可摺疊/展開分類，選擇喜歡的範本。', 'Click the button above to open the library. Click titles to collapse/expand categories. Select a preset.')}
-                                        </li>
-                                        <li>
-                                            <strong className="text-white">{t('調整內容:', 'Adjust Content:')}</strong> {t('修改「主體描述」與「情境細節」。', 'Modify "Subject" and "Context".')}
-                                        </li>
-                                        <li>
-                                            <strong className="text-white">{t('選擇風格:', 'Select Styles:')}</strong> {t('在「風格與技術」區塊勾選喜歡的藝術風格、光影或鏡頭。', 'Check your preferred art styles, lighting, or camera in the "Styles & Tech" section.')}
-                                        </li>
-                                        <li>
-                                            <strong className="text-white">{t('複製提示詞:', 'Copy Prompt:')}</strong> {t('點擊右下角的「複製 Prompt」按鈕，貼上至 Midjourney 或 Ideogram。', 'Click the "Copy Prompt" button at the bottom right and paste it into Midjourney or Ideogram.')}
-                                        </li>
-                                    </ul>
-                                </div>
 
-                                {/* Section 3: Pro Tips */}
-                                <div className="bg-blue-900/20 p-5 rounded-lg border border-blue-800/50">
-                                    <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                                        <span className="text-yellow-400">💡</span> {t('進階技巧 (Pro Tips)', 'Pro Tips')}
-                                    </h4>
-                                    <ul className="space-y-2 text-gray-300">
-                                        <li>
-                                            <strong className="text-white">• {t('權重調整:', 'Weight Adjustment:')}</strong> {t('在風格標籤後加上 ::2 或 ::3 可增強該風格的權重（例如：Cyberpunk::2）。', 'Add ::2 or ::3 after a style tag to increase its weight (e.g., Cyberpunk::2).')}
-                                        </li>
-                                        <li>
-                                            <strong className="text-white">• {t('負面提示詞:', 'Negative Prompts:')}</strong> {t('在「排除項目」中輸入不想看到的元素（例如：text, watermark, ugly）。', 'Enter elements you want to avoid in "Negative Prompt" (e.g., text, watermark, ugly).')}
-                                        </li>
-                                        <li>
-                                            <strong className="text-white">• {t('文字生成技巧:', 'Text Generation:')}</strong> {t('在「版面分區」新增 Text Block，選擇 H1/H2/Body 層級，搭配', 'Add a Text Block in "Layout Sections", select H1/H2/Body level. Use')} <code className="bg-gray-800 px-1 rounded">Noto Sans TC</code> {t('字體可提升繁中顯示率。', 'font for better Traditional Chinese rendering.')}
-                                        </li>
-                                        <li>
-                                            <strong className="text-white">• {t('畫質提升:', 'Quality Boost:')}</strong> {t('開啟「畫質增強」會自動加入 8k, high quality, masterpiece 等關鍵字。', 'Enabling "Quality Boost" automatically adds keywords like 8k, high quality, masterpiece.')}
-                                        </li>
-                                    </ul>
-                                </div>
+                                    {/* Section 2: Quick Start */}
+                                    <div>
+                                        <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                                            <span className="text-green-400">🚀</span> {t('快速上手 (Quick Start)', 'Quick Start')}
+                                        </h4>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                                            <li>
+                                                <strong className="text-white">{t('瀏覽預設範本:', 'Browse Presets:')}</strong> {t('點擊上方按鈕開啟範本庫，點擊標題可摺疊/展開分類，選擇喜歡的範本。', 'Click the button above to open the library. Click titles to collapse/expand categories. Select a preset.')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">{t('調整內容:', 'Adjust Content:')}</strong> {t('修改「主體描述」與「情境細節」。', 'Modify "Subject" and "Context".')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">{t('選擇風格:', 'Select Styles:')}</strong> {t('在「風格與技術」區塊勾選喜歡的藝術風格、光影或鏡頭。', 'Check your preferred art styles, lighting, or camera in the "Styles & Tech" section.')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">{t('複製提示詞:', 'Copy Prompt:')}</strong> {t('點擊右下角的「複製 Prompt」按鈕，貼上至 Midjourney 或 Ideogram。', 'Click the "Copy Prompt" button at the bottom right and paste it into Midjourney or Ideogram.')}
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                {/* Section 4: Recommended Workflows */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                                        <span className="text-purple-400">🎨</span> {t('推薦工作流 (Recommended Workflows)', 'Recommended Workflows')}
-                                    </h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        <div className="bg-gray-800 p-4 rounded border border-gray-700">
-                                            <div className="font-bold text-white mb-1">{t('商業海報', 'Commercial Poster')}</div>
-                                            <div className="text-xs text-gray-400">{t('選擇「版型與構圖」中的「商業海報」或「雜誌排版」，搭配「影棚光」。', 'Select "Business Poster" or "Magazine Layout" in "Layout", pair with "Studio Lighting".')}</div>
-                                        </div>
-                                        <div className="bg-gray-800 p-4 rounded border border-gray-700">
-                                            <div className="font-bold text-white mb-1">{t('動漫創作', 'Anime Creation')}</div>
-                                            <div className="text-xs text-gray-400">{t('選擇「日本與台灣流行風格」中的「Pixiv風格」或「吉卜力」，搭配「自然光」。', 'Select "Pixiv Style" or "Ghibli" in "JP & TW Popular", pair with "Natural Light".')}</div>
-                                        </div>
-                                        <div className="bg-gray-800 p-4 rounded border border-gray-700">
-                                            <div className="font-bold text-white mb-1">{t('產品攝影', 'Product Photography')}</div>
-                                            <div className="text-xs text-gray-400">{t('選擇「材質質感」中的「玻璃」或「金屬」，搭配「微距攝影」與「柔光箱」。', 'Select "Glass" or "Metal" in "Materials", pair with "Macro" and "Softbox".')}</div>
+                                    {/* Section 3: Pro Tips */}
+                                    <div className="bg-blue-900/20 p-5 rounded-lg border border-blue-800/50">
+                                        <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                                            <span className="text-yellow-400">💡</span> {t('進階技巧 (Pro Tips)', 'Pro Tips')}
+                                        </h4>
+                                        <ul className="space-y-2 text-gray-300">
+                                            <li>
+                                                <strong className="text-white">• {t('權重調整:', 'Weight Adjustment:')}</strong> {t('在風格標籤後加上 ::2 或 ::3 可增強該風格的權重（例如：Cyberpunk::2）。', 'Add ::2 or ::3 after a style tag to increase its weight (e.g., Cyberpunk::2).')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('負面提示詞:', 'Negative Prompts:')}</strong> {t('在「排除項目」中輸入不想看到的元素（例如：text, watermark, ugly）。', 'Enter elements you want to avoid in "Negative Prompt" (e.g., text, watermark, ugly).')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('文字生成技巧:', 'Text Generation:')}</strong> {t('在「版面分區」新增 Text Block，選擇 H1/H2/Body 層級，搭配', 'Add a Text Block in "Layout Sections", select H1/H2/Body level. Use')} <code className="bg-gray-800 px-1 rounded">Noto Sans TC</code> {t('字體可提升繁中顯示率。', 'font for better Traditional Chinese rendering.')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('畫質提升:', 'Quality Boost:')}</strong> {t('開啟「畫質增強」會自動加入 8k, high quality, masterpiece 等關鍵字。', 'Enabling "Quality Boost" automatically adds keywords like 8k, high quality, masterpiece.')}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    {/* Section 4: Recommended Workflows */}
+                                    <div>
+                                        <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                                            <span className="text-purple-400">🎨</span> {t('推薦工作流 (Recommended Workflows)', 'Recommended Workflows')}
+                                        </h4>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div className="bg-gray-800 p-4 rounded border border-gray-700">
+                                                <div className="font-bold text-white mb-1">{t('商業海報', 'Commercial Poster')}</div>
+                                                <div className="text-xs text-gray-400">{t('選擇「版型與構圖」中的「商業海報」或「雜誌排版」，搭配「影棚光」。', 'Select "Business Poster" or "Magazine Layout" in "Layout", pair with "Studio Lighting".')}</div>
+                                            </div>
+                                            <div className="bg-gray-800 p-4 rounded border border-gray-700">
+                                                <div className="font-bold text-white mb-1">{t('動漫創作', 'Anime Creation')}</div>
+                                                <div className="text-xs text-gray-400">{t('選擇「日本與台灣流行風格」中的「Pixiv風格」或「吉卜力」，搭配「自然光」。', 'Select "Pixiv Style" or "Ghibli" in "JP & TW Popular", pair with "Natural Light".')}</div>
+                                            </div>
+                                            <div className="bg-gray-800 p-4 rounded border border-gray-700">
+                                                <div className="font-bold text-white mb-1">{t('產品攝影', 'Product Photography')}</div>
+                                                <div className="text-xs text-gray-400">{t('選擇「材質質感」中的「玻璃」或「金屬」，搭配「微距攝影」與「柔光箱」。', 'Select "Glass" or "Metal" in "Materials", pair with "Macro" and "Softbox".')}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="p-5 border-t border-gray-700 bg-gray-900 flex justify-end">
-                                <button onClick={() => setShowHelp(false)} className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold transition shadow-lg hover:shadow-blue-500/20">
-                                    開始創作 (Start Creating)
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-            )
-        }
-
-        {/* Preset Modal */ }
-        {
-            showPresetModal && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }}></div>
-                    <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden relative z-10 flex flex-col">
-                        {/* Header */}
-                        <div className="p-4 lg:p-5 border-b border-gray-700 bg-gray-900 sticky top-0 z-20">
-                            <div className="flex justify-between items-center gap-3 mb-3">
-                                <h3 className="text-lg lg:text-xl font-bold text-blue-400 flex items-center gap-2">
-                                    <Sparkles size={24} />
-                                    <span>{t('選擇預設範本 (Select Preset)', 'Select Preset')}</span>
-                                </h3>
-                                <button onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }} className="text-gray-400 hover:text-white transition">
-                                    <X size={24} />
-                                </button>
-                            </div>
-                            {/* Search Bar */}
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    value={presetSearchQuery}
-                                    onChange={(e) => setPresetSearchQuery(e.target.value)}
-                                    placeholder={t('🔍 搜尋預設 (Search presets)...', '🔍 Search presets...')}
-                                    className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-300 focus:border-blue-500 outline-none transition pr-8"
-                                />
-                                {presetSearchQuery && (
-                                    <button
-                                        onClick={() => setPresetSearchQuery('')}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
-                                    >
-                                        <X size={14} />
+                                <div className="p-5 border-t border-gray-700 bg-gray-900 flex justify-end">
+                                    <button onClick={() => setShowHelp(false)} className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold transition shadow-lg hover:shadow-blue-500/20">
+                                        開始創作 (Start Creating)
                                     </button>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 lg:p-6">
-                            {/* Reset Option */}
-                            <div className="mb-6">
-                                <div
-                                    onClick={() => applyPreset('')}
-                                    className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition group"
-                                >
-                                    <div className="flex items-center justify-between">
-                                        <div>
-                                            <h4 className="text-sm font-bold text-gray-300 group-hover:text-white mb-1">{t('⚡ 取消選擇 / 重置 (Reset)', '⚡ Reset')}</h4>
-                                            <p className="text-xs text-gray-500">{t('清除所有預設，從頭開始', 'Clear all presets and start fresh')}</p>
-                                        </div>
-                                        <ChevronRight className="text-gray-600 group-hover:text-blue-400" size={20} />
-                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    )
+                    }
 
-                            {/* Preset Groups */}
-                            {Object.entries(getFilteredPresets()).map(([groupName, groupPresets]) => {
-                                const isExpanded = !!expandedPresetGroups[groupName];
-                                return (
-                                    <div key={groupName} className="mb-4 bg-gray-900/50 border border-gray-700 rounded-lg overflow-hidden">
-                                        <div
-                                            onClick={() => togglePresetGroup(groupName)}
-                                            className="p-3 bg-gray-800/80 cursor-pointer flex justify-between items-center hover:bg-gray-800 transition select-none"
-                                        >
-                                            <h3 className="text-sm font-bold text-blue-400 uppercase tracking-wide flex items-center gap-2">
-                                                {groupName}
-                                                <span className="text-xs text-gray-500 font-normal">({Object.keys(groupPresets).length})</span>
+                    {/* Preset Modal */}
+                    {
+                        showPresetModal && (
+                            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                                <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }}></div>
+                                <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden relative z-10 flex flex-col">
+                                    {/* Header */}
+                                    <div className="p-4 lg:p-5 border-b border-gray-700 bg-gray-900 sticky top-0 z-20">
+                                        <div className="flex justify-between items-center gap-3 mb-3">
+                                            <h3 className="text-lg lg:text-xl font-bold text-blue-400 flex items-center gap-2">
+                                                <Sparkles size={24} />
+                                                <span>{t('選擇預設範本 (Select Preset)', 'Select Preset')}</span>
                                             </h3>
-                                            <ChevronDown size={16} className={`text-gray-500 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+                                            <button onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }} className="text-gray-400 hover:text-white transition">
+                                                <X size={24} />
+                                            </button>
+                                        </div>
+                                        {/* Search Bar */}
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                value={presetSearchQuery}
+                                                onChange={(e) => setPresetSearchQuery(e.target.value)}
+                                                placeholder={t('🔍 搜尋預設 (Search presets)...', '🔍 Search presets...')}
+                                                className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-300 focus:border-blue-500 outline-none transition pr-8"
+                                            />
+                                            {presetSearchQuery && (
+                                                <button
+                                                    onClick={() => setPresetSearchQuery('')}
+                                                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                                                >
+                                                    <X size={14} />
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex-1 overflow-y-auto custom-scrollbar p-4 lg:p-6">
+                                        {/* Reset Option */}
+                                        <div className="mb-6">
+                                            <div
+                                                onClick={() => applyPreset('')}
+                                                className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition group"
+                                            >
+                                                <div className="flex items-center justify-between">
+                                                    <div>
+                                                        <h4 className="text-sm font-bold text-gray-300 group-hover:text-white mb-1">{t('⚡ 取消選擇 / 重置 (Reset)', '⚡ Reset')}</h4>
+                                                        <p className="text-xs text-gray-500">{t('清除所有預設，從頭開始', 'Clear all presets and start fresh')}</p>
+                                                    </div>
+                                                    <ChevronRight className="text-gray-600 group-hover:text-blue-400" size={20} />
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        {isExpanded && (
-                                            <div className="p-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 border-t border-gray-700">
-                                                {Object.entries(groupPresets).map(([key, preset]) => (
+                                        {/* Preset Groups */}
+                                        {Object.entries(getFilteredPresets()).map(([groupName, groupPresets]) => {
+                                            const isExpanded = !!expandedPresetGroups[groupName];
+                                            return (
+                                                <div key={groupName} className="mb-4 bg-gray-900/50 border border-gray-700 rounded-lg overflow-hidden">
                                                     <div
-                                                        key={key}
-                                                        onClick={() => applyPreset(key)}
-                                                        className="bg-gray-900 border border-gray-700 rounded-lg p-3 cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition group"
+                                                        onClick={() => togglePresetGroup(groupName)}
+                                                        className="p-3 bg-gray-800/80 cursor-pointer flex justify-between items-center hover:bg-gray-800 transition select-none"
                                                     >
-                                                        <h4 className="text-sm font-bold text-gray-200 group-hover:text-white mb-1.5 truncate" title={preset.name}>
-                                                            {preset.name}
-                                                        </h4>
-                                                        <p className="text-xs text-gray-500 mb-2 line-clamp-2 leading-relaxed" title={t(preset.desc, preset.desc_en)}>
-                                                            {t(preset.desc, preset.desc_en) || preset.subject}
-                                                        </p>
-                                                        <div className="flex flex-wrap gap-1 mb-2">
-                                                            {preset.styles.slice(0, 3).map((style, idx) => (
-                                                                <span key={idx} className="inline-block bg-gray-800 text-blue-300 text-[10px] px-1.5 py-0.5 rounded border border-gray-700 truncate max-w-[80px]" title={style}>
-                                                                    {style}
-                                                                </span>
-                                                            ))}
-                                                            {preset.styles.length > 3 && (
-                                                                <span className="text-[10px] text-gray-600 px-1">+{preset.styles.length - 3}</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="flex justify-between items-center text-[10px] text-gray-600 pt-2 border-t border-gray-800">
-                                                            <span className="font-mono">{preset.ar}</span>
-                                                            <span>{preset.sections?.length || 0} {t('分區', 'sections')}</span>
-                                                        </div>
+                                                        <h3 className="text-sm font-bold text-blue-400 uppercase tracking-wide flex items-center gap-2">
+                                                            {groupName}
+                                                            <span className="text-xs text-gray-500 font-normal">({Object.keys(groupPresets).length})</span>
+                                                        </h3>
+                                                        <ChevronDown size={16} className={`text-gray-500 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
                                                     </div>
-                                                ))}
+
+                                                    {isExpanded && (
+                                                        <div className="p-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 border-t border-gray-700">
+                                                            {Object.entries(groupPresets).map(([key, preset]) => (
+                                                                <div
+                                                                    key={key}
+                                                                    onClick={() => applyPreset(key)}
+                                                                    className="bg-gray-900 border border-gray-700 rounded-lg p-3 cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition group"
+                                                                >
+                                                                    <h4 className="text-sm font-bold text-gray-200 group-hover:text-white mb-1.5 truncate" title={preset.name}>
+                                                                        {preset.name}
+                                                                    </h4>
+                                                                    <p className="text-xs text-gray-500 mb-2 line-clamp-2 leading-relaxed" title={t(preset.desc, preset.desc_en)}>
+                                                                        {t(preset.desc, preset.desc_en) || preset.subject}
+                                                                    </p>
+                                                                    <div className="flex flex-wrap gap-1 mb-2">
+                                                                        {preset.styles.slice(0, 3).map((style, idx) => (
+                                                                            <span key={idx} className="inline-block bg-gray-800 text-blue-300 text-[10px] px-1.5 py-0.5 rounded border border-gray-700 truncate max-w-[80px]" title={style}>
+                                                                                {style}
+                                                                            </span>
+                                                                        ))}
+                                                                        {preset.styles.length > 3 && (
+                                                                            <span className="text-[10px] text-gray-600 px-1">+{preset.styles.length - 3}</span>
+                                                                        )}
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center text-[10px] text-gray-600 pt-2 border-t border-gray-800">
+                                                                        <span className="font-mono">{preset.ar}</span>
+                                                                        <span>{preset.sections?.length || 0} {t('分區', 'sections')}</span>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+
+                                        {Object.keys(getFilteredPresets()).length === 0 && (
+                                            <div className="text-center py-12">
+                                                <p className="text-gray-500 text-sm">{t('找不到符合的預設 😢', 'No matching presets found 😢')}</p>
+                                                <p className="text-gray-600 text-xs mt-2">{t('試試其他關鍵字', 'Try other keywords')}</p>
                                             </div>
                                         )}
                                     </div>
-                                );
-                            })}
-
-                            {Object.keys(getFilteredPresets()).length === 0 && (
-                                <div className="text-center py-12">
-                                    <p className="text-gray-500 text-sm">{t('找不到符合的預設 😢', 'No matching presets found 😢')}</p>
-                                    <p className="text-gray-600 text-xs mt-2">{t('試試其他關鍵字', 'Try other keywords')}</p>
                                 </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-
-        {/* LEFT PANEL: FORM EDITOR */ }
-        <div className={`${activeMobileTab === 'edit' ? 'flex' : 'hidden'} lg:flex w-full lg:flex-[2] flex-col border-r border-gray-700 h-full overflow-y-auto custom-scrollbar bg-gray-800 pb-20 lg:pb-0 min-w-0`}>
-
-            {/* Header */}
-            <div className="p-4 lg:p-5 border-b border-gray-700 bg-gray-900 sticky top-0 z-20 shadow-md">
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 lg:gap-0 mb-1 lg:mb-3">
-                    <div className="flex items-center justify-between w-full lg:w-auto">
-                        <div className="flex items-center gap-2">
-                            <h1 className="text-lg lg:text-xl font-bold text-blue-400 tracking-wide">AI Image Prompt Master</h1>
-                            <button onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')} className="text-xs bg-gray-800 border border-gray-600 px-2 py-1 rounded hover:bg-gray-700 transition font-mono text-gray-300">
-                                {lang === 'zh' ? 'EN' : '中'}
-                            </button>
-                            <button onClick={() => setShowHelp(true)} className="text-gray-500 hover:text-white transition" title={t("使用說明", "User Guide")}>
-                                <HelpCircle size={18} />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Preset Selector */}
-                    <div className="w-full lg:w-72">
-                        <button onClick={() => setShowPresetModal(true)}
-                            className="w-full bg-gray-800 border border-blue-500 text-white text-xs rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center hover:bg-gray-700 transition">
-                            <span className="truncate">{currentPresetName || t('⚡ 瀏覽預設範本 (Browse Presets)', '⚡ Browse Presets')}</span>
-                            <ChevronDown size={14} className="text-gray-400 ml-2" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="p-4 lg:p-6 space-y-6 lg:space-y-8 pb-10">
-                {/* Section 1: Global Context */}
-                <section>
-                    <h2 className="text-base font-bold text-blue-300 flex items-center">
-                        <span className="w-2 h-6 bg-blue-500 mr-2 rounded-sm"></span>
-                        {t('1. 全域描述 (Global Context)', '1. Global Context')}
-                    </h2>
-                    <div className="space-y-3">
-                        <div>
-                            <label className="text-xs text-gray-400 font-bold block mb-1">{t('主體描述 (Subject)', 'Subject')}</label>
-                            <input value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} type="text"
-                                className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none transition"
-                                placeholder={t('描述畫面的核心主體...', 'Describe the core subject of the image...')} />
-                        </div>
-                        <div>
-                            <label className="text-xs text-gray-400 font-bold block mb-1">{t('作品標題 (Title)', 'Title')}</label>
-                            <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} type="text"
-                                className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none transition" />
-                        </div>
-                        <div>
-                            <label className="text-xs text-gray-400 font-bold block mb-1">{t('內文/背景 (Body Context)', 'Body Context')}</label>
-                            <textarea value={form.body} onChange={(e) => setForm({ ...form, body: e.target.value })} rows={3}
-                                className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none custom-scrollbar transition"
-                                placeholder={t('輸入詳細的背景故事、情境描述或補充說明...', 'Enter detailed background story, context description, or additional notes...')} ></textarea>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Section 2: Styles & Tech */}
-                <section>
-                    <div className="flex justify-between items-center mb-3">
-                        <h2 className="text-base font-bold text-green-300 flex items-center">
-                            <span className="w-2 h-6 bg-green-500 mr-2 rounded-sm"></span>
-                            {t('2. 風格與技術 (Styles & Tech)', '2. Styles & Tech')}
-                        </h2>
-                        <div className="relative">
-                            <select value={form.texture} onChange={(e) => setForm({ ...form, texture: e.target.value })}
-                                className="bg-gray-800 text-xs text-gray-300 border border-gray-600 rounded px-2 py-1 focus:border-green-500 focus:outline-none appearance-none pr-8 cursor-pointer max-w-[150px] lg:max-w-none truncate">
-                                <option value="">{t('無特定材質 (None)', 'None')}</option>
-                                {configData.textures.map(t => (
-                                    <option key={t.val} value={t.val}>{getLabel(t.label)}</option>
-                                ))}
-                            </select>
-                            <ChevronDown size={12} className="absolute right-2 top-1.5 text-gray-500 pointer-events-none" />
-                        </div>
-                    </div>
-
-                    <div className="space-y-4">
-                        {Object.entries(configData.categories).map(([categoryName, items]) => (
-                            <div key={categoryName} className="bg-gray-750 rounded border border-gray-700">
-                                <div onClick={() => toggleCategory(categoryName)}
-                                    className="bg-gray-800 p-3 cursor-pointer flex justify-between items-center hover:bg-gray-700 transition rounded-t select-none">
-                                    <h3 className="text-xs font-bold text-gray-300 uppercase">{getLabel(categoryName)} <span className="text-gray-500 ml-1">({items.length})</span></h3>
-                                    <span className="text-gray-500 text-xs">{expandedCategories.includes(categoryName) ? '▼' : '▶'}</span>
-                                </div>
-
-                                {expandedCategories.includes(categoryName) && (
-                                    <div className="p-3 bg-gray-900 border-t border-gray-700 rounded-b">
-                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                                            {items.map(item => (
-                                                <div key={item.val} className="group relative inline-block">
-                                                    <button onClick={() => toggleStyle(item.val)}
-                                                        className={`w-full px-2 py-2 rounded transition border btn-truncate text-center text-xs truncate
-                                                                        ${form.selectedStyles.includes(item.val)
-                                                                ? 'bg-green-700 text-white border-green-500'
-                                                                : 'bg-gray-800 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-gray-200'
-                                                            }`}>
-                                                        <div className="font-bold mb-0.5">{getLabel(item.label)}</div>
-                                                        <div className="text-[10px] text-gray-400 scale-90 origin-center">{item.val}</div>
-                                                    </button>
-                                                    {/* Tooltip hidden on mobile to prevent obstruction */}
-                                                    <div className="hidden lg:group-hover:block absolute bottom-[115%] left-1/2 -translate-x-1/2 w-56 bg-black text-gray-200 text-[11px] p-3 rounded shadow-2xl z-50 pointer-events-none border border-gray-600 whitespace-normal leading-relaxed text-left">
-                                                        <span className="block font-bold text-green-400 mb-1 text-xs border-b border-gray-700 pb-1">{getLabel(item.label)}</span>
-                                                        {getDesc(item)}
-                                                        <div className="tooltip-arrow"></div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
                             </div>
-                        ))}
-                    </div>
-                </section>
+                        )
+                    }
 
-                {/* Section 3: Layout Sections */}
-                <section>
-                    <div className="flex justify-between items-center mb-3">
-                        <h2 className="text-base font-bold text-purple-300 flex items-center">
-                            <span className="w-2 h-6 bg-purple-500 mr-2 rounded-sm"></span>
-                            {t('3. 版面分區 (Layout Sections)', '3. Layout Sections')}
-                        </h2>
-                        <button onClick={addSection}
-                            className="bg-purple-700 hover:bg-purple-600 px-3 py-1.5 rounded text-xs text-white font-bold transition shadow-sm border border-purple-500 flex items-center gap-1">
-                            <Plus size={12} /> <span className="hidden sm:inline">{t('新增分區', 'Add Section')}</span><span className="sm:hidden">Add</span>
-                        </button>
-                    </div>
+                    {/* LEFT PANEL: FORM EDITOR */}
+                    <div className={`${activeMobileTab === 'edit' ? 'flex' : 'hidden'} lg:flex w-full lg:flex-[2] flex-col border-r border-gray-700 h-full overflow-y-auto custom-scrollbar bg-gray-800 pb-20 lg:pb-0 min-w-0`}>
 
-                    <div className="space-y-4">
-                        {form.sections.map((section, sIdx) => (
-                            <div key={sIdx} className="bg-gray-800 p-3 rounded border border-gray-600 relative group transition hover:shadow-lg">
-                                <button onClick={() => removeSection(sIdx)}
-                                    className="absolute top-2 right-2 text-gray-600 hover:text-red-400 transition bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-red-400 z-10">
-                                    <X size={12} />
-                                </button>
-
-                                <div className="mb-2 text-[10px] text-purple-400 font-bold uppercase tracking-widest flex items-center gap-2">
-                                    <span className="bg-purple-900/50 px-1.5 py-0.5 rounded">{t('分區', 'SECTION')} {sIdx + 1}</span>
-                                </div>
-
-                                <div className="mb-3 grid grid-cols-12 gap-2 bg-gray-900/50 p-2 rounded border border-gray-700/50">
-                                    <div className="col-span-12 md:col-span-6">
-                                        <label className="text-[10px] text-gray-500 block mb-0.5">{t('視覺主體 (Visual)', 'Visual')}</label>
-                                        <input value={section.visual} onChange={(e) => updateSectionField(sIdx, 'visual', e.target.value)}
-                                            placeholder={t('例如: Hero silhouette...', 'e.g., Hero silhouette...')}
-                                            className="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs focus:border-purple-500 text-gray-300 outline-none" />
-                                    </div>
-                                    <div className="col-span-12 md:col-span-6">
-                                        <label className="text-[10px] text-gray-500 block mb-0.5">{t('參數/細節 (Params)', 'Params')}</label>
-                                        <input value={section.param} onChange={(e) => updateSectionField(sIdx, 'param', e.target.value)}
-                                            placeholder={t('例如: red lighting...', 'e.g., red lighting...')}
-                                            className="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs focus:border-purple-500 text-gray-300 outline-none" />
+                        {/* Header */}
+                        <div className="p-4 lg:p-5 border-b border-gray-700 bg-gray-900 sticky top-0 z-20 shadow-md">
+                            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 lg:gap-0 mb-1 lg:mb-3">
+                                <div className="flex items-center justify-between w-full lg:w-auto">
+                                    <div className="flex items-center gap-2">
+                                        <h1 className="text-lg lg:text-xl font-bold text-blue-400 tracking-wide">AI Image Prompt Master</h1>
+                                        <button onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')} className="text-xs bg-gray-800 border border-gray-600 px-2 py-1 rounded hover:bg-gray-700 transition font-mono text-gray-300">
+                                            {lang === 'zh' ? 'EN' : '中'}
+                                        </button>
+                                        <button onClick={() => setShowHelp(true)} className="text-gray-500 hover:text-white transition" title={t("使用說明", "User Guide")}>
+                                            <HelpCircle size={18} />
+                                        </button>
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    {section.textBlocks.map((block, bIdx) => (
-                                        <div key={bIdx} className="flex gap-2 items-start bg-gray-900 p-2 rounded border border-gray-700 border-dashed hover:border-gray-500 transition">
-                                            <select value={block.level} onChange={(e) => updateTextBlock(sIdx, bIdx, 'level', e.target.value)}
-                                                className="w-20 lg:w-24 bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-blue-300 font-bold h-8 cursor-pointer outline-none">
-                                                {configData.ui.textBlockLevels.map(level => (
-                                                    <option key={level.value} value={level.value}>{level.label}</option>
-                                                ))}
-                                            </select>
-                                            <textarea value={block.content} onChange={(e) => updateTextBlock(sIdx, bIdx, 'content', e.target.value)}
-                                                placeholder={t('輸入文字內容...', 'Enter text content...')} rows={1}
-                                                className="flex-1 bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-white placeholder-gray-600 custom-scrollbar resize-y outline-none" />
+                                {/* Preset Selector */}
+                                <div className="w-full lg:w-72">
+                                    <button onClick={() => setShowPresetModal(true)}
+                                        className="w-full bg-gray-800 border border-blue-500 text-white text-xs rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center hover:bg-gray-700 transition">
+                                        <span className="truncate">{currentPresetName || t('⚡ 瀏覽預設範本 (Browse Presets)', '⚡ Browse Presets')}</span>
+                                        <ChevronDown size={14} className="text-gray-400 ml-2" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                                            <div className="relative w-32 hidden md:block">
-                                                <input
-                                                    list={`fontList-${sIdx}-${bIdx}`}
-                                                    value={block.font}
-                                                    onChange={(e) => updateTextBlock(sIdx, bIdx, 'font', e.target.value)}
-                                                    placeholder={t('字體 (Font)...', 'Font...')}
-                                                    className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-gray-300 h-8 focus:outline-none focus:border-blue-500 pr-6"
-                                                />
-                                                <datalist id={`fontList-${sIdx}-${bIdx}`}>
-                                                    {configData.fontList.map((f, i) => <option key={i} value={f} />)}
-                                                </datalist>
-                                                {block.font && (
-                                                    <button
-                                                        onClick={() => updateTextBlock(sIdx, bIdx, 'font', '')}
-                                                        className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white p-0.5 rounded hover:bg-gray-700 transition"
-                                                        title={t("清除字體", "Clear font")}
-                                                    >
-                                                        <X size={12} />
-                                                    </button>
-                                                )}
+                        <div className="p-4 lg:p-6 space-y-6 lg:space-y-8 pb-10">
+                            {/* Section 1: Global Context */}
+                            <section>
+                                <h2 className="text-base font-bold text-blue-300 flex items-center">
+                                    <span className="w-2 h-6 bg-blue-500 mr-2 rounded-sm"></span>
+                                    {t('1. 全域描述 (Global Context)', '1. Global Context')}
+                                </h2>
+                                <div className="space-y-3">
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold block mb-1">{t('主體描述 (Subject)', 'Subject')}</label>
+                                        <input value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} type="text"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none transition"
+                                            placeholder={t('描述畫面的核心主體...', 'Describe the core subject of the image...')} />
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold block mb-1">{t('作品標題 (Title)', 'Title')}</label>
+                                        <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} type="text"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none transition" />
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold block mb-1">{t('內文/背景 (Body Context)', 'Body Context')}</label>
+                                        <textarea value={form.body} onChange={(e) => setForm({ ...form, body: e.target.value })} rows={3}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm focus:border-blue-500 outline-none custom-scrollbar transition"
+                                            placeholder={t('輸入詳細的背景故事、情境描述或補充說明...', 'Enter detailed background story, context description, or additional notes...')} ></textarea>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Section 2: Styles & Tech */}
+                            <section>
+                                <div className="flex justify-between items-center mb-3">
+                                    <h2 className="text-base font-bold text-green-300 flex items-center">
+                                        <span className="w-2 h-6 bg-green-500 mr-2 rounded-sm"></span>
+                                        {t('2. 風格與技術 (Styles & Tech)', '2. Styles & Tech')}
+                                    </h2>
+                                    <div className="relative">
+                                        <select value={form.texture} onChange={(e) => setForm({ ...form, texture: e.target.value })}
+                                            className="bg-gray-800 text-xs text-gray-300 border border-gray-600 rounded px-2 py-1 focus:border-green-500 focus:outline-none appearance-none pr-8 cursor-pointer max-w-[150px] lg:max-w-none truncate">
+                                            <option value="">{t('無特定材質 (None)', 'None')}</option>
+                                            {configData.textures.map(t => (
+                                                <option key={t.val} value={t.val}>{getLabel(t.label)}</option>
+                                            ))}
+                                        </select>
+                                        <ChevronDown size={12} className="absolute right-2 top-1.5 text-gray-500 pointer-events-none" />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {Object.entries(configData.categories).map(([categoryName, items]) => (
+                                        <div key={categoryName} className="bg-gray-750 rounded border border-gray-700">
+                                            <div onClick={() => toggleCategory(categoryName)}
+                                                className="bg-gray-800 p-3 cursor-pointer flex justify-between items-center hover:bg-gray-700 transition rounded-t select-none">
+                                                <h3 className="text-xs font-bold text-gray-300 uppercase">{getLabel(categoryName)} <span className="text-gray-500 ml-1">({items.length})</span></h3>
+                                                <span className="text-gray-500 text-xs">{expandedCategories.includes(categoryName) ? '▼' : '▶'}</span>
                                             </div>
 
-                                            <button onClick={() => removeTextBlock(sIdx, bIdx)}
-                                                className="text-gray-600 hover:text-red-400 px-1 pt-1 transition">
-                                                <Trash2 size={14} />
+                                            {expandedCategories.includes(categoryName) && (
+                                                <div className="p-3 bg-gray-900 border-t border-gray-700 rounded-b">
+                                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                                                        {items.map(item => (
+                                                            <div key={item.val} className="group relative inline-block">
+                                                                <button onClick={() => toggleStyle(item.val)}
+                                                                    className={`w-full px-2 py-2 rounded transition border btn-truncate text-center text-xs truncate
+                                                                        ${form.selectedStyles.includes(item.val)
+                                                                            ? 'bg-green-700 text-white border-green-500'
+                                                                            : 'bg-gray-800 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-gray-200'
+                                                                        }`}>
+                                                                    <div className="font-bold mb-0.5">{getLabel(item.label)}</div>
+                                                                    <div className="text-[10px] text-gray-400 scale-90 origin-center">{item.val}</div>
+                                                                </button>
+                                                                {/* Tooltip hidden on mobile to prevent obstruction */}
+                                                                <div className="hidden lg:group-hover:block absolute bottom-[115%] left-1/2 -translate-x-1/2 w-56 bg-black text-gray-200 text-[11px] p-3 rounded shadow-2xl z-50 pointer-events-none border border-gray-600 whitespace-normal leading-relaxed text-left">
+                                                                    <span className="block font-bold text-green-400 mb-1 text-xs border-b border-gray-700 pb-1">{getLabel(item.label)}</span>
+                                                                    {getDesc(item)}
+                                                                    <div className="tooltip-arrow"></div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            {/* Section 3: Layout Sections */}
+                            <section>
+                                <div className="flex justify-between items-center mb-3">
+                                    <h2 className="text-base font-bold text-purple-300 flex items-center">
+                                        <span className="w-2 h-6 bg-purple-500 mr-2 rounded-sm"></span>
+                                        {t('3. 版面分區 (Layout Sections)', '3. Layout Sections')}
+                                    </h2>
+                                    <button onClick={addSection}
+                                        className="bg-purple-700 hover:bg-purple-600 px-3 py-1.5 rounded text-xs text-white font-bold transition shadow-sm border border-purple-500 flex items-center gap-1">
+                                        <Plus size={12} /> <span className="hidden sm:inline">{t('新增分區', 'Add Section')}</span><span className="sm:hidden">Add</span>
+                                    </button>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {form.sections.map((section, sIdx) => (
+                                        <div key={sIdx} className="bg-gray-800 p-3 rounded border border-gray-600 relative group transition hover:shadow-lg">
+                                            <button onClick={() => removeSection(sIdx)}
+                                                className="absolute top-2 right-2 text-gray-600 hover:text-red-400 transition bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-red-400 z-10">
+                                                <X size={12} />
+                                            </button>
+
+                                            <div className="mb-2 text-[10px] text-purple-400 font-bold uppercase tracking-widest flex items-center gap-2">
+                                                <span className="bg-purple-900/50 px-1.5 py-0.5 rounded">{t('分區', 'SECTION')} {sIdx + 1}</span>
+                                            </div>
+
+                                            <div className="mb-3 grid grid-cols-12 gap-2 bg-gray-900/50 p-2 rounded border border-gray-700/50">
+                                                <div className="col-span-12 md:col-span-6">
+                                                    <label className="text-[10px] text-gray-500 block mb-0.5">{t('視覺主體 (Visual)', 'Visual')}</label>
+                                                    <input value={section.visual} onChange={(e) => updateSectionField(sIdx, 'visual', e.target.value)}
+                                                        placeholder={t('例如: Hero silhouette...', 'e.g., Hero silhouette...')}
+                                                        className="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs focus:border-purple-500 text-gray-300 outline-none" />
+                                                </div>
+                                                <div className="col-span-12 md:col-span-6">
+                                                    <label className="text-[10px] text-gray-500 block mb-0.5">{t('參數/細節 (Params)', 'Params')}</label>
+                                                    <input value={section.param} onChange={(e) => updateSectionField(sIdx, 'param', e.target.value)}
+                                                        placeholder={t('例如: red lighting...', 'e.g., red lighting...')}
+                                                        className="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs focus:border-purple-500 text-gray-300 outline-none" />
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                {section.textBlocks.map((block, bIdx) => (
+                                                    <div key={bIdx} className="flex gap-2 items-start bg-gray-900 p-2 rounded border border-gray-700 border-dashed hover:border-gray-500 transition">
+                                                        <select value={block.level} onChange={(e) => updateTextBlock(sIdx, bIdx, 'level', e.target.value)}
+                                                            className="w-20 lg:w-24 bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-blue-300 font-bold h-8 cursor-pointer outline-none">
+                                                            {configData.ui.textBlockLevels.map(level => (
+                                                                <option key={level.value} value={level.value}>{level.label}</option>
+                                                            ))}
+                                                        </select>
+                                                        <textarea value={block.content} onChange={(e) => updateTextBlock(sIdx, bIdx, 'content', e.target.value)}
+                                                            placeholder={t('輸入文字內容...', 'Enter text content...')} rows={1}
+                                                            className="flex-1 bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-white placeholder-gray-600 custom-scrollbar resize-y outline-none" />
+
+                                                        <div className="relative w-32 hidden md:block">
+                                                            <input
+                                                                list={`fontList-${sIdx}-${bIdx}`}
+                                                                value={block.font}
+                                                                onChange={(e) => updateTextBlock(sIdx, bIdx, 'font', e.target.value)}
+                                                                placeholder={t('字體 (Font)...', 'Font...')}
+                                                                className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-gray-300 h-8 focus:outline-none focus:border-blue-500 pr-6"
+                                                            />
+                                                            <datalist id={`fontList-${sIdx}-${bIdx}`}>
+                                                                {configData.fontList.map((f, i) => <option key={i} value={f} />)}
+                                                            </datalist>
+                                                            {block.font && (
+                                                                <button
+                                                                    onClick={() => updateTextBlock(sIdx, bIdx, 'font', '')}
+                                                                    className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white p-0.5 rounded hover:bg-gray-700 transition"
+                                                                    title={t("清除字體", "Clear font")}
+                                                                >
+                                                                    <X size={12} />
+                                                                </button>
+                                                            )}
+                                                        </div>
+
+                                                        <button onClick={() => removeTextBlock(sIdx, bIdx)}
+                                                            className="text-gray-600 hover:text-red-400 px-1 pt-1 transition">
+                                                            <Trash2 size={14} />
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <button onClick={() => addTextBlock(sIdx)}
+                                                className="mt-2 text-[10px] text-gray-400 hover:text-white flex items-center gap-1 transition px-2 py-1 rounded hover:bg-gray-700 w-full justify-center border border-transparent hover:border-gray-600">
+                                                <Plus size={10} /> <span>{t('新增文字行 (Add Text Line)', 'Add Text Line')}</span>
                                             </button>
                                         </div>
                                     ))}
                                 </div>
+                            </section>
 
-                                <button onClick={() => addTextBlock(sIdx)}
-                                    className="mt-2 text-[10px] text-gray-400 hover:text-white flex items-center gap-1 transition px-2 py-1 rounded hover:bg-gray-700 w-full justify-center border border-transparent hover:border-gray-600">
-                                    <Plus size={10} /> <span>{t('新增文字行 (Add Text Line)', 'Add Text Line')}</span>
+                            {/* Section 4: Parameters */}
+                            <section>
+                                <h2 className="text-base font-bold text-yellow-300 mb-3 flex items-center">
+                                    <span className="w-2 h-6 bg-yellow-500 mr-2 rounded-sm"></span>
+                                    {t('4. 技術參數 (Parameters)', '4. Parameters')}
+                                </h2>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-gray-800 p-4 rounded border border-gray-700">
+                                    <div className="col-span-1">
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('長寬比 (Aspect Ratio)', 'Aspect Ratio')}</label>
+                                        <select value={form.ar} onChange={(e) => setForm({ ...form, ar: e.target.value })}
+                                            className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-gray-300 outline-none">
+                                            <option value="" disabled>{t('選擇比例...', 'Select ratio...')}</option>
+                                            {configData.ui.aspectRatios.map(r => (
+                                                <option key={r} value={r}>{r}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('解析度 (Resolution)', 'Resolution')}</label>
+                                        <select value={form.resolution} onChange={(e) => setForm({ ...form, resolution: e.target.value })}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none">
+                                            <option value="">{t('預設 (Default)', 'Default')}</option>
+                                            {configData.ui.resolutions.map(r => <option key={r} value={r}>{r}</option>)}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('種子碼 (Seed)', 'Seed')}</label>
+                                        <input value={form.seed} onChange={(e) => setForm({ ...form, seed: e.target.value })} type="text" placeholder={t("隨機 (Random)", "Random")}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('風格化 (Stylize)', 'Stylize')}</label>
+                                        <input value={form.stylize} onChange={(e) => setForm({ ...form, stylize: e.target.value })} type="number" placeholder="100"
+                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none" />
+                                    </div>
+
+                                    {/* Feature Toggles */}
+                                    <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50 flex flex-wrap gap-4 items-center">
+                                        <div className="flex items-center space-x-2">
+                                            <input
+                                                type="checkbox"
+                                                id="tc-opt"
+                                                checked={isAvoidSimplifiedChinese}
+                                                onChange={(e) => setIsAvoidSimplifiedChinese(e.target.checked)}
+                                                className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
+                                            />
+                                            <label htmlFor="tc-opt" className="text-[10px] text-yellow-400 cursor-pointer select-none flex items-center gap-1" title={t("選取時，自動加入 'Simplified Chinese' 到負面提示詞中", "When selected, automatically adds 'Simplified Chinese' to negative prompt")}>
+                                                <span>{t('避免簡體字 (Avoid Simplified Chinese)', 'Avoid Simplified Chinese')}</span>
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center space-x-2">
+                                            <input
+                                                type="checkbox"
+                                                id="q-boost"
+                                                checked={qualityBoost}
+                                                onChange={(e) => setQualityBoost(e.target.checked)}
+                                                className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
+                                            />
+                                            <label htmlFor="q-boost" className="text-[10px] text-green-400 cursor-pointer select-none flex items-center gap-1" title="加入 masterpeice, best quality 等關鍵詞">
+                                                <span>畫質與字體強化 (Quality Boost)</span>
+                                                <Sparkles size={10} />
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {/* Negative Prompt */}
+                                    <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <label className="block text-[10px] text-gray-400 font-bold">負面提示詞 (Negative --no)</label>
+                                        </div>
+                                        <input value={form.negative} onChange={(e) => setForm({ ...form, negative: e.target.value })} type="text"
+                                            className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-red-400"
+                                            placeholder="blur, watermark, bad anatomy, text error..." />
+                                        <div className="text-[9px] text-gray-500 mt-1 flex gap-2">
+                                            <span>* 將自動加入: </span>
+                                            {isAvoidSimplifiedChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">Simplified Chinese</span>}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Copyright Footer */}
+                            <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center">
+                                <div className="flex flex-col items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                                    <p className="text-xs text-gray-500 font-medium tracking-wide">
+                                        Developed by <span className="text-blue-400 font-bold ml-1">Shu-Ruei Wu</span>
+                                    </p>
+                                    <a href="https://allergy.tw" target="_blank" rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-900 border border-gray-700 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all group">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 group-hover:animate-pulse"></span>
+                                        <span className="text-[10px] font-mono text-gray-400 group-hover:text-blue-300">https://allergy.tw</span>
+                                        <ExternalLink size={10} className="text-gray-600 group-hover:text-blue-400 ml-0.5" />
+                                    </a>
+                                    <p className="text-[9px] text-gray-700 mt-2 font-mono">
+                                        &copy; {new Date().getFullYear()} AI Prompt Master
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT PANEL: PREVIEW & COPY */}
+                    <div className={`${activeMobileTab === 'preview' ? 'flex' : 'hidden'} lg:flex w-full lg:flex-[1] flex-col h-full bg-black border-l border-gray-700 shadow-2xl z-30 pb-20 lg:pb-0 min-w-0 flex-shrink-0`}>
+                        <div className="bg-gray-800/80 border-b border-gray-700 p-4">
+                            <h3 className="text-base font-bold text-yellow-400 mb-2 flex items-center">
+                                <span className="mr-1">💡</span> {t('Google 建議黃金公式', 'Google Golden Formula')}
+                            </h3>
+                            <div className="text-sm md:text-base text-gray-300 font-mono bg-gray-900 p-2 rounded border border-gray-600 mb-2 leading-relaxed text-[11px] md:text-xs">
+                                <div className="mb-2 text-center text-[10px] md:text-xs text-gray-400 border-b border-gray-700 pb-2">
+                                    <span className="text-blue-400">[Subject 主體]</span> +
+                                    <span className="text-green-400"> [Action/Context 動作情境]</span> +
+                                    <span className="text-purple-400"> [Art Style 風格]</span> +
+                                    <span className="text-yellow-400"> [Lighting 光影]</span> +
+                                    <span className="text-red-400"> [Camera 鏡頭]</span>
+                                </div>
+                                <div className="italic text-gray-500 text-[10px]">
+                                    "A photorealistic close-up of a cute robot gardening in a greenhouse, cinematic lighting, vibrant colors, shot on 35mm lens."
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-4 border-b border-gray-800 bg-gray-900 flex justify-between items-end">
+                            <div>
+                                <h2 className="text-lg font-bold text-white">最終提示詞 (Final Prompt)</h2>
+                                <p className="text-[10px] text-gray-500">可直接編輯 (Editable)</p>
+                            </div>
+
+                            {/* View Toggle */}
+                            <div className="flex bg-gray-800 rounded p-0.5 border border-gray-700">
+                                <button
+                                    onClick={() => setViewMode('text')}
+                                    className={`px-3 py-1 text-[10px] rounded transition ${viewMode === 'text' ? 'bg-blue-600 text-white font-bold' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    {t('純文字 (Text)', 'Text')}
+                                </button>
+                                <button
+                                    onClick={() => setViewMode('structure')}
+                                    className={`px-3 py-1 text-[10px] rounded transition ${viewMode === 'structure' ? 'bg-blue-600 text-white font-bold' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    {t('結構化 (Structure)', 'Structure')}
                                 </button>
                             </div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Section 4: Parameters */}
-                <section>
-                    <h2 className="text-base font-bold text-yellow-300 mb-3 flex items-center">
-                        <span className="w-2 h-6 bg-yellow-500 mr-2 rounded-sm"></span>
-                        {t('4. 技術參數 (Parameters)', '4. Parameters')}
-                    </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-gray-800 p-4 rounded border border-gray-700">
-                        <div className="col-span-1">
-                            <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('長寬比 (Aspect Ratio)', 'Aspect Ratio')}</label>
-                            <select value={form.ar} onChange={(e) => setForm({ ...form, ar: e.target.value })}
-                                className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs text-gray-300 outline-none">
-                                <option value="" disabled>{t('選擇比例...', 'Select ratio...')}</option>
-                                {configData.ui.aspectRatios.map(r => (
-                                    <option key={r} value={r}>{r}</option>
-                                ))}
-                            </select>
                         </div>
 
-                        <div>
-                            <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('解析度 (Resolution)', 'Resolution')}</label>
-                            <select value={form.resolution} onChange={(e) => setForm({ ...form, resolution: e.target.value })}
-                                className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none">
-                                <option value="">{t('預設 (Default)', 'Default')}</option>
-                                {configData.ui.resolutions.map(r => <option key={r} value={r}>{r}</option>)}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('種子碼 (Seed)', 'Seed')}</label>
-                            <input value={form.seed} onChange={(e) => setForm({ ...form, seed: e.target.value })} type="text" placeholder={t("隨機 (Random)", "Random")}
-                                className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none" />
-                        </div>
-                        <div>
-                            <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('風格化 (Stylize)', 'Stylize')}</label>
-                            <input value={form.stylize} onChange={(e) => setForm({ ...form, stylize: e.target.value })} type="number" placeholder="100"
-                                className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none" />
+                        <div className="flex-1 bg-gray-900 relative overflow-hidden min-h-0">
+                            {viewMode === 'text' ? (
+                                <textarea value={manualPrompt} onChange={(e) => setManualPrompt(e.target.value)}
+                                    className="w-full h-full bg-gray-900 text-gray-300 p-5 font-mono text-sm resize-none focus:outline-none focus:bg-gray-800 transition leading-relaxed custom-scrollbar"
+                                    spellCheck={false} />
+                            ) : (
+                                <PromptStructureView form={form} t={t} />
+                            )}
                         </div>
 
-                        {/* Feature Toggles */}
-                        <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50 flex flex-wrap gap-4 items-center">
-                            <div className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    id="tc-opt"
-                                    checked={isAvoidSimplifiedChinese}
-                                    onChange={(e) => setIsAvoidSimplifiedChinese(e.target.checked)}
-                                    className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
-                                />
-                                <label htmlFor="tc-opt" className="text-[10px] text-yellow-400 cursor-pointer select-none flex items-center gap-1" title={t("選取時，自動加入 'Simplified Chinese' 到負面提示詞中", "When selected, automatically adds 'Simplified Chinese' to negative prompt")}>
-                                    <span>{t('避免簡體字 (Avoid Simplified Chinese)', 'Avoid Simplified Chinese')}</span>
-                                </label>
-                            </div>
-
-                            <div className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    id="q-boost"
-                                    checked={qualityBoost}
-                                    onChange={(e) => setQualityBoost(e.target.checked)}
-                                    className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
-                                />
-                                <label htmlFor="q-boost" className="text-[10px] text-green-400 cursor-pointer select-none flex items-center gap-1" title="加入 masterpeice, best quality 等關鍵詞">
-                                    <span>畫質與字體強化 (Quality Boost)</span>
-                                    <Sparkles size={10} />
-                                </label>
-                            </div>
-                        </div>
-
-                        {/* Negative Prompt */}
-                        <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50">
-                            <div className="flex justify-between items-center mb-1">
-                                <label className="block text-[10px] text-gray-400 font-bold">負面提示詞 (Negative --no)</label>
-                            </div>
-                            <input value={form.negative} onChange={(e) => setForm({ ...form, negative: e.target.value })} type="text"
-                                className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-red-400"
-                                placeholder="blur, watermark, bad anatomy, text error..." />
-                            <div className="text-[9px] text-gray-500 mt-1 flex gap-2">
-                                <span>* 將自動加入: </span>
-                                {isAvoidSimplifiedChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">Simplified Chinese</span>}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Copyright Footer */}
-                <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center">
-                    <div className="flex flex-col items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
-                        <p className="text-xs text-gray-500 font-medium tracking-wide">
-                            Developed by <span className="text-blue-400 font-bold ml-1">Shu-Ruei Wu</span>
-                        </p>
-                        <a href="https://allergy.tw" target="_blank" rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-900 border border-gray-700 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all group">
-                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 group-hover:animate-pulse"></span>
-                            <span className="text-[10px] font-mono text-gray-400 group-hover:text-blue-300">https://allergy.tw</span>
-                            <ExternalLink size={10} className="text-gray-600 group-hover:text-blue-400 ml-0.5" />
-                        </a>
-                        <p className="text-[9px] text-gray-700 mt-2 font-mono">
-                            &copy; {new Date().getFullYear()} AI Prompt Master
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {/* RIGHT PANEL: PREVIEW & COPY */ }
-        <div className={`${activeMobileTab === 'preview' ? 'flex' : 'hidden'} lg:flex w-full lg:flex-[1] flex-col h-full bg-black border-l border-gray-700 shadow-2xl z-30 pb-20 lg:pb-0 min-w-0 flex-shrink-0`}>
-            <div className="bg-gray-800/80 border-b border-gray-700 p-4">
-                <h3 className="text-base font-bold text-yellow-400 mb-2 flex items-center">
-                    <span className="mr-1">💡</span> {t('Google 建議黃金公式', 'Google Golden Formula')}
-                </h3>
-                <div className="text-sm md:text-base text-gray-300 font-mono bg-gray-900 p-2 rounded border border-gray-600 mb-2 leading-relaxed text-[11px] md:text-xs">
-                    <div className="mb-2 text-center text-[10px] md:text-xs text-gray-400 border-b border-gray-700 pb-2">
-                        <span className="text-blue-400">[Subject 主體]</span> +
-                        <span className="text-green-400"> [Action/Context 動作情境]</span> +
-                        <span className="text-purple-400"> [Art Style 風格]</span> +
-                        <span className="text-yellow-400"> [Lighting 光影]</span> +
-                        <span className="text-red-400"> [Camera 鏡頭]</span>
-                    </div>
-                    <div className="italic text-gray-500 text-[10px]">
-                        "A photorealistic close-up of a cute robot gardening in a greenhouse, cinematic lighting, vibrant colors, shot on 35mm lens."
-                    </div>
-                </div>
-            </div>
-
-            <div className="p-4 border-b border-gray-800 bg-gray-900 flex justify-between items-end">
-                <div>
-                    <h2 className="text-lg font-bold text-white">最終提示詞 (Final Prompt)</h2>
-                    <p className="text-[10px] text-gray-500">可直接編輯 (Editable)</p>
-                </div>
-
-                {/* View Toggle */}
-                <div className="flex bg-gray-800 rounded p-0.5 border border-gray-700">
-                    <button
-                        onClick={() => setViewMode('text')}
-                        className={`px-3 py-1 text-[10px] rounded transition ${viewMode === 'text' ? 'bg-blue-600 text-white font-bold' : 'text-gray-400 hover:text-white'}`}
-                    >
-                        {t('純文字 (Text)', 'Text')}
-                    </button>
-                    <button
-                        onClick={() => setViewMode('structure')}
-                        className={`px-3 py-1 text-[10px] rounded transition ${viewMode === 'structure' ? 'bg-blue-600 text-white font-bold' : 'text-gray-400 hover:text-white'}`}
-                    >
-                        {t('結構化 (Structure)', 'Structure')}
-                    </button>
-                </div>
-            </div>
-
-            <div className="flex-1 bg-gray-900 relative overflow-hidden min-h-0">
-                {viewMode === 'text' ? (
-                    <textarea value={manualPrompt} onChange={(e) => setManualPrompt(e.target.value)}
-                        className="w-full h-full bg-gray-900 text-gray-300 p-5 font-mono text-sm resize-none focus:outline-none focus:bg-gray-800 transition leading-relaxed custom-scrollbar"
-                        spellCheck={false} />
-                ) : (
-                    <PromptStructureView form={form} t={t} />
-                )}
-            </div>
-
-            <div className="p-5 bg-gray-900 border-t border-gray-800">
-                <button onClick={copyToClipboard}
-                    className={`w-full py-3 font-bold rounded shadow-lg transform active:scale-95 transition flex items-center justify-center gap-2
+                        <div className="p-5 bg-gray-900 border-t border-gray-800">
+                            <button onClick={copyToClipboard}
+                                className={`w-full py-3 font-bold rounded shadow-lg transform active:scale-95 transition flex items-center justify-center gap-2
                                     ${copied
-                            ? 'bg-green-600 hover:bg-green-500 text-white'
-                            : 'bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white'
-                        }`}>
-                    {copied ? <><Check size={18} /> ✅ 已複製 (Copied)!</> : <><Copy size={18} /> 📋 複製提示詞 (Copy Prompt)</>}
-                </button>
-            </div>
-        </div>
+                                        ? 'bg-green-600 hover:bg-green-500 text-white'
+                                        : 'bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white'
+                                    }`}>
+                                {copied ? <><Check size={18} /> ✅ 已複製 (Copied)!</> : <><Copy size={18} /> 📋 複製提示詞 (Copy Prompt)</>}
+                            </button>
+                        </div>
+                    </div>
 
-        {/* MOBILE BOTTOM NAVIGATION BAR */ }
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 z-50 flex h-16 safe-area-pb">
-            <button
-                onClick={() => setActiveMobileTab('edit')}
-                className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors duration-200
+                    {/* MOBILE BOTTOM NAVIGATION BAR */}
+                    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 z-50 flex h-16 safe-area-pb">
+                        <button
+                            onClick={() => setActiveMobileTab('edit')}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors duration-200
                                 ${activeMobileTab === 'edit' ? 'text-blue-400 bg-gray-800' : 'text-gray-500 hover:text-gray-300 hover:bg-gray-800/50'}`}
-            >
-                <Edit3 size={20} />
-                <span className="text-[10px] font-bold">編輯 (Editor)</span>
-            </button>
-            <button
-                onClick={() => setActiveMobileTab('preview')}
-                className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors duration-200
+                        >
+                            <Edit3 size={20} />
+                            <span className="text-[10px] font-bold">編輯 (Editor)</span>
+                        </button>
+                        <button
+                            onClick={() => setActiveMobileTab('preview')}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors duration-200
                                 ${activeMobileTab === 'preview' ? 'text-yellow-400 bg-gray-800' : 'text-gray-500 hover:text-gray-300 hover:bg-gray-800/50'}`}
-            >
-                <Eye size={20} />
-                <span className="text-[10px] font-bold">預覽 (Preview)</span>
-            </button>
-        </div>
+                        >
+                            <Eye size={20} />
+                            <span className="text-[10px] font-bold">預覽 (Preview)</span>
+                        </button>
+                    </div>
                 </div >
             );
         };
