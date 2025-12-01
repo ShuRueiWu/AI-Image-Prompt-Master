@@ -447,7 +447,7 @@
                     layout_isometric_room: { name: '等角房間 (Isometric Room)', desc: '等角投影下的房間 3D 剖視圖。3D cutaway view of a room in isometric projection.', subject: 'Gamer room setup', title: 'My Setup', styles: ['Isometric', '3D Render', 'Cute', 'Low Poly'], sections: [], ar: '1:1', texture: '' },
                     layout_knolling_flat: { name: '開箱平鋪 (Knolling)', desc: '物品以90度角整齊排列的平鋪佈局。Items arranged at 90 degree angles, organized flat lay.', subject: 'Travel essentials', title: 'EDC', styles: ['Knolling', 'Flat Lay', 'Organized', 'Top Down'], sections: [], ar: '4:3', texture: '' }
                 },
-                "📊 海報與平面設計 (Posters & Layouts)": {
+                "📊 行銷與海報 (Marketing & Posters)": {
                     layout_biz_poster: { name: '商業海報 (Business Poster)', desc: '具有高保真文字預留位置的商業活動專業海報。Professional poster with high fidelity text placeholders for business events.', subject: 'Modern office building low angle', title: 'Business Event', styles: ['Poster Design', 'Bold Typography', 'High Resolution', 'Sans-serif'], sections: [{ visual: 'Main text overlay', param: '', textBlocks: [{ content: 'INNOVATION SUMMIT', level: 'H1', font: 'Bold Display' }, { content: '2025 World Tour', level: 'H2', font: 'Sans-serif' }] }], ar: '2:3', texture: '' },
                     movie_action: { name: '動作片海報 (Action)', desc: '帶有青橙色調的粗獷大片海報。Gritty blockbuster poster with teal & orange grading.', subject: 'Hero in debris', title: 'LAST STAND', styles: ['Movie Poster Composition', 'Cinematic Lighting', 'Teal and Orange', 'Hyperrealistic'], sections: [{ visual: 'Hero holding weapon', param: 'dirty face, scars', textBlocks: [] }, { visual: '', param: '', textBlocks: [{ content: 'LAST STAND', level: 'H1', font: 'Bold Display' }, { content: 'Coming Soon', level: 'Body', font: 'Sans-serif' }] }], ar: '2:3', texture: '' },
                     movie_horror: { name: '恐怖片海報 (Horror)', desc: '黑暗、霧氣瀰漫、發光眼睛的哥德式氛圍。Dark, foggy gothic atmosphere with glowing eyes.', subject: 'Haunted house silhouette', title: 'THE ECHO', styles: ['Low Key', 'Foggy', 'Grainy', 'Vintage', 'Gothic'], sections: [{ visual: 'Ghostly figure in window', param: 'red glowing eyes', textBlocks: [{ content: 'THE ECHO', level: 'H1', font: 'Serif' }] }], ar: '2:3', texture: '' },
@@ -463,7 +463,10 @@
                 },
                 "💼 商務與簡報 (Business & Slides)": {
                     layout_slide_bg: { name: '簡報背景 (Clean Slide)', desc: '帶有大面積負空間用於文字疊加的極簡背景。Minimalist background with large negative space for text overlays.', subject: 'Abstract geometric shapes', title: 'Presentation', styles: ['Minimalist', 'Soft Gradient', 'Negative Space', 'Clean'], sections: [{ visual: 'Shapes on bottom right', param: '', textBlocks: [] }, { visual: 'Empty space on top left', param: '', textBlocks: [] }], ar: '16:9', texture: '' },
-                    slide_tech_dark: { name: '科技簡報 (Tech Dark)', desc: '帶有電路圖案的深色模式科技背景。Dark mode tech background with circuit patterns.', subject: 'Circuit board abstract pattern', title: 'Tech Slide', styles: ['Cyberpunk', 'Dark Mode', 'Blue and Purple', 'High Tech'], sections: [], ar: '16:9', texture: '' }
+                    slide_tech_dark: { name: '科技簡報 (Tech Dark)', desc: '帶有電路圖案的深色模式科技背景。Dark mode tech background with circuit patterns.', subject: 'Circuit board abstract pattern', title: 'Tech Slide', styles: ['Cyberpunk', 'Dark Mode', 'Blue and Purple', 'High Tech'], sections: [], ar: '16:9', texture: '' },
+                    slide_team: { name: '團隊介紹 (Team Slide)', desc: '現代風格的團隊成員介紹頁面，圓形頭像與簡介區塊。Modern team member introduction slide with circular avatars and bio sections.', subject: 'Team introduction slide layout', title: 'Our Team', styles: ['Corporate', 'Clean UI', 'Professional', 'Blue and White'], sections: [{ visual: 'Grid of circular avatars', param: '', textBlocks: [{ content: 'Meet the Team', level: 'H1', font: 'Sans-serif' }, { content: 'CEO', level: 'Body', font: '' }] }], ar: '16:9', texture: '' },
+                    slide_roadmap: { name: '產品路線圖 (Roadmap)', desc: '展示專案里程碑的甘特圖或時間軸設計。Gantt chart or timeline design showing project milestones.', subject: 'Product roadmap timeline', title: 'Roadmap', styles: ['Infographic', 'Timeline', 'Business', 'Flat Design'], sections: [{ visual: 'Horizontal timeline', param: '', textBlocks: [{ content: 'Q1: Launch', level: 'Body', font: '' }, { content: 'Q2: Growth', level: 'Body', font: '' }] }], ar: '16:9', texture: '' },
+                    biz_card: { name: '名片設計 (Business Card)', desc: '極簡現代風格的商務名片設計，正反面展示。Minimalist modern business card design, front and back view.', subject: 'Modern business card mockup', title: 'Card', styles: ['Mockup', 'Minimalist', 'Stationery', 'Elegant'], sections: [{ visual: 'Card front and back', param: '', textBlocks: [{ content: 'John Doe', level: 'H1', font: 'Serif' }, { content: 'Creative Director', level: 'Body', font: 'Sans-serif' }] }], ar: '3:2', texture: 'on white background' }
                 },
                 "📷 攝影與藝術 (Photography & Art)": {
                     prod_watch: { name: '精品手錶 (Luxury Watch)', desc: '帶有金色反光的奢華產品微距攝影。Macro luxury product shot with gold reflections.', subject: 'Gold wrist watch', title: '', styles: ['Product Photography', 'Macro', 'Reflection', 'Luxurious'], sections: [], ar: '4:5', texture: '' },
@@ -487,7 +490,11 @@
                 },
                 "📱 UI 與網頁設計 (UI/Web)": {
                     ui_app_fin: { name: '金融 App (Fintech)', desc: '帶有向量元素的銀行 App 現代扁平化 UI。Modern flat UI for banking apps with vector elements.', subject: 'Banking app interface', title: 'Wallet', styles: ['Web UI Layout', 'Flat Design', 'Vector Art', 'High Key'], sections: [{ visual: 'Header section', param: '', textBlocks: [{ content: 'Total Balance', level: 'Body', font: '' }, { content: '$12,450.00', level: 'H1', font: '' }] }], ar: '9:16', texture: '' },
-                    ui_web_hero: { name: '網頁首圖 (Hero)', desc: '柔和光線下的乾淨極簡網站首圖區塊。Clean, minimalist website hero section with soft light.', subject: 'Modern office desk', title: 'Future', styles: ['Web UI Layout', 'Minimalist', 'Clean', 'Soft Light'], sections: [{ visual: '', param: '', textBlocks: [{ content: 'We Build Future', level: 'H1', font: 'Sans-serif' }, { content: 'Start Now', level: 'Body', font: 'Sans-serif' }] }], ar: '21:9', texture: '' }
+                    ui_web_hero: { name: '網頁首圖 (Hero)', desc: '柔和光線下的乾淨極簡網站首圖區塊。Clean, minimalist website hero section with soft light.', subject: 'Modern office desk', title: 'Future', styles: ['Web UI Layout', 'Minimalist', 'Clean', 'Soft Light'], sections: [{ visual: '', param: '', textBlocks: [{ content: 'We Build Future', level: 'H1', font: 'Sans-serif' }, { content: 'Start Now', level: 'Body', font: 'Sans-serif' }] }], ar: '21:9', texture: '' },
+                    ui_ecommerce: { name: '電商產品頁 (E-commerce)', desc: '時尚的電商產品詳情頁面，包含產品圖、價格與購買按鈕。Stylish e-commerce product detail page with product image, price and buy button.', subject: 'Sneaker product page UI', title: 'Shop', styles: ['Web UI Layout', 'Clean', 'Commercial', 'Modern'], sections: [{ visual: 'Product image left', param: '', textBlocks: [{ content: 'Summer Collection', level: 'H2', font: '' }, { content: '$99.00', level: 'H1', font: 'Bold Display' }] }], ar: '4:3', texture: '' },
+                    ui_dashboard_dark: { name: '深色儀表板 (Dark Dash)', desc: '賽博龐克風格的數據分析儀表板，霓虹圖表與數據。Cyberpunk style data analytics dashboard with neon charts and metrics.', subject: 'Data analytics dashboard dark mode', title: 'Analytics', styles: ['Dashboard UI', 'Dark Mode', 'Neon Lights', 'Cyberpunk'], sections: [{ visual: 'Graphs and charts', param: '', textBlocks: [{ content: 'Traffic', level: 'Caption', font: '' }, { content: 'Live Data', level: 'H2', font: 'Monospace' }] }], ar: '16:9', texture: '' },
+                    ui_mobile_game: { name: '手遊介面 (Game UI)', desc: '可愛卡通風格的手機遊戲主選單，包含開始按鈕與角色。Cute cartoon style mobile game main menu with start button and character.', subject: 'Mobile game main menu', title: 'Game Start', styles: ['Game UI', 'Cartoon', 'Vibrant Colors', 'Cute'], sections: [{ visual: 'Play button center', param: '', textBlocks: [{ content: 'PLAY', level: 'H1', font: 'Bold Display' }] }], ar: '9:16', texture: '' },
+                    ui_landing_page: { name: 'SaaS 著陸頁 (Landing)', desc: '現代 SaaS 軟體的著陸頁設計，包含標題、特點與插圖。Modern SaaS software landing page design with headline, features and illustration.', subject: 'SaaS landing page layout', title: 'SaaS', styles: ['Web UI Layout', 'Corporate', 'Blue and White', 'Vector Art'], sections: [{ visual: 'Hero section', param: '', textBlocks: [{ content: 'Boost Productivity', level: 'H1', font: 'Sans-serif' }] }], ar: '16:9', texture: '' }
                 }
             },
             ui: {
@@ -800,14 +807,19 @@
                                             <span className="text-yellow-400">✨</span> 設計理念 (Philosophy)
                                         </h4>
                                         <p className="mb-4">
-                                            本工具專為追求高品質 AI 繪圖的使用者設計，核心採用 <strong>Google 建議的黃金提示詞公式</strong>，將複雜的咒語結構化，讓您只需專注於創意，無需死記語法。
+                                            本工具專為追求高品質 AI 繪圖的使用者設計，採用 <strong className="text-blue-300">Google 建議的黃金提示詞公式</strong>，將複雜的 Prompt 結構化，讓您專注創意而非語法。內建 <strong className="text-green-300">200+ 專業風格</strong>、<strong className="text-purple-300">80+ 精選預設</strong>，涵蓋衛教、資訊圖表、插畫、攝影等多元應用。
                                         </p>
                                         <div className="bg-gray-900/80 p-4 rounded-lg border border-gray-700 font-mono text-xs md:text-sm text-center text-gray-200 shadow-inner">
                                             <span className="text-blue-400">[Subject 主體]</span> +
-                                            <span className="text-green-400"> [Action/Context 情境]</span> +
+                                            <span className="text-green-400"> [Context 情境]</span> +
                                             <span className="text-purple-400"> [Art Style 風格]</span> +
                                             <span className="text-yellow-400"> [Lighting 光影]</span> +
-                                            <span className="text-red-400"> [Camera 鏡頭]</span>
+                                            <span className="text-red-400"> [Camera 鏡頭]</span> +
+                                            <span className="text-blue-400"> [Context 情境]</span> +
+                                            <span className="text-blue-400"> [Art Style 風格]</span> +
+                                            <span className="text-blue-400"> [Lighting 光影]</span> +
+                                            <span className="text-blue-400"> [Camera 鏡頭]</span> +
+                                            <span className="text-blue-400"> [Text 文字]</span>
                                         </div>
                                     </div>
 
@@ -815,51 +827,180 @@
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div>
                                             <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                                                <span className="text-green-400">🚀</span> 快速上手 (Quick Start)
+                                                <span className="text-blue-400">🚀</span> 快速上手 (Quick Start)
                                             </h4>
                                             <ol className="list-decimal pl-5 space-y-2 text-gray-300">
                                                 <li>
-                                                    <strong>選擇預設 (Select Preset):</strong> 點擊上方選單，挑選一個最接近您需求的範本（如「電影光感機器人」或「衛教海報」）。
+                                                    <strong className="text-white">選擇預設範本:</strong> 點擊「⚡ 選擇預設」按鈕，從 80+ 範本中挑選（如「營養金字塔」「吉卜力風格」「City Pop」）。
                                                 </li>
                                                 <li>
-                                                    <strong>修改主體 (Edit Subject):</strong> 在「全域描述」中，將範例的主體替換為您想要的內容。
+                                                    <strong className="text-white">修改主體內容:</strong> 在「全域描述」區塊，替換成您想要的主體和背景描述。
                                                 </li>
                                                 <li>
-                                                    <strong>微調風格 (Adjust Style):</strong> 在「風格與技術」區塊，點擊標籤來增加或移除藝術風格。
+                                                    <strong className="text-white">調整藝術風格:</strong> 在「風格與技術」展開各類別，點擊標籤選擇（綠色=已選）。
                                                 </li>
                                                 <li>
-                                                    <strong>複製生成 (Generate):</strong> 點擊右下角的「複製提示詞」，貼上至 AI 生圖模型。
+                                                    <strong className="text-white">加入文字元素:</strong>（可選）使用「版面分區」新增文字區塊，設定字體與層級。
+                                                </li>
+                                                <li>
+                                                    <strong className="text-white">複製並生成:</strong> 右側預覽確認後，點擊「📋 複製提示詞」貼到 AI 生圖工具。
                                                 </li>
                                             </ol>
                                         </div>
 
                                         <div>
                                             <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                                                <span className="text-purple-400">💡</span> 功能 (Key Features)
+                                                <span className="text-blue-400">💡</span> 核心功能 (Key Features)
                                             </h4>
                                             <ul className="list-disc pl-5 space-y-2 text-gray-300">
                                                 <li>
-                                                    <strong>繁中優化 (TC Optimization):</strong> 自動在負面提示詞加入 "Simplified Chinese"，避免生成簡體字。
+                                                    <strong className="text-white">200+ 專業風格:</strong> 涵蓋 3D 渲染、傳統繪畫、動漫插畫、抽象藝術、藝術家風格、攝影鏡頭、光影氛圍、材質質感等 11 大類別。
                                                 </li>
                                                 <li>
-                                                    <strong>版面分區 (Layout Sections):</strong> 針對海報設計，可定義特定區域的視覺內容與文字排版（如左圖右文）。
+                                                    <strong className="text-white">版面分區系統:</strong> 可定義特定區域的視覺內容與文字排版，適合海報、資訊圖表設計。
                                                 </li>
                                                 <li>
-                                                    <strong>畫質強化 (Quality Boost):</strong> 一鍵加入 "Masterpiece", "Best Quality" 等高品質關鍵詞。
+                                                    <strong className="text-white">繁中文字優化:</strong> 自動排除簡體字（--no Simplified Chinese），支援 Noto Sans TC 等繁中字體。
+                                                </li>
+                                                <li>
+                                                    <strong className="text-white">畫質強化開關:</strong> 一鍵加入 "Masterpiece"、"Best Quality"、"Sharp Focus" 等關鍵詞。
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
 
-                                    {/* Section 3: Advanced Tips */}
-                                    <div className="bg-gray-700/30 p-5 rounded-lg border border-gray-600">
-                                        <h4 className="text-base font-bold text-white mb-2">🎓 進階技巧 (Pro Tips)</h4>
-                                        <ul className="space-y-2 text-xs md:text-sm text-gray-400">
-                                            <li>• <strong>文字生成:</strong> 若需要生成文字，請在「版面分區」中新增 Text Block，並指定字體與層級（如 H1）。</li>
-                                            <li>• <strong>材質疊加:</strong> 使用「材質質感」選單（如水彩紙、牛皮紙），可大幅提升插畫的真實感。</li>
-                                            <li>• <strong>長寬比:</strong> 製作社群貼文請選 4:5 或 9:16；製作電影場景請選 16:9 或 21:9。</li>
-                                            <li>• <strong>繁體中文字型</strong> Noto Sans TC (思源黑體) 字體可增加正確率。</li>
+                                    {/* Section 3: Style Categories */}
+                                    <div className="bg-gray-800/30 p-5 rounded-lg border border-gray-700">
+                                        <h4 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                                            <span>🎨</span> 風格類別導覽 (Style Categories)
+                                        </h4>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">數位與 3D (18):</strong>
+                                                <span className="text-gray-400"> Photorealistic, Ray Tracing, Unreal Engine 5, Octane Render, Pixar Style, Claymation...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">傳統繪畫 (14):</strong>
+                                                <span className="text-gray-400"> Watercolor, Oil Painting, Impressionism, Charcoal, Sumi-e, Nihonga...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">插畫與動漫 (14):</strong>
+                                                <span className="text-gray-400"> Vector Art, Flat Design, Pixel Art, Anime, Studio Ghibli, Ukiyo-e...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">抽象與概念 (20):</strong>
+                                                <span className="text-gray-400"> Cubism, Surrealism, Vaporwave, Synthwave, Steampunk, Art Deco...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">藝術家風格 (20):</strong>
+                                                <span className="text-gray-400"> Van Gogh, Picasso, Banksy, Miyazaki, Wes Anderson, Pixar...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">鏡頭語言 (26):</strong>
+                                                <span className="text-gray-400"> Wide Angle, Macro, Bokeh, POV, Drone Shot, Fisheye...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">光影氛圍 (23):</strong>
+                                                <span className="text-gray-400"> Golden Hour, Cinematic Lighting, Volumetric, Neon Lights...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">材質質感 (25):</strong>
+                                                <span className="text-gray-400"> Glass, Metal, Wood, Marble, Holographic, Ice...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">版型與構圖 (24):</strong>
+                                                <span className="text-gray-400"> Rule of Thirds, Golden Ratio, Symmetrical, Knolling...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <strong className="text-blue-400">色彩色調 (10):</strong>
+                                                <span className="text-gray-400"> Pastel Colors, Morandi Colors, Vibrant, Monochrome...</span>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-2 rounded md:col-span-2">
+                                                <strong className="text-blue-400">日本與台灣流行風格 (29):</strong>
+                                                <span className="text-gray-400"> Pixiv, City Pop, 京阿尼, VTuber, 霹靂布袋戲, 花磚, 台灣街景...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Section 4: Preset Templates */}
+                                    <div className="bg-gray-800/30 p-5 rounded-lg border border-gray-700">
+                                        <h4 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                                            <span>📋</span> 預設範本分類 (Preset Categories)
+                                        </h4>
+                                        <ul className="space-y-1.5 text-xs text-gray-300">
+                                            <li><strong className="text-blue-400">🤖 黃金公式範例:</strong> 展示核心 Prompt 結構的參考範例</li>
+                                            <li><strong className="text-blue-400">🏥 衛教與醫療:</strong> 含文字注釋的健康宣導、疫苗防護、營養教育海報（內建文字區塊）</li>
+                                            <li><strong className="text-blue-400">📊 資訊圖表:</strong> 營養金字塔、運動計劃、數據視覺化、正念冥想（分區版面+文字）</li>
+                                            <li><strong className="text-blue-400">🎮 漫畫與二次元:</strong> 少年/少女漫畫、City Pop、京阿尼、JoJo 風格</li>
+                                            <li><strong className="text-blue-400">📝 繁中應用:</strong> 手寫筆記、心智圖、黑板公式、子彈筆記</li>
+                                            <li><strong className="text-blue-400">🌏 台灣在地:</strong> 夜市、廟宇、九份、光之穹頂、霹靂布袋戲、機車瀑布</li>
+                                            <li><strong className="text-blue-400">✈️ 旅行手帳:</strong> 速寫、美食手帳、地圖塗鴉、植物標本</li>
+                                            <li><strong className="text-blue-400">📐 專業排版:</strong> 瑞士風格、Bento Grid、雜誌跨頁、海報設計</li>
+                                            <li><strong className="text-blue-400">📸 攝影藝術:</strong> 人像、建築、產品攝影、自然微距</li>
+                                            <li><strong className="text-blue-400">💼 商務簡報:</strong> 簡報背景、科技暗色系、儀表板 UI</li>
                                         </ul>
+                                    </div>
+
+                                    {/* Section 5: Advanced Tips */}
+                                    <div className="bg-gray-700/30 p-5 rounded-lg border border-gray-600">
+                                        <h4 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                                            <span>🎓</span> 進階技巧 (Pro Tips)
+                                        </h4>
+                                        <ul className="space-y-2 text-xs text-gray-300">
+                                            <li>
+                                                <strong className="text-white">• 文字生成技巧:</strong> 在「版面分區」新增 Text Block，選擇 H1/H2/Body 層級，搭配 <code className="bg-gray-800 px-1 rounded">Noto Sans TC</code> 字體可提升繁中顯示率。範例請參考「均衡飲食」「營養金字塔」預設。
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• 材質質感疊加:</strong> 使用右上角「材質質感」下拉選單（如 <code className="bg-gray-800 px-1 rounded">on watercolor paper</code>、<code className="bg-gray-800 px-1 rounded">on kraft paper</code>），可大幅提升插畫的紙質真實感。
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• 長寬比選擇:</strong>
+                                                社群貼文 <code className="bg-gray-800 px-1 rounded">4:5, 9:16</code> |
+                                                電影場景 <code className="bg-gray-800 px-1 rounded">16:9, 21:9</code> |
+                                                海報 <code className="bg-gray-800 px-1 rounded">2:3</code> |
+                                                正方形 <code className="bg-gray-800 px-1 rounded">1:1</code>
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• 風格混搭建議:</strong> 選擇 3-5 個風格即可，過多會互相沖突。建議組合：<br />
+                                                <span className="text-gray-400 ml-4">- 攝影風格：Photorealistic + Cinematic Lighting + 85mm Lens + Bokeh</span><br />
+                                                <span className="text-gray-400 ml-4">- 插畫風格：Flat Design + Vector Art + Pastel Colors + Minimalist</span><br />
+                                                <span className="text-gray-400 ml-4">- 動漫風格：Anime + Studio Ghibli + Soft Light + Watercolor</span>
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• 資訊圖表最佳實踐:</strong> 使用「版面分區」分別定義標題區、內容區、圖表區，每區添加對應文字。選擇 <code className="bg-gray-800 px-1 rounded">Infographic</code> + <code className="bg-gray-800 px-1 rounded">Flat Design</code> + <code className="bg-gray-800 px-1 rounded">Clean UI</code> 風格。
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• 畫質強化時機:</strong> 製作專業海報、印刷品時開啟「畫質強化」；日常練習或快速迭代時可關閉以節省算力。
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• Seed 種子碼:</strong> 記錄滿意作品的 Seed 值，可在相同設定下生成相似但略有變化的圖像，適合系列創作。
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    {/* Section 6: Recommended Workflows */}
+                                    <div className="bg-gray-800/30 p-5 rounded-lg border border-gray-700">
+                                        <h4 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                                            <span>⚡</span> 推薦工作流程 (Recommended Workflows)
+                                        </h4>
+                                        <div className="space-y-3 text-xs">
+                                            <div className="bg-gray-800/50 p-3 rounded">
+                                                <strong className="text-blue-400">📱 社群媒體貼文</strong>
+                                                <p className="text-gray-400 mt-1">選擇「衛教海報」或「營養金字塔」→ 修改主體與文字 → 設定 4:5 或 9:16 → 選擇 Flat Design + Vibrant Colors → 開啟畫質強化</p>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-3 rounded">
+                                                <strong className="text-blue-400">🎨 插畫創作</strong>
+                                                <p className="text-gray-400 mt-1">從空白開始 → 描述主體 → 選擇藝術家風格（如 Studio Ghibli）→ 搭配 Watercolor/Oil Painting → 加入材質（watercolor paper）→ 設定光影（Golden Hour）</p>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-3 rounded">
+                                                <strong className="text-blue-400">📊 商業簡報圖表</strong>
+                                                <p className="text-gray-400 mt-1">選擇「數據視覺化」預設 → 修改標題與數據 → 使用版面分區定義圖表位置 → 選擇 Dashboard UI + Professional + Clean → 設定 16:9</p>
+                                            </div>
+                                            <div className="bg-gray-800/50 p-3 rounded">
+                                                <strong className="text-blue-400">📷 寫實攝影風格</strong>
+                                                <p className="text-gray-400 mt-1">描述場景細節 → 選擇 Photorealistic + Cinematic Lighting → 選擇鏡頭（85mm Lens）→ 加入景深效果（Bokeh）→ 選擇光影時刻（Blue Hour）→ 設定高解析度（8K）</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -889,13 +1030,23 @@
                                         </button>
                                     </div>
                                     {/* Search Bar */}
-                                    <input
-                                        type="text"
-                                        value={presetSearchQuery}
-                                        onChange={(e) => setPresetSearchQuery(e.target.value)}
-                                        placeholder="🔍 搜尋預設 (Search presets)..."
-                                        className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-300 focus:border-blue-500 outline-none transition"
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            value={presetSearchQuery}
+                                            onChange={(e) => setPresetSearchQuery(e.target.value)}
+                                            placeholder="🔍 搜尋預設 (Search presets)..."
+                                            className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-300 focus:border-blue-500 outline-none transition pr-8"
+                                        />
+                                        {presetSearchQuery && (
+                                            <button
+                                                onClick={() => setPresetSearchQuery('')}
+                                                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                                            >
+                                                <X size={14} />
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Content */}
