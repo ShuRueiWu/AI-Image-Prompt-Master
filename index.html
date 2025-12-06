@@ -151,7 +151,7 @@
         import { createRoot } from 'react-dom/client';
         import {
             HelpCircle, ChevronDown, ChevronUp, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink,
-            Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload
+            Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload, Download
         } from 'lucide-react';
 
         const configData = {
@@ -266,14 +266,14 @@
                     { label: '手帳風 (Journaling)', val: 'Journaling', desc: '像個人手帳或日記一樣的風格。', desc_en: 'Style like a personal journal or diary.' },
                     { label: '手寫 (Handwritten)', val: 'Handwritten', desc: '手寫字跡的風格。', desc_en: 'Handwritten text style.' }
                 ],
-                "攝影與鏡頭 (Photography & Camera)": [
-                    // === 攝影類型 ===
+                "攝影題材 (Photography Genres)": [
                     { label: '人像攝影 (Portrait)', val: 'Portrait Photography', desc: '專注於捕捉人物的表情、個性與情感，通常背景虛化。', desc_en: 'Focuses on capturing expression, personality, and emotion. Often blurred background.' },
                     { label: '環境人像 (Environmental)', val: 'Environmental Portrait', desc: '在環境中拍攝的人物肖像，展現人物與場景的關係。', desc_en: 'Portrait taken in subject\'s environment, showing relationship with setting.' },
                     { label: '風景攝影 (Landscape)', val: 'Landscape Photography', desc: '捕捉自然或城市景觀的壯麗與遼闊。', desc_en: 'Captures the grandeur and vastness of natural or urban landscapes.' },
                     { label: '街頭攝影 (Street)', val: 'Street Photography', desc: '捕捉公共場所的日常生活與瞬間，強調真實感與故事性。', desc_en: 'Captures daily life/moments in public. Emphasizes realism and storytelling.' },
                     { label: '紀實攝影 (Documentary)', val: 'Documentary Photography', desc: '真實記錄事件或主題，強調客觀與敘事性。', desc_en: 'Truthfully documents events or subjects. Emphasizes objectivity and narrative.' },
                     { label: '產品攝影 (Product)', val: 'Product Photography', desc: '專注於展示產品的細節與質感，通常使用乾淨背景與專業打光。', desc_en: 'Showcases product details/textures. Clean background, professional lighting.' },
+                    { label: '電商攝影 (E-commerce)', val: 'E-commerce Photography', desc: '白底產品圖，三點打光，專業棚拍風格。', desc_en: 'White background product shots. Three-point lighting. Professional studio style.' },
                     { label: '食物攝影 (Food)', val: 'Food Photography', desc: '展現食物美味與質感的攝影，強調色澤與擺盤。', desc_en: 'Photography showing deliciousness and texture of food. Emphasizes color and plating.' },
                     { label: '時尚攝影 (Fashion)', val: 'Fashion Photography', desc: '強調服裝、造型與模特兒的時尚感。', desc_en: 'Emphasizes fashion, styling, and models.' },
                     { label: '建築攝影 (Architecture)', val: 'Architecture Photography', desc: '展現建築物結構與美感的攝影。', desc_en: 'Photography showing architectural structure and beauty.' },
@@ -283,18 +283,18 @@
                     { label: '運動攝影 (Sports)', val: 'Sports Photography', desc: '捕捉運動員的動態與精彩瞬間，高速快門凝結動作。', desc_en: 'Captures athletes in action. High shutter speed freezes motion.' },
                     { label: '野生動物 (Wildlife)', val: 'Wildlife Photography', desc: '拍攝野生動物在自然環境中的狀態。', desc_en: 'Photographs wild animals in their natural habitat.' },
                     { label: '水下攝影 (Underwater)', val: 'Underwater Photography', desc: '水下環境的攝影，呈現海洋生物與光影效果。', desc_en: 'Photography in underwater environments. Shows marine life and light effects.' },
-                    { label: '空拍攝影 (Aerial/Drone)', val: 'Aerial Photography', desc: '從空中俯瞰的視角，使用無人機或飛機拍攝的鳥瞰畫面。', desc_en: 'Bird\'s eye view from above. Captured using drones or aircraft.' },
-                    // === 鏡頭類型 ===
+                    { label: '空拍攝影 (Aerial/Drone)', val: 'Aerial Photography', desc: '從空中俯瞰的視角，使用無人機或飛機拍攝的鳥瞰畫面。', desc_en: 'Bird\'s eye view from above. Captured using drones or aircraft.' }
+                ],
+                "相機與鏡頭 (Camera & Gear)": [
+                    // === 鏡頭 ===
                     { label: '廣角鏡頭 (Wide Angle)', val: 'Wide Angle Lens', desc: '視野寬廣，強調空間感與透視變形，適合風景或狹窄空間。', desc_en: 'Wide field of view. Emphasizes space and perspective. Good for landscapes/tight spaces.' },
                     { label: '超廣角 (Ultra Wide)', val: 'Ultra Wide Angle Lens', desc: '極寬視野，適合建築與壯闘風景。', desc_en: 'Extremely wide view. Great for architecture and grand landscapes.' },
                     { label: '35mm鏡頭 (35mm)', val: '35mm Lens', desc: '經典人文視角，接近人眼視覺，適合街拍。', desc_en: 'Classic humanistic perspective, close to human vision. Great for street.' },
                     { label: '50mm鏡頭 (50mm)', val: '50mm Lens', desc: '標準鏡頭，真實自然的透視感，萬用焦段。', desc_en: 'Standard lens, real and natural perspective. Versatile focal length.' },
                     { label: '85mm鏡頭 (85mm)', val: '85mm Lens', desc: '經典人像焦段，柔美的壓縮感與散景。', desc_en: 'Classic portrait focal length. Beautiful compression and bokeh.' },
                     { label: '長焦鏡頭 (Telephoto)', val: 'Telephoto Lens', desc: '壓縮空間感，使前後景看起來更貼近，背景模糊效果強。', desc_en: 'Compresses space. Makes foreground/background look closer. Strong background blur.' },
-                    { label: '魚眼鏡頭 (Fisheye)', val: 'Fisheye Lens', desc: '極度寬廣的視野，產生強烈的球形扭曲效果。', desc_en: 'Extreme wide field of view. Strong spherical distortion.' },
-                    { label: '微距攝影 (Macro)', val: 'Macro Photography', desc: '極近距離拍攝，展現肉眼難見的細節（如昆蟲、花蕊）。', desc_en: 'Extreme close-up. Reveals invisible details (insects, stamens).' },
-                    { label: '電商攝影 (E-commerce)', val: 'E-commerce Photography', desc: '白底產品圖，三點打光，專業棚拍風格。', desc_en: 'White background product shots. Three-point lighting. Professional studio style.' },
-                    // === 技術效果 ===
+                    { label: '微距 (Macro)', val: 'Macro Photography', desc: '極近距離拍攝微小物體，展現細節世界。', desc_en: 'Extreme close-up. Reveals world of details.' },
+                    // === 技術與效果 ===
                     { label: '散景 (Bokeh)', val: 'Bokeh', desc: '利用大光圈使背景模糊成柔美的光斑，突出主體。', desc_en: 'Uses large aperture to blur background into soft light spots. Highlights subject.' },
                     { label: '移軸攝影 (Tilt-Shift)', val: 'Tilt-Shift', desc: '讓真實場景看起來像微縮模型玩具。', desc_en: 'Makes real scenes look like miniature toy models.' },
                     { label: '長曝光 (Long Exposure)', val: 'Long Exposure', desc: '慢快門，讓移動的光點變光軌，流水變霧狀。', desc_en: 'Slow shutter. Turns moving lights to trails, water to mist.' },
@@ -302,13 +302,7 @@
                     { label: '銳利對焦 (Sharp Focus)', val: 'Sharp Focus', desc: '主體清晰銳利。', desc_en: 'Subject is clear and sharp.' },
                     { label: '柔焦 (Soft Focus)', val: 'Soft Focus', desc: '輕微模糊的夢幻效果，常用於浪漫人像。', desc_en: 'Slightly blurred dreamy effect. Often used for romantic portraits.' },
                     { label: '抓拍 (Candid)', val: 'Candid', desc: '自然、不經意的瞬間捕捉。', desc_en: 'Natural, unposed moment capture.' },
-                    // === 視角與構圖 ===
-                    { label: '俯視 (Top Down)', val: 'Top Down', desc: '從正上方往下拍攝的視角。', desc_en: 'View from directly above.' },
-                    { label: '仰角 (Low Angle)', val: 'Low Angle Shot', desc: '從下往上拍攝，使主體顯得高大威嚴。', desc_en: 'Shot from below looking up. Makes subject appear tall and imposing.' },
-                    { label: '平視 (Eye Level)', val: 'Eye Level Shot', desc: '與主體視線平齊的自然視角。', desc_en: 'Natural view at subject\'s eye level.' },
-                    { label: '過肩鏡頭 (Over-the-shoulder)', val: 'Over-the-shoulder Shot', desc: '從一人身後拍攝另一人，強調對話與關係。', desc_en: 'Shot from behind one person looking at another. Emphasizes dialogue/relationship.' },
-                    { label: '中性背景 (Neutral BG)', val: 'Neutral Background', desc: '乾淨、不搶眼的背景。', desc_en: 'Clean, unobtrusive background.' },
-                    // === 經典底片風格 ===
+                    // === 底片風格 ===
                     { label: 'Kodak Portra 400', val: 'Kodak Portra 400', desc: '膚色溫潤自然，顆粒細緻，人像首選。', desc_en: 'Warm, natural skin tones. Fine grain. Best for portraits.' },
                     { label: 'Kodak Ektar 100', val: 'Kodak Ektar 100', desc: '極高飽和度與銳利度，藍天與紅色特別鮮豔。', desc_en: 'Ultra high saturation and sharpness. Vivid blues and reds.' },
                     { label: 'Kodak Gold 200', val: 'Kodak Gold 200', desc: '經典消費級底片，溫暖金黃色調，懷舊感強。', desc_en: 'Classic consumer film. Warm golden tones. Strong nostalgic feel.' },
@@ -344,6 +338,8 @@
                     { label: '體積光 (Volumetric)', val: 'Volumetric Lighting', desc: '光線穿過霧氣形成的可見光束（丁達爾效應）。', desc_en: 'Visible light beams through fog (Tyndall effect).' },
                     { label: '霓虹燈 (Neon)', val: 'Neon Lights', desc: '色彩鮮豔的高飽和度發光管，賽博龐克風格。', desc_en: 'Vibrant, high-saturation tube lights. Cyberpunk style.' },
                     { label: '生物發光 (Bioluminescent)', val: 'Bioluminescent', desc: '生物體發出的冷光，神祕科技感。', desc_en: 'Cold light from organisms. Mysterious and tech-feel.' },
+                    { label: '蝴蝶光 (Butterfly)', val: 'Butterfly Lighting', desc: '經典好萊塢人像光，鼻下形成蝴蝶狀陰影，美化臉型。', desc_en: 'Classic Hollywood portrait light. Butterfly shadow under nose. Flattering.' },
+                    { label: '雙重曝光 (Double Exposure)', val: 'Double Exposure', desc: '重複曝光技法，將兩個畫面疊合，夢幻且超現實。', desc_en: 'Multiple exposure technique. Overlays images. Dreamy and surreal.' },
                     // === 明暗控制 ===
                     { label: '高對比 (High Contrast)', val: 'High Contrast', desc: '明暗差異極大，視覺強烈。', desc_en: 'Extreme light/dark difference. Strong visual.' },
                     { label: '低調 (Low Key)', val: 'Low Key', desc: '以暗色調為主，強調陰影與輪廓。', desc_en: 'Dark tones dominant. Emphasizes shadows and outlines.' },
@@ -405,16 +401,25 @@
                     { label: '金箔 (Gold Foil)', val: 'Gold Foil', desc: '閃亮的金屬箔片質感，奢華燙金效果。', desc_en: 'Shiny metallic foil texture. Luxurious gilded effect.' },
                     { label: '全息 (Holographic)', val: 'Holographic', desc: '彩虹光澤的全息材質，科技感十足。', desc_en: 'Rainbow-sheen holographic material. High-tech feel.' }
                 ],
-                "構圖與版面 (Composition & Layout)": [
+                "攝影構圖 (Photo Composition)": [
                     { label: '三分法 (Rule of Thirds)', val: 'Rule of Thirds', desc: '將主體置於九宮格交叉點，視覺平衡自然。', desc_en: 'Subject at grid intersections. Visually balanced and natural.' },
                     { label: '黃金比例 (Golden Ratio)', val: 'Golden Ratio Composition', desc: '基於1:1.618的完美比例構圖，自然和諧。', desc_en: 'Composition based on 1:1.618 ratio. Natural and harmonious.' },
                     { label: '中心構圖 (Center)', val: 'Center Composition', desc: '主體居中，強調對稱與莊重。', desc_en: 'Subject centered. Emphasizes symmetry and solemnity.' },
                     { label: '對稱 (Symmetrical)', val: 'Symmetrical', desc: '左右或上下鏡像對稱，穩定和諧。', desc_en: 'Mirrored left/right or top/bottom. Stable and harmonious.' },
+                    { label: '填滿畫面 (Fill the Frame)', val: 'Fill the Frame', desc: '主體佔據整個畫面，強調細節與張力。', desc_en: 'Subject fills frame. Emphasizes details and tension.' },
+                    { label: '全景 (Panoramic)', val: 'Panoramic', desc: '超寬視野的全景畫面，展現壯闊場景。', desc_en: 'Ultra-wide panoramic view. Shows grand scenes.' },
+                    // === 視角 ===
+                    { label: '俯視 (Top Down)', val: 'Top Down', desc: '從正上方往下拍攝的視角。', desc_en: 'View from directly above.' },
+                    { label: '仰角 (Low Angle)', val: 'Low Angle Shot', desc: '從下往上拍攝，使主體顯得高大威嚴。', desc_en: 'Shot from below looking up. Makes subject appear tall and imposing.' },
+                    { label: '平視 (Eye Level)', val: 'Eye Level Shot', desc: '與主體視線平齊的自然視角。', desc_en: 'Natural view at subject\'s eye level.' },
+                    { label: '過肩鏡頭 (Over-the-shoulder)', val: 'Over-the-shoulder Shot', desc: '從一人身後拍攝另一人，強調對話與關係。', desc_en: 'Shot from behind one person looking at another. Emphasizes dialogue/relationship.' },
+                    { label: '中性背景 (Neutral BG)', val: 'Neutral Background', desc: '乾淨、不搶眼的背景。', desc_en: 'Clean, unobtrusive background.' }
+                ],
+                "設計排版 (Design Layout)": [
                     { label: '平鋪 (Knolling)', val: 'Knolling', desc: '物體平行或90度整齊排列，井然有序。', desc_en: 'Objects arranged parallel or at 90 degrees. Orderly.' },
                     { label: '等角視圖 (Isometric)', val: 'Isometric', desc: '2.5D 平行投影，無透視變形，適合地圖或模型。', desc_en: '2.5D parallel projection. No perspective distortion. Good for maps/models.' },
                     { label: '留白 (Negative Space)', val: 'Negative Space', desc: '大面積空白，突顯主體，營造意境。', desc_en: 'Large empty areas. Highlights subject, creates mood.' },
                     { label: '文字留白 (Text Space)', val: 'Negative Space for Text', desc: '預留文字疊加空間，適合社群媒體與簡報背景。', desc_en: 'Reserved space for text overlay. Good for social media and presentations.' },
-                    { label: '填滿畫面 (Fill the Frame)', val: 'Fill the Frame', desc: '主體佔據整個畫面，強調細節與張力。', desc_en: 'Subject fills frame. Emphasizes details and tension.' },
                     { label: '雜誌排版 (Magazine)', val: 'Magazine Layout', desc: '結合精緻字體與圖片的時尚排版。', desc_en: 'Stylish layout combining exquisite fonts and images.' },
                     { label: '電影海報 (Movie Poster)', val: 'Movie Poster', desc: '強調標題與主角，戲劇性強，吸引目光。', desc_en: 'Emphasizes title and characters. Dramatic and eye-catching.' },
                     { label: '雙重曝光 (Double Exposure)', val: 'Double Exposure', desc: '兩張影像疊合，夢幻超現實。', desc_en: 'Two images overlaid. Dreamy and surreal.' },
@@ -423,9 +428,10 @@
                     { label: '排版 (Typography)', val: 'Typography', desc: '強調文字設計與排列。', desc_en: 'Emphasizes text design and arrangement.' },
                     { label: '瑞士風格 (Swiss Style)', val: 'Swiss Style', desc: '強調網格系統、無襯線字體與非對稱佈局，客觀清晰。', desc_en: 'Emphasizes grid systems, sans-serif typography, and asymmetric layouts. Objective and clear.' },
                     { label: '儀表板 (Dashboard UI)', val: 'Dashboard UI', desc: '數據儀表板介面風格。', desc_en: 'Data dashboard interface style.' },
-                    { label: '全景 (Panoramic)', val: 'Panoramic', desc: '超寬視野的全景畫面，展現壯闊場景。', desc_en: 'Ultra-wide panoramic view. Shows grand scenes.' },
                     { label: 'T字姿勢 (T-pose)', val: 'T-pose', desc: '角色設計標準姿勢，雙臂平舉，適合3D建模參考。', desc_en: 'Standard character design pose. Arms raised horizontally. Good for 3D modeling.' },
-                    { label: '正/側視圖 (Front/Side View)', val: 'Front/Side View', desc: '同時展示角色的正面與側面視圖，角色設定圖必備。', desc_en: 'Shows both front and side views of character. Essential for character sheets.' }
+                    { label: '正/側視圖 (Front/Side View)', val: 'Front/Side View', desc: '同時展示角色的正面與側面視圖，角色設定圖必備。', desc_en: 'Shows both front and side views of character. Essential for character sheets.' },
+                    { label: '視覺隱喻 (Visual Metaphor)', val: 'Visual Metaphor', desc: '使用象徵物體表達抽象概念，充滿創意。', desc_en: 'Uses symbolic objects to express abstract concepts. Creative.' },
+                    { label: '抽象背景 (Abstract BG)', val: 'Abstract Background', desc: '流體、漸層或幾何形狀構成的背景，適合簡報或UI。', desc_en: 'Backgrounds with fluids, gradients, or geometry. Good for slides/UI.' }
                 ],
                 "數位與 3D (Digital & 3D)": [
                     { label: '照片寫實 (Photorealistic)', val: 'Photorealistic', desc: '極致真實，難以分辨是照片還是繪圖。', desc_en: 'Extremely realistic. Hard to distinguish from photos.' },
@@ -483,7 +489,10 @@
                     { label: '希臘羅馬 (Greco-Roman)', val: 'Greco-Roman', desc: '古典雕塑、神殿柱式與神話題材。', desc_en: 'Classical sculpture, temple columns, mythological themes.' },
                     { label: '哥德式 (Gothic)', val: 'Gothic', desc: '黑暗華麗，尖拱、玫瑰窗與神秘氛圍。', desc_en: 'Dark and ornate. Pointed arches, rose windows, mysterious atmosphere.' },
                     { label: '巴洛克 (Baroque)', val: 'Baroque', desc: '奢華繁複，動態構圖與戲劇性光影。', desc_en: 'Luxurious and elaborate. Dynamic composition and dramatic lighting.' },
-                    { label: '蒸汽波 (Vaporwave)', val: 'Vaporwave', desc: '80-90年代復古未來，粉紫調與故障美學。', desc_en: '80s-90s retro-futurism. Pink-purple tones and glitch aesthetic.' }
+                    { label: '蒸汽波 (Vaporwave)', val: 'Vaporwave', desc: '80-90年代復古未來，粉紫調與故障美學。', desc_en: '80s-90s retro-futurism. Pink-purple tones and glitch aesthetic.' },
+                    { label: 'Y2K 美學 (Y2K)', val: 'Y2K aesthetic', desc: '2000年代科技感，金屬光澤、氣泡字體與未來樂觀主義。', desc_en: '2000s tech vibe. Chrome, bubble letter, futuristic optimism.' },
+                    { label: '酸性設計 (Acid Graphics)', val: 'Acid Graphics', desc: '迷幻色彩、扭曲字體與幾何圖形，前衛視覺。', desc_en: 'Psychedelic colors, distorted fonts, geometric shapes. Avant-garde.' },
+                    { label: '全息雷射 (Holographic)', val: 'Holographic', desc: '雷射虹彩、金屬偏光質感，科幻時尚。', desc_en: 'Laser iridescent, metallic polarization. Sci-fi fashion.' }
                 ],
                 "AI 熱門風格 (AI Trending)": [
                     { label: '夢核 (Dreamcore)', val: 'Dreamcore', desc: '超現實夢境，熟悉卻陌生的不安感。', desc_en: 'Surreal dreamscape. Familiar yet unsettling uncanny feeling.' },
@@ -596,19 +605,33 @@
                     gf_robot_cinema: { name: '電影光感機器人 (Cinematic)', desc: '電影感光影的寫實機器人特寫。', desc_en: 'Photorealistic close-up of a cute robot gardening in a greenhouse. Cinematic lighting, vibrant colors, shot on 35mm lens.', subject: 'Cute robot gardening in a greenhouse', title: 'Robot Gardener', styles: ['Photorealistic', 'Cinematic Lighting', '35mm Lens', 'Vibrant Colors'], sections: [], ar: '16:9', texture: '' },
                     gf_robot_ghibli: { name: '吉卜力風格 (Ghibli Style)', desc: '吉卜力動畫風格，手繪質感與自然光。', desc_en: 'Studio Ghibli anime style. Lush green, natural light, hand-drawn texture.', subject: 'Cute robot gardening in a greenhouse', title: 'Anime Robot', styles: ['Studio Ghibli', 'Anime', 'Natural Light', 'Lush Green'], sections: [], ar: '16:9', texture: '' },
                     gf_robot_cyber: { name: '賽博龐克 (Cyberpunk)', desc: '賽博龐克風格，霓虹光與廣角鏡頭。', desc_en: 'Cyberpunk style. Neon lights, blue and pink lighting, wide angle.', subject: 'Robot in neon greenhouse', title: 'Cyber Plant', styles: ['Cyberpunk', 'Neon Lights', 'Wide Angle', 'High Contrast'], sections: [], ar: '16:9', texture: '' },
-                    gf_robot_macro: { name: '微距模型 (Macro Clay)', desc: '黏土動畫風格，移軸攝影與微距鏡頭。', desc_en: 'Claymation style. Macro photography, tilt-shift, bokeh.', subject: 'Tiny cute robot gardening', title: 'Clay Robot', styles: ['Claymation Style', 'Macro', 'Tilt-Shift', 'Bokeh'], sections: [], ar: '1:1', texture: '' }
+                    gf_robot_macro: { name: '微距模型 (Macro Clay)', desc: '黏土動畫風格，移軸攝影與微距鏡頭。', desc_en: 'Claymation style. Macro photography, tilt-shift, bokeh.', subject: 'Tiny cute robot gardening', title: 'Clay Robot', styles: ['Claymation Style', 'Macro', 'Tilt-Shift', 'Bokeh'], sections: [], ar: '1:1', texture: '' },
+                    ai_avatar: { name: 'AI 頭像 (Avatar)', desc: '圓形裁切友好的頭像，乾淨背景，適合 Profile Picture。', desc_en: 'Circle-crop friendly avatar. Clean background. Perfect for profile pictures.', subject: 'Friendly portrait for profile picture', title: 'Avatar', styles: ['Portrait Photography', 'Soft Light', 'Neutral Background', 'Clean'], sections: [], ar: '1:1', texture: '' },
+                    ai_character_sheet: { name: '角色設定表 (Character Sheet)', desc: 'T-Pose 角色設計，正面與側面視圖，適合遊戲開發。', desc_en: 'T-Pose character design with front and side views. Ideal for game development.', subject: 'Character design with multiple views', title: 'Character', styles: ['Concept Art', 'T-Pose', 'Front/Side View', 'Detailed'], sections: [], ar: '16:9', texture: '' },
+                    ai_seamless_pattern: { name: '無縫圖案 (Seamless Pattern)', desc: '可平鋪的無縫重複圖案，適合布料或壁紙設計。', desc_en: 'Tileable seamless repeating pattern. Ideal for fabric or wallpaper design.', subject: 'Seamless repeating pattern', title: 'Pattern', styles: ['Pattern Design', 'Tile', 'Symmetrical', 'Colorful'], sections: [], ar: '1:1', texture: '' }
+                },
+                "📦 樣機與展示 (Mockups & Showcase)": {
+                    mockup_smartphone: { name: '智慧型手機 (Smartphone)', desc: '懸浮的旗艦手機樣機，鈦金屬質感，專業棚拍光。', desc_en: 'Floating flagship smartphone mockup. Titanium texture. Professional studio lighting.', subject: 'Floating flagship smartphone mockup', title: 'App Showcase', styles: ['Product Photography', 'Studio Lighting', 'Minimalist', 'High Tech'], sections: [{ visual: 'Screen', param: 'Blank screen for UI replacement', textBlocks: [] }, { visual: 'Body', param: 'Titanium finish, sleek curves', textBlocks: [] }], ar: '3:4', texture: '' },
+                    mockup_tshirt: { name: 'T-Shirt 展示 (T-Shirt)', desc: '白色 T-Shirt 平鋪展示，中性背景，適合圖案設計。', desc_en: 'White T-shirt flat lay mockup. Neutral background. Perfect for graphic design.', subject: 'White T-shirt flat lay', title: 'T-Shirt Design', styles: ['Flat Lay', 'Minimalist', 'Soft Light', 'Clean'], sections: [], ar: '1:1', texture: 'on fabric texture' },
+                    mockup_poster: { name: '海報裱框 (Poster Frame)', desc: '現代室內場景中的裱框海報，旁有綠色植物，自然光。', desc_en: 'Framed poster in modern interior with plants. Natural light.', subject: 'Framed poster mockup in interior', title: 'Art Print', styles: ['Interior Design', 'Natural Light', 'Mockup', 'Cozy'], sections: [], ar: '3:4', texture: '' },
+                    mockup_cosmetic: { name: '化妝品瓶身 (Cosmetic)', desc: '極簡風格的化妝品瓶身，置於水面漣漪或石材展台上。', desc_en: 'Minimalist cosmetic bottle on water ripples or stone podium.', subject: 'Cosmetic bottle on podium', title: 'Beauty Product', styles: ['Product Photography', 'Water Ripples', 'Elegant', 'Minimalist'], sections: [], ar: '3:4', texture: '' }
                 },
                 "📢 商業與社群 (Business & Social)": {
+
                     social_ig_story: { name: 'IG 限時動態 (IG Story)', desc: '9:16 滿版構圖，極簡風格，留有文字空間。', desc_en: '9:16 full screen composition. Minimalist style. Space for text.', subject: 'Morning coffee on white table', title: 'Morning Vibes', styles: ['Minimalist', 'Flat Lay', 'High Key', 'Clean'], sections: [], ar: '9:16', texture: '' },
                     social_yt_thumb: { name: 'YouTube 縮圖 (Thumbnail)', desc: '高對比度，表情誇張，粗體文字，吸引點擊。', desc_en: 'High contrast. Exaggerated expressions. Bold text. Clickbait style.', subject: 'Shocked person pointing at glowing object', title: 'OMG', styles: ['YouTube Thumbnail', 'High Contrast', 'Vibrant Colors', 'Bold Display', 'Action Lines'], sections: [{ visual: 'Expressive Subject', param: 'Close-up, shocked expression, pointing finger, glowing outline', textBlocks: [] }, { visual: 'Text Overlay', param: 'Massive bold sans-serif text, yellow or red color, stroke effect', textBlocks: [{ content: 'SHOCKING!', level: 'Primary', font: 'Bold Display' }, { content: 'MUST SEE', level: 'Secondary', font: 'Bold Display' }] }, { visual: 'Background', param: 'Blurred, high saturation, dramatic lighting, arrow pointing to subject', textBlocks: [] }], ar: '16:9', texture: '' },
-                    social_carousel: { name: 'IG 輪播封面 (Carousel)', desc: '極簡風格的桌面擺設，用於生產力技巧分享。', desc_en: 'Minimalist desk setup for productivity tips post.', subject: 'Minimalist desk setup for productivity tips', title: 'Productivity', styles: ['Instagram Carousel', 'Minimalist', 'Clean', 'Bright'], sections: [{ visual: 'Clean Desk', param: 'MacBook, coffee, plant, top down', textBlocks: [] }, { visual: 'Hook Title', param: 'Center, bold typography', textBlocks: [{ content: '5 Hacks to', level: 'Primary', font: 'Bold Display' }, { content: 'Boost Focus', level: 'Primary', font: 'Sans-serif' }] }] },
-                    social_lifestyle_vibe: { name: '氛圍感貼文 (Vibe Post)', desc: '舒適的週日早午餐，酪梨吐司與拿鐵，陽光灑落。', desc_en: 'Cozy Sunday brunch with avocado toast and latte. Sunlight streaming in.', subject: 'Cozy Sunday brunch with avocado toast and latte', title: 'Sunday Mood', styles: ['Lifestyle', 'Food Photography', 'Natural Light', 'Cozy'], sections: [{ visual: 'Brunch Table', param: 'Top down, aesthetic arrangement', textBlocks: [] }, { visual: 'Text Overlay', param: 'Subtle handwritten text', textBlocks: [{ content: 'Chill Vibes', level: 'Detail', font: 'Handwritten' }] }] },
+                    social_carousel: { name: 'IG 輪播封面 (Carousel)', desc: '極簡風格的桌面擺設，用於生產力技巧分享。', desc_en: 'Minimalist desk setup for productivity tips post.', subject: 'Minimalist desk setup for productivity tips', title: 'Productivity', styles: ['Instagram Carousel', 'Minimalist', 'Clean', 'Bright'], sections: [{ visual: 'Clean Desk', param: 'MacBook, coffee, plant, top down', textBlocks: [] }, { visual: 'Hook Title', param: 'Center, bold typography', textBlocks: [{ content: '5 Hacks to', level: 'Primary', font: 'Bold Display' }, { content: 'Boost Focus', level: 'Primary', font: 'Sans-serif' }] }], ar: '1:1', texture: '' },
+                    social_lifestyle_vibe: { name: '氛圍感貼文 (Vibe Post)', desc: '舒適的週日早午餐，酪梨吐司與拿鐵，陽光灑落。', desc_en: 'Cozy Sunday brunch with avocado toast and latte. Sunlight streaming in.', subject: 'Cozy Sunday brunch with avocado toast and latte', title: 'Sunday Mood', styles: ['Lifestyle', 'Food Photography', 'Natural Light', 'Cozy'], sections: [{ visual: 'Brunch Table', param: 'Top down, aesthetic arrangement', textBlocks: [] }, { visual: 'Text Overlay', param: 'Subtle handwritten text', textBlocks: [{ content: 'Chill Vibes', level: 'Detail', font: 'Handwritten' }] }], ar: '4:3', texture: '' },
+                    social_linkedin_cover: { name: 'LinkedIn 文章封面 (LinkedIn)', desc: '職場專業風格，適合部落格文章或貼文。', desc_en: 'Professional workplace style. Ideal for blog articles or posts.', subject: 'Professional business concept', title: 'Career Growth', styles: ['Corporate', 'Professional', 'Blue and White', 'Clean'], sections: [{ visual: 'Abstract business visual', param: 'Modern office or abstract shapes', textBlocks: [{ content: 'Insights', level: 'Primary', font: 'Sans-serif' }] }], ar: '16:9', texture: '' },
+                    social_tiktok_cover: { name: 'TikTok 封面 (TikTok)', desc: '高能量、吸睛配色、大文字，適合短影音封面。', desc_en: 'High energy, eye-catching colors, large text. Ideal for short video covers.', subject: 'Energetic TikTok cover', title: 'Viral', styles: ['Vibrant Colors', 'Bold Display', 'High Contrast', 'Energetic'], sections: [{ visual: 'Subject', param: 'Dynamic pose, expressive', textBlocks: [{ content: 'Must Watch!', level: 'Primary', font: 'Bold Display' }] }], ar: '9:16', texture: '' },
                     social_linkedin_award: { name: 'LinkedIn 成就 (Award)', desc: '現代辦公桌上的玻璃獎盃，背景散景，刻有文字，適合職涯里程碑。', desc_en: 'Professional glass award trophy on a modern desk with bokeh, engraved text, ideal for career milestones.', subject: 'Crystal award trophy', title: 'Achievement', styles: ['Professional', 'Bokeh', 'Office Setting', 'Bright', 'Glass'], sections: [{ visual: 'Award on desk', param: '', textBlocks: [{ content: 'Honored to receive...', level: 'Detail', font: '' }] }], ar: '3:4', texture: '' },
                     social_fb_event: { name: 'FB 活動封面 (Event)', desc: '充滿活力的演唱會人群剪影與舞台燈光，適合活動頁面。', desc_en: 'Energetic concert crowd silhouette with stage lights for event pages.', subject: 'Concert crowd silhouette', title: 'Live Music', styles: ['Silhouette', 'Stage Lights', 'Energetic', 'Wide Angle'], sections: [{ visual: '', param: '', textBlocks: [{ content: 'LIVE TONIGHT', level: 'Primary', font: 'Bold Display' }] }], ar: '16:9', texture: '' },
                     social_pinterest_diy: { name: 'Pinterest 教學 (DIY)', desc: '手作工具與材料的平鋪佈局，整齊且具美感。', desc_en: 'Knolling layout of crafting tools and materials, organized and aesthetic.', subject: 'Crafting tools knolling', title: 'DIY Guide', styles: ['Knolling', 'Bright', 'Organized', 'Pastel Colors'], sections: [{ visual: '', param: '', textBlocks: [{ content: 'How to Make', level: 'Primary', font: 'Handwritten' }] }], ar: '3:4', texture: '' },
-                    layout_biz_poster: { name: '商業海報 (Business Poster)', desc: 'AI 科技高峰會的專業海報，機器人手與人類手接觸。', desc_en: 'Professional poster for AI Tech Summit 2025. Robotic hand touching human hand.', subject: 'AI Tech Summit 2025 poster with robotic hand touching human hand', title: 'AI Summit', styles: ['Poster Design', 'Bold Typography', 'High Resolution', 'Cyberpunk'], sections: [{ visual: 'Robotic and Human Hand', param: 'Touching fingers like Creation of Adam, sparks', textBlocks: [] }, { visual: 'Title', param: 'Top center, glowing text', textBlocks: [{ content: 'AI SUMMIT 2025', level: 'Primary', font: 'Bold Display' }, { content: 'The Future is Now', level: 'Primary', font: 'Sans-serif' }] }] },
+                    layout_biz_poster: { name: '商業海報 (Business Poster)', desc: 'AI 科技高峰會的專業海報，機器人手與人類手接觸。', desc_en: 'Professional poster for AI Tech Summit 2025. Robotic hand touching human hand.', subject: 'AI Tech Summit 2025 poster with robotic hand touching human hand', title: 'AI Summit', styles: ['Poster Design', 'Bold Typography', 'High Resolution', 'Cyberpunk'], sections: [{ visual: 'Robotic and Human Hand', param: 'Touching fingers like Creation of Adam, sparks', textBlocks: [] }, { visual: 'Title', param: 'Top center, glowing text', textBlocks: [{ content: 'AI SUMMIT 2025', level: 'Primary', font: 'Bold Display' }, { content: 'The Future is Now', level: 'Primary', font: 'Sans-serif' }] }], ar: '3:4', texture: '' },
                     ecommerce_comparison: { name: '產品比較圖 (Comparison)', desc: '左右分割畫面，展示使用前與使用後的對比效果。', desc_en: 'Split screen showing before and after comparison.', subject: 'Product comparison split screen', title: 'Vs', styles: ['Comparison', 'Split Screen', 'Before After', 'Commercial'], sections: [{ visual: 'Before/Bad Side', param: 'Left side, desaturated, messy, "Before" text', textBlocks: [{ content: 'Before', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'After/Good Side', param: 'Right side, bright, clean, organized, "After" text', textBlocks: [{ content: 'After', level: 'Primary', font: 'Sans-serif' }] }], ar: '1:1', texture: '' },
-                    ecommerce_banner: { name: '促銷橫幅 (Sale Banner)', desc: '漂浮的彩色跑鞋與熱帶葉子，夏日促銷風格。', desc_en: 'Colorful running shoes floating with tropical leaves. Summer sale style.', subject: 'Colorful running shoes floating with tropical leaves', title: 'Summer Sale', styles: ['E-commerce', '3D Render', 'Floating', 'Vibrant Colors'], sections: [{ visual: 'Floating Sneakers', param: 'Center, dynamic angle, tropical leaves background', textBlocks: [] }, { visual: 'Discount Text', param: 'Front center, massive 3D text', textBlocks: [{ content: 'SUMMER SALE', level: 'Primary', font: 'Bold Display' }, { content: '50% OFF', level: 'Primary', font: 'Sans-serif' }] }] },
+                    ecommerce_banner: { name: '促銷橫幅 (Sale Banner)', desc: '漂浮的彩色跑鞋與熱帶葉子，夏日促銷風格。', desc_en: 'Colorful running shoes floating with tropical leaves. Summer sale style.', subject: 'Colorful running shoes floating with tropical leaves', title: 'Summer Sale', styles: ['E-commerce', '3D Render', 'Floating', 'Vibrant Colors'], sections: [{ visual: 'Floating Sneakers', param: 'Center, dynamic angle, tropical leaves background', textBlocks: [] }, { visual: 'Discount Text', param: 'Front center, massive 3D text', textBlocks: [{ content: 'SUMMER SALE', level: 'Primary', font: 'Bold Display' }, { content: '50% OFF', level: 'Primary', font: 'Sans-serif' }] }], ar: '16:9', texture: '' },
+                    ecommerce_white_bg: { name: '白底產品圖 (White BG)', desc: '純白背景、銳利、無陰影，符合電商平台規範。', desc_en: 'Pure white background, sharp focus, no shadow. Meets e-commerce platform standards.', subject: 'Product on pure white background', title: 'Product', styles: ['Product Photography', 'High Key', 'Sharp Focus', 'Clean'], sections: [], ar: '1:1', texture: 'on white background' },
+                    ecommerce_lifestyle: { name: '生活風格產品 (Lifestyle)', desc: '產品在使用情境中，自然光，溫馨氛圍。', desc_en: 'Product in use context. Natural light. Warm atmosphere.', subject: 'Product in lifestyle setting', title: 'In Use', styles: ['Lifestyle', 'Natural Light', 'Cozy', 'Bokeh'], sections: [], ar: '4:3', texture: '' },
                     biz_card: { name: '名片設計 (Business Card)', desc: '極簡現代風格的商務名片設計，正反面展示。', desc_en: 'Minimalist modern business card design, front and back view.', subject: 'Modern business card mockup', title: 'Card', styles: ['Mockup', 'Minimalist', 'Stationery', 'Elegant'], sections: [{ visual: 'Card front and back', param: '', textBlocks: [{ content: 'John Doe', level: 'Primary', font: 'Serif' }, { content: 'Creative Director', level: 'Secondary', font: 'Sans-serif' }] }], ar: '4:3', texture: 'on white background' },
                     event_wedding: { name: '婚禮邀請卡 (Wedding Invitation)', desc: '優雅的婚禮邀請卡設計，包含新人姓名、日期地點、RSVP與裝飾邊框。', desc_en: 'Elegant wedding invitation design with names, date/venue, RSVP, and decorative border.', subject: 'Elegant wedding invitation card', title: 'Wedding', styles: ['Elegant', 'Gold', 'Serif', 'Floral'], sections: [{ visual: 'Names', param: 'Center, gold foil embossed script text on cream textured paper', textBlocks: [{ content: 'John & Emily', level: 'Primary', font: 'Calligraphy' }] }, { visual: 'Date/Venue', param: 'Middle, clear serif font', textBlocks: [{ content: 'June 15, 2025', level: 'Secondary', font: 'Serif' }, { content: 'Grand Hotel', level: 'Secondary', font: 'Serif' }] }, { visual: 'RSVP', param: 'Bottom, small text', textBlocks: [{ content: 'RSVP by May 1', level: 'Detail', font: 'Serif' }] }, { visual: 'Border', param: 'Decorative gold floral frame', textBlocks: [] }], ar: '3:4', texture: 'on fine art paper texture' },
                     event_birthday: { name: '生日派對傳單 (Birthday Flyer)', desc: '兒童生日派對邀請，色彩繽紛，卡通風格，氣球裝飾。', desc_en: 'Kids birthday party invitation with colorful design, cartoon style, and balloon decorations.', subject: 'Colorful birthday party flyer', title: 'Party!', styles: ['Colorful', 'Fun', 'Cartoon', 'Vibrant Colors'], sections: [{ visual: 'Title', param: 'Top, playful font', textBlocks: [{ content: 'You\'re Invited!', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Details', param: 'Center, party info', textBlocks: [{ content: 'Sarah\'s 5th Birthday', level: 'Primary', font: 'Sans-serif' }, { content: 'Saturday 2 PM', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Balloons', param: 'Background decoration', textBlocks: [] }], ar: '3:4', texture: '' },
@@ -627,9 +650,9 @@
                     ui_ecommerce: { name: '電商產品頁 (E-commerce)', desc: '時尚的電商產品詳情頁面，包含產品圖、價格與購買按鈕。', desc_en: 'Stylish e-commerce product detail page with product image, price and buy button.', subject: 'Sneaker product page UI', title: 'Shop', styles: ['UI/UX', 'Clean', 'Commercial', 'Modern'], sections: [{ visual: 'Product image left', param: '', textBlocks: [{ content: 'Summer Collection', level: 'Primary', font: '' }, { content: '$99.00', level: 'Primary', font: 'Bold Display' }] }], ar: '4:3', texture: '' },
                     ui_dashboard_dark: { name: '深色儀表板 (Dark Dash)', desc: '賽博龐克風格的數據分析儀表板，霓虹圖表與數據。', desc_en: 'Cyberpunk style data analytics dashboard with neon charts and metrics.', subject: 'Data analytics dashboard dark mode', title: 'Analytics', styles: ['Dashboard UI', 'Dark Mode', 'Neon Lights', 'Cyberpunk'], sections: [{ visual: 'Graphs and charts', param: '', textBlocks: [{ content: 'Traffic', level: 'Detail', font: '' }, { content: 'Live Data', level: 'Primary', font: 'Monospace' }] }], ar: '16:9', texture: '' },
                     ui_mobile_game: { name: '手遊介面 (Game UI)', desc: '可愛卡通風格的手機遊戲主選單，包含開始按鈕與角色。', desc_en: 'Cute cartoon style mobile game main menu with start button and character.', subject: 'Mobile game main menu', title: 'Game Start', styles: ['Game UI', 'Cartoon', 'Vibrant Colors', 'Cute'], sections: [{ visual: 'Play button center', param: '', textBlocks: [{ content: 'PLAY', level: 'Primary', font: 'Bold Display' }] }], ar: '9:16', texture: '' },
+                    ui_neobrutalism: { name: '新粗獷主義 (Neo-Brutalism)', desc: '高對比、粗黑框線、鮮豔色彩的復古電腦風格 UI。', desc_en: 'High contrast, thick black outlines, vibrant colors. Retro computer style UI.', subject: 'Neo-brutalism app interface', title: 'Retro UI', styles: ['Brutalism', 'High Contrast', 'Vibrant Colors', 'Retro'], sections: [{ visual: 'Button', param: 'Hard shadows, bold borders', textBlocks: [{ content: 'CLICK ME', level: 'Primary', font: 'Monospace' }] }], ar: '9:16', texture: '' },
                     ui_landing_page: { name: 'SaaS 著陸頁 (Landing)', desc: '現代 SaaS 軟體的著陸頁設計，包含標題、特點與插圖。', desc_en: 'Modern SaaS software landing page design with headline, features and illustration.', subject: 'SaaS landing page layout', title: 'SaaS', styles: ['UI/UX', 'Corporate', 'Blue and White', 'Vector Art'], sections: [{ visual: 'Hero section', param: '', textBlocks: [{ content: 'Boost Productivity', level: 'Primary', font: 'Sans-serif' }] }], ar: '16:9', texture: '' },
-                    layout_swiss_grid: { name: '瑞士風格 (Swiss Style)', desc: '使用非對稱網格與無襯線字體的國際字體風格。', desc_en: 'International Typographic Style using asymmetric grids and sans-serif typography.', subject: 'Abstract geometric shapes', title: 'Modernism', styles: ['Swiss Design', 'Bauhaus', 'Grid Layout'], sections: [{ visual: 'Geometric shapes', param: 'Red and Black', textBlocks: [{ content: 'HELVETICA', level: 'Primary', font: 'Swiss Design' }] }], ar: '3:4', texture: '' },
-                    layout_bento_grid: { name: '便當盒佈局 (Bento Grid)', desc: '蘋果風格的模組化網格佈局，用於展示功能或產品。', desc_en: 'Apple-style modular grid layout for showcasing features or products.', subject: 'Tech product features', title: 'Features', styles: ['Bento Grid', 'Rounded Corners', 'Glassmorphism', 'Clean UI'], sections: [], ar: '4:3', texture: '' },
+                    design_swiss_system: { name: '瑞士國際主義 (Swiss Style)', desc: '使用非對稱網格與無襯線字體的國際字體風格，強調清晰與客觀。', desc_en: 'International Typographic Style using asymmetric grids and sans-serif typography. Emphasizes clarity and objectivity.', subject: 'Abstract geometric composition', title: 'Modernism', styles: ['Swiss Design', 'Bauhaus', 'Grid Layout', 'Typography', 'Minimalist'], sections: [{ visual: 'Grid', param: 'Asymmetric layout, red and black', textBlocks: [{ content: 'HELVETICA', level: 'Primary', font: 'Swiss Design', weight: 'Bold' }, { content: 'International Style', level: 'Secondary', font: 'Swiss Design' }] }], ar: '3:4', texture: '' },
                     layout_split_screen: { name: '左右分割 (Split Screen)', desc: '高對比的分割畫面構圖，適合用於比較。', desc_en: 'High contrast split screen composition, ideal for comparisons.', subject: 'Day vs Night landscape', title: 'Duality', styles: ['Split Screen', 'Contrast', 'Symmetrical'], sections: [], ar: '16:9', texture: '' },
                     layout_magazine_spread: { name: '雜誌跨頁 (Mag Spread)', desc: '包含文字欄與滿版圖片的跨頁設計外觀。', desc_en: 'Two-page layout look with text column and full bleed image.', subject: 'Fashion editorial', title: 'Interview', styles: ['Magazine Layout', 'Editorial', 'Typography'], sections: [{ visual: 'Full page photo left', param: '', textBlocks: [] }, { visual: 'Text columns right', param: '', textBlocks: [{ content: 'The Interview', level: 'Primary', font: '' }] }], ar: '4:3', texture: '' },
                     layout_central_hero: { name: '中心英雄 (Central Hero)', desc: '主體居中，帶有放射狀元素，強烈的視覺焦點。', desc_en: 'Subject centered with radiating elements, strong focal point.', subject: 'Super hero character', title: 'Hero', styles: ['Symmetrical', 'Epic Lighting'], sections: [], ar: '3:4', texture: '' },
@@ -648,7 +671,7 @@
                     complex_magazine: { name: '時尚雜誌封面 (Magazine Cover)', desc: '包含刊頭、模特兒、標題、條碼與更多細節的完整雜誌封面佈局。', desc_en: 'Complete magazine cover layout with masthead, model, headlines, barcode, and more details.', subject: 'High fashion model posing in elegant dress', title: 'VOGUE', styles: ['Magazine Layout', 'High Fashion', 'Studio Lighting', 'Typography', 'Elegant', 'Glossy'], sections: [{ visual: 'Skyline (Top Strip)', param: 'Top edge text, small sans-serif, uppercase', textBlocks: [{ content: 'SPECIAL EDITION', level: 'Detail', font: 'Sans-serif', weight: 'Light' }, { content: 'THE SUMMER ISSUE', level: 'Detail', font: 'Sans-serif', weight: 'Medium' }] }, { visual: 'Masthead (Title)', param: 'Top center, massive bold serif font, overlaying model head slightly, gold or white color', textBlocks: [{ content: 'VOGUE', level: 'Primary', font: 'Serif', weight: 'ExtraBold' }] }, { visual: 'Tagline', param: 'Small text immediately below masthead, centered', textBlocks: [{ content: 'FASHION & LIFESTYLE', level: 'Detail', font: 'Sans-serif', weight: 'Regular' }] }, { visual: 'Model Portrait', param: 'Center, medium shot, direct eye contact, elegant pose, studio gray background, high fashion makeup', textBlocks: [] }, { visual: 'Main Headline', param: 'Bottom center, massive bold display font, high contrast color', textBlocks: [{ content: 'NEW LOOK', level: 'Primary', font: 'Bold Display', weight: 'Heavy' }] }, { visual: 'Sub-headline', param: 'Below main headline, smaller serif font', textBlocks: [{ content: 'Exclusive Interview with the Star', level: 'Secondary', font: 'Serif', weight: 'Medium' }] }, { visual: 'Cover Lines (Left)', param: 'Left side list, aligned left, varied font weights', textBlocks: [{ content: '100+ Summer Trends', level: 'Body', font: 'Sans-serif', weight: 'Bold' }, { content: 'Beauty Secrets Revealed', level: 'Body', font: 'Sans-serif', weight: 'Light' }] }, { visual: 'Cover Lines (Right)', param: 'Right side list, aligned right, varied font weights', textBlocks: [{ content: 'Travel: Paris Guide', level: 'Body', font: 'Sans-serif', weight: 'Bold' }, { content: 'Healthy Living', level: 'Body', font: 'Sans-serif', weight: 'Light' }] }, { visual: 'Puff / Badge', param: 'Circular badge element, bright color, containing text', textBlocks: [{ content: 'WIN!', level: 'Secondary', font: 'Bold Display', weight: 'Black' }, { content: 'Luxury Trip', level: 'Detail', font: 'Sans-serif', weight: 'Bold' }] }, { visual: 'Footer Info', param: 'Bottom edge, tiny text, spacing', textBlocks: [{ content: 'WWW.VOGUE.COM', level: 'Detail', font: 'Sans-serif', weight: 'Regular' }, { content: 'SEPTEMBER 2025', level: 'Detail', font: 'Sans-serif', weight: 'Regular' }] }, { visual: 'Barcode & Price', param: 'Bottom right corner, realistic barcode box', textBlocks: [{ content: '$5.99', level: 'Detail', font: 'Monospace', weight: 'Regular' }] }, { visual: 'Model Credit', param: 'Bottom left or vertical along edge, tiny text', textBlocks: [{ content: 'Photo by Annie Leibovitz', level: 'Detail', font: 'Sans-serif', weight: 'Light' }] }], ar: '3:4', texture: 'on glossy plastic texture' },
                     complex_rpg_hud: { name: 'RPG 遊戲介面 (Game HUD)', desc: '包含狀態列、小地圖、技能欄與任務目標的遊戲介面。', desc_en: 'Game HUD with status bar, mini-map, skill bar, and quest objectives.', subject: 'Fantasy RPG game screenshot', title: 'Game UI', styles: ['Game Asset', 'UI/UX', 'Fantasy', 'Detailed'], sections: [{ visual: 'Status Bar (HP/MP)', param: 'Top left, red and blue bars', textBlocks: [{ content: 'HP: 100/100', level: 'Detail', font: 'Bold Display' }] }, { visual: 'Mini-map', param: 'Top right, circular map', textBlocks: [] }, { visual: 'Skill Bar', param: 'Bottom center, icons', textBlocks: [{ content: '1', level: 'Detail', font: '' }, { content: '2', level: 'Detail', font: '' }, { content: '3', level: 'Detail', font: '' }] }, { visual: 'Quest Log', param: 'Right side, translucent list', textBlocks: [{ content: 'Quest: Find the Dragon', level: 'Secondary', font: 'Serif' }] }], ar: '16:9', texture: '' },
                     complex_tech_landing: { name: '科技產品頁 (Product Page)', desc: '包含主視覺、標題、功能特點與購買按鈕的電商網頁設計。', desc_en: 'E-commerce landing page with hero image, header, features, and buy button.', subject: 'Modern smartphone landing page', title: 'Smart Phone', styles: ['UI/UX', 'Clean', 'Modern', 'Product Photography'], sections: [{ visual: 'Header / Nav', param: 'Top bar, logo and menu', textBlocks: [{ content: 'Logo', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Hero Image', param: 'Center, large product shot', textBlocks: [] }, { visual: 'Feature List', param: 'Bottom left, icons and text', textBlocks: [{ content: '5G Ready', level: 'Secondary', font: 'Sans-serif' }, { content: 'AI Camera', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Buy Button', param: 'Bottom right, call to action', textBlocks: [{ content: 'Buy Now', level: 'Primary', font: 'Bold Display' }] }], ar: '16:9', texture: '' },
-                    complex_scifi_poster: { name: '科幻電影海報 (Sci-Fi Poster)', desc: '包含演員名單、主角/反派對立、標題與演職員表的電影海報。', desc_en: 'Movie poster with cast names, hero/villain contrast, title, and credit block.', subject: 'Sci-fi movie poster space battle', title: 'Star War', styles: ['Movie Poster Composition', 'Teal and Orange', 'Cinematic Lighting', 'Sci-Fi'], sections: [{ visual: 'Cast Names', param: 'Top, spaced out text', textBlocks: [{ content: 'Actor One   Actor Two', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Hero vs Villain', param: 'Center, dynamic composition', textBlocks: [] }, { visual: 'Movie Title', param: 'Lower center, massive font', textBlocks: [{ content: 'GALACTIC', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Credit Block', param: 'Bottom, tiny condensed text', textBlocks: [{ content: 'Directed by...', level: 'Detail', font: 'Monospace' }] }], ar: '3:4', texture: '' },
+
                     complex_timeline: { name: '時間軸資訊圖 (Timeline)', desc: '包含標題、過去、現在與未來四個階段的資訊圖表。', desc_en: 'Infographic with title, past, present, and future phases.', subject: 'Company history timeline infographic', title: 'History', styles: ['Infographic', 'Vector Art', 'Flat Design', 'Business'], sections: [{ visual: 'Main Title', param: 'Top center', textBlocks: [{ content: 'Our Journey', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Phase 1: Start', param: 'Left, 2020', textBlocks: [{ content: '2020: Founded', level: 'Secondary', font: 'Noto Sans TC' }] }, { visual: 'Phase 2: Growth', param: 'Center, 2023', textBlocks: [{ content: '2023: Expansion', level: 'Secondary', font: 'Noto Sans TC' }] }, { visual: 'Phase 3: Future', param: 'Right, 2025', textBlocks: [{ content: '2025: Global', level: 'Secondary', font: 'Noto Sans TC' }] }], ar: '16:9', texture: '' }
                 },
                 "📚 教育與解說 (Education & Info)": {
@@ -661,10 +684,10 @@
                     edu_poster: { name: '學術研討海報 (Academic Poster)', desc: '科學研究海報，包含標題、摘要、結果與結論。', desc_en: 'Scientific research poster with title, abstract, results, and conclusion.', subject: 'Scientific research poster', title: 'Research', styles: ['Professional', 'Clean', 'Infographic', 'Academic'], sections: [{ visual: 'Title', param: 'Top, institution logo', textBlocks: [{ content: 'Climate Change Impact', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Abstract', param: 'Left column', textBlocks: [{ content: 'Background and methods...', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Results', param: 'Center, charts', textBlocks: [{ content: 'Key Findings', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Conclusion', param: 'Right column', textBlocks: [{ content: 'Summary and future work...', level: 'Secondary', font: 'Sans-serif' }] }], ar: '4:3', texture: '' },
                     edu_worksheet: { name: '學習單範本 (Worksheet)', desc: '數學練習學習單，包含標題、題目與解答區。', desc_en: 'Math practice worksheet with header, problems, and answer section.', subject: 'Math practice worksheet', title: 'Math Practice', styles: ['Clean', 'Educational', 'Grid Layout', 'Typography'], sections: [{ visual: 'Header', param: 'Top, name and date', textBlocks: [{ content: 'Name: ______', level: 'Secondary', font: 'Sans-serif' }, { content: 'Date: ______', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Problems', param: 'Center, numbered list', textBlocks: [{ content: '1. 2 + 2 = __', level: 'Secondary', font: 'Monospace' }, { content: '2. 5 × 3 = __', level: 'Secondary', font: 'Monospace' }] }, { visual: 'Answer key', param: 'Bottom, small text', textBlocks: [{ content: 'Answers: 1. 4  2. 15', level: 'Detail', font: 'Monospace' }] }], ar: '3:4', texture: 'on lined notebook paper' },
                     sci_lab_diagram: { name: '實驗流程圖 (Lab Diagram)', desc: '科學實驗設備流程圖，包含標題、設備、步驟與結果。', desc_en: 'Scientific experiment setup diagram with title, equipment, steps, and results.', subject: 'Laboratory experiment diagram', title: 'Experiment', styles: ['Technical', 'Clean', 'Educational', 'Vector'], sections: [{ visual: 'Title', param: 'Top, experiment name', textBlocks: [{ content: 'Photosynthesis Experiment', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Equipment', param: 'Left, list of tools', textBlocks: [{ content: 'Materials:', level: 'Secondary', font: 'Sans-serif' }, { content: '• Beaker', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Steps', param: 'Center, numbered flowchart', textBlocks: [{ content: 'Step 1: Prepare solution', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Results', param: 'Right, observations', textBlocks: [{ content: 'Observations', level: 'Primary', font: 'Sans-serif' }] }], ar: '16:9', texture: 'on white background' },
-                    sci_chart: { name: '數據圖表 (Data Chart)', desc: '研究數據視覺化圖表，包含標題、圖表與圖例。', desc_en: 'Research data visualization chart with title, chart, and legend.', subject: 'Research data chart', title: 'Data', styles: ['Infographic', 'Professional', 'Blue', 'Clean'], sections: [{ visual: 'Title', param: 'Top, clear heading', textBlocks: [{ content: 'Monthly Temperature Rise', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Chart', param: 'Center, bar or line graph', textBlocks: [] }, { visual: 'Legend', param: 'Bottom or side', textBlocks: [{ content: '■ 2023  ■ 2024', level: 'Detail', font: 'Sans-serif' }] }], ar: '16:9', texture: '' },
+                    info_chart_universal: { name: '通用數據圖表 (Data Chart)', desc: '專業的數據視覺化圖表，適用於商業報告或學術研究。', desc_en: 'Professional data visualization chart suitable for business reports or academic research.', subject: 'Data visualization chart', title: 'Analytics', styles: ['Infographic', 'Professional', 'Clean', 'Vector Art'], sections: [{ visual: 'Title', param: 'Top, clear heading', textBlocks: [{ content: 'Growth Trends', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Chart', param: 'Center, bar or line graph', textBlocks: [] }, { visual: 'Legend', param: 'Bottom or side', textBlocks: [{ content: '■ Series A  ■ Series B', level: 'Detail', font: 'Sans-serif' }] }], ar: '16:9', texture: '' },
                     sci_poster: { name: '研究海報 (Research Poster)', desc: '學術研討會研究海報，包含摘要、方法、結果與結論。', desc_en: 'Conference research poster with abstract, methods, results, and conclusion.', subject: 'Scientific research poster', title: 'Research', styles: ['Academic', 'Clean', 'Infographic', 'Professional'], sections: [{ visual: 'Abstract', param: 'Top left, summary', textBlocks: [{ content: 'Abstract: This study examines...', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Methods', param: 'Left column', textBlocks: [{ content: 'Methods', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Results', param: 'Center, charts and data', textBlocks: [{ content: 'Results', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Conclusion', param: 'Bottom right', textBlocks: [{ content: 'Conclusion', level: 'Primary', font: 'Sans-serif' }] }], ar: '4:3', texture: '' },
                     sci_microscope: { name: '顯微鏡視圖 (Microscope View)', desc: '顯微鏡下的細胞樣本，生物發光效果，科學視覺。', desc_en: 'Microscopic cell sample with bioluminescent effect and scientific visual.', subject: 'Microscopic cell sample', title: 'Microscopy', styles: ['Microscopic', 'Bioluminescent', 'Scientific', 'Detailed'], sections: [{ visual: 'Main view', param: 'Center, cell structure', textBlocks: [] }, { visual: 'Scale bar', param: 'Bottom right, measurement', textBlocks: [{ content: '10 μm', level: 'Detail', font: 'Sans-serif' }] }], ar: '1:1', texture: '' },
-                    med_conf_slide: { name: '醫學會議 (Medical)', desc: '專業醫學簡報，藍色調，清晰的圖表與數據展示。', desc_en: 'Professional medical presentation, blue tones, clear charts and data.', subject: 'Medical research findings slide', title: 'Clinical Study', styles: ['Medical', 'Professional', 'Clean', 'Blue'], sections: [{ visual: 'Chart Area', param: 'Center, bar chart', textBlocks: [] }, { visual: 'Key Findings', param: 'Right side, bullet points', textBlocks: [{ content: 'Efficacy: 95%', level: 'Secondary', font: 'Sans-serif' }] }], ar: '16:9', texture: 'on simple colored background' },
+                    med_clinical: { name: '醫學會議 (Medical)', desc: '專業醫學簡報，藍色調，清晰的圖表與數據展示。', desc_en: 'Professional medical presentation, blue tones, clear charts and data.', subject: 'Medical research findings slide', title: 'Clinical Study', styles: ['Medical', 'Professional', 'Clean', 'Blue'], sections: [{ visual: 'Chart Area', param: 'Center, bar chart', textBlocks: [] }, { visual: 'Key Findings', param: 'Right side, bullet points', textBlocks: [{ content: 'Efficacy: 95%', level: 'Secondary', font: 'Sans-serif' }] }], ar: '16:9', texture: 'on simple colored background' },
                     sci_formula: { name: '化學結構式 (Chemical Formula)', desc: '分子結構圖表，包含標題、結構與性質說明。', desc_en: 'Molecular structure diagram with title, structure, and properties.', subject: 'Chemical molecular structure', title: 'Molecule', styles: ['Vector', 'Clean', 'Black and White', 'Scientific'], sections: [{ visual: 'Title', param: 'Top, compound name', textBlocks: [{ content: 'Caffeine (C₈H₁₀N₄O₂)', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Structure', param: 'Center, molecular diagram', textBlocks: [] }, { visual: 'Properties', param: 'Bottom, text list', textBlocks: [{ content: 'Molecular Weight: 194.19 g/mol', level: 'Secondary', font: 'Sans-serif' }] }], ar: '3:4', texture: 'on white background' },
                     sci_safety: { name: '實驗室安全海報 (Lab Safety)', desc: '實驗室安全指南海報，包含標題、警告圖示、規則與緊急資訊。', desc_en: 'Laboratory safety guidelines poster with title, warning icons, rules, and emergency info.', subject: 'Lab safety poster', title: 'Safety', styles: ['Warning', 'Icons', 'Clear', 'Informative'], sections: [{ visual: 'Title', param: 'Top, attention-grabbing', textBlocks: [{ content: 'LABORATORY SAFETY', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Warning icons', param: 'Center, safety symbols', textBlocks: [] }, { visual: 'Rules', param: 'Middle, bullet list', textBlocks: [{ content: '• Wear goggles', level: 'Secondary', font: 'Sans-serif' }, { content: '• No food or drink', level: 'Secondary', font: 'Sans-serif' }] }, { visual: 'Emergency', param: 'Bottom, contact info', textBlocks: [{ content: 'Emergency: 911', level: 'Primary', font: 'Bold Display' }] }], ar: '3:4', texture: '' },
                     note_study_bio: { name: '手寫生物筆記 (Bio Notes)', desc: '手寫的生物學筆記，關於細胞結構，有螢光筆劃記與可愛插圖。', desc_en: 'Handwritten biology study notes about cell structure with highlighter marks and cute illustrations.', subject: 'Biology cell structure study notes', title: 'Study Hard', styles: ['Handwritten', 'Notebook Paper', 'Cute', 'Educational'], sections: [], ar: '3:4', texture: 'on lined notebook paper' },
@@ -681,17 +704,20 @@
                     he_poster_vaccine: { name: '海報: 疫苗防護 (Vaccination)', desc: '扁平設計插畫，醫生拿著盾牌保護家庭，溫暖色調。', desc_en: 'Flat design illustration. A doctor holding a shield protecting a family. Warm tones.', subject: 'Doctor holding a shield protecting a family', title: 'Protection', styles: ['Flat Design', 'Trustworthy', 'Warm Colors', 'Protection'], sections: [{ visual: 'Doctor with shield protecting family', param: '', textBlocks: [{ content: '疫苗保護🛡️', level: 'Primary', font: 'Bold Display' }, { content: '守護您與家人的健康', level: 'Secondary', font: 'Noto Sans TC' }] }], ar: '3:4', texture: '' },
                     he_poster_senior: { name: '海報: 銀髮運動 (Senior Exercise)', desc: '快樂的年長者在公園做伸展運動的照片，明亮自然光。', desc_en: 'Photo of happy senior citizens stretching in a park. Bright natural light.', subject: 'Happy senior citizens stretching in a park', title: 'Stay Active', styles: ['Lifestyle', 'Natural Light', 'Positive', 'Healthy'], sections: [{ visual: 'Seniors exercising together', param: '', textBlocks: [{ content: '活躍老化👵', level: 'Primary', font: 'Noto Sans TC' }, { content: '每天運動30分鐘', level: 'Primary', font: 'Noto Sans TC' }] }], ar: '3:4', texture: '' },
                     med_anatomy: { name: '心臟解剖圖 (Heart Anatomy)', desc: '人類心臟腔室的教育用剖面插畫。', desc_en: 'Educational cross-section illustration of human heart chambers.', subject: 'Human heart', title: 'Cardiology', styles: ['Medical Illustration', 'Cutaway', 'Educational', 'Clean'], sections: [{ visual: 'Ventricles and atria', param: '', textBlocks: [{ content: 'Aorta', level: 'Detail', font: '' }] }], ar: '4:3', texture: '' },
-                    med_conf_slide: { name: '醫學研討會 (Medical Seminar)', desc: '專業醫學研討會簡報風格，清晰的結構與科技感。', desc_en: 'Professional medical seminar presentation style. Clear structure and high-tech feel.', subject: 'Medical research presentation slide', title: 'Medical Seminar', styles: ['Medical Imaging', 'Clean UI', 'Blue and White', 'Professional', 'Infographic'], sections: [{ visual: 'Left: 3D DNA structure or organ model', param: 'High detail, scientific accuracy', textBlocks: [] }, { visual: 'Right: Bullet points area', param: 'Clean background', textBlocks: [] }], ar: '16:9', resolution: '4K', texture: 'Clean white or light blue gradient', example: 'Medical research presentation slide. Left: 3D DNA structure or organ model, High detail, scientific accuracy. Right: Bullet points area, Clean background. Style: Medical Imaging, Clean UI, Blue and White, Professional, Infographic. --ar 16:9 --no blur, watermark, bad anatomy, text error' },
+                    med_seminar: { name: '醫學研討會 (Medical Seminar)', desc: '專業醫學研討會簡報風格，清晰的結構與科技感。', desc_en: 'Professional medical seminar presentation style. Clear structure and high-tech feel.', subject: 'Medical research presentation slide', title: 'Medical Seminar', styles: ['Medical Imaging', 'Clean UI', 'Blue and White', 'Professional', 'Infographic'], sections: [{ visual: 'Left: 3D DNA structure or organ model', param: 'High detail, scientific accuracy', textBlocks: [] }, { visual: 'Right: Bullet points area', param: 'Clean background', textBlocks: [] }], ar: '16:9', texture: '' },
                     med_consult: { name: '醫生問診 (Consultation)', desc: '醫生手持平板與病人交談的溫暖專業鏡頭。', desc_en: 'Warm professional shot of a doctor holding a tablet talking to a patient.', subject: 'Doctor consulting patient', title: 'Patient Care', styles: ['Portrait Photography', 'Warm Light', 'Bokeh', 'Trustworthy'], sections: [], ar: '4:3', texture: '' },
                     info_nutrition_chart: { name: '資訊圖: 營養金字塔 (Nutrition)', desc: '向量風格的營養金字塔圖表，使用溫暖色彩與清晰分類。', desc_en: 'Vector style nutrition pyramid chart with warm colors and clear categories.', subject: 'Nutrition pyramid infographic', title: 'Healthy Eating', styles: ['Infographic', 'Vector Art', 'Warm Colors', 'Educational', 'Clean'], sections: [{ visual: 'Pyramid diagram with food groups', param: '', textBlocks: [{ content: '營養金字塔', level: 'Primary', font: 'Bold Display' }, { content: '全穀雜糧', level: 'Detail', font: 'Noto Sans TC' }, { content: '蔬果類', level: 'Detail', font: 'Noto Sans TC' }, { content: '蛋豆魚肉', level: 'Detail', font: 'Noto Sans TC' }] }], ar: '3:4', texture: '' },
                     info_workout_routine: { name: '資訊圖: 運動流程 (Workout)', desc: '淺色漸層背景的現代運動流程資訊圖，包含人物圖示與時間表。', desc_en: 'Modern workout routine infographic with gradient background, character illustrations and timeline.', subject: 'Weekly workout routine infographic', title: '7-Day Plan', styles: ['Infographic', 'Flat Design', 'Vibrant Colors', 'Modern', 'Fitness'], sections: [{ visual: 'Header with title', param: '', textBlocks: [{ content: '七天運動計劃', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Daily workout icons and descriptions', param: '', textBlocks: [{ content: '星期一: 有氧運動30min', level: 'Secondary', font: 'Noto Sans TC' }, { content: '星期三: 重訓45min', level: 'Secondary', font: 'Noto Sans TC' }, { content: '星期五: 瑜伽60min', level: 'Secondary', font: 'Noto Sans TC' }] }], ar: '9:16', texture: '' },
-                    info_data_viz: { name: '資訊圖: 數據視覺化 (Data Viz)', desc: '商業風格的數據視覺化資訊圖，包含圖表、百分比與趨勢線。', desc_en: 'Business data visualization infographic with charts, percentages and trend lines.', subject: 'Business data visualization infographic', title: 'Q4 Report', styles: ['Infographic', 'Dashboard UI', 'Blue and Orange', 'Professional', 'Clean'], sections: [{ visual: 'Title and key metrics', param: '', textBlocks: [{ content: '季度報告', level: 'Primary', font: 'Sans-serif' }, { content: '85% 增長', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Chart section with graphs', param: '', textBlocks: [{ content: '業績趨勢', level: 'Detail', font: 'Noto Sans TC' }] }], ar: '16:9', texture: '' },
+
                     info_mindfulness: { name: '資訊圖: 正念步驟 (Mindfulness)', desc: '柔和粉彩色調的正念冥想步驟資訊圖，手繪風格元素。', desc_en: 'Soft pastel colored mindfulness meditation steps infographic with hand-drawn style elements.', subject: 'Mindfulness meditation steps infographic', title: 'Be Present', styles: ['Infographic', 'Watercolor', 'Pastel Colors', 'Hand-drawn Doodle Style', 'Soothing'], sections: [{ visual: 'Circular flow diagram', param: '', textBlocks: [{ content: '正念冥想五步驟', level: 'Primary', font: 'Handwritten' }, { content: '1. 找個安靜的地方', level: 'Secondary', font: 'Noto Sans TC' }, { content: '2. 調整呼吸', level: 'Secondary', font: 'Noto Sans TC' }, { content: '3. 觀察思緒', level: 'Secondary', font: 'Noto Sans TC' }] }], ar: '1:1', texture: '' }
                 },
                 "📸 攝影與電影 (Photography & Cinema)": {
                     photo_film_portra: { name: '人像攝影 (Portra 400)', desc: '經典 Kodak Portra 400 底片質感，膚色自然，顆粒細膩。', desc_en: 'Classic Kodak Portra 400 film look, natural skin tones, fine grain.', subject: 'Portrait of a young woman in natural light', title: 'Portra Portrait', styles: ['Kodak Portra 400', 'Natural Light', 'Portrait Photography', 'Soft Colors'], sections: [], ar: '3:4', texture: 'with film grain texture' },
+                    photo_rembrandt: { name: '林布蘭人像 (Rembrandt)', desc: '經典三角光人像攝影，暗調背景，強調質感與情緒。', desc_en: 'Classic portrait with Rembrandt lighting. Dark background, emphasizing texture and emotion.', subject: 'Portrait with Rembrandt lighting', title: 'Classic Portrait', styles: ['Rembrandt Lighting', 'Portrait Photography', 'Low Key', 'Dramatic'], sections: [], ar: '3:4', texture: '' },
                     photo_cinestill: { name: '夜景街拍 (CineStill 800T)', desc: 'CineStill 800T 底片風格，獨特的光暈效果，適合夜景。', desc_en: 'CineStill 800T film style, unique halation effect, perfect for night scenes.', subject: 'Neon lit street at night', title: 'Night Vibes', styles: ['CineStill 800T', 'Night Photography', 'Neon Lights', 'Cinematic Lighting'], sections: [], ar: '16:9', texture: 'with film grain texture' },
+                    photo_instant: { name: '拍立得派對 (Instant Film)', desc: '閃光燈直打，白框，漏光效果，派對或生活感。', desc_en: 'Direct flash, white border, light leaks. Party or lifestyle vibe.', subject: 'Party snapshot with friends', title: 'Party Time', styles: ['Instant Film', 'Direct Flash', 'Candid', 'Vibrant Colors'], sections: [], ar: '4:3', texture: '' },
                     prod_watch: { name: '精品手錶 (Luxury Watch)', desc: '帶有金色反光的奢華產品微距攝影。', desc_en: 'Macro luxury product shot with gold reflections.', subject: 'Gold wrist watch', title: '', styles: ['Product Photography', 'Macro', 'Reflection', 'Luxurious'], sections: [], ar: '3:4', texture: '' },
+                    prod_gobo: { name: 'Gobo 光影 (Gobo Product)', desc: '使用 Gobo 投射植物陰影的產品照，極簡背景。', desc_en: 'Product shot with plant shadow (Gobo). Minimalist background.', subject: 'Perfume bottle with leaf shadow', title: 'Shadow Play', styles: ['Gobo', 'Product Photography', 'Minimalist', 'Soft Light'], sections: [], ar: '3:4', texture: '' },
                     prod_perfume: { name: '香水廣告 (Perfume)', desc: '水面上有漣漪的優雅產品攝影。', desc_en: 'Elegant product shot on water surface with ripples.', subject: 'Perfume bottle on water', title: '', styles: ['Product Photography', 'Water Ripples', 'Soft Light', 'Elegant'], sections: [], ar: '3:4', texture: '' },
                     nature_macro: { name: '生態微距 (Nature Macro)', desc: '露珠等自然細節的清新特寫。', desc_en: 'Fresh close-up of nature details like dew drops.', subject: 'Dew drop on leaf', title: '', styles: ['Macro', 'Natural Light', 'Green', 'Fresh'], sections: [], ar: '3:4', texture: '' },
                     art_riso: { name: '孔版印刷 (Risograph)', desc: '帶有錯位色彩的粗糙、鮮豔復古印刷風格。', desc_en: 'Grainy, vibrant retro print style with offset colors.', subject: 'Abstract shapes', title: '', styles: ['Risograph', 'Film Grain', 'Vibrant Colors', 'Vintage'], sections: [], ar: '3:4', texture: '' },
@@ -703,23 +729,23 @@
                     port_fashion: { name: '時尚大片 (Fashion Editorial)', desc: '高級時尚雜誌風格，戲劇性姿勢與光影，戶外或城市背景。', desc_en: 'High fashion editorial style, dramatic pose and lighting, outdoor or urban setting.', subject: 'Fashion model in urban setting', title: 'Vogue', styles: ['Fashion Photography', 'Dramatic Lighting', 'High Fashion', 'Stylish'], sections: [], ar: '3:4', texture: '' },
                     port_street: { name: '街頭抓拍 (Candid Street)', desc: '自然捕捉的街頭瞬間，不看鏡頭，背景有散景。', desc_en: 'Candid street photography moment, looking away, urban background with bokeh.', subject: 'Person laughing on street', title: 'Candid', styles: ['Street Photography', 'Candid', 'Bokeh', 'Natural Light'], sections: [], ar: '4:3', texture: '' },
                     port_env: { name: '職人寫真 (Environmental)', desc: '在工作環境中的人物肖像（如廚師在廚房），講述故事。', desc_en: 'Environmental portrait of a person in their workspace (e.g., chef in kitchen), telling a story.', subject: 'Chef cooking in kitchen', title: 'Chef Life', styles: ['Environmental Portrait', 'Storytelling', 'Cinematic Lighting', 'Context'], sections: [], ar: '16:9', texture: '' },
-                    port_cinematic: { name: '電影感肖像 (Cinematic)', desc: '電影劇照風格，情緒飽滿，35mm 膠片質感。', desc_en: 'Cinematic movie still style, emotional expression, 35mm film look.', subject: 'Emotional close-up portrait', title: 'Movie Star', styles: ['Cinematic Lighting', '35mm Lens', 'Film Grain', 'Emotional'], sections: [], ar: '2.39:1', texture: '' },
+                    port_cinematic: { name: '電影感肖像 (Cinematic)', desc: '電影劇照風格，情緒飽滿，35mm 膠片質感。', desc_en: 'Cinematic movie still style, emotional expression, 35mm film look.', subject: 'Emotional close-up portrait', title: 'Movie Star', styles: ['Cinematic Lighting', '35mm Lens', 'Film Grain', 'Emotional'], sections: [], ar: '21:9', texture: '' },
                     movie_action: { name: '動作片海報 (Action)', desc: '帶有青橙色調的粗獷大片海報。', desc_en: 'Gritty blockbuster poster with teal & orange grading.', subject: 'Hero in debris', title: 'LAST STAND', styles: ['Movie Poster Composition', 'Cinematic Lighting', 'Teal and Orange', 'Hyperrealistic'], sections: [{ visual: 'Hero holding weapon', param: 'dirty face, scars', textBlocks: [] }, { visual: '', param: '', textBlocks: [{ content: 'LAST STAND', level: 'Primary', font: 'Bold Display' }, { content: 'Coming Soon', level: 'Secondary', font: 'Sans-serif' }] }], ar: '3:4', texture: '' },
                     movie_horror: { name: '恐怖片海報 (Horror)', desc: '黑暗、霧氣瀰漫、發光眼睛的哥德式氛圍。', desc_en: 'Dark, foggy gothic atmosphere with glowing eyes.', subject: 'Haunted house silhouette', title: 'THE ECHO', styles: ['Low Key', 'Foggy', 'Film Grain', 'Vintage', 'Gothic'], sections: [{ visual: 'Ghostly figure in window', param: 'red glowing eyes', textBlocks: [{ content: 'THE ECHO', level: 'Primary', font: 'Serif' }] }], ar: '3:4', texture: '' },
-                    movie_scifi: { name: '科幻電影海報 (Sci-Fi)', desc: '星際大戰風格的太空戰鬥海報，包含巨大的金屬標題。', desc_en: 'Star Wars style space battle poster with massive metallic title.', subject: 'Sci-fi movie poster space battle', title: 'Star War', styles: ['Movie Poster Composition', 'Teal and Orange', 'Cinematic Lighting', 'Sci-Fi'], sections: [{ visual: 'Cast Names', param: 'Top, spaced out text floating in stars', textBlocks: [{ content: 'Actor One   Actor Two', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Hero vs Villain', param: 'Center, dynamic composition, lightsaber duel', textBlocks: [] }, { visual: 'Movie Title', param: 'Lower center, massive 3D metallic text floating in the cosmic void', textBlocks: [{ content: 'GALACTIC', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Credit Block', param: 'Bottom, tiny condensed text', textBlocks: [{ content: 'Directed by...', level: 'Detail', font: 'Monospace' }] }], ar: '3:4', texture: '' },
+                    movie_scifi_epic: { name: '科幻史詩 (Sci-Fi Epic)', desc: '星際大戰風格的太空戰鬥海報，包含演員名單與金屬標題。', desc_en: 'Star Wars style space battle poster with cast names and massive metallic title.', subject: 'Sci-fi movie poster space battle', title: 'Star War', styles: ['Movie Poster Composition', 'Teal and Orange', 'Cinematic Lighting', 'Sci-Fi', 'Epic'], sections: [{ visual: 'Cast Names', param: 'Top, spaced out text floating in stars', textBlocks: [{ content: 'Actor One   Actor Two', level: 'Primary', font: 'Sans-serif' }] }, { visual: 'Hero vs Villain', param: 'Center, dynamic composition, lightsaber duel', textBlocks: [] }, { visual: 'Movie Title', param: 'Lower center, massive 3D metallic text floating in the cosmic void', textBlocks: [{ content: 'GALACTIC', level: 'Primary', font: 'Bold Display' }] }, { visual: 'Credit Block', param: 'Bottom, tiny condensed text', textBlocks: [{ content: 'Directed by...', level: 'Detail', font: 'Monospace' }] }], ar: '3:4', texture: '' },
                     arch_modern: { name: '現代建築 (Modern Arch)', desc: 'Zaha Hadid 風格的未來主義博物館，流線型白色混凝土外觀。', desc_en: 'Futuristic museum building designed by Zaha Hadid. Fluid white concrete facade.', subject: 'Futuristic museum building designed by Zaha Hadid', title: 'Fluid Arch', styles: ['Architecture Photography', 'Zaha Hadid Style', 'Futuristic', 'Fluid Forms'], sections: [{ visual: 'Building Facade', param: 'Curved white concrete, organic shapes', textBlocks: [] }, { visual: 'Water Reflection', param: 'Reflecting pool in foreground', textBlocks: [] }] },
                     arch_scandi: { name: '北歐風客廳 (Scandinavian)', desc: '溫馨明亮的北歐風格室內設計，木質紋理與綠色植物。', desc_en: 'Cozy and bright Scandinavian interior design, wood textures and plants.', subject: 'Cozy living room interior', title: 'Home', styles: ['Interior Design', 'Scandinavian', 'Natural Light', 'Cozy'], sections: [], ar: '4:3', texture: '' },
                     arch_loft: { name: '工業風 (Industrial Loft)', desc: '磚牆、外露管線與金屬家具的工業風公寓，戲劇性光影。', desc_en: 'Industrial loft with brick walls, exposed pipes, metal furniture, dramatic lighting.', subject: 'Industrial loft interior', title: 'Loft', styles: ['Interior Design', 'Industrial Style', 'Dramatic Lighting', 'Texture'], sections: [], ar: '16:9', texture: '' },
                     arch_zen: { name: '日式庭園 (Zen Garden)', desc: '寧靜的日式枯山水庭園，岩石、沙紋與盆栽，柔和光線。', desc_en: 'Peaceful Japanese Zen garden, rocks, sand patterns, bonsai, soft light.', subject: 'Japanese Zen garden', title: 'Zen', styles: ['Landscape Architecture', 'Zen', 'Peaceful', 'Soft Light'], sections: [], ar: '4:3', texture: '' },
                     arch_future: { name: '未來城市 (Futuristic City)', desc: '高聳入雲的摩天大樓，飛行車與霓虹燈，俯瞰視角。', desc_en: 'Skyscrapers reaching the clouds, flying cars and neon lights, high angle view.', subject: 'Futuristic cyberpunk city', title: 'Future City', styles: ['Futuristic', 'Cyberpunk', 'Neon Lights', 'High Angle'], sections: [], ar: '16:9', texture: '' },
-                    tw_night_market: { name: '台灣夜市 (Night Market)', desc: '台灣夜市的熱鬧場景，充滿霓虹燈招牌與小吃攤販，賽博龐克氛圍。', desc_en: 'Bustling scene of a Taiwan night market with neon signs and food stalls. Cyberpunk atmosphere.', subject: 'Crowded Taiwan night market street', title: 'Night Market', styles: ['Street Photography', 'Neon Lights', 'Cyberpunk', 'Vibrant Colors'], sections: [], ar: '3:4', texture: '' },
+
                     tw_jiufen_lanterns: { name: '九份紅燈籠 (Jiufen Lanterns)', desc: '九份老街的石階與紅燈籠，夜晚，帶有《神隱少女》的氛圍。', desc_en: 'Stone stairs and red lanterns of Jiufen Old Street at night. Spirited Away vibes.', subject: 'Jiufen old street with red lanterns', title: 'Mountain Town', styles: ['Anime', 'Warm Light', 'Night Photography', 'Atmospheric'], sections: [], ar: '3:4', texture: '' },
                     tw_tea_plantation: { name: '阿里山茶園 (Tea Plantation)', desc: '阿里山雲霧繚繞的高山茶園，梯田景觀，綠意盎然。', desc_en: 'Misty high mountain tea plantation in Alishan. Terraced fields, lush green.', subject: 'Terraced tea plantation in fog', title: 'Alishan Tea', styles: ['Landscape Photography', 'Atmospheric', 'Green'], sections: [], ar: '16:9', texture: '' },
 
                 },
             },
             ui: {
-                aspectRatios: ['1:1', '3:4', '4:3', '9:16', '16:9'],
+                aspectRatios: ['1:1', '16:9', '9:16', '3:2', '2:3', '4:3', '3:4', '4:5', '5:4', '21:9'],
                 resolutions: ['1K', '2K', '4K', '8K'],
                 textBlockLevels: [
                     { label: '主視覺 (Primary)', value: 'Primary' },
@@ -995,45 +1021,20 @@
                                 </select>
                             </div>
                         </div>
-                        {form.stylize && (
-                            <div className="bg-gray-800 p-2 rounded border border-gray-700">
-                                <span className="text-yellow-400 text-[10px] block">{t('風格化 (Stylize)', 'Stylize')}</span>
-                                <span className="text-white">{form.stylize}</span>
-                            </div>
-                        )}
-                        {form.seed && (
-                            <div className="bg-gray-800 p-2 rounded border border-gray-700">
-                                <span className="text-yellow-400 text-[10px] block">{t('種子 (Seed)', 'Seed')}</span>
-                                <span className="text-white">{form.seed}</span>
-                            </div>
-                        )}
-                        {form.cref && (
-                            <div className="bg-gray-800 p-2 rounded border border-gray-700">
-                                <span className="text-yellow-400 text-[10px] block">{t('角色參考 (Character Ref)', 'Character Ref')}</span>
-                                <span className="text-white break-all">{form.cref}</span>
-                            </div>
-                        )}
-                        {form.sref && (
-                            <div className="bg-gray-800 p-2 rounded border border-gray-700">
-                                <span className="text-yellow-400 text-[10px] block">{t('風格參考 (Style Ref)', 'Style Ref')}</span>
-                                <span className="text-white break-all">{form.sref}</span>
-                            </div>
-                        )}
                         {/* Feature Toggles Display */}
                         {isAvoidSimplifiedChinese && (
                             <div className="bg-gray-800 p-2 rounded border border-gray-700 flex flex-wrap gap-2">
                                 {isAvoidSimplifiedChinese && (
                                     <span className="text-[10px] bg-yellow-900/30 text-yellow-400 px-1.5 py-0.5 rounded border border-yellow-700/50">
-                                        {t('避免簡體 (No Simplified Chinese)', 'No Simplified Chinese')}
+                                        {t('避免簡體字', 'Avoid Simplified Chinese')}
                                     </span>
                                 )}
-
                             </div>
                         )}
                     </div>
                     <div className="bg-gray-800 p-2 rounded border border-gray-700">
-                        <span className="text-red-400 text-[10px] block">{t('負面提示 (Negative)', 'Negative')}</span>
-                        <span className="text-gray-400 text-xs break-all">{form.negative}</span>
+                        <span className="text-emerald-400 text-[10px] block">{t('品質增強 (Quality)', 'Quality')}</span>
+                        <span className="text-gray-400 text-xs break-all">{form.quality}</span>
                     </div>
                 </div>
 
@@ -1194,6 +1195,91 @@
             const [history, setHistory] = useState([]);
             const [activeRightTab, setActiveRightTab] = useState('preview'); // 'preview' or 'history'
 
+            // Import/Export Feature State
+            const [showImportModal, setShowImportModal] = useState(false);
+            const [pendingImportData, setPendingImportData] = useState(null);
+            const fileInputRef = useRef(null);
+
+            // Export presets to JSON file
+            const exportPresets = () => {
+                const dataStr = JSON.stringify(configData.presetGroups, null, 2);
+                const blob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `presets_export_${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            };
+
+            // Handle file selection for import
+            const handleImportFile = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const importedData = JSON.parse(event.target.result);
+                        // Validate structure
+                        if (typeof importedData !== 'object' || Array.isArray(importedData)) {
+                            throw new Error('Invalid format');
+                        }
+                        // Count presets
+                        let presetCount = 0;
+                        let groupCount = Object.keys(importedData).length;
+                        Object.values(importedData).forEach(group => {
+                            presetCount += Object.keys(group).length;
+                        });
+                        setPendingImportData({ data: importedData, presetCount, groupCount });
+                        setShowImportModal(true);
+                    } catch (err) {
+                        alert(t('❌ 無法解析匯入的檔案。請確認是有效的 JSON 格式。', '❌ Failed to parse imported file. Please ensure it is valid JSON.'));
+                    }
+                };
+                reader.readAsText(file);
+                // Reset file input
+                e.target.value = '';
+            };
+
+            // Handle import confirmation
+            const handleImportConfirm = (mode) => {
+                if (!pendingImportData) return;
+
+                if (mode === 'cancel') {
+                    setShowImportModal(false);
+                    setPendingImportData(null);
+                    return;
+                }
+
+                if (mode === 'replace') {
+                    if (!confirm(t('⚠️ 確定要全部取代嗎？這將會覆蓋所有現有的預設！', '⚠️ Are you sure you want to replace all? This will overwrite all existing presets!'))) {
+                        return;
+                    }
+                    // Replace all presets
+                    Object.keys(configData.presetGroups).forEach(key => delete configData.presetGroups[key]);
+                    Object.assign(configData.presetGroups, pendingImportData.data);
+                    alert(t('✅ 已成功取代所有預設！', '✅ All presets replaced successfully!'));
+                } else if (mode === 'merge') {
+                    // Merge with existing
+                    Object.entries(pendingImportData.data).forEach(([groupName, presets]) => {
+                        if (!configData.presetGroups[groupName]) {
+                            configData.presetGroups[groupName] = {};
+                        }
+                        Object.assign(configData.presetGroups[groupName], presets);
+                    });
+                    alert(t('✅ 已成功加入預設！', '✅ Presets added successfully!'));
+                }
+
+                setShowImportModal(false);
+                setPendingImportData(null);
+                // Force re-render by closing and reopening preset modal
+                setShowPresetModal(false);
+                setTimeout(() => setShowPresetModal(true), 100);
+            };
+
             // Load history from localStorage on mount
             useEffect(() => {
                 const savedHistory = localStorage.getItem('prompt_builder_history');
@@ -1308,15 +1394,8 @@
                 ar: '16:9',
                 isCustomAr: false,
                 resolution: '4K',
-                seed: '',
-                stylize: '',
-                cref: '',
-                cw: '',
-                sref: '',
-                sw: '',
-                personalization: '',
                 texture: '',
-                negative: 'blur, watermark, bad anatomy, text error'
+                quality: 'sharp focus, high quality, detailed, professional'
             });
             const [isCustomTexture, setIsCustomTexture] = useState(false);
 
@@ -1394,34 +1473,31 @@
 
                 parts.push('\n--- PARAMETERS ---');
                 let params = [];
-                if (form.ar) params.push(`--ar ${form.ar}`);
+                if (form.ar) params.push(`aspect ratio ${form.ar}`);
 
                 if (form.resolution) {
                     if (form.resolution === '8K') {
-                        params.push('8K, highly detailed');
+                        params.push('8k resolution, highly detailed');
+                    } else if (form.resolution === '4K') {
+                        params.push('4k resolution');
+                    } else if (form.resolution === '2K') {
+                        params.push('2k resolution');
+                    } else if (form.resolution === '1K') {
+                        params.push('1k resolution');
                     } else {
-                        params.push(form.resolution);
+                        params.push(`${form.resolution} resolution`);
                     }
                 }
 
-                if (form.stylize) params.push(`--s ${form.stylize}`);
-                if (form.seed) params.push(`--seed ${form.seed}`);
-
-                // V6 Features
-                if (form.sref) params.push(`--sref ${form.sref}`);
-                if (form.sref && form.sw) params.push(`--sw ${form.sw}`);
-                if (form.cref) params.push(`--cref ${form.cref}`);
-                if (form.cref && form.cw) params.push(`--cw ${form.cw}`);
-                if (form.personalization) params.push(`--p ${form.personalization}`);
-
-                let negativeStr = form.negative;
+                // Quality prompt for Imagen 4 (positive prompts)
+                let qualityStr = form.quality;
                 if (isAvoidSimplifiedChinese) {
-                    const suffix = "Simplified Chinese";
-                    if (!negativeStr.toLowerCase().includes(suffix.toLowerCase())) {
-                        negativeStr = negativeStr ? `${negativeStr}, ${suffix}` : suffix;
+                    const suffix = "no simplified chinese text";
+                    if (!qualityStr.toLowerCase().includes(suffix.toLowerCase())) {
+                        qualityStr = qualityStr ? `${qualityStr}, ${suffix}` : suffix;
                     }
                 }
-                if (negativeStr) params.push(`--no ${negativeStr}`);
+                if (qualityStr) parts.push(`**Quality:** ${qualityStr}`);
 
                 parts.push(params.join(' '));
 
@@ -1511,10 +1587,8 @@
                         sections: [],
                         ar: '16:9',
                         resolution: '4K',
-                        seed: '',
-                        stylize: '',
                         texture: '',
-                        negative: 'blur, watermark, bad anatomy, text error'
+                        quality: 'sharp focus, high quality, detailed, professional'
                     });
                     return;
                 }
@@ -1542,14 +1616,7 @@
                         ar: p.ar || '16:9',
                         resolution: p.resolution || '4K',
                         texture: p.texture || '',
-                        stylize: p.stylize || '',
-                        seed: p.seed || '',
-                        cref: p.cref || '',
-                        cw: p.cw || '',
-                        sref: p.sref || '',
-                        sw: p.sw || '',
-                        personalization: p.personalization || '',
-                        negative: p.negative || 'blur, watermark, bad anatomy, text error'
+                        quality: p.quality || 'sharp focus, high quality, detailed, professional'
                     });
                 }
             };
@@ -1785,6 +1852,20 @@
                                         <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                                             <span className="text-green-400">🚀</span> {t('快速上手 (Quick Start)', 'Quick Start')}
                                         </h4>
+                                        <ul className="space-y-2 text-gray-300">
+                                            <li>
+                                                <strong className="text-white">• {t('v8.1 專業分類升級:', 'v8.1 Professional Categories:')}</strong> {t('將攝影拆分為「題材」與「器材」，構圖拆分為「攝影構圖」與「設計排版」，選單更清晰。', 'Split Photography into "Genres" & "Gear", Composition into "Photo Composition" & "Design Layout".')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('新增專業風格:', 'New Pro Styles:')}</strong> {t('加入 Swiss Style, Brutalism, Studio Lighting, Instant Film 等 20+ 種新風格。', 'Added 20+ styles including Swiss Style, Brutalism, Studio Lighting, Instant Film.')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('歷史記錄功能:', 'History Feature:')}</strong> {t('自動儲存您的 Prompt 歷史記錄，方便隨時回顧與載入。', 'Automatically saves your prompt history for easy review and loading.')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('結構化預覽:', 'Structured View:')}</strong> {t('右側面板新增「結構化預覽」，幫助您理解 Prompt 的組成結構。', 'New "Structured View" in the right panel helps you understand prompt structure.')}
+                                            </li>
+                                        </ul>
                                         <ul className="list-disc pl-5 space-y-2 text-gray-300">
                                             <li>
                                                 <strong className="text-white">{t('瀏覽預設範本:', 'Browse Presets:')}</strong> {t('點擊上方按鈕開啟範本庫,點擊標題可摺疊/展開分類,選擇喜歡的範本。', 'Click the button above to open the library. Click titles to collapse/expand categories. Select a preset.')}
@@ -1851,10 +1932,13 @@
                                                 <strong className="text-white">• {t('負面提示詞:', 'Negative Prompts:')}</strong> {t('在「排除項目」中輸入不想看到的元素（例如：text, watermark, ugly）。', 'Enter elements you want to avoid in "Negative Prompt" (e.g., text, watermark, ugly).')}
                                             </li>
                                             <li>
-                                                <strong className="text-white">• {t('文字生成技巧:', 'Text Generation:')}</strong> {t('在「版面分區」新增 Text Block，選擇 H1/H2/Body 層級，搭配', 'Add a Text Block in "Layout Sections", select H1/H2/Body level. Use')} <code className="bg-gray-800 px-1 rounded">Noto Sans TC</code> {t('字體可提升繁中顯示率。', 'font for better Traditional Chinese rendering.')}
+                                                <strong className="text-white">• {t('設計師建議:', 'For Designers:')}</strong> {t('多利用「設計排版」中的 Swiss Style 與 Grid Layout，搭配「材質」中的 Paper Texture。', 'Use Swiss Style & Grid Layout in "Design Layout", combine with Paper Texture.')}
                                             </li>
                                             <li>
-
+                                                <strong className="text-white">• {t('攝影師建議:', 'For Photographers:')}</strong> {t('先在「攝影題材」選定主題 (如 Portrait)，再到「相機與鏡頭」挑選底片 (如 Kodak Portra) 與光影。', 'Select subject in "Genres" (e.g. Portrait), then pick film (e.g. Kodak Portra) in "Gear".')}
+                                            </li>
+                                            <li>
+                                                <strong className="text-white">• {t('文字生成技巧:', 'Text Generation:')}</strong> {t('在「版面分區」新增 Text Block，選擇 H1/H2/Body 層級，搭配', 'Add a Text Block in "Layout Sections", select H1/H2/Body level. Use')} <code className="bg-gray-800 px-1 rounded">Noto Sans TC</code> {t('字體可提升繁中顯示率。', 'font for better Traditional Chinese rendering.')}
                                             </li>
                                         </ul>
                                     </div>
@@ -2045,42 +2129,6 @@
                                         </p>
                                     </div>
 
-                                    {/* Section 4.5: Reference Station Guide */}
-                                    <div className="bg-gray-900/50 p-5 rounded-lg border border-gray-700">
-                                        <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                                            <span className="text-purple-400">🖼️</span> {t('參考工作站 (Reference Station)', 'Reference Station')}
-                                        </h4>
-                                        <p className="mb-4 text-gray-300">
-                                            {t(
-                                                '專為 Midjourney V6 設計的強大參考功能，讓您精準控制圖片的風格與角色一致性。',
-                                                'Powerful reference features designed for Midjourney V6, giving you precise control over style and character consistency.'
-                                            )}
-                                        </p>
-                                        <ul className="space-y-3">
-                                            <li className="bg-gray-800 p-3 rounded border border-gray-600">
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-pink-400 font-bold">Style Reference (--sref)</span>
-                                                    <span className="text-xs text-gray-500">{t('風格一致性', 'Style Consistency')}</span>
-                                                </div>
-                                                <p className="text-xs text-gray-400">{t('貼上圖片網址，讓 AI 學習該圖片的畫風、色調與質感。可搭配 Style Weight (--sw) 調整影響強度 (0-1000)。', 'Paste an image URL to let AI learn its style, tone, and texture. Use Style Weight (--sw) to adjust intensity (0-1000).')}</p>
-                                            </li>
-                                            <li className="bg-gray-800 p-3 rounded border border-gray-600">
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-blue-400 font-bold">Character Reference (--cref)</span>
-                                                    <span className="text-xs text-gray-500">{t('角色一致性', 'Character Consistency')}</span>
-                                                </div>
-                                                <p className="text-xs text-gray-400">{t('貼上角色圖片網址，讓 AI 保持角色臉部特徵的一致性。可搭配 Character Weight (--cw) 調整影響強度 (0-100)。', 'Paste a character image URL to maintain facial consistency. Use Character Weight (--cw) to adjust intensity (0-100).')}</p>
-                                            </li>
-                                            <li className="bg-gray-800 p-3 rounded border border-gray-600">
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-green-400 font-bold">Personalization (--p)</span>
-                                                    <span className="text-xs text-gray-500">{t('個人化模型', 'Personalization')}</span>
-                                                </div>
-                                                <p className="text-xs text-gray-400">{t('輸入您的個人化代碼 (Personalization Code)，使用您在 Midjourney 上訓練出的獨特風格模型。', 'Enter your Personalization Code to use your unique style model trained on Midjourney.')}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-
                                     {/* Section 5: Font Guide */}
                                     <div className="bg-gray-900/50 p-5 rounded-lg border border-gray-700">
                                         <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
@@ -2181,6 +2229,74 @@
                     )
                     }
 
+                    {/* Import Confirmation Modal */}
+                    {showImportModal && pendingImportData && (
+                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+                            <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={() => handleImportConfirm('cancel')}></div>
+                            <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-md relative z-10">
+                                {/* Header */}
+                                <div className="p-5 border-b border-gray-700 bg-gray-900 rounded-t-lg">
+                                    <h3 className="text-lg font-bold text-blue-400 flex items-center gap-2">
+                                        <Upload size={20} />
+                                        <span>{t('確認匯入預設', 'Confirm Import')}</span>
+                                    </h3>
+                                </div>
+                                {/* Content */}
+                                <div className="p-5 space-y-4">
+                                    <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
+                                        <p className="text-gray-300 text-sm mb-3">
+                                            {t('即將匯入以下內容：', 'About to import:')}
+                                        </p>
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-gray-400">{t('分類群組', 'Groups')}</span>
+                                            <span className="text-blue-400 font-bold">{pendingImportData.groupCount}</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm mt-1">
+                                            <span className="text-gray-400">{t('預設範本', 'Presets')}</span>
+                                            <span className="text-emerald-400 font-bold">{pendingImportData.presetCount}</span>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-xs text-gray-500">
+                                        {t('請選擇匯入方式：', 'Choose import method:')}
+                                    </p>
+
+                                    <div className="space-y-2">
+                                        {/* Replace All Button */}
+                                        <button
+                                            onClick={() => handleImportConfirm('replace')}
+                                            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-700/30 hover:bg-red-600 text-red-200 rounded-lg border border-red-600/50 transition font-medium"
+                                        >
+                                            🔄 {t('全部取代', 'Replace All')}
+                                        </button>
+                                        <p className="text-[10px] text-red-400/70 text-center -mt-1 mb-2">
+                                            {t('⚠️ 這將刪除所有現有預設', '⚠️ This will delete all existing presets')}
+                                        </p>
+
+                                        {/* Merge Button */}
+                                        <button
+                                            onClick={() => handleImportConfirm('merge')}
+                                            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-emerald-700/30 hover:bg-emerald-600 text-emerald-200 rounded-lg border border-emerald-600/50 transition font-medium"
+                                        >
+                                            ➕ {t('加入現有', 'Add to Existing')}
+                                        </button>
+                                        <p className="text-[10px] text-emerald-400/70 text-center -mt-1 mb-2">
+                                            {t('將匯入的預設加入到現有預設中', 'Merge imported presets with existing ones')}
+                                        </p>
+
+                                        {/* Cancel Button */}
+                                        <button
+                                            onClick={() => handleImportConfirm('cancel')}
+                                            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-700/50 hover:bg-gray-600 text-gray-300 rounded-lg border border-gray-600 transition"
+                                        >
+                                            ❌ {t('取消', 'Cancel')}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Preset Modal */}
                     {
                         showPresetModal && (
@@ -2194,13 +2310,42 @@
                                                 <Sparkles size={24} />
                                                 <span>{t('選擇預設範本 (Select Preset)', 'Select Preset')}</span>
                                             </h3>
-                                            <button onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }} className="text-gray-400 hover:text-white transition">
-                                                <X size={24} />
-                                            </button>
+                                            <div className="flex items-center gap-2">
+                                                {/* Export Button */}
+                                                <button
+                                                    onClick={exportPresets}
+                                                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-emerald-700/50 hover:bg-emerald-600 text-emerald-200 rounded border border-emerald-600/50 transition"
+                                                    title={t('匯出預設', 'Export Presets')}
+                                                >
+                                                    <Download size={14} />
+                                                    <span className="hidden sm:inline">{t('匯出', 'Export')}</span>
+                                                </button>
+                                                {/* Import Button */}
+                                                <button
+                                                    onClick={() => fileInputRef.current?.click()}
+                                                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-blue-700/50 hover:bg-blue-600 text-blue-200 rounded border border-blue-600/50 transition"
+                                                    title={t('匯入預設', 'Import Presets')}
+                                                >
+                                                    <Upload size={14} />
+                                                    <span className="hidden sm:inline">{t('匯入', 'Import')}</span>
+                                                </button>
+                                                <input
+                                                    type="file"
+                                                    ref={fileInputRef}
+                                                    onChange={handleImportFile}
+                                                    accept=".json"
+                                                    className="hidden"
+                                                />
+                                                {/* Close Button */}
+                                                <button onClick={() => { setShowPresetModal(false); setPresetSearchQuery(''); }} className="text-gray-400 hover:text-white transition ml-2">
+                                                    <X size={24} />
+                                                </button>
+                                            </div>
                                         </div>
                                         {/* Search Bar */}
                                         <div className="relative">
                                             <input
+                                                autoFocus
                                                 type="text"
                                                 value={presetSearchQuery}
                                                 onChange={(e) => setPresetSearchQuery(e.target.value)}
@@ -2564,117 +2709,13 @@
                                 </div>
                             </section>
 
-                            {/* Section 4: Reference Station (V6) */}
-                            <section id="section-reference" className="mb-6">
-                                <h2 className="text-base font-bold text-pink-400 mb-3 flex items-center">
-                                    <span className="w-2 h-6 bg-pink-500 mr-2 rounded-sm"></span>
-                                    {t('4. 參考工作站 (Reference Station)', '4. Reference Station')}
-                                </h2>
-                                <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700 space-y-4">
-                                    {/* Style Reference */}
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center">
-                                            <label className="text-[11px] font-bold text-pink-300 flex items-center gap-1">
-                                                <Sparkles size={12} /> {t('風格參考 (Style Ref --sref)', 'Style Ref (--sref)')}
-                                            </label>
-                                            <span className="text-[10px] text-gray-500">MJ V6+</span>
-                                        </div>
-                                        <input
-                                            value={form.sref}
-                                            onChange={(e) => setForm({ ...form, sref: e.target.value })}
-                                            type="text"
-                                            placeholder="https://..."
-                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-xs outline-none focus:border-pink-500 transition-colors"
-                                        />
-                                        <div className="flex items-center gap-3 bg-gray-900/50 p-2 rounded border border-gray-700/50">
-                                            <label className="text-[10px] text-gray-400 whitespace-nowrap">{t('風格權重 (--sw)', 'Style Weight')}: {form.sw || 100}</label>
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max="1000"
-                                                value={form.sw || 100}
-                                                onChange={(e) => setForm({ ...form, sw: e.target.value })}
-                                                className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500"
-                                            />
-                                            <input
-                                                type="number"
-                                                value={form.sw || 100}
-                                                onChange={(e) => setForm({ ...form, sw: e.target.value })}
-                                                className="w-12 bg-gray-800 border border-gray-600 rounded p-1 text-[10px] text-center outline-none"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Character Reference */}
-                                    <div className="space-y-2 pt-2 border-t border-gray-700/50">
-                                        <div className="flex justify-between items-center">
-                                            <label className="text-[11px] font-bold text-blue-300 flex items-center gap-1">
-                                                <Eye size={12} /> {t('角色參考 (Character Ref --cref)', 'Character Ref (--cref)')}
-                                            </label>
-                                            <span className="text-[10px] text-gray-500">MJ V6+</span>
-                                        </div>
-                                        <input
-                                            value={form.cref}
-                                            onChange={(e) => setForm({ ...form, cref: e.target.value })}
-                                            type="text"
-                                            placeholder="https://..."
-                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-xs outline-none focus:border-blue-500 transition-colors"
-                                        />
-                                        <div className="flex items-center gap-3 bg-gray-900/50 p-2 rounded border border-gray-700/50">
-                                            <label className="text-[10px] text-gray-400 whitespace-nowrap">{t('角色權重 (--cw)', 'Char Weight')}: {form.cw || 100}</label>
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max="100"
-                                                value={form.cw || 100}
-                                                onChange={(e) => setForm({ ...form, cw: e.target.value })}
-                                                className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                                            />
-                                            <input
-                                                type="number"
-                                                value={form.cw || 100}
-                                                onChange={(e) => setForm({ ...form, cw: e.target.value })}
-                                                className="w-12 bg-gray-800 border border-gray-600 rounded p-1 text-[10px] text-center outline-none"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Personalization */}
-                                    <div className="space-y-2 pt-2 border-t border-gray-700/50">
-                                        <div className="flex justify-between items-center">
-                                            <label className="text-[11px] font-bold text-purple-300 flex items-center gap-1">
-                                                <Lock size={12} /> {t('個人化模型 (Personalization --p)', 'Personalization (--p)')}
-                                            </label>
-                                            <span className="text-[10px] text-gray-500">MJ V6+</span>
-                                        </div>
-                                        <input
-                                            value={form.personalization}
-                                            onChange={(e) => setForm({ ...form, personalization: e.target.value })}
-                                            type="text"
-                                            placeholder={t('輸入個人化代碼 (Shortcode)...', 'Enter personalization code...')}
-                                            className="w-full bg-gray-900 border border-gray-600 rounded p-2 text-xs outline-none focus:border-purple-500 transition-colors font-mono"
-                                        />
-                                    </div>
-                                </div>
-                            </section>
-
-                            {/* Section 5: Technical Parameters */}
+                            {/* Section 4: Technical Parameters (Imagen 4 simplified) */}
                             <section id="section-params">
                                 <h2 className="text-base font-bold text-yellow-300 mb-3 flex items-center">
                                     <span className="w-2 h-6 bg-yellow-500 mr-2 rounded-sm"></span>
-                                    {t('5. 技術參數 (Parameters)', '5. Parameters')}
+                                    {t('4. 技術參數 (Parameters)', '4. Parameters')}
                                 </h2>
                                 <div className="grid grid-cols-2 gap-3 bg-gray-800 p-4 rounded border border-gray-700">
-                                    <div>
-                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('種子碼 (Seed)', 'Seed')}</label>
-                                        <input value={form.seed} onChange={(e) => setForm({ ...form, seed: e.target.value })} type="text" placeholder={t("隨機 (Random)", "Random")}
-                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-yellow-500 transition-colors" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[10px] text-gray-400 mb-1 font-bold">{t('風格化 (Stylize)', 'Stylize')}</label>
-                                        <input value={form.stylize} onChange={(e) => setForm({ ...form, stylize: e.target.value })} type="number" placeholder="100"
-                                            className="w-full bg-gray-900 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-yellow-500 transition-colors" />
-                                    </div>
 
                                     {/* Feature Toggles */}
                                     <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50 flex flex-wrap gap-4 items-center">
@@ -2686,23 +2727,23 @@
                                                 onChange={(e) => setIsAvoidSimplifiedChinese(e.target.checked)}
                                                 className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
                                             />
-                                            <label htmlFor="tc-opt" className="text-[10px] text-yellow-400 cursor-pointer select-none flex items-center gap-1" title={t("選取時，自動加入 'Simplified Chinese' 到負面提示詞中", "When selected, automatically adds 'Simplified Chinese' to negative prompt")}>
+                                            <label htmlFor="tc-opt" className="text-[10px] text-yellow-400 cursor-pointer select-none flex items-center gap-1" title={t("選取時，自動加入 'no simplified chinese text' 到品質提示詞中", "When selected, automatically adds 'no simplified chinese text' to quality prompt")}>
                                                 <span>{t('避免簡體字 (Avoid Simplified Chinese)', 'Avoid Simplified Chinese')}</span>
                                             </label>
                                         </div>
                                     </div>
 
-                                    {/* Negative Prompt */}
+                                    {/* Quality Prompt (Imagen 4 style - positive prompts) */}
                                     <div className="col-span-2 md:col-span-4 bg-gray-900/50 p-2 rounded border border-gray-700/50">
                                         <div className="flex justify-between items-center mb-1">
-                                            <label className="block text-[10px] text-gray-400 font-bold">負面提示詞 (Negative --no)</label>
+                                            <label className="block text-[10px] text-gray-400 font-bold">{t('品質增強 (Quality)', 'Quality Enhancement')}</label>
                                         </div>
-                                        <input value={form.negative} onChange={(e) => setForm({ ...form, negative: e.target.value })} type="text"
-                                            className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-red-400"
-                                            placeholder="blur, watermark, bad anatomy, text error..." />
+                                        <input value={form.quality} onChange={(e) => setForm({ ...form, quality: e.target.value })} type="text"
+                                            className="w-full bg-gray-800 border border-gray-600 rounded p-1.5 text-xs outline-none focus:border-emerald-400"
+                                            placeholder="sharp focus, high quality, detailed, professional..." />
                                         <div className="text-[9px] text-gray-500 mt-1 flex gap-2">
-                                            <span>* 將自動加入: </span>
-                                            {isAvoidSimplifiedChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">Simplified Chinese</span>}
+                                            <span>* {t('將自動加入', 'Auto-add')}: </span>
+                                            {isAvoidSimplifiedChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">避免簡體字</span>}
                                         </div>
                                     </div>
                                 </div>
