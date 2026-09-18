@@ -58,7 +58,7 @@ Curated templates for real-world applications:
 ### 🚀 Quick Start
 
 #### Direct Download
-1. Download `Prompts Builder V5.3.html`
+1. Download `Prompts Builder V9.4.html`
 2. Open it in any modern web browser
 3. Start creating prompts immediately (no installation required!)
 
@@ -127,6 +127,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **AI Image Prompt Master** 是一個全面的網頁工具，專為協助創作者為 Midjourney、Stable Diffusion 和 Ideogram 等 AI 圖像生成平台製作高品質提示詞而設計。本工具遵循 **Google 建議的黃金提示詞公式**，將複雜的提示詞工程轉化為直觀且結構化的工作流程。
 
+
+### 🚀 v9.4 重大更新 (The Layout & Spatial Engine Update)
+- **🎥 攝影機視角與全域構圖模組**：將攝影機視角（如：俯視、仰角、過肩鏡頭）與全域構圖（如：三分法、對稱）從風格區獨立出來，與「版面分區」完美結合，大幅提升 AI 對空間指令的精準度。
+- **🔰 新手啟發範本 (Starter Inspiration)**：新增 10 種展示極端風格的範本（如：微縮等距、雙重曝光剪影、極致紙雕、空拍上帝視角、魚眼極限），幫助您挖掘冷門但強大的風格組合。
+- **🔥 實戰排版庫擴充 (50+ Quick Layouts)**：內建超過 50 種專業排版，從基礎雙拼、醫療雜誌、社群梗圖到 UI/UX 登入頁，一鍵套用自動切版。
+- **🎬 範本資訊透明化 (Rich Preset UI)**：直接在範本卡片上顯示實際套用的「主體」與「場景動作」，不再只有抽象的設計理念，讓您在套用前完全掌握畫面構圖！
+- **✨ 完美雙語分類 (Unified Categories)**：重構並精簡了全域範本與風格的分類，無論是醫療衛教、攝影寫真還是設計排版，尋找靈感更加直覺。
+
 ### ✨ 主要功能
 
 #### 🎯 **200+ 專業藝術風格**
@@ -169,7 +177,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### 🚀 快速開始
 
 #### 直接下載
-1. 下載 `Prompts Builder V5.3.html`
+1. 下載 `Prompts Builder V9.4.html`
 2. 用任何現代瀏覽器開啟
 3. 立即開始創作提示詞（無需安裝！）
 

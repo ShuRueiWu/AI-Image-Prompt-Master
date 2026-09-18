@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -151,9 +150,12 @@
         import { createRoot } from 'react-dom/client';
         import {
             HelpCircle, ChevronDown, ChevronUp, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink,
-            Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload, Download
+            Search, Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload, Download
         } from 'lucide-react';
 
+        const versionMatch = window.location.pathname.match(/V(\d+\.\d+)/i);
+        const APP_VERSION = versionMatch ? versionMatch[1] : '8.4';
+        document.title = `AI Prompt Master V${APP_VERSION}`;
         const configData = {
             textures: [
                 { label: '白背景 (White background)', val: 'on white background' },
@@ -264,7 +266,7 @@
                     { label: '塗鴉 (Doodle)', val: 'Doodle Art', desc: '隨興、無拘無束的手繪線條。', desc_en: 'Spontaneous, unrestrained hand-drawn lines.' },
                     { label: '黑板畫 (Chalkboard)', val: 'Chalkboard Art', desc: '粉筆在黑板上繪製的質感。', desc_en: 'Texture of chalk drawing on a chalkboard.' },
                     { label: '手帳風 (Journaling)', val: 'Journaling', desc: '像個人手帳或日記一樣的風格。', desc_en: 'Style like a personal journal or diary.' },
-                    { label: '手寫 (Handwritten)', val: 'Handwritten', desc: '手寫字跡的風格。', desc_en: 'Handwritten text style.' }
+                    { label: '手寫 (Handwritten)', val: 'Handwritten', desc: '手寫字跡的風格。', desc_en: 'Handwritten text style.' },
                 ],
                 "攝影題材 (Photography Genres)": [
                     { label: '人像攝影 (Portrait)', val: 'Portrait Photography', desc: '專注於捕捉人物的表情、個性與情感，通常背景虛化。', desc_en: 'Focuses on capturing expression, personality, and emotion. Often blurred background.' },
@@ -400,22 +402,7 @@
                     { label: '樹脂 (Resin)', val: 'Resin', desc: '透明或半透明膠質，可封存物體。', desc_en: 'Transparent or translucent gel. Can encapsulate objects.' },
                     { label: '金箔 (Gold Foil)', val: 'Gold Foil', desc: '閃亮的金屬箔片質感，奢華燙金效果。', desc_en: 'Shiny metallic foil texture. Luxurious gilded effect.' },
                     { label: '全息 (Holographic)', val: 'Holographic', desc: '彩虹光澤的全息材質，科技感十足。', desc_en: 'Rainbow-sheen holographic material. High-tech feel.' }
-                ],
-                "攝影構圖 (Photo Composition)": [
-                    { label: '三分法 (Rule of Thirds)', val: 'Rule of Thirds', desc: '將主體置於九宮格交叉點，視覺平衡自然。', desc_en: 'Subject at grid intersections. Visually balanced and natural.' },
-                    { label: '黃金比例 (Golden Ratio)', val: 'Golden Ratio Composition', desc: '基於1:1.618的完美比例構圖，自然和諧。', desc_en: 'Composition based on 1:1.618 ratio. Natural and harmonious.' },
-                    { label: '中心構圖 (Center)', val: 'Center Composition', desc: '主體居中，強調對稱與莊重。', desc_en: 'Subject centered. Emphasizes symmetry and solemnity.' },
-                    { label: '對稱 (Symmetrical)', val: 'Symmetrical', desc: '左右或上下鏡像對稱，穩定和諧。', desc_en: 'Mirrored left/right or top/bottom. Stable and harmonious.' },
-                    { label: '填滿畫面 (Fill the Frame)', val: 'Fill the Frame', desc: '主體佔據整個畫面，強調細節與張力。', desc_en: 'Subject fills frame. Emphasizes details and tension.' },
-                    { label: '全景 (Panoramic)', val: 'Panoramic', desc: '超寬視野的全景畫面，展現壯闊場景。', desc_en: 'Ultra-wide panoramic view. Shows grand scenes.' },
-                    // === 視角 ===
-                    { label: '俯視 (Top Down)', val: 'Top Down', desc: '從正上方往下拍攝的視角。', desc_en: 'View from directly above.' },
-                    { label: '仰角 (Low Angle)', val: 'Low Angle Shot', desc: '從下往上拍攝，使主體顯得高大威嚴。', desc_en: 'Shot from below looking up. Makes subject appear tall and imposing.' },
-                    { label: '平視 (Eye Level)', val: 'Eye Level Shot', desc: '與主體視線平齊的自然視角。', desc_en: 'Natural view at subject\'s eye level.' },
-                    { label: '過肩鏡頭 (Over-the-shoulder)', val: 'Over-the-shoulder Shot', desc: '從一人身後拍攝另一人，強調對話與關係。', desc_en: 'Shot from behind one person looking at another. Emphasizes dialogue/relationship.' },
-                    { label: '中性背景 (Neutral BG)', val: 'Neutral Background', desc: '乾淨、不搶眼的背景。', desc_en: 'Clean, unobtrusive background.' }
-                ],
-                "設計排版 (Design Layout)": [
+                ],                "設計排版 (Design Layout)": [
                     { label: '平鋪 (Knolling)', val: 'Knolling', desc: '物體平行或90度整齊排列，井然有序。', desc_en: 'Objects arranged parallel or at 90 degrees. Orderly.' },
                     { label: '等角視圖 (Isometric)', val: 'Isometric', desc: '2.5D 平行投影，無透視變形，適合地圖或模型。', desc_en: '2.5D parallel projection. No perspective distortion. Good for maps/models.' },
                     { label: '留白 (Negative Space)', val: 'Negative Space', desc: '大面積空白，突顯主體，營造意境。', desc_en: 'Large empty areas. Highlights subject, creates mood.' },
@@ -502,8 +489,569 @@
                     { label: 'Frutiger Aero', val: 'Frutiger Aero', desc: '2000年代光澤感，自然元素與科技融合。', desc_en: '2000s glossy feel. Nature elements merged with technology.' },
                     { label: '整齊排列 (Knolling)', val: 'Knolling Photography', desc: '物品以90度角整齊排列的平鋪攝影風格。', desc_en: 'Items arranged at 90-degree angles in flat lay photography.' }
                 ]
+                ,
+                "兒科衛教 (Pediatric Education)": [
+                    { label: '兒科繪本風 (Picture Book)', val: 'Japanese children\'s picture-book illustration', desc: '日系兒童繪本感，柔和輪廓、低飽和色彩與溫暖紙張質感，適合親子衛教。', desc_en: 'Warm Japanese children\'s picture-book illustration with soft outlines, low-saturation colors, and a matte paper texture.', profile: 'picture-book' },
+                    { label: '柔和水彩風 (Soft Watercolor)', val: 'soft watercolor illustration on pale paper', desc: '淡雅透明水彩、留白感較強，適合安定、溫和的家長衛教內容。', desc_en: 'Translucent soft watercolor on pale paper with airy spacing, suited to calm and reassuring parent education.', profile: 'soft-watercolor' },
+                    { label: '簡潔醫學風 (Minimal Medical)', val: 'minimal modern medical illustration', desc: '現代、簡潔、辨識度高的醫學編輯插畫，適合快速理解重點。', desc_en: 'Clean modern editorial medical illustration with clear figure-ground separation and fast visual comprehension.', profile: 'minimal-medical' },
+                    { label: '連續漫畫風 (Sequential Comic)', val: 'calm sequential comic illustration', desc: '連續分鏡式的親子衛教插畫，適合呈現短步驟或照護流程。', desc_en: 'Calm child-friendly sequential comic illustration for short care steps or routines.', profile: 'sequential-comic' },
+                    { label: '扁平資訊圖風 (Flat Infographic)', val: 'flat editorial infographic illustration', desc: '扁平、清楚、區塊分明，適合並列呈現二至四個衛教重點。', desc_en: 'Crisp flat editorial infographic illustration with distinct visual zones for parallel education points.', profile: 'flat-infographic' },
+                    { label: '家長處境風 (Editorial Parent)', val: 'warm editorial portrait photography style', desc: '家長為視覺主體；成人比例自然、不幼稚化', desc_en: 'Parent-focused editorial style. Natural proportions, non-infantilized.', profile: 'editorial-parent' },
+                    { label: '鉛筆水彩人像 (Pencil Wash Portrait)', val: 'pencil and wash portrait illustration', desc: '單人肖像、溫和眼神接觸；原創非可辨識人物', desc_en: 'Single portrait, gentle eye contact. Original non-identifiable person.', profile: 'pencil-wash-portrait' },
+                    { label: '3D 動畫風 (Vivid 3D)', val: 'vivid 3D animation style', desc: '單一清楚主體 + 少量支援元素；不暗示未提供的醫療主張', desc_en: 'Clear single subject with few supporting elements. No unverified medical claims.', profile: 'vivid-3d-animation' },
+                    { label: '紙雕拼貼風 (Paper-Cut Collage)', val: 'paper-cut collage illustration', desc: '紙張剪裁與層疊的立體拼貼感，適合做出明確、活潑的衛教視覺。（非 skill 內建 profile）', desc_en: 'Layered paper-cut collage illustration with tactile depth and a clear, lively educational visual language.', profile: null }
+                ]
 
-            }, presetGroups: {
+
+            },
+            ui: {
+                aspectRatios: ['1:1', '16:9', '9:16', '3:2', '2:3', '4:3', '3:4', '4:5', '5:4', '21:9'],
+                resolutions: ['1K', '2K', '4K', '8K'],
+                textBlockLevels: [
+                    { label: '主視覺 (Primary)', value: 'Primary' },
+                    { label: '副標 (Secondary)', value: 'Secondary' },
+                    { label: '內文 (Body)', value: 'Body' },
+                    { label: '細節 (Detail)', value: 'Detail' }
+                ],
+                defaultExpandedCategories: ['藝術風格 (Art Styles)', '設計排版 (Design Layout)', '兒科衛教 (Pediatric Education)']
+            }
+        };
+
+        const BUILTIN_PRESETS = {
+
+                "🔰 新手啟發範本 (Starter Inspiration)": {
+                    starter_isometric: {
+                        name: '微縮等距城市 (Isometric Top-Down)',
+                        desc: '完美結合「俯視(Top Down)」與「等距視角(Isometric)」，創造如模擬城市般的微縮感。',
+                        desc_en: 'Perfect combination of Top Down and Isometric styles to create a SimCity-like miniature feel.',
+                        subject: 'A small bustling cyberpunk street noodle shop',
+                        title: 'Mini City',
+                        body: '畫面精緻可愛，像是樂高積木或是 3D 遊戲畫面。',
+                        styles: ['Isometric', '3D Render', 'Voxel Art', 'Tilt-Shift'],
+                        camera: ['Top Down'],
+                        sections: [{ visual: 'The detailed noodle shop', param: 'centered', dir: 'center', textBlocks: [] }, { visual: 'Busy tiny pedestrians', param: '', dir: 'surround', textBlocks: [] }],
+                        ar: '1:1', resolution: '4K', texture: '', quality: 'highly detailed miniature, tilt-shift photography'
+                    },
+                    starter_double_exposure: {
+                        name: '雙重曝光剪影 (Double Exposure)',
+                        desc: '使用「雙重曝光」技術，將自然風景與人物輪廓融合的藝術手法。',
+                        desc_en: 'Artistic Double Exposure blending natural landscapes into human silhouettes.',
+                        subject: 'Profile silhouette of a person thinking',
+                        title: 'Mind Forest',
+                        body: '人物的剪影內部透出了茂密的森林與星空，充滿詩意。',
+                        styles: ['Double Exposure', 'Silhouette', 'Surrealism', 'Monochrome'],
+                        camera: ['Eye Level Shot', 'Fill the Frame'],
+                        sections: [{ visual: 'Person profile silhouette', param: 'dark contrast', dir: 'center', textBlocks: [] }, { visual: 'Pine forest and starry night', param: 'inside the silhouette', dir: 'bg', textBlocks: [] }],
+                        ar: '3:4', resolution: '8K', texture: '', quality: 'fine art photography, double exposure masterpiece'
+                    },
+                    starter_knolling: {
+                        name: '裝備平鋪解構 (Knolling Layout)',
+                        desc: '利用「平鋪(Knolling)」與「中性背景」，將物品井然有序地排列，適合裝備展示。',
+                        desc_en: 'Orderly arrangement of items using Knolling and Neutral Background, perfect for gear display.',
+                        subject: 'Everyday carry of a modern doctor or surgeon',
+                        title: 'Doctor EDC',
+                        body: '聽診器、筆記本、手錶、鋼筆以 90 度平行排列得非常整齊。',
+                        styles: ['Knolling', 'Product Photography', 'Minimalist', 'Flat Lay'],
+                        camera: ['Top Down', 'Neutral Background'],
+                        sections: [{ visual: 'Medical gear and everyday items perfectly aligned', param: 'grid layout', dir: 'center', textBlocks: [] }],
+                        ar: '16:9', resolution: '4K', texture: '', quality: 'commercial product photography, strict knolling'
+                    },
+                    starter_over_shoulder: {
+                        name: '過肩鏡頭對話 (Over-the-shoulder)',
+                        desc: '電影中經典的「過肩鏡頭」，將觀眾拉入兩個角色的私密對話視角。',
+                        desc_en: 'Classic cinematic over-the-shoulder shot pulling viewers into an intimate conversation.',
+                        subject: 'A patient talking to a compassionate doctor',
+                        title: 'The Consult',
+                        body: '從病人的肩膀後方看過去，焦點清楚地落在醫生的臉上，背景有電影感的散景。',
+                        styles: ['Cinematic Lighting', '35mm Lens', 'Bokeh', 'Storytelling'],
+                        camera: ['Over-the-shoulder Shot', 'Rule of Thirds'],
+                        sections: [{ visual: 'Blurry shoulder of patient', param: 'out of focus foreground', dir: 'left', textBlocks: [] }, { visual: 'Compassionate doctor listening', param: 'sharp focus', dir: 'right', textBlocks: [] }],
+                        ar: '21:9', resolution: '4K', texture: '', quality: 'cinematic still, emotional, depth of field'
+                    },
+
+                    starter_papercraft: {
+                        name: '立體紙雕童話 (Papercraft)',
+                        desc: '利用「剪紙(Paper Cutout)」與「摺紙(Origami)」，生成充滿層次感的手作立體童話風。',
+                        desc_en: 'Using Paper Cutout and Origami to generate a layered, handcrafted 3D storybook style.',
+                        subject: 'A cute fox sleeping under a giant glowing mushroom',
+                        title: 'Paper Tale',
+                        body: '畫面由層層疊疊的彩色紙張雕刻組成，邊緣帶有紙張的真實厚度與陰影。',
+                        styles: ['Paper Cutout', 'Origami', 'Pastel', 'Warm Light'],
+                        camera: ['Center Composition'],
+                        sections: [],
+                        ar: '1:1', resolution: '4K', texture: 'on thick watercolor paper', quality: 'intricate papercraft, 3D layered, masterpiece'
+                    },
+                    starter_drone_view: {
+                        name: '上帝空拍視角 (Drone View)',
+                        desc: '結合「空拍攝影(Drone)」與「俯視(Top Down)」，從高空展現令人窒息的幾何地貌。',
+                        desc_en: 'Combining Drone Photography and Top Down to show breathtaking geometric landscapes from above.',
+                        subject: 'A winding road through autumn colored forests',
+                        title: 'From Above',
+                        body: '樹林的顏色從紅色漸變到黃色，柏油路如同黑色緞帶穿梭其中。',
+                        styles: ['Drone Photography', 'Landscape Photography', 'Vibrant Colors'],
+                        camera: ['Top Down', 'Rule of Thirds'],
+                        sections: [],
+                        ar: '16:9', resolution: '8K', texture: '', quality: 'national geographic photography, aerial shot'
+                    },
+                    starter_fisheye: {
+                        name: '魚眼極限張力 (Fisheye Lens)',
+                        desc: '運用「魚眼鏡頭(Fisheye)」搭配「仰角(Low Angle)」，創造極度誇張的透視與變形效果。',
+                        desc_en: 'Using Fisheye Lens with Low Angle to create extreme perspective and distortion.',
+                        subject: 'A skateboarder doing a kickflip over the camera',
+                        title: 'Extreme Air',
+                        body: '以極近的距離仰拍，滑板遮蔽了半個太陽，邊緣呈現強烈的球形扭曲。',
+                        styles: ['Fisheye Lens', 'Action Photography', 'High Contrast'],
+                        camera: ['Low Angle Shot', 'Center Composition'],
+                        sections: [],
+                        ar: '3:4', resolution: '4K', texture: '', quality: 'extreme sports photography, high shutter speed'
+                    },
+                    starter_glitch: {
+                        name: '賽博故障藝術 (Glitch Art)',
+                        desc: '冷門但極具風格的「故障藝術(Glitch)」、「VHS」與「雙色調(Duotone)」，適合做音樂祭海報。',
+                        desc_en: 'Niche but stylish Glitch Art, VHS, and Duotone, perfect for music festival posters.',
+                        subject: 'A hacker typing on a glowing terminal',
+                        title: 'System Error',
+                        body: '畫面充滿了電視雜訊、RGB 色彩分離與水平掃描線。',
+                        styles: ['Glitch Art', 'VHS', 'Cyberpunk', 'Duotone'],
+                        camera: ['Eye Level Shot'],
+                        sections: [],
+                        ar: '16:9', resolution: '2K', texture: 'with VHS tracking distortion', quality: 'digital art, aesthetic, retro futuristic'
+                    },
+                    starter_macro: {
+                        name: '微距生態世界 (Macro Focus)',
+                        desc: '「微距攝影(Macro)」與極淺景深的結合，將微小的世界放大，細節驚人。',
+                        desc_en: 'Macro photography combined with extremely shallow depth of field, enlarging tiny worlds with stunning detail.',
+                        subject: 'A tiny jumping spider looking directly at the camera',
+                        title: 'Microcosm',
+                        body: '蜘蛛頭上的露水清晰可見，背後是完全融化的綠色散景。',
+                        styles: ['Macro Photography', 'Shallow Depth of Field', 'Nature Photography', 'Sharp Focus'],
+                        camera: ['Fill the Frame', 'Symmetrical'],
+                        sections: [],
+                        ar: '16:9', resolution: '4K', texture: '', quality: 'macro photography, extreme close up, hyper detailed eye reflection'
+                    },
+                    starter_panoramic_symmetry: {
+                        name: '對稱全景史詩 (Panoramic Symmetry)',
+                        desc: '極致運用「全景(Panoramic)」與「對稱(Symmetrical)」，創造宏偉壯闊的視覺震撼。',
+                        desc_en: 'Extreme use of Panoramic and Symmetrical rules for majestic visual impact.',
+                        subject: 'A futuristic grand hospital atrium',
+                        title: 'Grand Architecture',
+                        body: '陽光從玻璃穹頂灑下，左右完全對稱的走廊與大理石柱，宛如科幻神殿。',
+                        styles: ['Architectural Photography', 'Sci-Fi', 'Ray Tracing', 'Clean'],
+                        camera: ['Panoramic', 'Symmetrical', 'Center Composition'],
+                        sections: [{ visual: 'Symmetrical architecture', param: 'leading lines', dir: 'bg', textBlocks: [] }, { visual: 'Tiny person standing in the middle', param: 'scale reference', dir: 'center', textBlocks: [] }],
+                        ar: '21:9', resolution: '8K', texture: '', quality: 'architectural digest, epic scale, photorealistic'
+                    }
+                },
+
+
+                "🔥 十大佈局實戰範本 (Top 10 Layouts)": {
+                    layout_ig_story: {
+                        name: '日系純愛限動 (IG Story)',
+                        desc: '完美的 9:16 IG 限時動態版型，運用 Top 與 Bottom 預留文字與互動貼紙空間。',
+                        desc_en: 'Perfect 9:16 IG Story layout with space for stickers and swipe up text.',
+                        subject: 'Anime girl looking back under cherry blossoms',
+                        title: 'Spring Story',
+                        body: '畫面夢幻，充滿粉色調與春天的氣息。',
+                        styles: ['Anime', 'Pastel Colors', 'Soft Light'],
+                        sections: [{ visual: 'Location sticker space', param: '', dir: 'top', textBlocks: [{ content: '📍 Tokyo, Japan', level: 'Detail', font: 'Sans-Serif' }] }, { visual: 'Main character', param: 'centered', dir: 'center', textBlocks: [] }, { visual: 'Swipe up area', param: 'dark gradient', dir: 'bottom', textBlocks: [{ content: 'SWIPE UP', level: 'Secondary', font: 'Bold Display' }] }],
+                        ar: '9:16', resolution: '2K', texture: '', quality: 'masterpiece, high quality anime art'
+                    },
+                    layout_app_login: {
+                        name: '醫療 App 登入頁 (App Login)',
+                        desc: '手機 App 的經典 UI 切版，置頂 Logo，置中輸入框。',
+                        desc_en: 'Classic mobile App UI layout with top logo and centered login form.',
+                        subject: 'Clean mobile app login interface for a healthcare app',
+                        title: 'Health App',
+                        body: '現代感、無負擔的極簡設計，給人專業醫療的信賴感。',
+                        styles: ['Clean UI', 'Neumorphism', 'Blue and White'],
+                        sections: [{ visual: 'Soft clean background', param: 'light blue gradient', dir: 'bg', textBlocks: [] }, { visual: 'App Logo', param: 'minimalist cross or heart', dir: 'top', textBlocks: [{ content: 'HealthPlus', level: 'Primary', font: 'Sans-Serif' }] }, { visual: 'Username and password fields', param: 'rounded corners', dir: 'center', textBlocks: [{ content: 'Login', level: 'Secondary', font: 'Sans-Serif' }] }],
+                        ar: '9:16', resolution: '2K', texture: '', quality: 'dribbble, UI/UX, figma design'
+                    },
+                    layout_dashboard: {
+                        name: '科技數據看板 (Dashboard)',
+                        desc: '複雜的儀表板排版，結合了左側欄、上方導覽列與主視覺區。',
+                        desc_en: 'Complex dashboard layout with sidebar, navbar, and main content area.',
+                        subject: 'Sci-fi futuristic data dashboard UI',
+                        title: 'Cyber Dashboard',
+                        body: '充滿發光的圖表、數據線與神經網絡圖，像是指揮中心。',
+                        styles: ['Cyberpunk', 'Glassmorphism', 'Neon Lights'],
+                        sections: [{ visual: 'Left Sidebar menu', param: 'dark glass', dir: 'left', textBlocks: [] }, { visual: 'Top Navigation bar', param: 'glow', dir: 'top', textBlocks: [{ content: 'SYSTEM STATUS', level: 'Primary', font: 'Monospace' }] }, { visual: 'Main Data Charts', param: 'holographic', dir: 'stack', textBlocks: [] }],
+                        ar: '16:9', resolution: '4K', texture: '', quality: 'high detail UI, futuristic interface'
+                    },
+                    layout_vogue_cover: {
+                        name: '時尚醫療雜誌 (Vogue Cover)',
+                        desc: '雜誌封面的霸氣排版，人物置中，巨大的刊物名稱壓在背景之上。',
+                        desc_en: 'Magazine cover layout with centered character and massive publication title.',
+                        subject: 'High fashion portrait of a confident female surgeon',
+                        title: 'Vogue Medical',
+                        body: '穿著剪裁俐落的白袍，眼神銳利，背景純粹。',
+                        styles: ['Editorial Photography', 'High Fashion', 'Studio Lighting'],
+                        sections: [{ visual: 'Studio backdrop', param: 'dark grey', dir: 'bg', textBlocks: [] }, { visual: 'Massive magazine title text', param: 'partially hidden behind subject', dir: 'top', textBlocks: [{ content: 'VOGUE MED', level: 'Primary', font: 'Serif' }] }, { visual: 'Confident female surgeon', param: 'sharp focus', dir: 'center', textBlocks: [] }],
+                        ar: '3:4', resolution: '8K', texture: '', quality: 'vogue cover, professional photography'
+                    },
+                    layout_meme: {
+                        name: '經典無奈迷因 (Meme Layout)',
+                        desc: '標準的上下包夾迷因梗圖排版，使用 Impact 字體產生共鳴。',
+                        desc_en: 'Standard top-and-bottom sandwich meme layout using Impact font.',
+                        subject: 'A tired doctor looking at a massive pile of paperwork',
+                        title: 'Monday Meme',
+                        body: '誇張的表情，充滿喜感。',
+                        styles: ['Flat Design', 'Comic Book', 'Humorous'],
+                        sections: [{ visual: 'Top text block', param: 'black outline', dir: 'top', textBlocks: [{ content: 'WHEN YOU FINISH CLINIC', level: 'Primary', font: 'Impact' }] }, { visual: 'Sighing doctor', param: 'funny expression', dir: 'center', textBlocks: [] }, { visual: 'Bottom text block', param: 'black outline', dir: 'bottom', textBlocks: [{ content: 'BUT THE CHARTING BEGINS', level: 'Primary', font: 'Impact' }] }],
+                        ar: '1:1', resolution: '1K', texture: '', quality: 'internet meme style'
+                    },
+                    layout_podcast: {
+                        name: '深夜廣播封面 (Podcast Art)',
+                        desc: '正方形的 Podcast 封面，著重在置中主體與醒目的節目名稱。',
+                        desc_en: 'Square podcast cover focusing on a centered subject and striking show title.',
+                        subject: 'A vintage glowing microphone on a desk',
+                        title: 'Late Night Talk',
+                        body: '背景是模糊的午夜城市燈火，給人放鬆、低語的感覺。',
+                        styles: ['Neon Lights', 'Vaporwave', 'Atmospheric'],
+                        sections: [{ visual: 'Blurry midnight city window', param: 'bokeh', dir: 'bg', textBlocks: [] }, { visual: 'Vintage microphone', param: 'glowing reflection', dir: 'center', textBlocks: [] }, { visual: 'Show title', param: 'neon font', dir: 'bottom', textBlocks: [{ content: 'NIGHT WHISPERS', level: 'Primary', font: 'Neon' }] }],
+                        ar: '1:1', resolution: '2K', texture: 'with film grain texture', quality: 'album cover art, aesthetic'
+                    },
+                    layout_magic_circle: {
+                        name: '奇幻魔法陣 (Magic Circle)',
+                        desc: '完美展現「置中(Center)」與「環繞(Surround)」空間指令的奇幻特效構圖。',
+                        desc_en: 'Fantasy VFX layout perfectly showcasing the Center and Surround spatial commands.',
+                        subject: 'A powerful mage casting a spell',
+                        title: 'Summoning',
+                        body: '施法者站在中央，周圍被複雜的發光符文與魔法陣包圍。',
+                        styles: ['Fantasy Art', 'Epic', 'Glowing Magic'],
+                        sections: [{ visual: 'Dark mystical cave', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Mage casting spell', param: 'dynamic pose', dir: 'center', textBlocks: [] }, { visual: 'Floating glowing runes and magic circles', param: 'complex geometry', dir: 'surround', textBlocks: [] }],
+                        ar: '16:9', resolution: '4K', texture: '', quality: 'epic fantasy illustration, highly detailed magic effects'
+                    },
+                    layout_diagonal_clash: {
+                        name: '超級英雄對決 (Diagonal Clash)',
+                        desc: '利用對角線安排兩個極具張力的角色，適合漫畫或動作場景。',
+                        desc_en: 'Using diagonal layout for high-tension character face-offs, great for comics.',
+                        subject: 'Two superheroes facing off',
+                        title: 'The Clash',
+                        body: '強烈的動態感，一個在左上，一個在右下，中間彷彿有火花。',
+                        styles: ['Comic Book', 'Dynamic Action', 'High Contrast'],
+                        sections: [{ visual: 'Hero diving down', param: 'action pose', dir: 'top', textBlocks: [] }, { visual: 'Villain looking up', param: 'menacing', dir: 'bottom', textBlocks: [] }],
+                        ar: '16:9', resolution: '4K', texture: 'with halftone texture', quality: 'marvel comic style, dynamic angle'
+                    },
+                    layout_pyramid: {
+                        name: '飲食金字塔海報 (Pyramid Poster)',
+                        desc: '將畫面嚴格切分為上、中、下三層的資訊圖表海報。',
+                        desc_en: 'Infographic poster strictly dividing the canvas into top, middle, and bottom tiers.',
+                        subject: 'Healthy food pyramid infographic',
+                        title: 'Diet Pyramid',
+                        body: '顏色分明，層層遞進，最適合用來表達優先級或階級。',
+                        styles: ['Infographic', 'Vector Art', 'Clean'],
+                        sections: [{ visual: 'Top tier: Fats and Sweets', param: 'small section', dir: 'top', textBlocks: [{ content: '少吃 (Fats)', level: 'Secondary', font: 'Sans-Serif' }] }, { visual: 'Middle tier: Proteins and Dairy', param: 'medium section', dir: 'center', textBlocks: [{ content: '適量 (Proteins)', level: 'Secondary', font: 'Sans-Serif' }] }, { visual: 'Bottom tier: Grains and Veggies', param: 'large base', dir: 'bottom', textBlocks: [{ content: '多吃 (Grains)', level: 'Primary', font: 'Sans-Serif' }] }],
+                        ar: '3:4', resolution: '2K', texture: '', quality: 'educational infographic, flat design'
+                    },
+                    layout_linkedin: {
+                        name: '專業領英大頭照 (LinkedIn Headshot)',
+                        desc: '利用「背景(BG)」與「置中(Center)」創造極具專業感的淺景深人像照。',
+                        desc_en: 'Professional shallow depth-of-field portrait using BG and Center commands.',
+                        subject: 'Professional headshot of a smiling Asian businessman',
+                        title: 'LinkedIn Pro',
+                        body: '穿著合身西裝，給人自信、友善的第一印象。',
+                        styles: ['Portrait Photography', 'Bokeh', 'Natural Light'],
+                        sections: [{ visual: 'Bright office space', param: 'heavy bokeh, out of focus', dir: 'bg', textBlocks: [] }, { visual: 'Smiling businessman', param: 'sharp focus on eyes, 85mm lens', dir: 'center', textBlocks: [] }],
+                        ar: '1:1', resolution: '4K', texture: '', quality: 'professional headshot photography, hyperrealistic'
+                    }
+                },
+
+
+                "📐 經典切版佈局 (Classic Layouts)": {
+                    layout_split_screen: {
+                        name: '左右五五分拼圖 (Split Screen)',
+                        desc: '最常見的 50/50 雙拼版面，常用於對比（Before/After）或對話情境。',
+                        desc_en: 'Classic 50/50 split screen layout, perfect for comparisons or dialogues.',
+                        subject: 'Split screen layout',
+                        title: 'Split Screen',
+                        body: '明確的左右切分線。',
+                        styles: ['Clean UI', 'Minimalist'],
+                        sections: [
+                            { visual: 'First subject or scene', param: 'Left half of the screen', dir: 'left', textBlocks: [] },
+                            { visual: 'Second subject or scene', param: 'Right half of the screen', dir: 'right', textBlocks: [] }
+                        ],
+                        ar: '16:9',
+                        resolution: '4K',
+                        texture: '',
+                        quality: 'split screen layout, strict division, symmetrical balance'
+                    },
+                    layout_movie_poster: {
+                        name: '好萊塢電影海報 (Movie Poster)',
+                        desc: '史詩背景、置中人物、頂部標語與底部演職員表的經典三段式構圖。',
+                        desc_en: 'Classic three-tier movie poster: epic background, centered character, and text blocks.',
+                        subject: 'Epic cinematic movie poster',
+                        title: 'Cinematic Poster',
+                        body: '極具戲劇張力的光影與層次。',
+                        styles: ['Cinematic Lighting', 'Poster Design'],
+                        sections: [
+                            { visual: 'Epic sweeping landscape or moody atmosphere', param: 'dark and dramatic', dir: 'bg', textBlocks: [] },
+                            { visual: 'Main character looking into the distance', param: 'detailed face, dramatic rim light', dir: 'stack', textBlocks: [] },
+                            { visual: 'Tagline text space', param: 'clean dark area', dir: 'top', textBlocks: [{ content: 'EPIC MOVIE TITLE', level: 'Primary', font: 'Serif' }] },
+                            { visual: 'Small billing block and credits', param: 'tiny text layout', dir: 'bottom', textBlocks: [] }
+                        ],
+                        ar: '2:3',
+                        resolution: '4K',
+                        texture: '',
+                        quality: 'movie poster composition, masterpiece, dramatic lighting'
+                    },
+                    layout_youtube_thumb: {
+                        name: 'YouTube 爆款縮圖 (YT Thumbnail)',
+                        desc: '強烈對比背景、主體放右邊、左邊留給巨大吸睛文字的點擊率收割機版面。',
+                        desc_en: 'High CTR YouTube thumbnail layout with bold subject and text space.',
+                        subject: 'Clickbait YouTube video thumbnail',
+                        title: 'YT Thumbnail',
+                        body: '高對比度、鮮豔的色彩與邊緣發光效果。',
+                        styles: ['Vibrant Colors', 'Flat Design'],
+                        sections: [
+                            { visual: 'Blurred colorful studio background', param: 'depth of field, bright colors', dir: 'bg', textBlocks: [] },
+                            { visual: 'Surprised person pointing to the left', param: 'white outline sticker effect', dir: 'right', textBlocks: [] },
+                            { visual: 'Space for massive impact text', param: 'high contrast dark space', dir: 'left', textBlocks: [{ content: 'OMG!!', level: 'Primary', font: 'Bold Display' }] }
+                        ],
+                        ar: '16:9',
+                        resolution: '1K',
+                        texture: '',
+                        quality: 'youtube thumbnail style, high contrast, vibrant, eye-catching'
+                    },
+                    layout_landing_page: {
+                        name: 'SaaS 網頁首圖 (Landing Page Hero)',
+                        desc: '標準的現代網頁橫幅：乾淨背景、左側文字介紹、右側漂浮 3D 產品圖或介面。',
+                        desc_en: 'Standard modern web banner: clean background, text on left, 3D product on right.',
+                        subject: 'Modern SaaS landing page hero section layout',
+                        title: 'Web Banner',
+                        body: '非常多的留白，排版乾淨俐落，有助於網頁設計師產生靈感素材。',
+                        styles: ['Clean UI', 'vivid 3D animation style'],
+                        sections: [
+                            { visual: 'Soft smooth pastel gradient', param: 'clean, minimal', dir: 'bg', textBlocks: [] },
+                            { visual: 'Large headline and subtitle text space', param: 'lots of negative space', dir: 'left', textBlocks: [{ content: 'The Best Product', level: 'Primary', font: 'Sans-Serif' }] },
+                            { visual: 'Floating abstract 3D interface or shapes', param: 'glassmorphism, glossy', dir: 'right', textBlocks: [] }
+                        ],
+                        ar: '21:9',
+                        resolution: '4K',
+                        texture: '',
+                        quality: 'landing page layout, dribbble style, UI/UX, clean composition'
+                    }
+                },
+
+
+                "📐 實戰佈局與排版 (Layouts & Editorials)": {
+                    complex_magazine_spread: {
+                        name: '醫療雜誌跨頁排版 (Magazine Spread)',
+                        desc: '精密的 6 分區跨頁排版，結合背景、人物、資訊圖表與橫幅，展現極致的空間控制力。',
+                        desc_en: 'Precise 6-section magazine spread combining background, portrait, infographics, and banners.',
+                        subject: 'Medical health magazine double-page spread layout',
+                        title: 'Health Magazine',
+                        body: '這是一個嚴格切分的跨頁排版，左半邊是人物寫真，右半邊是圖表，上下有橫幅包夾。',
+                        styles: ['flat editorial infographic illustration', 'Clean UI', 'Typography'],
+                        sections: [
+                            { visual: 'Soft abstract geometric gradient', param: 'low opacity, clean', dir: 'bg', textBlocks: [] },
+                            { visual: 'Bold magazine header banner', param: 'high contrast', dir: 'top', textBlocks: [{ content: 'HEALTH & LIFE', level: 'Primary', font: 'Bold Display' }] },
+                            { visual: 'Photorealistic male doctor portrait facing right', param: 'sharp focus, professional lighting', dir: 'left', textBlocks: [] },
+                            { visual: 'Grid of 3 infographic circles (Diet, Exercise, Sleep)', param: 'vector style, flat design', dir: 'right', textBlocks: [{ content: '每日三大關鍵', level: 'Secondary', font: 'Noto Sans TC' }] },
+                            { visual: 'Floating glowing medical cross and heart symbols', param: 'bokeh, depth of field', dir: 'stack', textBlocks: [] },
+                            { visual: 'Footer ribbon with barcodes and website link', param: 'minimalist, dark background', dir: 'bottom', textBlocks: [{ content: 'www.health-magazine.tw', level: 'Detail', font: 'Monospace' }] }
+                        ],
+                        ar: '3:2',
+                        resolution: '8K',
+                        texture: '',
+                        quality: 'editorial photography, hyper-detailed, strict grid layout, masterpiece'
+                    }
+                },
+
+
+                "🎓 醫學教材與圖解 (Medical Education & Diagrams)": {
+                    med_anatomy_cutaway: {
+                        name: '器官剖面概念圖',
+                        desc: '清晰乾淨的醫學剖面解剖圖，適合用作簡報或教材的視覺輔助。',
+                        desc_en: 'Clean medical cutaway illustration, perfect for presentations or educational materials.',
+                        subject: 'Cross-section anatomy of a human organ',
+                        title: 'Anatomy Cutaway',
+                        body: '白色或淺灰色背景，器官結構清晰分明，使用對比色突顯重點部位。',
+                        styles: ['medical scientific illustration', 'Clean', 'Flat Design'],
+                        sections: [{ visual: 'Organ structure', param: 'highly detailed, accurate', textBlocks: [] }, { visual: 'Labels area', param: 'clean negative space', textBlocks: [] }],
+                        ar: '4:3',
+                        resolution: '4K',
+                        texture: '',
+                        quality: 'scientific accuracy, educational, clean background, 8k resolution'
+                    },
+                    med_flowchart_infographic: {
+                        name: '醫療流程圖卡',
+                        desc: '扁平化資訊圖表風格，適合用來解釋看診流程或治療步驟。',
+                        desc_en: 'Flat infographic style, ideal for explaining clinical workflows or treatment steps.',
+                        subject: 'Medical workflow or treatment step infographic',
+                        title: 'Clinical Workflow',
+                        body: '包含幾個簡單的圖示（如聽診器、藥丸、愛心），區塊分明，適合後續壓字。',
+                        styles: ['flat editorial infographic illustration', 'Minimalist'],
+                        sections: [],
+                        ar: '16:9',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'vector graphic, clean UI, flat design, no text'
+                    },
+                    kids_brave_sticker: {
+                        name: '兒童看診勇敢貼紙',
+                        desc: '可愛、色彩鮮豔的動物醫生插畫，適合印製成發給小病人的獎勵貼紙。',
+                        desc_en: 'Cute, colorful animal doctor illustration, suitable for printing as reward stickers for pediatric patients.',
+                        subject: 'Cute cartoon animal doctor giving a thumbs up',
+                        title: 'Brave Sticker',
+                        body: '白色背景（方便去背），色彩鮮明，動物表情友善溫暖，帶有徽章感。',
+                        styles: ['Kawaii', 'Vector Art', 'Vibrant Colors'],
+                        sections: [{ visual: 'Animal character in center', param: 'thick outlines, sticker style', textBlocks: [] }],
+                        ar: '1:1',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'sticker design, white background, thick borders, cute, kawaii, high contrast'
+                    },
+                    clinic_website_hero: {
+                        name: '診所官網滿版首圖',
+                        desc: '寬比例的優雅醫療空間或醫護情境，適合做為網站入口大圖。',
+                        desc_en: 'Wide-ratio elegant medical space or scenario, suitable for website hero images.',
+                        subject: 'Elegant and modern clinic reception desk with soft lighting',
+                        title: 'Website Hero',
+                        body: '極寬的視角，大量的留白區塊可以放置網站標題，給人安心、信賴的視覺感受。',
+                        styles: ['Cinematic Lighting', 'Minimalist', 'Architectural Photography'],
+                        sections: [{ visual: 'Left: Empty space for text', param: 'soft focus, clean', textBlocks: [] }, { visual: 'Right: Modern clinic interior', param: 'sharp focus', textBlocks: [] }],
+                        ar: '21:9',
+                        resolution: '8K',
+                        texture: '',
+                        quality: 'architectural photography, high end interior, bright, welcoming, photorealistic'
+                    }
+                },
+
+
+                "🏥 臨床與診所素材 (Clinic Assets)": {
+                    clinic_fb_cover: {
+                        name: '診所 FB 貼文底圖',
+                        desc: '乾淨、現代、留白多的醫療空間背景，適合壓字做社群圖卡。',
+                        desc_en: 'Clean, modern medical space with ample negative space for text overlay.',
+                        subject: 'Modern clinic reception or waiting area',
+                        title: 'Clinic Social Cover',
+                        body: '充足的左側或右側留白，溫暖的採光，木質與白色的裝潢，讓人感到安心。',
+                        styles: ['minimal modern medical illustration', 'Cinematic Lighting'],
+                        sections: [],
+                        ar: '4:5',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, unbranded, no text, highly detailed, photorealistic interior'
+                    },
+                    medical_slide_bg: {
+                        name: '醫學簡報背景',
+                        desc: '抽象的生化、DNA 或細胞科技感，適合做為學術簡報底圖。',
+                        desc_en: 'Abstract biotech, DNA, or cellular technology background for academic slides.',
+                        subject: 'Abstract glowing DNA helix or cellular structure',
+                        title: 'Biotech Abstract',
+                        body: '深色背景（深藍或深紫），發光的微觀結構，科技與醫療的結合，畫面邊緣虛化。',
+                        styles: ['vivid 3D animation style', 'Holographic'],
+                        sections: [],
+                        ar: '16:9',
+                        resolution: '4K',
+                        texture: '',
+                        quality: 'abstract, dark background for presentation, glowing elements, 8k render, octane render'
+                    },
+                    friendly_staff: {
+                        name: '親切醫護人像',
+                        desc: '溫暖、具信任感的台灣醫師或護理師，適合用於衛教文章首圖。',
+                        desc_en: 'Warm, trustworthy Taiwanese doctor or nurse, perfect for health article headers.',
+                        subject: 'Friendly Taiwanese doctor or nurse in clean uniform',
+                        title: 'Friendly Staff',
+                        body: '面帶微笑，眼神接觸，背景為明亮的診間，給人專業與安心感。',
+                        styles: ['warm editorial portrait photography style'],
+                        sections: [],
+                        ar: '3:2',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'professional portrait, natural diverse Taiwanese, clean clinic background, photorealistic, 85mm lens'
+                    }
+                },
+
+
+                "🧸 兒科衛教 (Pediatric Education)": {
+                    pedu_scene: {
+                        name: '單一衛教情境',
+                        desc: 'Warm Japanese children\'s picture-book illustration with soft outlines, low-saturation colors, and a matte paper texture.',
+                        desc_en: 'Warm Japanese children\'s picture-book illustration with soft outlines, low-saturation colors, and a matte paper texture.',
+                        subject: '',
+                        title: '',
+                        body: '溫暖敘事場景；生病情境孩子不得微笑、陪伴者專注略帶擔憂',
+                        styles: ['Japanese children\'s picture-book illustration'],
+                        sections: [],
+                        ar: '4:5',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic'
+                    },
+                    pedu_parent: {
+                        name: '家長處境',
+                        desc: 'Parent-focused editorial style. Natural proportions, non-infantilized.',
+                        desc_en: 'Parent-focused editorial style. Natural proportions, non-infantilized.',
+                        subject: '',
+                        title: '',
+                        body: '家長為視覺主體；成人比例自然、不幼稚化',
+                        styles: ['warm editorial portrait photography style'],
+                        sections: [],
+                        ar: '4:5',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic'
+                    },
+                    pedu_steps: {
+                        name: '步驟分鏡',
+                        desc: 'Calm child-friendly sequential comic illustration for short care steps or routines.',
+                        desc_en: 'Calm child-friendly sequential comic illustration for short care steps or routines.',
+                        subject: '',
+                        title: '',
+                        body: '3–4 格、同一位孩子與照顧者；無對白框、無格內字幕',
+                        styles: ['calm sequential comic illustration'],
+                        sections: [],
+                        ar: '4:5',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic'
+                    },
+                    pedu_principles: {
+                        name: '併列原則',
+                        desc: 'Crisp flat editorial infographic illustration with distinct visual zones for parallel education points.',
+                        desc_en: 'Crisp flat editorial infographic illustration with distinct visual zones for parallel education points.',
+                        subject: '',
+                        title: '',
+                        body: '2–4 個平行重點；無圖表、無量表',
+                        styles: ['flat editorial infographic illustration'],
+                        sections: [],
+                        ar: '1:1',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic'
+                    },
+                    pedu_mechanism: {
+                        name: '機轉比喻',
+                        desc: 'Clear single subject with few supporting elements. No unverified medical claims.',
+                        desc_en: 'Clear single subject with few supporting elements. No unverified medical claims.',
+                        subject: '',
+                        title: '',
+                        body: '單一清楚主體 + 少量支援元素；不暗示未提供的醫療主張',
+                        styles: ['vivid 3D animation style'],
+                        sections: [],
+                        ar: '4:5',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic'
+                    },
+                    pedu_portrait: {
+                        name: '人像信任',
+                        desc: 'Single portrait, gentle eye contact. Original non-identifiable person.',
+                        desc_en: 'Single portrait, gentle eye contact. Original non-identifiable person.',
+                        subject: '',
+                        title: '',
+                        body: '單人肖像、溫和眼神接觸；原創非可辨識人物',
+                        styles: ['pencil and wash portrait illustration'],
+                        sections: [],
+                        ar: '4:5',
+                        resolution: '2K',
+                        texture: '',
+                        quality: 'clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic'
+                    }
+                },
+
 
                 "🇹🇼 繁體中文精選 (Traditional Chinese Picks)": {
                     tw_new_wave: {
@@ -711,7 +1259,7 @@
 
                     info_mindfulness: { name: '資訊圖: 正念步驟 (Mindfulness)', desc: '柔和粉彩色調的正念冥想步驟資訊圖，手繪風格元素。', desc_en: 'Soft pastel colored mindfulness meditation steps infographic with hand-drawn style elements.', subject: 'Mindfulness meditation steps infographic', title: 'Be Present', styles: ['Infographic', 'Watercolor', 'Pastel Colors', 'Hand-drawn Doodle Style', 'Soothing'], sections: [{ visual: 'Circular flow diagram', param: '', textBlocks: [{ content: '正念冥想五步驟', level: 'Primary', font: 'Handwritten' }, { content: '1. 找個安靜的地方', level: 'Secondary', font: 'Noto Sans TC' }, { content: '2. 調整呼吸', level: 'Secondary', font: 'Noto Sans TC' }, { content: '3. 觀察思緒', level: 'Secondary', font: 'Noto Sans TC' }] }], ar: '1:1', texture: '' }
                 },
-                "📸 攝影與電影 (Photography & Cinema)": {
+                "📸 攝影、電影與寫真 (Photography & Portraits)": {
                     photo_film_portra: { name: '人像攝影 (Portra 400)', desc: '經典 Kodak Portra 400 底片質感，膚色自然，顆粒細膩。', desc_en: 'Classic Kodak Portra 400 film look, natural skin tones, fine grain.', subject: 'Portrait of a young woman in natural light', title: 'Portra Portrait', styles: ['Kodak Portra 400', 'Natural Light', 'Portrait Photography', 'Soft Colors'], sections: [], ar: '3:4', texture: 'with film grain texture' },
                     photo_rembrandt: { name: '林布蘭人像 (Rembrandt)', desc: '經典三角光人像攝影，暗調背景，強調質感與情緒。', desc_en: 'Classic portrait with Rembrandt lighting. Dark background, emphasizing texture and emotion.', subject: 'Portrait with Rembrandt lighting', title: 'Classic Portrait', styles: ['Rembrandt Lighting', 'Portrait Photography', 'Low Key', 'Dramatic'], sections: [], ar: '3:4', texture: '' },
                     photo_cinestill: { name: '夜景街拍 (CineStill 800T)', desc: 'CineStill 800T 底片風格，獨特的光暈效果，適合夜景。', desc_en: 'CineStill 800T film style, unique halation effect, perfect for night scenes.', subject: 'Neon lit street at night', title: 'Night Vibes', styles: ['CineStill 800T', 'Night Photography', 'Neon Lights', 'Cinematic Lighting'], sections: [], ar: '16:9', texture: 'with film grain texture' },
@@ -743,19 +1291,9 @@
                     tw_tea_plantation: { name: '阿里山茶園 (Tea Plantation)', desc: '阿里山雲霧繚繞的高山茶園，梯田景觀，綠意盎然。', desc_en: 'Misty high mountain tea plantation in Alishan. Terraced fields, lush green.', subject: 'Terraced tea plantation in fog', title: 'Alishan Tea', styles: ['Landscape Photography', 'Atmospheric', 'Green'], sections: [], ar: '16:9', texture: '' },
 
                 },
-            },
-            ui: {
-                aspectRatios: ['1:1', '16:9', '9:16', '3:2', '2:3', '4:3', '3:4', '4:5', '5:4', '21:9'],
-                resolutions: ['1K', '2K', '4K', '8K'],
-                textBlockLevels: [
-                    { label: '主視覺 (Primary)', value: 'Primary' },
-                    { label: '副標 (Secondary)', value: 'Secondary' },
-                    { label: '內文 (Body)', value: 'Body' },
-                    { label: '細節 (Detail)', value: 'Detail' }
-                ],
-                defaultExpandedCategories: ['藝術風格 (Styles)', '版型與構圖 (Layout)']
-            }
-        };
+            };
+        Object.keys(BUILTIN_PRESETS).forEach(g => Object.freeze(BUILTIN_PRESETS[g]));
+;
 
         // Helper to find Chinese label for a given value
         const getStyleLabel = (val) => {
@@ -773,6 +1311,129 @@
 
             return val; // Fallback
         };
+
+        
+        
+        const CAMERA_COMPOSITION_OPTIONS = [
+            { label: '三分法 (Rule of Thirds)', val: 'Rule of Thirds', desc: '將主體置於九宮格交叉點，視覺平衡自然。', desc_en: 'Subject at grid intersections. Visually balanced and natural.' },
+            { label: '黃金比例 (Golden Ratio)', val: 'Golden Ratio Composition', desc: '基於1:1.618的完美比例構圖，自然和諧。', desc_en: 'Composition based on 1:1.618 ratio. Natural and harmonious.' },
+            { label: '中心構圖 (Center)', val: 'Center Composition', desc: '主體居中，強調對稱與莊重。', desc_en: 'Subject centered. Emphasizes symmetry and solemnity.' },
+            { label: '對稱 (Symmetrical)', val: 'Symmetrical', desc: '左右或上下鏡像對稱，穩定和諧。', desc_en: 'Mirrored left/right or top/bottom. Stable and harmonious.' },
+            { label: '填滿畫面 (Fill the Frame)', val: 'Fill the Frame', desc: '主體佔據整個畫面，強調細節與張力。', desc_en: 'Subject fills frame. Emphasizes details and tension.' },
+            { label: '全景 (Panoramic)', val: 'Panoramic', desc: '超寬視野的全景畫面，展現壯闊場景。', desc_en: 'Ultra-wide panoramic view. Shows grand scenes.' },
+            { label: '俯視 (Top Down)', val: 'Top Down', desc: '從正上方往下拍攝的視角。', desc_en: 'View from directly above.' },
+            { label: '仰角 (Low Angle)', val: 'Low Angle Shot', desc: '從下往上拍攝，使主體顯得高大威嚴。', desc_en: 'Shot from below looking up. Makes subject appear tall and imposing.' },
+            { label: '平視 (Eye Level)', val: 'Eye Level Shot', desc: '與主體視線平齊的自然視角。', desc_en: 'Natural view at subject\'s eye level.' },
+            { label: '過肩鏡頭 (Over-the-shoulder)', val: 'Over-the-shoulder Shot', desc: '從一人身後拍攝另一人，強調對話與關係。', desc_en: 'Shot from behind one person looking at another. Emphasizes dialogue/relationship.' },
+            { label: '中性背景 (Neutral BG)', val: 'Neutral Background', desc: '乾淨、不搶眼的背景。', desc_en: 'Clean, unobtrusive background.' }
+        ];
+
+        const QUICK_LAYOUTS = [
+            {
+                group: '基礎結構 (Basic Grids)',
+                layouts: [
+                    { name: '左右雙拼 (Left/Right)', sections: [{ visual: 'Left content', param: '', dir: 'left', textBlocks: [] }, { visual: 'Right content', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '上下雙拼 (Top/Bottom)', sections: [{ visual: 'Top content', param: '', dir: 'top', textBlocks: [] }, { visual: 'Bottom content', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '經典三段 (Top/Center/Bottom)', sections: [{ visual: 'Header', param: '', dir: 'top', textBlocks: [] }, { visual: 'Main Content', param: '', dir: 'center', textBlocks: [] }, { visual: 'Footer', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '左中右 (Left/Center/Right)', sections: [{ visual: 'Left Sidebar', param: '', dir: 'left', textBlocks: [] }, { visual: 'Main Center', param: '', dir: 'center', textBlocks: [] }, { visual: 'Right Sidebar', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '滿版單一主體 (Full Stack)', sections: [{ visual: 'Main Subject', param: '', dir: 'stack', textBlocks: [] }, { visual: 'Background', param: '', dir: 'bg', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '攝影與人像 (Photography)',
+                layouts: [
+                    { name: '雜誌封面 (Magazine Cover)', sections: [{ visual: 'Cover Photo', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Magazine Title', param: 'large', dir: 'top', textBlocks: [] }, { visual: 'Cover Subject', param: '', dir: 'center', textBlocks: [] }] },
+                    { name: '電影海報 (Movie Poster)', sections: [{ visual: 'Epic Background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Movie Title', param: '', dir: 'top', textBlocks: [] }, { visual: 'Main Character', param: '', dir: 'center', textBlocks: [] }, { visual: 'Credits', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '大頭照特寫 (Headshot)', sections: [{ visual: 'Blurred Background', param: 'bokeh', dir: 'bg', textBlocks: [] }, { visual: 'Detailed Face', param: 'sharp focus', dir: 'center', textBlocks: [] }] },
+                    { name: '跨頁雙主角 (Double Spread)', sections: [{ visual: 'Person A facing right', param: '', dir: 'left', textBlocks: [] }, { visual: 'Person B facing left', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '全身穿搭照 (OOTD)', sections: [{ visual: 'Full body outfit', param: '', dir: 'center', textBlocks: [] }, { visual: 'Brand text', param: '', dir: 'top', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: 'UI/UX 與網頁 (Web & App)',
+                layouts: [
+                    { name: '網頁首圖 (Landing Hero)', sections: [{ visual: 'Clean Gradient BG', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Hero Text Area', param: '', dir: 'left', textBlocks: [] }, { visual: '3D Product Graphic', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: 'App 登入頁 (App Login)', sections: [{ visual: 'Minimal Background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'App Logo', param: '', dir: 'top', textBlocks: [] }, { visual: 'Login Form UI', param: '', dir: 'center', textBlocks: [] }] },
+                    { name: '資訊儀表板 (Dashboard)', sections: [{ visual: 'Sidebar Navigation', param: '', dir: 'left', textBlocks: [] }, { visual: 'Top Navbar', param: '', dir: 'top', textBlocks: [] }, { visual: 'Main Data Charts', param: '', dir: 'stack', textBlocks: [] }] },
+                    { name: '卡片式列表 (Card UI)', sections: [{ visual: 'Card Image', param: '', dir: 'left', textBlocks: [] }, { visual: 'Card Text Details', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '網頁頁腳 (Web Footer)', sections: [{ visual: 'Background Pattern', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Links and Copyright', param: '', dir: 'bottom', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '社群媒體 (Social Media)',
+                layouts: [
+                    { name: 'YT 爆款縮圖 (YT Thumbnail)', sections: [{ visual: 'Vibrant BG', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Surprised Face', param: '', dir: 'right', textBlocks: [] }, { visual: 'Huge Impact Text', param: '', dir: 'left', textBlocks: [] }] },
+                    { name: 'IG 限動 (IG Story)', sections: [{ visual: 'Vertical Photo', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Top Sticker', param: '', dir: 'top', textBlocks: [] }, { visual: 'Bottom Swipe Up', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: 'FB 廣告圖卡 (FB Ad)', sections: [{ visual: 'Product Shot', param: '', dir: 'left', textBlocks: [] }, { visual: 'Call to Action Button', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '迷因梗圖 (Meme)', sections: [{ visual: 'Top Text Setup', param: 'Impact font', dir: 'top', textBlocks: [] }, { visual: 'Funny Reaction Image', param: '', dir: 'center', textBlocks: [] }, { visual: 'Bottom Text Punchline', param: 'Impact font', dir: 'bottom', textBlocks: [] }] },
+                    { name: 'Podcast 封面 (Podcast Art)', sections: [{ visual: 'Solid Color BG', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Show Logo / Host', param: '', dir: 'center', textBlocks: [] }, { visual: 'Episode Title', param: '', dir: 'bottom', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '醫療與圖表 (Medical & Info)',
+                layouts: [
+                    { name: '器官解剖圖 (Anatomy Cutaway)', sections: [{ visual: 'Clean Background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Detailed Organ', param: '', dir: 'center', textBlocks: [] }, { visual: 'Pointer Labels', param: '', dir: 'surround', textBlocks: [] }] },
+                    { name: '循環流程圖 (Circular Flow)', sections: [{ visual: 'Core Concept', param: '', dir: 'center', textBlocks: [] }, { visual: 'Step 1 to 4 Arrows', param: '', dir: 'surround', textBlocks: [] }] },
+                    { name: '條列比較 (Comparison)', sections: [{ visual: 'Concept A (Before)', param: '', dir: 'left', textBlocks: [] }, { visual: 'Concept B (After)', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '金字塔圖表 (Pyramid Chart)', sections: [{ visual: 'Top Tier', param: '', dir: 'top', textBlocks: [] }, { visual: 'Middle Tier', param: '', dir: 'center', textBlocks: [] }, { visual: 'Bottom Base', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '看診對話 (Consultation)', sections: [{ visual: 'Doctor sitting', param: '', dir: 'left', textBlocks: [] }, { visual: 'Patient listening', param: '', dir: 'right', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '藝術與插畫 (Art & Visuals)',
+                layouts: [
+                    { name: '畫中畫/相框 (Pic-in-Pic)', sections: [{ visual: 'Ornate Frame', param: '', dir: 'surround', textBlocks: [] }, { visual: 'Beautiful Art Piece', param: '', dir: 'center', textBlocks: [] }] },
+                    { name: '魔法陣特效 (Magic Circle)', sections: [{ visual: 'Dark Environment', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Character casting spell', param: '', dir: 'center', textBlocks: [] }, { visual: 'Glowing Runes', param: '', dir: 'surround', textBlocks: [] }] },
+                    { name: '繪本跨頁 (Storybook Spread)', sections: [{ visual: 'Text Area space', param: '', dir: 'left', textBlocks: [] }, { visual: 'Whimsical Illustration', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '對角線衝突 (Diagonal Clash)', sections: [{ visual: 'Element Top Left', param: '', dir: 'top', textBlocks: [] }, { visual: 'Element Bottom Right', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '曼陀羅圖騰 (Mandala Core)', sections: [{ visual: 'Geometric Center', param: '', dir: 'center', textBlocks: [] }, { visual: 'Repeating patterns', param: '', dir: 'surround', textBlocks: [] }] }
+                ]            },
+            {
+                group: '排版與文字 (Typography)',
+                layouts: [
+                    { name: '全版大字 (Massive Type)', sections: [{ visual: 'Solid color background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Huge striking top text', param: '', dir: 'top', textBlocks: [] }, { visual: 'Middle subtext', param: '', dir: 'center', textBlocks: [] }, { visual: 'Bottom fine print', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '邊框文字 (Text Frame)', sections: [{ visual: 'Main visual art', param: '', dir: 'center', textBlocks: [] }, { visual: 'Text forming a frame around', param: '', dir: 'surround', textBlocks: [] }] },
+                    { name: '漫畫對話 (Comic Panel)', sections: [{ visual: 'Action scene', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Speech bubble', param: '', dir: 'top', textBlocks: [] }, { visual: 'Character face', param: '', dir: 'center', textBlocks: [] }] },
+                    { name: '雙語對照 (Bilingual)', sections: [{ visual: 'English typography area', param: '', dir: 'left', textBlocks: [] }, { visual: 'Traditional Chinese typography area', param: '', dir: 'right', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '遊戲與虛擬 (Gaming & VR)',
+                layouts: [
+                    { name: '角色選擇 (Char Select)', sections: [{ visual: 'Studio background', param: '', dir: 'bg', textBlocks: [] }, { visual: '3D Game Character', param: '', dir: 'left', textBlocks: [] }, { visual: 'Stats and Abilities UI', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '遊戲介面 (Game HUD)', sections: [{ visual: 'Gameplay POV scene', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Health bar and map UI', param: '', dir: 'surround', textBlocks: [] }] },
+                    { name: 'VR 視角 (VR POV)', sections: [{ visual: 'Immersive sci-fi environment', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Player hands holding item', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '卡牌遊戲 (Trading Card)', sections: [{ visual: 'Card borders', param: '', dir: 'surround', textBlocks: [] }, { visual: 'Character Name', param: '', dir: 'top', textBlocks: [] }, { visual: 'Character Artwork', param: '', dir: 'center', textBlocks: [] }, { visual: 'Stats and description', param: '', dir: 'bottom', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '商業與行銷 (Business)',
+                layouts: [
+                    { name: '簡報封面 (Slide Cover)', sections: [{ visual: 'Abstract corporate background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Huge presentation title', param: '', dir: 'left', textBlocks: [] }] },
+                    { name: '銷售漏斗 (Sales Funnel)', sections: [{ visual: 'Wide top funnel stage', param: '', dir: 'top', textBlocks: [] }, { visual: 'Narrower middle stage', param: '', dir: 'center', textBlocks: [] }, { visual: 'Narrowest bottom stage', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '矩陣圖表 (2x2 Matrix)', sections: [{ visual: 'Grid lines dividing 4 quadrants', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Top Left vs Top Right', param: '', dir: 'top', textBlocks: [] }, { visual: 'Bottom Left vs Bottom Right', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '促銷海報 (Sale Poster)', sections: [{ visual: 'Huge SALE text', param: '', dir: 'top', textBlocks: [] }, { visual: 'Product shot', param: '', dir: 'center', textBlocks: [] }, { visual: 'Discount details', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '產品展示台 (Product Podium)', sections: [{ visual: 'Clean studio background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Minimalist cylinder podium', param: '', dir: 'bottom', textBlocks: [] }, { visual: 'Product floating above podium', param: '', dir: 'center', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '影視與傳媒 (Media)',
+                layouts: [
+                    { name: '新聞直播 (News Anchor)', sections: [{ visual: 'News studio background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'News Anchor behind desk', param: '', dir: 'center', textBlocks: [] }, { visual: 'Breaking News Ticker UI', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '視訊通話 (Video Call)', sections: [{ visual: 'Person A webcam view', param: '', dir: 'left', textBlocks: [] }, { visual: 'Person B webcam view', param: '', dir: 'right', textBlocks: [] }] },
+                    { name: '紀錄片字幕 (Subtitles)', sections: [{ visual: 'Cinematic documentary shot', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Interviewee', param: '', dir: 'center', textBlocks: [] }, { visual: 'Yellow subtitle text', param: '', dir: 'bottom', textBlocks: [] }] },
+                    { name: '寬螢幕比例 (Cinemascope)', sections: [{ visual: 'Epic wide cinematic shot', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Black cinematic letterboxing bars', param: '', dir: 'top', textBlocks: [] }, { visual: 'Black cinematic letterboxing bars', param: '', dir: 'bottom', textBlocks: [] }] }
+                ]
+            },
+            {
+                group: '科學與教育 (Science)',
+                layouts: [
+                    { name: '顯微鏡視野 (Microscope)', sections: [{ visual: 'Black circular mask vignette', param: '', dir: 'surround', textBlocks: [] }, { visual: 'Microscopic cells or bacteria', param: '', dir: 'center', textBlocks: [] }] },
+                    { name: '星系宇宙 (Cosmos Orbit)', sections: [{ visual: 'Deep space background', param: '', dir: 'bg', textBlocks: [] }, { visual: 'Glowing star/sun', param: '', dir: 'center', textBlocks: [] }, { visual: 'Planets in orbit', param: '', dir: 'surround', textBlocks: [] }] },
+                    { name: '實驗步驟 (Lab Process)', sections: [{ visual: 'Step 1: Setup', param: '', dir: 'left', textBlocks: [] }, { visual: 'Step 2: Reaction', param: '', dir: 'center', textBlocks: [] }, { visual: 'Step 3: Result', param: '', dir: 'right', textBlocks: [] }] }
+                ]
+            }
+        ];
 
         const PromptStructureView = ({ form, t, onRemoveStyle, onAddStyle, onUpdateParameter, isCustomTexture, setIsCustomTexture, onUpdateTexture, configData, getLabel, isAvoidSimplifiedChinese }) => {
             const [customStyle, setCustomStyle] = useState('');
@@ -1185,11 +1846,49 @@
             const [lang, setLang] = useState('zh'); // 'zh' or 'en'
             const [showHelp, setShowHelp] = useState(false);
             const [copied, setCopied] = useState(false);
-            const [showPresetModal, setShowPresetModal] = useState(false);
+            
+            const [showSavePresetModal, setShowSavePresetModal] = useState(false);
+            const [savePresetForm, setSavePresetForm] = useState({ name: '', group: '', newGroup: '' });
+            const [editingPresetKey, setEditingPresetKey] = useState(null); // null if creating new
+const [showPresetModal, setShowPresetModal] = useState(false);
             const [presetSearchQuery, setPresetSearchQuery] = useState('');
             const [currentPresetName, setCurrentPresetName] = useState('');
             const [styleSearchQuery, setStyleSearchQuery] = useState('');
-            const [expandedCategories, setExpandedCategories] = React.useState([]);
+            const [activeStyleCategory, setActiveStyleCategory] = useState(Object.keys(configData.categories)[0]);
+            const [expandedCategories, setExpandedCategories] = React.useState(configData.ui.defaultExpandedCategories);
+
+            const [userPresets, setUserPresets] = useState({ version: 1, groups: {} });
+            const userPresetsHydratedRef = useRef(false);
+
+            useEffect(() => {
+                try {
+                    const saved = localStorage.getItem('prompt_builder_presets_v1');
+                    if (saved) {
+                        setUserPresets(JSON.parse(saved));
+                    }
+                } catch (e) {
+                    console.error("Failed to parse user presets", e);
+                } finally {
+                    userPresetsHydratedRef.current = true;
+                }
+            }, []);
+
+            useEffect(() => {
+                if (!userPresetsHydratedRef.current) return;
+                localStorage.setItem('prompt_builder_presets_v1', JSON.stringify(userPresets));
+            }, [userPresets]);
+
+            const mergedPresets = React.useMemo(() => {
+                const merged = JSON.parse(JSON.stringify(BUILTIN_PRESETS));
+                if (userPresets && userPresets.groups) {
+                    Object.keys(userPresets.groups).forEach(g => {
+                        if (!merged[g]) merged[g] = {};
+                        merged[g] = { ...merged[g], ...userPresets.groups[g] };
+                    });
+                }
+                return merged;
+            }, [userPresets]);
+
 
             // History Feature State
             const [history, setHistory] = useState([]);
@@ -1202,12 +1901,17 @@
 
             // Export presets to JSON file
             const exportPresets = () => {
-                const dataStr = JSON.stringify(configData.presetGroups, null, 2);
+                const hasUserPresets = userPresets && userPresets.groups && Object.keys(userPresets.groups).some(g => Object.keys(userPresets.groups[g]).length > 0);
+                if (!hasUserPresets) {
+                    alert('沒有使用者自訂預設可以匯出');
+                    return;
+                }
+                const dataStr = JSON.stringify(userPresets.groups, null, 2);
                 const blob = new Blob([dataStr], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `presets_export_${new Date().toISOString().slice(0, 10)}.json`;
+                a.download = `user_presets_export_${new Date().toISOString().slice(0, 10)}.json`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -1215,6 +1919,64 @@
             };
 
             // Handle file selection for import
+                        const validatePresetPayload = (data) => {
+                const errors = [];
+                if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+                    return { ok: false, errors: ['匯入資料必須是 JSON 物件 (頂層不可為 array)'] };
+                }
+                const groups = Object.keys(data);
+                if (groups.length > 50) errors.push(`群組數量超過上限 (50)，目前: ${groups.length}`);
+                
+                const validKeys = new Set(['name', 'desc', 'desc_en', 'subject', 'title', 'body', 'styles', 'sections', 'ar', 'resolution', 'texture', 'quality']);
+                let totalStrLen = JSON.stringify(data).length;
+                if (totalStrLen > 2 * 1024 * 1024) errors.push(`檔案大小超過上限 (2MB)`);
+
+                for (const groupName of groups) {
+                    const group = data[groupName];
+                    if (typeof group !== 'object' || group === null || Array.isArray(group)) {
+                        errors.push(`群組「${groupName}」：值必須是物件`);
+                        continue;
+                    }
+                    const presetKeys = Object.keys(group);
+                    if (presetKeys.length > 200) errors.push(`群組「${groupName}」：預設數量超過上限 (200)，目前: ${presetKeys.length}`);
+                    
+                    for (const key of presetKeys) {
+                        const preset = group[key];
+                        if (typeof preset !== 'object' || preset === null || Array.isArray(preset)) {
+                            errors.push(`群組「${groupName}」的「${key}」：必須是物件`);
+                            continue;
+                        }
+                        
+                        // Check keys
+                        for (const k of Object.keys(preset)) {
+                            if (!validKeys.has(k)) {
+                                errors.push(`群組「${groupName}」的「${key}」：包含未知鍵「${k}」 (已剔除)`);
+                                delete preset[k];
+                            } else if (typeof preset[k] === 'string' && preset[k].length > 5000) {
+                                errors.push(`群組「${groupName}」的「${key}」：欄位 ${k} 字元數超過上限 (5000)`);
+                            }
+                        }
+                        
+                        if (!Array.isArray(preset.styles)) {
+                            errors.push(`群組「${groupName}」的「${key}」：欄位 styles 應為陣列，實得 ${typeof preset.styles}`);
+                        } else if (!preset.styles.every(s => typeof s === 'string')) {
+                            errors.push(`群組「${groupName}」的「${key}」：欄位 styles 必須是字串陣列`);
+                        }
+                        
+                        if (!Array.isArray(preset.sections)) {
+                            errors.push(`群組「${groupName}」的「${key}」：欄位 sections 應為陣列，實得 ${typeof preset.sections}`);
+                        } else {
+                            preset.sections.forEach((sec, idx) => {
+                                if (typeof sec !== 'object' || sec === null || !('visual' in sec) || !('param' in sec) || !('textBlocks' in sec)) {
+                                    errors.push(`群組「${groupName}」的「${key}」：欄位 sections 第 ${idx} 項格式錯誤，必須含 visual/param/textBlocks`);
+                                }
+                            });
+                        }
+                    }
+                }
+                return { ok: errors.length === 0, errors };
+            };
+
             const handleImportFile = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -1223,11 +1985,13 @@
                 reader.onload = (event) => {
                     try {
                         const importedData = JSON.parse(event.target.result);
-                        // Validate structure
-                        if (typeof importedData !== 'object' || Array.isArray(importedData)) {
-                            throw new Error('Invalid format');
+                        const validation = validatePresetPayload(importedData);
+                        if (!validation.ok) {
+                            setPendingImportData({ errors: validation.errors });
+                            setShowImportModal(true);
+                            return;
                         }
-                        // Count presets
+
                         let presetCount = 0;
                         let groupCount = Object.keys(importedData).length;
                         Object.values(importedData).forEach(group => {
@@ -1240,14 +2004,11 @@
                     }
                 };
                 reader.readAsText(file);
-                // Reset file input
                 e.target.value = '';
             };
 
             // Handle import confirmation
-            const handleImportConfirm = (mode) => {
-                if (!pendingImportData) return;
-
+                        const handleImportConfirm = (mode) => {
                 if (mode === 'cancel') {
                     setShowImportModal(false);
                     setPendingImportData(null);
@@ -1255,32 +2016,29 @@
                 }
 
                 if (mode === 'replace') {
-                    if (!confirm(t('⚠️ 確定要全部取代嗎？這將會覆蓋所有現有的預設！', '⚠️ Are you sure you want to replace all? This will overwrite all existing presets!'))) {
+                    if (!confirm(t('⚠️ 確定要全部取代嗎？這將會覆蓋所有自訂預設！', '⚠️ Are you sure you want to replace all? This will overwrite all custom presets!'))) {
                         return;
                     }
-                    // Replace all presets
-                    Object.keys(configData.presetGroups).forEach(key => delete configData.presetGroups[key]);
-                    Object.assign(configData.presetGroups, pendingImportData.data);
-                    alert(t('✅ 已成功取代所有預設！', '✅ All presets replaced successfully!'));
+                    setUserPresets(prev => ({ ...prev, groups: pendingImportData.data }));
+                    alert(t('✅ 已成功取代使用者預設！', '✅ User presets replaced successfully!'));
                 } else if (mode === 'merge') {
-                    // Merge with existing
-                    Object.entries(pendingImportData.data).forEach(([groupName, presets]) => {
-                        if (!configData.presetGroups[groupName]) {
-                            configData.presetGroups[groupName] = {};
+                    setUserPresets(prev => {
+                        const newGroups = JSON.parse(JSON.stringify(prev.groups || {}));
+                        for (const [groupName, presets] of Object.entries(pendingImportData.data)) {
+                            if (!newGroups[groupName]) newGroups[groupName] = {};
+                            Object.assign(newGroups[groupName], presets);
                         }
-                        Object.assign(configData.presetGroups[groupName], presets);
+                        return { ...prev, groups: newGroups };
                     });
                     alert(t('✅ 已成功加入預設！', '✅ Presets added successfully!'));
                 }
 
                 setShowImportModal(false);
                 setPendingImportData(null);
-                // Force re-render by closing and reopening preset modal
-                setShowPresetModal(false);
-                setTimeout(() => setShowPresetModal(true), 100);
             };
 
             // Load history from localStorage on mount
+            const hydratedRef = useRef(false);
             useEffect(() => {
                 const savedHistory = localStorage.getItem('prompt_builder_history');
                 if (savedHistory) {
@@ -1288,12 +2046,15 @@
                         setHistory(JSON.parse(savedHistory));
                     } catch (e) {
                         console.error("Failed to parse history", e);
+                        localStorage.setItem(`prompt_builder_history_corrupt_${Date.now()}`, savedHistory);
                     }
                 }
+                hydratedRef.current = true;
             }, []);
 
             // Save history to localStorage whenever it changes
             useEffect(() => {
+                if (!hydratedRef.current) return;
                 localStorage.setItem('prompt_builder_history', JSON.stringify(history));
             }, [history]);
 
@@ -1301,7 +2062,7 @@
                 const newItem = {
                     id: Date.now(),
                     timestamp: new Date().toISOString(),
-                    form: { ...currentForm }, // Deep copy would be better but this is a simple object
+                    form: structuredClone(currentForm),
                     prompt: promptText
                 };
                 setHistory(prev => [newItem, ...prev].slice(0, 50)); // Keep last 50
@@ -1375,14 +2136,16 @@
             };
             const [expandedPresetGroups, setExpandedPresetGroups] = React.useState(() => {
                 // Only expand the first group by default
-                const firstGroup = Object.keys(configData.presetGroups)[0];
+                const firstGroup = Object.keys(mergedPresets)[0];
                 return { [firstGroup]: true };
             });
             const [manualPrompt, setManualPrompt] = useState('');
             const [activeMobileTab, setActiveMobileTab] = useState('edit');
 
             // Feature state
-            const [isAvoidSimplifiedChinese, setIsAvoidSimplifiedChinese] = useState(true);
+                        const [isAvoidSimplifiedChinese, setIsAvoidSimplifiedChinese] = useState(true);
+            
+            
 
 
             const [form, setForm] = useState({
@@ -1390,6 +2153,7 @@
                 title: '',
                 body: '',
                 selectedStyles: [],
+                    camera: [],
                 sections: [],
                 ar: '16:9',
                 isCustomAr: false,
@@ -1397,6 +2161,44 @@
                 texture: '',
                 quality: 'sharp focus, high quality, detailed, professional'
             });
+
+const hasPediatricProfile = React.useMemo(() => {
+                return form.selectedStyles.some(styleLabel => {
+                    for (const cat of Object.values(configData.categories)) {
+                        const item = cat.find(i => i.label === styleLabel || i.val === styleLabel);
+                        if (item && item.profile) return true;
+                    }
+                    return false;
+                });
+            }, [form.selectedStyles]);
+            
+            const effectiveIsAvoidSimplifiedChinese = hasPediatricProfile ? false : isAvoidSimplifiedChinese;
+
+            const pediatricProfileId = React.useMemo(() => {
+                for (const styleLabel of form.selectedStyles) {
+                    for (const cat of Object.values(configData.categories)) {
+                        const item = cat.find(i => i.label === styleLabel || i.val === styleLabel);
+                        if (item && item.profile) return item.profile;
+                    }
+                }
+                return null;
+            }, [form.selectedStyles]);
+            
+            const [illustrationCopied, setIllustrationCopied] = useState(false);
+
+            const copyIllustrationCommand = () => {
+                const cmd = `請用 pediatric-health-illustration skill 產一張衛教插圖。
+風格 profile：${pediatricProfileId}
+畫布：${form.ar}
+教學訊息：${form.subject}
+場景：${form.body}
+限制：無圖中文字、通用無品牌器材、自然多元的台灣人物`;
+                navigator.clipboard.writeText(cmd).then(() => {
+                    setIllustrationCopied(true);
+                    setTimeout(() => setIllustrationCopied(false), 2000);
+                });
+            };
+
             const [isCustomTexture, setIsCustomTexture] = useState(false);
 
 
@@ -1409,9 +2211,6 @@
                 if (form.body) parts.push(`**Body:** ${form.body}`);
 
                 let styles = [...form.selectedStyles];
-
-
-
                 if (styles.length > 0) {
                     parts.push(`**Art Styles & Tech:** ${styles.join(', ')}`);
                 }
@@ -1491,7 +2290,7 @@
 
                 // Quality prompt for Imagen 4 (positive prompts)
                 let qualityStr = form.quality;
-                if (isAvoidSimplifiedChinese) {
+                if (effectiveIsAvoidSimplifiedChinese) {
                     const suffix = "no simplified chinese text";
                     if (!qualityStr.toLowerCase().includes(suffix.toLowerCase())) {
                         qualityStr = qualityStr ? `${qualityStr}, ${suffix}` : suffix;
@@ -1502,7 +2301,7 @@
                 parts.push(params.join(' '));
 
                 setManualPrompt(parts.join('\n'));
-            }, [form, isAvoidSimplifiedChinese]);
+            }, [form, effectiveIsAvoidSimplifiedChinese]);
 
             // Auto-expand categories when styles are selected (e.g. from presets)
             useEffect(() => {
@@ -1584,19 +2383,22 @@
                         title: '',
                         body: '',
                         selectedStyles: [],
+                    camera: [],
                         sections: [],
                         ar: '16:9',
+                        isCustomAr: false,
                         resolution: '4K',
                         texture: '',
                         quality: 'sharp focus, high quality, detailed, professional'
                     });
+                    setIsCustomTexture(false);
                     return;
                 }
 
                 let p = null;
-                for (const group in configData.presetGroups) {
-                    if (configData.presetGroups[group][key]) {
-                        p = configData.presetGroups[group][key];
+                for (const group in mergedPresets) {
+                    if (mergedPresets[group][key]) {
+                        p = mergedPresets[group][key];
                         break;
                     }
                 }
@@ -1624,13 +2426,13 @@
             // Filter presets based on search query
             const getFilteredPresets = () => {
                 if (!presetSearchQuery.trim()) {
-                    return configData.presetGroups;
+                    return mergedPresets;
                 }
 
                 const query = presetSearchQuery.toLowerCase();
                 const filtered = {};
 
-                Object.entries(configData.presetGroups).forEach(([groupName, presets]) => {
+                Object.entries(mergedPresets).forEach(([groupName, presets]) => {
                     const matchingPresets = {};
                     Object.entries(presets).forEach(([key, preset]) => {
                         if (
@@ -2233,69 +3035,191 @@
                     {showImportModal && pendingImportData && (
                         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
                             <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={() => handleImportConfirm('cancel')}></div>
-                            <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-md relative z-10">
+                            <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-md relative z-10 overflow-hidden flex flex-col max-h-[90vh]">
                                 {/* Header */}
-                                <div className="p-5 border-b border-gray-700 bg-gray-900 rounded-t-lg">
+                                <div className="p-5 border-b border-gray-700 bg-gray-900 shrink-0">
                                     <h3 className="text-lg font-bold text-blue-400 flex items-center gap-2">
                                         <Upload size={20} />
-                                        <span>{t('確認匯入預設', 'Confirm Import')}</span>
+                                        <span>{pendingImportData.errors ? t('匯入錯誤', 'Import Errors') : t('確認匯入預設', 'Confirm Import')}</span>
                                     </h3>
                                 </div>
-                                {/* Content */}
-                                <div className="p-5 space-y-4">
-                                    <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
-                                        <p className="text-gray-300 text-sm mb-3">
-                                            {t('即將匯入以下內容：', 'About to import:')}
-                                        </p>
-                                        <div className="flex justify-between text-sm">
-                                            <span className="text-gray-400">{t('分類群組', 'Groups')}</span>
-                                            <span className="text-blue-400 font-bold">{pendingImportData.groupCount}</span>
+                                {/* Body */}
+                                <div className="p-5 flex-1 overflow-y-auto">
+                                    {pendingImportData.errors ? (
+                                        <div>
+                                            <p className="text-red-400 mb-4">{t('檔案驗證失敗，請修正以下錯誤：', 'File validation failed. Please fix the following errors:')}</p>
+                                            <ul className="list-disc pl-5 text-sm text-gray-300 space-y-1">
+                                                {pendingImportData.errors.slice(0, 10).map((err, i) => (
+                                                    <li key={i}>{err}</li>
+                                                ))}
+                                                {pendingImportData.errors.length > 10 && (
+                                                    <li className="text-gray-500 italic">...及其它 {pendingImportData.errors.length - 10} 個錯誤</li>
+                                                )}
+                                            </ul>
                                         </div>
-                                        <div className="flex justify-between text-sm mt-1">
-                                            <span className="text-gray-400">{t('預設範本', 'Presets')}</span>
-                                            <span className="text-emerald-400 font-bold">{pendingImportData.presetCount}</span>
+                                    ) : (
+                                        <div>
+                                            <p className="text-gray-300 mb-4">
+                                                {t('您即將匯入 ', 'You are about to import ')}
+                                                <span className="text-blue-400 font-bold">{pendingImportData.groupCount}</span>
+                                                {t(' 個群組，共 ', ' groups, totaling ')}
+                                                <span className="text-emerald-400 font-bold">{pendingImportData.presetCount}</span>
+                                                {t(' 個預設。', ' presets.')}
+                                            </p>
+                                            <div className="bg-amber-900/30 border border-amber-700/50 p-4 rounded-lg text-amber-200 text-sm mb-4">
+                                                <p className="font-bold mb-2 flex items-center gap-2">
+                                                    <span>⚠️</span> {t('選擇匯入方式：', 'Choose import method:')}
+                                                </p>
+                                                <ul className="list-disc pl-5 space-y-2">
+                                                    <li>
+                                                        <span className="font-bold text-white">{t('加入並保留現有：', 'Merge (Keep existing): ')}</span>
+                                                        {t('將新預設加入現有清單，同名群組將會合併。', 'Add new presets to the existing list, merging groups with the same name.')}
+                                                    </li>
+                                                    <li>
+                                                        <span className="font-bold text-white">{t('取代全部自訂：', 'Replace All Custom: ')}</span>
+                                                        <span className="text-red-300">{t('將會刪除所有您現有的自訂預設', 'Will delete ALL your existing custom presets')}</span>
+                                                        {t('，並替換為匯入的內容（內建範本不受影響）。', ', and replace them with the imported ones (Built-in templates are unaffected).')}
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <p className="text-xs text-gray-500">
-                                        {t('請選擇匯入方式：', 'Choose import method:')}
-                                    </p>
-
-                                    <div className="space-y-2">
-                                        {/* Replace All Button */}
-                                        <button
-                                            onClick={() => handleImportConfirm('replace')}
-                                            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-700/30 hover:bg-red-600 text-red-200 rounded-lg border border-red-600/50 transition font-medium"
-                                        >
-                                            🔄 {t('全部取代', 'Replace All')}
-                                        </button>
-                                        <p className="text-[10px] text-red-400/70 text-center -mt-1 mb-2">
-                                            {t('⚠️ 這將刪除所有現有預設', '⚠️ This will delete all existing presets')}
-                                        </p>
-
-                                        {/* Merge Button */}
-                                        <button
-                                            onClick={() => handleImportConfirm('merge')}
-                                            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-emerald-700/30 hover:bg-emerald-600 text-emerald-200 rounded-lg border border-emerald-600/50 transition font-medium"
-                                        >
-                                            ➕ {t('加入現有', 'Add to Existing')}
-                                        </button>
-                                        <p className="text-[10px] text-emerald-400/70 text-center -mt-1 mb-2">
-                                            {t('將匯入的預設加入到現有預設中', 'Merge imported presets with existing ones')}
-                                        </p>
-
-                                        {/* Cancel Button */}
-                                        <button
-                                            onClick={() => handleImportConfirm('cancel')}
-                                            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-700/50 hover:bg-gray-600 text-gray-300 rounded-lg border border-gray-600 transition"
-                                        >
-                                            ❌ {t('取消', 'Cancel')}
-                                        </button>
-                                    </div>
+                                    )}
+                                </div>
+                                {/* Footer */}
+                                <div className="p-5 border-t border-gray-700 bg-gray-900 flex justify-end gap-3 shrink-0">
+                                    <button
+                                        onClick={() => handleImportConfirm('cancel')}
+                                        className="px-4 py-2 text-sm text-gray-400 hover:text-white transition"
+                                    >
+                                        {pendingImportData.errors ? t('關閉', 'Close') : t('取消', 'Cancel')}
+                                    </button>
+                                    {!pendingImportData.errors && (
+                                        <>
+                                            <button
+                                                onClick={() => handleImportConfirm('merge')}
+                                                className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded transition"
+                                            >
+                                                {t('加入 (保留現有)', 'Merge (Keep existing)')}
+                                            </button>
+                                            <button
+                                                onClick={() => handleImportConfirm('replace')}
+                                                className="px-4 py-2 text-sm bg-red-600/80 hover:bg-red-500 text-white rounded border border-red-500 transition"
+                                            >
+                                                {t('取代全部', 'Replace All')}
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
                     )}
+
+                    
+                    {/* Save / Edit Preset Modal */}
+                    {
+                        showSavePresetModal && (
+                            <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+                                <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowSavePresetModal(false)}></div>
+                                <div className="bg-gray-800 border border-gray-600 rounded-lg shadow-2xl w-full max-w-md relative z-10 p-6">
+                                    <h3 className="text-lg font-bold text-blue-400 mb-4">{editingPresetKey ? t('編輯預設', 'Edit Preset') : t('儲存為預設', 'Save as Preset')}</h3>
+                                    
+                                    <div className="mb-4">
+                                        <label className="block text-sm font-medium text-gray-400 mb-1">{t('預設名稱', 'Preset Name')} *</label>
+                                        <input 
+                                            type="text" 
+                                            value={savePresetForm.name} 
+                                            onChange={e => setSavePresetForm({...savePresetForm, name: e.target.value})}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-200 focus:border-blue-500 outline-none"
+                                        />
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <label className="block text-sm font-medium text-gray-400 mb-1">{t('選擇群組', 'Select Group')} *</label>
+                                        <select 
+                                            value={savePresetForm.group} 
+                                            onChange={e => setSavePresetForm({...savePresetForm, group: e.target.value})}
+                                            className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-200 focus:border-blue-500 outline-none mb-2"
+                                        >
+                                            <option value="">{t('-- 選擇既有群組 --', '-- Select Existing Group --')}</option>
+                                            {Object.keys(userPresets?.groups || {}).map(g => (
+                                                <option key={g} value={g}>{g}</option>
+                                            ))}
+                                            <option value="__NEW__">{t('+ 新建群組', '+ New Group')}</option>
+                                        </select>
+                                        {savePresetForm.group === '__NEW__' && (
+                                            <input 
+                                                type="text" 
+                                                placeholder={t('輸入新群組名稱', 'Enter new group name')}
+                                                value={savePresetForm.newGroup} 
+                                                onChange={e => setSavePresetForm({...savePresetForm, newGroup: e.target.value})}
+                                                className="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm text-gray-200 focus:border-blue-500 outline-none"
+                                            />
+                                        )}
+                                    </div>
+
+                                    <div className="flex justify-end gap-2 mt-6">
+                                        <button onClick={() => setShowSavePresetModal(false)} className="px-4 py-2 text-sm text-gray-400 hover:text-white transition">{t('取消', 'Cancel')}</button>
+                                        <button 
+                                            onClick={() => {
+                                                const finalGroup = savePresetForm.group === '__NEW__' ? savePresetForm.newGroup : savePresetForm.group;
+                                                if (!savePresetForm.name.trim() || !finalGroup.trim()) {
+                                                    alert(t('請填寫名稱與群組', 'Please fill name and group'));
+                                                    return;
+                                                }
+                                                const key = editingPresetKey || ('user_' + Date.now());
+                                                
+                                                // Extract preset payload
+                                                let payload;
+                                                if (editingPresetKey && userPresets?.groups?.[finalGroup]?.[editingPresetKey]) {
+                                                    // Only renaming / moving
+                                                    payload = { ...userPresets.groups[finalGroup][editingPresetKey], name: savePresetForm.name };
+                                                } else {
+                                                    // New preset from form or edited from builtin
+                                                    payload = {
+                                                        name: savePresetForm.name,
+                                                        desc: '', desc_en: '',
+                                                        subject: form.subject,
+                                                        title: form.title,
+                                                        body: form.body,
+                                                        styles: [...form.selectedStyles],
+                                                        sections: JSON.parse(JSON.stringify(form.sections)),
+                                                        ar: form.ar,
+                                                        resolution: form.resolution,
+                                                        texture: form.texture,
+                                                        quality: form.quality
+                                                    };
+                                                }
+
+                                                setUserPresets(prev => {
+                                                    const next = { ...prev, groups: { ...prev.groups } };
+                                                    
+                                                    // If editing and moved group, delete from old
+                                                    if (editingPresetKey) {
+                                                        for (const g in next.groups) {
+                                                            if (next.groups[g][editingPresetKey]) {
+                                                                delete next.groups[g][editingPresetKey];
+                                                                if (Object.keys(next.groups[g]).length === 0) delete next.groups[g];
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                    if (!next.groups[finalGroup]) next.groups[finalGroup] = {};
+                                                    next.groups[finalGroup][key] = payload;
+                                                    return next;
+                                                });
+                                                
+                                                setShowSavePresetModal(false);
+                                                setEditingPresetKey(null);
+                                            }}
+                                            className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded transition"
+                                        >
+                                            {t('儲存', 'Save')}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
 
                     {/* Preset Modal */}
                     {
@@ -2311,6 +3235,17 @@
                                                 <span>{t('選擇預設範本 (Select Preset)', 'Select Preset')}</span>
                                             </h3>
                                             <div className="flex items-center gap-2">
+                                                
+                                                {/* Save As Preset Button */}
+                                                <button
+                                                    onClick={() => setShowSavePresetModal(true)}
+                                                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-700/50 hover:bg-amber-600 text-amber-200 rounded border border-amber-600/50 transition"
+                                                    title={t('儲存目前設定為預設', 'Save Current Settings as Preset')}
+                                                >
+                                                    <Plus size={14} />
+                                                    <span className="hidden sm:inline">{t('儲存預設', 'Save Preset')}</span>
+                                                </button>
+
                                                 {/* Export Button */}
                                                 <button
                                                     onClick={exportPresets}
@@ -2406,9 +3341,59 @@
                                                                     className="relative group overflow-hidden rounded-xl border border-slate-700/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-blue-500/50 bg-slate-900/40"
                                                                 >
                                                                     <div className="p-3">
-                                                                        <h4 className="text-sm font-bold text-slate-200 group-hover:text-white mb-1.5 leading-tight">
-                                                                            {preset.name}
-                                                                        </h4>
+                                                                        <div className="flex justify-between items-start">
+                                                                            <h4 className="text-sm font-bold text-slate-200 group-hover:text-white mb-1.5 leading-tight pr-2">
+                                                                                {preset.name}
+                                                                            </h4>
+                                                                            <div className="flex gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" onClick={e => e.stopPropagation()}>
+                                                                                {key.startsWith('user_') ? (
+                                                                                    <>
+                                                                                        <button title={t('編輯', 'Edit')} onClick={() => {
+                                                                                            setEditingPresetKey(key);
+                                                                                            setSavePresetForm({ name: preset.name, group: groupName, newGroup: '' });
+                                                                                            setShowSavePresetModal(true);
+                                                                                            applyPreset(key);
+                                                                                        }} className="p-1.5 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition">
+                                                                                            <Edit3 size={12} />
+                                                                                        </button>
+                                                                                        <button title={t('複製', 'Duplicate')} onClick={() => {
+                                                                                            const newKey = 'user_' + Date.now();
+                                                                                            setUserPresets(prev => {
+                                                                                                const next = { ...prev, groups: { ...prev.groups } };
+                                                                                                if (!next.groups[groupName]) next.groups[groupName] = {};
+                                                                                                next.groups[groupName][newKey] = { ...preset, name: preset.name + ' (Copy)' };
+                                                                                                return next;
+                                                                                            });
+                                                                                        }} className="p-1.5 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition">
+                                                                                            <Copy size={12} />
+                                                                                        </button>
+                                                                                        <button title={t('刪除', 'Delete')} onClick={() => {
+                                                                                            if(confirm(t('確定刪除此預設？', 'Delete this preset?'))) {
+                                                                                                setUserPresets(prev => {
+                                                                                                    const next = JSON.parse(JSON.stringify(prev));
+                                                                                                    if (next.groups[groupName]) {
+                                                                                                        delete next.groups[groupName][key];
+                                                                                                        if (Object.keys(next.groups[groupName]).length === 0) delete next.groups[groupName];
+                                                                                                    }
+                                                                                                    return next;
+                                                                                                });
+                                                                                            }
+                                                                                        }} className="p-1.5 hover:bg-slate-700 rounded text-slate-400 hover:text-red-400 transition">
+                                                                                            <X size={12} />
+                                                                                        </button>
+                                                                                    </>
+                                                                                ) : (
+                                                                                    <button title={t('另存新檔', 'Save as Custom')} onClick={() => {
+                                                                                        setEditingPresetKey(null);
+                                                                                        setSavePresetForm({ name: preset.name + ' (Custom)', group: '__NEW__', newGroup: 'My Presets' });
+                                                                                        setShowSavePresetModal(true);
+                                                                                        applyPreset(key);
+                                                                                    }} className="p-1.5 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition">
+                                                                                        <Plus size={12} />
+                                                                                    </button>
+                                                                                )}
+                                                                            </div>
+                                                                        </div>
                                                                         <p className="text-[10px] text-slate-400 mb-3 line-clamp-2 min-h-[2.5em]">
                                                                             {t(preset.desc, preset.desc_en) || preset.subject}
                                                                         </p>
@@ -2457,7 +3442,12 @@
                             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 lg:gap-0 mb-1 lg:mb-3">
                                 <div className="flex items-center justify-between w-full lg:w-auto">
                                     <div className="flex items-center gap-2">
-                                        <h1 className="text-lg lg:text-xl font-bold text-blue-400 tracking-wide">AI Image Prompt Master</h1>
+                                        <h1 className="text-lg lg:text-xl font-bold text-blue-400 tracking-wide flex items-center gap-2">
+                                            AI Image Prompt Master
+                                            <span className="text-[10px] font-mono bg-blue-900/60 text-blue-300 px-1.5 py-0.5 rounded-full border border-blue-700/50 shadow-sm">
+                                                v{APP_VERSION}
+                                            </span>
+                                        </h1>
                                         <button onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')} className="text-xs bg-gray-800 border border-gray-600 px-2 py-1 rounded hover:bg-gray-700 transition font-mono text-gray-300">
                                             {lang === 'zh' ? 'EN' : '中'}
                                         </button>
@@ -2571,46 +3561,91 @@
                                     )}
                                 </div>
 
-                                <div className="space-y-4">
-                                    {Object.entries(getFilteredCategories()).map(([categoryName, items]) => {
-                                        const isExpanded = expandedCategories.includes(categoryName) || !!styleSearchQuery.trim();
+                                {/* Category Tabs */}
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pb-4 mb-4 border-b border-gray-700/50 pt-2">
+                                    {Object.keys(getFilteredCategories()).map(cat => {
+                                        const count = getFilteredCategories()[cat].length;
+                                        const selectedCount = form.selectedStyles.filter(s => getFilteredCategories()[cat].some(i => i.val === s)).length;
                                         return (
-                                            <div key={categoryName} className="bg-gray-750 rounded border border-gray-700">
-                                                <div onClick={() => toggleCategory(categoryName)}
-                                                    className="bg-gray-800 p-3 cursor-pointer flex justify-between items-center hover:bg-gray-700 transition rounded-t select-none">
-                                                    <h3 className="text-xs font-bold text-gray-300 uppercase">{getLabel(categoryName)} <span className="text-gray-500 ml-1">({items.length})</span></h3>
-                                                    <span className="text-gray-500 text-xs">{isExpanded ? '▼' : '▶'}</span>
-                                                </div>
-
-                                                {isExpanded && (
-                                                    <div className="p-3 bg-gray-900 border-t border-gray-700 rounded-b">
-                                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                                                            {items.map(item => (
-                                                                <div key={item.val} className="group relative inline-block">
-                                                                    <button onClick={() => toggleStyle(item.val)}
-                                                                        className={`w-full px-2 py-2 rounded transition border btn-truncate text-center text-xs truncate
-                                                                        ${form.selectedStyles.includes(item.val)
-                                                                                ? 'bg-green-700 text-white border-green-500'
-                                                                                : 'bg-gray-800 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-gray-200'
-                                                                            }`}>
-                                                                        <div className="font-bold mb-0.5">{getLabel(item.label)}</div>
-                                                                        <div className="text-[10px] text-gray-400 scale-90 origin-center">{item.val}</div>
-                                                                    </button>
-                                                                    {/* Tooltip hidden on mobile to prevent obstruction */}
-                                                                    <div className="hidden lg:group-hover:block absolute bottom-[115%] left-1/2 -translate-x-1/2 w-56 bg-black text-gray-200 text-[11px] p-3 rounded shadow-2xl z-50 pointer-events-none border border-gray-600 whitespace-normal leading-relaxed text-left">
-                                                                        <span className="block font-bold text-green-400 mb-1 text-xs border-b border-gray-700 pb-1">{getLabel(item.label)}</span>
-                                                                        {getDesc(item)}
-                                                                        <div className="tooltip-arrow"></div>
-                                                                    </div>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
+                                        <button
+                                            key={cat}
+                                            onClick={() => setActiveStyleCategory(cat)}
+                                            className={`w-full px-3 py-1.5 rounded-lg transition-all border flex flex-row items-center justify-between gap-1 text-left h-full
+                                                ${activeStyleCategory === cat || (styleSearchQuery && count > 0)
+                                                    ? 'bg-green-700 text-white border-green-500 shadow-lg shadow-green-900/20' 
+                                                    : 'bg-gray-800 text-gray-400 border-gray-700 hover:bg-gray-700 hover:text-white'}`}
+                                        >
+                                            <div className="flex flex-col items-start text-left flex-1 min-w-0 pr-1">
+                                                {(() => {
+                                                    const label = getLabel(cat);
+                                                    const match = label.match(/^(.*?)\s*\((.*?)\)$/);
+                                                    if (match) {
+                                                        return (
+                                                            <>
+                                                                <span className="text-[12px] font-bold truncate w-full">{match[1]}</span>
+                                                                <span className="text-[9px] font-normal opacity-70 truncate w-full">{match[2]}</span>
+                                                            </>
+                                                        );
+                                                    }
+                                                    return <span className="text-[11px] font-bold truncate w-full">{label}</span>;
+                                                })()}
+                                            </div>
+                                            <div className="flex gap-1 shrink-0">
+                                                <span className="bg-gray-900/50 px-1.5 rounded-full text-[9px] font-mono">{count}</span>
+                                                {selectedCount > 0 && (
+                                                    <span className="bg-blue-500 text-white px-1.5 rounded-full text-[9px] animate-pulse">✓ {selectedCount}</span>
                                                 )}
+                                            </div>
+                                        </button>
+                                    )})}
+                                </div>
+
+                                {/* Active Category Content */}
+                                <div className="bg-gray-800/40 border border-gray-700/60 rounded-xl p-3 sm:p-4 min-h-[200px]">
+                                    {Object.entries(getFilteredCategories()).map(([categoryName, items]) => {
+                                        if (categoryName !== activeStyleCategory && !styleSearchQuery) return null;
+                                        if (items.length === 0) return null;
+                                        
+                                        return (
+                                            <div key={categoryName} className={styleSearchQuery ? 'mb-6' : ''}>
+                                                {styleSearchQuery && (
+                                                    <h3 className="text-sm font-bold text-gray-300 mb-3 flex items-center gap-2 border-b border-gray-700 pb-2">
+                                                        {getLabel(categoryName)}
+                                                    </h3>
+                                                )}
+                                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
+                                                    {items.map(item => (
+                                                        <div key={item.val} className="group relative inline-block h-full">
+                                                            <button onClick={() => toggleStyle(item.val)}
+                                                                className={`w-full h-full p-2.5 rounded-lg transition-all border text-left flex flex-col justify-center
+                                                                ${form.selectedStyles.includes(item.val)
+                                                                        ? 'bg-gradient-to-br from-green-800/90 to-green-900/90 text-white border-green-500 shadow-md shadow-green-900/30'
+                                                                        : 'bg-gray-800/80 text-gray-400 border-gray-700 hover:border-gray-400 hover:text-gray-200 hover:bg-gray-700/80'
+                                                                    }`}>
+                                                                <div className="font-bold text-[11px] mb-1 line-clamp-2 leading-tight flex-1">{getLabel(item.label)}</div>
+                                                                <div className="text-[9px] opacity-70 truncate w-full">{item.val}</div>
+                                                            </button>
+                                                            {/* Tooltip */}
+                                                            <div className="hidden lg:group-hover:block absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-64 bg-gray-900 text-gray-200 text-[11px] p-3 rounded-lg shadow-2xl z-50 pointer-events-none border border-gray-600 whitespace-normal leading-relaxed text-left">
+                                                                <span className="block font-bold text-green-400 mb-1.5 text-xs border-b border-gray-700 pb-1.5">{getLabel(item.label)}</span>
+                                                                <div className="text-gray-300">{getDesc(item)}</div>
+                                                                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-900 border-b border-r border-gray-600 rotate-45"></div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         );
                                     })}
+                                    
+                                    {styleSearchQuery && Object.values(getFilteredCategories()).every(items => items.length === 0) && (
+                                        <div className="flex flex-col items-center justify-center py-12 text-gray-500">
+                                            <Search size={32} className="mb-3 opacity-20" />
+                                            <p>{t('找不到符合的風格', 'No matching styles found')}</p>
+                                        </div>
+                                    )}
                                 </div>
+
                             </section>
 
                             {/* Section 3: Layout Sections */}
@@ -2625,19 +3660,152 @@
                                         <Plus size={12} /> <span className="hidden sm:inline">{t('新增分區', 'Add Section')}</span><span className="sm:hidden">Add</span>
                                     </button>
                                 </div>
+                                
+                                {/* Camera & Composition */}
+                                <div className="mb-4 bg-gray-800 p-3 rounded-lg border border-gray-700">
+                                    <h4 className="text-xs font-bold text-blue-400 mb-2 flex items-center gap-1">
+                                        🎥 {t('攝影機視角與全域構圖 (Camera & Composition)', 'Camera & Composition')}
+                                    </h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {CAMERA_COMPOSITION_OPTIONS.map(opt => (
+                                            <div key={opt.val} className="group relative inline-block">
+                                                <button
+                                                    onClick={() => {
+                                                        setForm(p => ({
+                                                            ...p,
+                                                            camera: (p.camera || []).includes(opt.val) 
+                                                                ? p.camera.filter(c => c !== opt.val) 
+                                                                : [...(p.camera || []), opt.val]
+                                                        }))
+                                                    }}
+                                                    className={`px-3 py-1.5 rounded text-[11px] font-bold transition border shrink-0 
+                                                        ${(form.camera || []).includes(opt.val) 
+                                                            ? 'bg-blue-600/90 text-white border-blue-400 shadow-lg' 
+                                                            : 'bg-gray-900 text-gray-400 border-gray-700 hover:text-gray-200 hover:border-gray-500'}`}
+                                                >
+                                                    {getLabel(opt.label)}
+                                                </button>
+                                                <div className="hidden lg:group-hover:block absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-48 bg-gray-900 text-gray-200 text-[11px] p-2 rounded-lg shadow-2xl z-50 pointer-events-none border border-gray-600 whitespace-normal leading-relaxed text-left">
+                                                    <span className="block font-bold text-blue-400 mb-1 text-xs border-b border-gray-700 pb-1">{getLabel(opt.label)}</span>
+                                                    <div className="text-gray-300">{getDesc(opt)}</div>
+                                                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-900 border-b border-r border-gray-600 rotate-45"></div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 50+ Quick Layout Templates */}
+                                <div className="mb-4 bg-gray-800/60 p-3 rounded-lg border border-gray-700 flex gap-2 items-center">
+                                    <span className="text-[10px] text-gray-400 font-bold shrink-0">{t('快速版型 (50款)：', 'Quick Layouts:')}</span>
+                                    <select 
+                                        onChange={(e) => {
+                                            if(!e.target.value) return;
+                                            const [gIdx, lIdx] = e.target.value.split('-');
+                                            const selectedLayout = QUICK_LAYOUTS[gIdx].layouts[lIdx].sections;
+                                            setForm(p => ({ ...p, sections: JSON.parse(JSON.stringify(selectedLayout)) }));
+                                            e.target.value = ''; // Reset select after applying
+                                        }}
+                                        className="bg-gray-900 border border-purple-500/50 text-purple-300 text-xs rounded px-2 py-1.5 focus:outline-none focus:border-purple-400 flex-1"
+                                    >
+                                        <option value="">{t('-- 選擇並一鍵套用佈局 --', '-- Select & Apply Layout --')}</option>
+                                        {QUICK_LAYOUTS.map((group, gIdx) => (
+                                            <optgroup key={gIdx} label={group.group}>
+                                                {group.layouts.map((layout, lIdx) => (
+                                                    <option key={lIdx} value={`${gIdx}-${lIdx}`}>{layout.name}</option>
+                                                ))}
+                                            </optgroup>
+                                        ))}
+                                    </select>
+                                    <button onClick={() => setForm(p => ({ ...p, sections: [] }))} className="bg-red-900/30 border border-red-500/50 hover:bg-red-900/50 text-red-300 text-[10px] px-2 py-1.5 rounded transition shrink-0 ml-auto">
+                                        {t('清空分區', 'Clear')}
+                                    </button>
+                                </div>
+
+                                {/* WYSIWYG Layout Wireframe */}
+                                <div className="mb-4 bg-gray-900 border border-gray-700 rounded-xl p-4 flex justify-center items-center overflow-hidden min-h-[250px] relative">
+                                    <div className="absolute top-2 left-3 text-[10px] text-gray-500 font-mono">
+                                        {t('畫布比例預覽', 'Canvas Ratio Preview')} ({form.ar})
+                                    </div>
+                                    <div 
+                                        className="border-2 border-purple-500/40 bg-gray-800 shadow-xl relative flex flex-col transition-all duration-300 rounded-sm"
+                                        style={{
+                                            aspectRatio: form.ar.replace(':', '/'),
+                                            width: parseInt(form.ar.split(':')[0]) >= parseInt(form.ar.split(':')[1]) ? '100%' : 'auto',
+                                            height: parseInt(form.ar.split(':')[1]) >= parseInt(form.ar.split(':')[0]) ? '100%' : 'auto',
+                                            maxHeight: '220px',
+                                            maxWidth: '100%'
+                                        }}
+                                    >
+                                        {form.sections.map((sec, idx) => {
+                                            const dir = sec.dir || 'stack';
+                                            let layoutClasses = "flex-1 m-1 relative z-10"; // Default stack
+                                            if (dir === 'left') layoutClasses = "absolute top-0 left-0 w-1/2 h-full z-20 m-0 border-r-2";
+                                            else if (dir === 'right') layoutClasses = "absolute top-0 right-0 w-1/2 h-full z-20 m-0 border-l-2";
+                                            else if (dir === 'top') layoutClasses = "absolute top-0 left-0 w-full h-1/3 z-20 m-0 border-b-2";
+                                            else if (dir === 'bottom') layoutClasses = "absolute bottom-0 left-0 w-full h-1/3 z-20 m-0 border-t-2";
+                                            else if (dir === 'bg') layoutClasses = "absolute inset-0 z-0 m-0 opacity-40 bg-gray-700";
+                                            else if (dir === 'center') layoutClasses = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/5 h-2/5 z-30 m-0 rounded-full border-4 shadow-2xl";
+                                            else if (dir === 'surround') layoutClasses = "absolute inset-2 border-4 border-dashed rounded-[30%] z-10 m-0 bg-transparent flex-wrap";
+                                            
+                                            return (
+                                            <div key={idx} className={`${layoutClasses} border-dashed border-purple-500/40 bg-gray-800/80 backdrop-blur-[1px] flex flex-col justify-center items-center text-center p-1.5 overflow-hidden hover:bg-purple-900/30 transition-colors`}>
+                                                <span className="text-[9px] text-purple-300/50 font-bold mb-0.5">SEC {idx + 1} {dir !== 'stack' ? `(${dir.toUpperCase()})` : ''}</span>
+                                                {sec.visual && <span className="text-[10px] text-gray-300 line-clamp-2 w-full px-1">{sec.visual}</span>}
+                                                {sec.textBlocks.map((tb, tbIdx) => (
+                                                    <span key={tbIdx} className={`text-blue-300 truncate w-full ${tb.level === 'Primary' ? 'text-xs font-bold' : tb.level === 'Secondary' ? 'text-[9px]' : 'text-[7px] opacity-70'} mt-0.5 px-1`}>
+                                                        "{tb.content}"
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )})}
+                                        {form.sections.length === 0 && (
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-600 text-xs text-center p-4">
+                                                <div className="w-10 h-10 border-2 border-dashed border-gray-600 rounded-full flex items-center justify-center mb-2 opacity-50">
+                                                    <Plus size={16} />
+                                                </div>
+                                                {t('點擊「新增分區」來建構版面', 'Click Add Section to construct layout')}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
 
                                 <div className="space-y-4">
                                     {form.sections.map((section, sIdx) => (
                                         <div key={sIdx} className="bg-gray-800 p-3 rounded border border-gray-600 relative group transition hover:shadow-lg">
-                                            <button onClick={() => removeSection(sIdx)}
-                                                className="absolute top-2 right-2 text-gray-600 hover:text-red-400 transition bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-red-400 z-10">
-                                                <X size={12} />
-                                            </button>
+                                            <div className="absolute top-2 right-2 flex gap-1 z-10">
+                                                <button onClick={() => moveSection(sIdx, -1)} disabled={sIdx === 0}
+                                                    className="text-gray-500 hover:text-white transition bg-gray-800 rounded w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-gray-500 disabled:opacity-30 disabled:hover:border-gray-700 disabled:cursor-not-allowed">
+                                                    <ChevronUp size={14} />
+                                                </button>
+                                                <button onClick={() => moveSection(sIdx, 1)} disabled={sIdx === form.sections.length - 1}
+                                                    className="text-gray-500 hover:text-white transition bg-gray-800 rounded w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-gray-500 disabled:opacity-30 disabled:hover:border-gray-700 disabled:cursor-not-allowed">
+                                                    <ChevronDown size={14} />
+                                                </button>
+                                                <button onClick={() => removeSection(sIdx)}
+                                                    className="text-gray-500 hover:text-red-400 transition bg-gray-800 rounded w-6 h-6 flex items-center justify-center border border-gray-700 hover:border-red-400 ml-1">
+                                                    <X size={14} />
+                                                </button>
+                                            </div>
 
                                             <div className="mb-2 text-[10px] text-purple-400 font-bold uppercase tracking-widest flex items-center gap-2">
                                                 <span className="bg-purple-900/50 px-1.5 py-0.5 rounded">{t('分區', 'SECTION')} {sIdx + 1}</span>
                                             </div>
 
+                                            <div className="mb-2 flex items-center gap-2">
+                                                <label className="text-[10px] text-gray-500">{t('空間佈局:', 'Layout:')}</label>
+                                                <select value={section.dir || 'stack'} onChange={(e) => updateSectionField(sIdx, 'dir', e.target.value)}
+                                                    className="bg-gray-900 border border-gray-700 rounded p-1 text-[10px] text-gray-300 focus:border-purple-500 outline-none">
+                                                    <option value="stack">{t('預設堆疊 (Stack)', 'Stack')}</option>
+                                                    <option value="left">{t('靠左半邊 (Left)', 'Left')}</option>
+                                                    <option value="right">{t('靠右半邊 (Right)', 'Right')}</option>
+                                                    <option value="top">{t('置頂 (Top)', 'Top')}</option>
+                                                    <option value="bottom">{t('置底 (Bottom)', 'Bottom')}</option>
+                                                    <option value="bg">{t('背景滿版 (Background)', 'Background')}</option>
+                                                    <option value="center">{t('置中焦點 (Center)', 'Center')}</option>
+                                                    <option value="surround">{t('環繞邊緣 (Surround)', 'Surround')}</option>
+                                                </select>
+                                            </div>
                                             <div className="mb-3 grid grid-cols-12 gap-2 bg-gray-900/50 p-2 rounded border border-gray-700/50">
                                                 <div className="col-span-12 md:col-span-6">
                                                     <label className="text-[10px] text-gray-500 block mb-0.5">{t('視覺主體 (Visual)', 'Visual')}</label>
@@ -2654,6 +3822,11 @@
                                             </div>
 
                                             <div className="space-y-2">
+                                                {hasPediatricProfile && section.textBlocks.length > 0 && (
+                                                    <div className="text-[10px] text-amber-500 bg-amber-900/20 border border-amber-800/50 p-2 rounded mb-2">
+                                                        ⚠️ 衛教插圖契約預設不放圖中文字；若確需文字，請先確認文字內容再產圖
+                                                    </div>
+                                                )}
                                                 {section.textBlocks.map((block, bIdx) => (
                                                     <div key={bIdx} className="flex flex-wrap gap-2 items-start bg-gray-900/50 p-3 rounded border border-gray-700 hover:border-gray-500 transition-colors group">
                                                         <select
@@ -2723,12 +3896,14 @@
                                             <input
                                                 type="checkbox"
                                                 id="tc-opt"
-                                                checked={isAvoidSimplifiedChinese}
+                                                checked={effectiveIsAvoidSimplifiedChinese}
+                                                disabled={hasPediatricProfile}
                                                 onChange={(e) => setIsAvoidSimplifiedChinese(e.target.checked)}
-                                                className="w-3 h-3 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-1"
+                                                className={`w-3 h-3 rounded focus:ring-1 ${hasPediatricProfile ? 'bg-gray-800 border-gray-700 text-gray-500 cursor-not-allowed' : 'text-blue-600 bg-gray-700 border-gray-600 focus:ring-blue-500'}`}
                                             />
-                                            <label htmlFor="tc-opt" className="text-[10px] text-yellow-400 cursor-pointer select-none flex items-center gap-1" title={t("選取時，自動加入 'no simplified chinese text' 到品質提示詞中", "When selected, automatically adds 'no simplified chinese text' to quality prompt")}>
+                                            <label htmlFor="tc-opt" className={`text-[10px] ${hasPediatricProfile ? 'text-gray-500 cursor-not-allowed' : 'text-yellow-400 cursor-pointer'} select-none flex items-center gap-1`} title={t("選取時，自動加入 'no simplified chinese text' 到品質提示詞中", "When selected, automatically adds 'no simplified chinese text' to quality prompt")}>
                                                 <span>{t('避免簡體字 (Avoid Simplified Chinese)', 'Avoid Simplified Chinese')}</span>
+                                                {hasPediatricProfile && <span className="ml-1 text-[9px] text-gray-400">(衛教插圖預設為無圖中文字，此選項不適用)</span>}
                                             </label>
                                         </div>
                                     </div>
@@ -2743,7 +3918,7 @@
                                             placeholder="sharp focus, high quality, detailed, professional..." />
                                         <div className="text-[9px] text-gray-500 mt-1 flex gap-2">
                                             <span>* {t('將自動加入', 'Auto-add')}: </span>
-                                            {isAvoidSimplifiedChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">避免簡體字</span>}
+                                            {effectiveIsAvoidSimplifiedChinese && <span className="text-yellow-500 bg-yellow-900/30 px-1 rounded">避免簡體字</span>}
                                         </div>
                                     </div>
                                 </div>
@@ -2763,6 +3938,7 @@
                                     </a>
                                     <p className="text-[9px] text-gray-700 mt-2 font-mono">
                                         &copy; {new Date().getFullYear()} AI Prompt Master
+                                        <span className="ml-2">v{APP_VERSION}</span>
                                     </p>
                                 </div>
                             </div>
@@ -2788,15 +3964,28 @@
                                     {t('歷史紀錄', 'History')}
                                 </button>
                             </div>
-                            <button onClick={copyToClipboard}
-                                className={`px-3 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5 shadow-lg
-                                    ${copied
-                                        ? 'bg-green-600 hover:bg-green-500 text-white'
-                                        : 'bg-blue-600 hover:bg-blue-500 text-white'
-                                    }`}>
-                                {copied ? <Check size={14} /> : <Copy size={14} />}
-                                {copied ? t('已複製', 'Copied') : t('複製提示詞', 'Copy Prompt')}
-                            </button>
+                            <div className="flex items-center gap-2">
+                                {pediatricProfileId && (
+                                    <button onClick={copyIllustrationCommand}
+                                        className={`px-3 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5 shadow-lg
+                                            ${illustrationCopied
+                                                ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                                                : 'bg-emerald-700 hover:bg-emerald-600 text-emerald-100'
+                                            }`}>
+                                        {illustrationCopied ? <Check size={14} /> : <Copy size={14} />}
+                                        {illustrationCopied ? t('已複製指令', 'Copied Command') : t('複製為插圖指令', 'Copy Illustration Cmd')}
+                                    </button>
+                                )}
+                                <button onClick={copyToClipboard}
+                                    className={`px-3 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5 shadow-lg
+                                        ${copied
+                                            ? 'bg-green-600 hover:bg-green-500 text-white'
+                                            : 'bg-blue-600 hover:bg-blue-500 text-white'
+                                        }`}>
+                                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                                    {copied ? t('已複製', 'Copied') : t('複製提示詞', 'Copy Prompt')}
+                                </button>
+                            </div>
                         </div>
 
                         <div className="flex-1 bg-gray-900 relative overflow-hidden min-h-0 flex flex-col">
@@ -2828,7 +4017,7 @@
                                         onUpdateTexture={(val) => setForm(prev => ({ ...prev, texture: val }))}
                                         configData={configData}
                                         getLabel={getLabel}
-                                        isAvoidSimplifiedChinese={isAvoidSimplifiedChinese}
+                                        isAvoidSimplifiedChinese={effectiveIsAvoidSimplifiedChinese}
                                     />
                                 </>
                             ) : (
