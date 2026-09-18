@@ -2406,9 +2406,9 @@ const hasPediatricProfile = React.useMemo(() => {
                 if (p) {
                     setCurrentPresetName(p.name);
                     setForm({
-                        subject: p.subject || '',
-                        title: p.title || '',
-                        body: p.body || '',
+                        subject: (lang === 'en' && p.subject_en) ? p.subject_en : (p.subject || ''),
+                        title: (lang === 'en' && p.title_en) ? p.title_en : (p.title || ''),
+                        body: (lang === 'en' && p.body_en) ? p.body_en : (p.body || ''),
                         selectedStyles: [...(p.styles || [])],
                         sections: (p.sections || []).map(s => ({
                             visual: s.visual || '',
