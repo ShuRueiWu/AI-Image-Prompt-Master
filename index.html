@@ -157,10 +157,9 @@
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect, useRef } from 'react';
         import { createRoot } from 'react-dom/client';
-        import {
-            HelpCircle, ChevronDown, ChevronUp, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink,
+        import { HelpCircle, ChevronDown, ChevronUp, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink,
             Search, Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload, Download
-        } from 'lucide-react';
+        , Sun, Moon } from 'lucide-react';
 
         const versionMatch = window.location.pathname.match(/V(\d+\.\d+)/i);
         const APP_VERSION = versionMatch ? versionMatch[1] : '8.4';
