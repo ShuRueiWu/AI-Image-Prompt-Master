@@ -3047,7 +3047,7 @@ const hasPediatricProfile = React.useMemo(() => {
 
                                 </div>
                                 <div className="p-5 border-t border-gray-300 dark:border-gray-700 bg-stone-100 dark:bg-gray-900 flex justify-end">
-                                    <button onClick={() => setShowHelp(false)} className="bg-blue-600 hover:bg-blue-500 text-stone-800 dark:text-white px-6 py-2 rounded-lg font-bold transition shadow-lg hover:shadow-blue-500/20">
+                                    <button onClick={() => setShowHelp(false)} className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold transition shadow-lg hover:shadow-blue-500/20">
                                         開始創作 (Start Creating)
                                     </button>
                                 </div>
@@ -3122,13 +3122,13 @@ const hasPediatricProfile = React.useMemo(() => {
                                         <>
                                             <button
                                                 onClick={() => handleImportConfirm('merge')}
-                                                className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-stone-800 dark:text-white rounded transition"
+                                                className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded transition"
                                             >
                                                 {t('加入 (保留現有)', 'Merge (Keep existing)')}
                                             </button>
                                             <button
                                                 onClick={() => handleImportConfirm('replace')}
-                                                className="px-4 py-2 text-sm bg-red-600/80 hover:bg-red-500 text-stone-800 dark:text-white rounded border border-red-500 transition"
+                                                className="px-4 py-2 text-sm bg-red-600/80 hover:bg-red-500 text-white rounded border border-red-500 transition"
                                             >
                                                 {t('取代全部', 'Replace All')}
                                             </button>
@@ -3236,7 +3236,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                                 setShowSavePresetModal(false);
                                                 setEditingPresetKey(null);
                                             }}
-                                            className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-stone-800 dark:text-white rounded transition"
+                                            className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded transition"
                                         >
                                             {t('儲存', 'Save')}
                                         </button>
@@ -3504,7 +3504,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                     const container = document.getElementById('left-panel-scroll-container');
                                     if (container) container.scrollTo({ top: 0, behavior: 'smooth' });
                                 }}
-                                className="bg-stone-200 dark:bg-gray-800/80 hover:bg-blue-600 text-gray-700 dark:text-gray-300 hover:text-stone-800 dark:text-white p-2 rounded-full shadow-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all backdrop-blur-sm"
+                                className="bg-stone-200 dark:bg-gray-800/80 hover:bg-blue-600 text-gray-700 dark:text-gray-300 hover:text-white p-2 rounded-full shadow-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all backdrop-blur-sm"
                                 title={t('回到頂部', 'Top')}
                             >
                                 <ChevronUp size={16} />
@@ -3514,7 +3514,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                     const container = document.getElementById('left-panel-scroll-container');
                                     if (container) container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
                                 }}
-                                className="bg-stone-200 dark:bg-gray-800/80 hover:bg-blue-600 text-gray-700 dark:text-gray-300 hover:text-stone-800 dark:text-white p-2 rounded-full shadow-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all backdrop-blur-sm"
+                                className="bg-stone-200 dark:bg-gray-800/80 hover:bg-blue-600 text-gray-700 dark:text-gray-300 hover:text-white p-2 rounded-full shadow-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all backdrop-blur-sm"
                                 title={t('前往底部', 'Bottom')}
                             >
                                 <ChevronDown size={16} />
@@ -3600,7 +3600,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                             onClick={() => setActiveStyleCategory(cat)}
                                             className={`w-full px-3 py-1.5 rounded-lg transition-all border flex flex-row items-center justify-between gap-1 text-left h-full
                                                 ${activeStyleCategory === cat || (styleSearchQuery && count > 0)
-                                                    ? 'bg-green-700 text-stone-800 dark:text-white border-green-500 shadow-lg shadow-green-900/20' 
+                                                    ? 'bg-green-700 text-white border-green-500 shadow-lg shadow-green-900/20' 
                                                     : 'bg-stone-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:bg-stone-200 dark:bg-gray-700 hover:text-stone-800 dark:text-white'}`}
                                         >
                                             <div className="flex flex-col items-start text-left flex-1 min-w-0 pr-1">
@@ -3621,7 +3621,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                             <div className="flex gap-1 shrink-0">
                                                 <span className="bg-stone-100 dark:bg-gray-900/50 px-1.5 rounded-full text-[9px] font-mono">{count}</span>
                                                 {selectedCount > 0 && (
-                                                    <span className="bg-blue-500 text-stone-800 dark:text-white px-1.5 rounded-full text-[9px] animate-pulse">✓ {selectedCount}</span>
+                                                    <span className="bg-blue-500 text-white px-1.5 rounded-full text-[9px] animate-pulse">✓ {selectedCount}</span>
                                                 )}
                                             </div>
                                         </button>
@@ -3647,7 +3647,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                                             <button onClick={() => toggleStyle(item.val)}
                                                                 className={`w-full h-full p-2.5 rounded-lg transition-all border text-left flex flex-col justify-center
                                                                 ${form.selectedStyles.includes(item.val)
-                                                                        ? 'bg-gradient-to-br from-green-800/90 to-green-900/90 text-stone-800 dark:text-white border-green-500 shadow-md shadow-green-900/30'
+                                                                        ? 'bg-gradient-to-br from-green-800/90 to-green-900/90 text-white border-green-500 shadow-md shadow-green-900/30'
                                                                         : 'bg-stone-200 dark:bg-gray-800/80 text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-400 hover:text-stone-700 dark:text-gray-200 hover:bg-stone-200 dark:bg-gray-700/80'
                                                                     }`}>
                                                                 <div className="font-bold text-[11px] mb-1 line-clamp-2 leading-tight flex-1">{getLabel(item.label)}</div>
@@ -3684,7 +3684,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                         {t('3. 版面分區 (Layout Sections)', '3. Layout Sections')}
                                     </h2>
                                     <button onClick={addSection}
-                                        className="bg-purple-700 hover:bg-purple-600 px-3 py-1.5 rounded text-xs text-stone-800 dark:text-white font-bold transition shadow-sm border border-purple-500 flex items-center gap-1">
+                                        className="bg-purple-700 hover:bg-purple-600 px-3 py-1.5 rounded text-xs text-white font-bold transition shadow-sm border border-purple-500 flex items-center gap-1">
                                         <Plus size={12} /> <span className="hidden sm:inline">{t('新增分區', 'Add Section')}</span><span className="sm:hidden">Add</span>
                                     </button>
                                 </div>
@@ -3708,7 +3708,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                                     }}
                                                     className={`px-3 py-1.5 rounded text-[11px] font-bold transition border shrink-0 
                                                         ${(form.camera || []).includes(opt.val) 
-                                                            ? 'bg-blue-600/90 text-stone-800 dark:text-white border-blue-400 shadow-lg' 
+                                                            ? 'bg-blue-600/90 text-white border-blue-400 shadow-lg' 
                                                             : 'bg-stone-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:text-stone-700 dark:text-gray-200 hover:border-gray-500'}`}
                                                 >
                                                     {getLabel(opt.label)}
@@ -3997,7 +3997,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                     <button onClick={copyIllustrationCommand}
                                         className={`px-3 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5 shadow-lg
                                             ${illustrationCopied
-                                                ? 'bg-emerald-600 hover:bg-emerald-500 text-stone-800 dark:text-white'
+                                                ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
                                                 : 'bg-emerald-700 hover:bg-emerald-600 text-emerald-100'
                                             }`}>
                                         {illustrationCopied ? <Check size={14} /> : <Copy size={14} />}
@@ -4007,8 +4007,8 @@ const hasPediatricProfile = React.useMemo(() => {
                                 <button onClick={copyToClipboard}
                                     className={`px-3 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5 shadow-lg
                                         ${copied
-                                            ? 'bg-green-600 hover:bg-green-500 text-stone-800 dark:text-white'
-                                            : 'bg-blue-600 hover:bg-blue-500 text-stone-800 dark:text-white'
+                                            ? 'bg-green-600 hover:bg-green-500 text-white'
+                                            : 'bg-blue-600 hover:bg-blue-500 text-white'
                                         }`}>
                                     {copied ? <Check size={14} /> : <Copy size={14} />}
                                     {copied ? t('已複製', 'Copied') : t('複製提示詞', 'Copy Prompt')}
