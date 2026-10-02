@@ -1,18 +1,24 @@
 # 🎨 AI Image Prompt Master
 
-## Current local release: V9.5
+## Current release: V9.6
 
-`Prompts Builder V9.5.html` is the canonical source. Open it directly in a modern browser; internet access is required for CDN dependencies. `Prompts Builder V9.4.html` is retained as the previous local baseline.
+`Prompts Builder V9.6.html` is the canonical source. Open it directly in a modern browser; internet access is required for CDN dependencies. V9.4 and V9.5 remain as previous local baselines.
+
+V9.6 automatically saves the current work in this browser and restores it on reload. Export/import a complete work JSON to transfer content, layout and language instructions between browsers. Imports ask before replacing current work; invalid files leave the editor unchanged. Conflict reminders are advisory and dismissible. Drafts are local to the browser/site, not cloud-synced; exporting a work file is the portable backup.
+
+All 240 selectable styles appear in at least one of 313 built-in presets. Focused style examples are grouped by category. See `STYLE_COVERAGE_V9.6.md` for the complete mapping; coverage does not imply a generated-image quality evaluation.
 
 `index.html` is an exact deployment copy, not a second editing source:
 
 ```sh
 npm ci
-npm run sync:site   # explicitly copy V9.5 to the Pages entry
+npm run sync:site   # explicitly copy V9.6 to the Pages entry
 npm test           # equality check and isolated Chrome interaction tests
+npm run test:presets # apply all built-in presets through the UI
+node verify-style-coverage.cjs --report # regenerate the coverage table
 ```
 
-Tests require Google Chrome installed. They mock clipboard access and never call an image model. See `FIXES_2026-10-02.md` for verification scope and changes.
+Tests require Google Chrome installed. They mock clipboard access and never call an image model. See `RELEASE_V9.6.md` and `FIXES_2026-10-02.md` for verification scope and changes.
 
 GitHub Pages currently publishes from `main` at `/`. Pushing a changed `index.html` to `main` can publish the site. Local commits alone do not publish anything.
 

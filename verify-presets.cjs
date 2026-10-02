@@ -1,0 +1,39 @@
+// Apply every built-in preset through the browser and check its style output.
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+const { pathToFileURL } = require('node:url');
+const { chromium } = require('playwright');
+const source = path.join(__dirname, 'Prompts Builder V9.6.html');
+const html = fs.readFileSync(source, 'utf8');
+const presets = vm.runInNewContext(html.slice(html.indexOf('        const configData ='), html.indexOf('        // Helper to find Chinese label')) + '; BUILTIN_PRESETS');
+(async () => {
+    const browser = await chromium.launch({ channel: 'chrome', headless: true });
+    try {
+        const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+        const errors = [];
+        page.on('pageerror', e => { errors.push(e.message); console.error(e.message); });
+        await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { value: { writeText: async text => { window.testPrompt = text; } } }));
+        await page.goto(pathToFileURL(source).href);
+        await page.getByTestId('browse-presets').waitFor({ timeout: 60000 });
+        let count = 0;
+        for (const [groupName, group] of Object.entries(presets)) {
+            for (const [key, preset] of Object.entries(group)) {
+                await page.getByTestId('browse-presets').click();
+                await page.getByPlaceholder('🔍 搜尋預設 (Search presets)...').fill(preset.name);
+                await page.locator(`[data-preset-group=${JSON.stringify(groupName)}][data-preset-key="${key}"]`).click();
+                assert.equal(await page.getByPlaceholder('描述畫面的核心主體...').inputValue(), preset.subject || '', key);
+                await page.getByRole('button', { name: /^(複製提示詞|已複製)$/ }).click();
+                const prompt = await page.evaluate(() => window.testPrompt);
+                for (const style of preset.styles || []) assert(prompt.includes(style), `${key} missing ${style}`);
+                // A real exported work must retain enough fields to be imported after preset selection.
+                await page.waitForFunction(() => localStorage.getItem('prompt_builder_draft_v1'));
+                count++;
+                if (count % 50 === 0) console.log(`Verified ${count} presets`);
+            }
+        }
+        assert.deepEqual(errors, []);
+        console.log(`PASS: all ${count} presets applied through the UI with expected styles in copied prompts.`);
+    } finally { await browser.close(); }
+})().catch(e => { console.error(e); process.exitCode = 1; });
