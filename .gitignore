@@ -22,3 +22,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local agent records, old drafts and one-off migration scripts (kept on disk)
+.agents/
+.remember/
+.claude/
+archive/
+IMPROVEMENT_PLAN_*.md
+TASK_SPEC_*.md
+/*.py
+/check_jsx.js
+/script_v94.js
+/presets_extract.txt
+/Prompts Builder V8.*.html
+/Prompts Builder V9.[0-3].html

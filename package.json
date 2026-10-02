@@ -1,22 +1,16 @@
 {
   "name": "ai-image-prompt-master",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "9.5.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "lucide-react": "^0.555.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "sync:site": "node sync-site.cjs --apply",
+    "check:site": "node sync-site.cjs",
+    "test": "npm run check:site && node verify_v95.cjs"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@babel/core": "^8.0.6",
+    "@babel/preset-env": "^8.0.6",
+    "@babel/preset-react": "^8.0.1",
+    "playwright": "1.59.1"
   }
 }

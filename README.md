@@ -1,5 +1,25 @@
 # 🎨 AI Image Prompt Master
 
+## Current local release: V9.5
+
+`Prompts Builder V9.5.html` is the canonical source. Open it directly in a modern browser; internet access is required for CDN dependencies. `Prompts Builder V9.4.html` is retained as the previous local baseline.
+
+`index.html` is an exact deployment copy, not a second editing source:
+
+```sh
+npm ci
+npm run sync:site   # explicitly copy V9.5 to the Pages entry
+npm test           # equality check and isolated Chrome interaction tests
+```
+
+Tests require Google Chrome installed. They mock clipboard access and never call an image model. See `FIXES_2026-10-02.md` for verification scope and changes.
+
+GitHub Pages currently publishes from `main` at `/`. Pushing a changed `index.html` to `main` can publish the site. Local commits alone do not publish anything.
+
+The root TSX/Vite files are retained from the existing repository history; this single-file release does not build or use them. The older overview below describes earlier versions; V9.5 uses editable image-text language instructions rather than the old Avoid Simplified Chinese switch.
+
+---
+
 <div align="center">
 
 **A professional, structured AI image prompt builder based on Google's Golden Formula**

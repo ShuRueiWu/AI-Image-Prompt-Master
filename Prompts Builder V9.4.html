@@ -166,7 +166,8 @@
             Search, Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload, Download
         , Sun, Moon } from 'lucide-react';
 
-        const APP_VERSION = '9.5';
+        const versionMatch = window.location.pathname.match(/V(\d+\.\d+)/i);
+        const APP_VERSION = versionMatch ? versionMatch[1] : '8.4';
         document.title = `AI Prompt Master V${APP_VERSION}`;
         const configData = {
             textures: [
@@ -2096,9 +2097,6 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                     id: Date.now(),
                     timestamp: new Date().toISOString(),
                     form: structuredClone(currentForm),
-                    schemaVersion: 2,
-                    textLanguage,
-                    languagePromptOverrides: structuredClone(languagePromptOverrides),
                     prompt: promptText
                 };
                 setHistory(prev => [newItem, ...prev].slice(0, 50)); // Keep last 50
@@ -2117,8 +2115,6 @@ const [showPresetModal, setShowPresetModal] = useState(false);
             const restoreFromHistory = (item) => {
                 if (confirm(t('確定要載入此紀錄嗎？目前的編輯將會遺失。', 'Load this record? Current edits will be lost.'))) {
                     setForm(item.form);
-                    setTextLanguage(item.textLanguage ?? 'zh-Hant');
-                    setLanguagePromptOverrides(item.languagePromptOverrides ?? {});
                     // Also switch back to preview to see it
                     setActiveRightTab('preview');
                 }
@@ -2178,17 +2174,6 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                 return { [firstGroup]: true };
             });
             const [manualPrompt, setManualPrompt] = useState('');
-            const [copyError, setCopyError] = useState('');
-            const writeClipboard = async (text) => {
-                setCopyError('');
-                try {
-                    await navigator.clipboard.writeText(text);
-                    return true;
-                } catch (error) {
-                    setCopyError(t('複製失敗，請選取預覽文字手動複製，或檢查瀏覽器剪貼簿權限。', 'Copy failed. Select the preview text to copy manually, or check clipboard permissions.'));
-                    return false;
-                }
-            };
             const [activeMobileTab, setActiveMobileTab] = useState('edit');
 
             // Feature state
@@ -2250,8 +2235,7 @@ const hasPediatricProfile = React.useMemo(() => {
 教學訊息：${form.subject}
 場景：${form.body}
 限制：無圖中文字、通用無品牌器材、自然多元的台灣人物`;
-                writeClipboard(cmd).then((success) => {
-                    if (!success) return;
+                navigator.clipboard.writeText(cmd).then(() => {
                     setIllustrationCopied(true);
                     setTimeout(() => setIllustrationCopied(false), 2000);
                 });
@@ -2265,9 +2249,8 @@ const hasPediatricProfile = React.useMemo(() => {
                 let parts = [];
 
                 if (form.subject) parts.push(`**Subject:** ${form.subject}`);
-                if (form.title && !hasPediatricProfile) parts.push(`**Title:** "${form.title}"`);
-                if (form.body) parts.push(`**${hasPediatricProfile ? 'Scene context (not image text)' : 'Body'}:** ${form.body}`);
-                if (hasPediatricProfile) parts.push('**Constraints:** Text-free illustration. Do not render any letters, titles, labels, captions, or watermarks. Treat all scene descriptions as visual context only.');
+                if (form.title) parts.push(`**Title:** "${form.title}"`);
+                if (form.body) parts.push(`**Body:** ${form.body}`);
 
                 let styles = [...form.selectedStyles];
                 if (styles.length > 0) {
@@ -2287,7 +2270,7 @@ const hasPediatricProfile = React.useMemo(() => {
                         if (sec.visual) lines.push(`Visual: ${sec.visual}`);
                         if (sec.param) lines.push(`Param: ${sec.param}`);
 
-                        if (!hasPediatricProfile && sec.textBlocks && sec.textBlocks.length > 0) {
+                        if (sec.textBlocks && sec.textBlocks.length > 0) {
                             sec.textBlocks.forEach(tb => {
                                 if (tb.content) {
                                     let meta = [];
@@ -2355,7 +2338,7 @@ const hasPediatricProfile = React.useMemo(() => {
                 parts.push(params.join(' '));
 
                 setManualPrompt(parts.join('\n'));
-            }, [form, effectiveTextLanguage, languagePrompt, hasPediatricProfile]);
+            }, [form, effectiveTextLanguage, languagePrompt]);
 
             // Auto-expand categories when styles are selected (e.g. from presets)
             useEffect(() => {
@@ -2580,8 +2563,7 @@ const hasPediatricProfile = React.useMemo(() => {
             };
 
             const copyToClipboard = () => {
-                writeClipboard(manualPrompt).then((success) => {
-                    if (!success) return;
+                navigator.clipboard.writeText(manualPrompt).then(() => {
                     setCopied(true);
                     setTimeout(() => setCopied(false), 2000);
                     // Auto-save to history on copy
@@ -3951,12 +3933,11 @@ const hasPediatricProfile = React.useMemo(() => {
                             </section>
 
                             {/* Section 4: Technical Parameters (Imagen 4 simplified) */}
-                            <details id="section-params">
-                                <summary className="text-base font-bold text-amber-900 dark:text-amber-200 mb-3 cursor-pointer rounded bg-amber-100 dark:bg-amber-950 p-2">
+                            <section id="section-params">
+                                <h2 className="text-base font-bold text-amber-900 dark:text-amber-200 mb-3 flex items-center">
                                     <span className="w-2 h-6 bg-yellow-500 mr-2 rounded-sm"></span>
-                                    {t('4. 輸出設定・點此展開／收合', '4. Output settings · expand / collapse')}
-                                </summary>
-                                <p className="text-xs text-gray-700 dark:text-gray-300 mb-3">{t('4K／8K 是提示詞中的畫質描述，實際尺寸由生圖工具設定。', '4K / 8K describe desired quality; set actual dimensions in your image generator.')}</p>
+                                    {t('4. 技術參數 (Parameters)', '4. Parameters')}
+                                </h2>
                                 <div className="grid grid-cols-2 gap-3 bg-stone-200 dark:bg-gray-800 p-4 rounded border border-gray-300 dark:border-gray-700">
 
                                     {/* Feature Toggles */}
@@ -4008,7 +3989,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                         </div>
                                     </div>
                                 </div>
-                            </details>
+                            </section>
 
                             {/* Copyright Footer */}
                             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col items-center">
@@ -4074,8 +4055,6 @@ const hasPediatricProfile = React.useMemo(() => {
                             </div>
                         </div>
 
-                        {copyError && <p role="alert" className="p-3 text-sm bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-100">{copyError}</p>}
-                        {hasPediatricProfile && <p className="p-3 text-xs bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-100">{t('無字模式：標題與文字區塊暫不輸出；內文僅作場景描述。原設定保留，切回一般風格即可恢復。', 'Text-free mode: titles and text blocks are omitted; body is scene context only. Original settings are retained.')}</p>}
                         <div className="flex-1 bg-stone-100 dark:bg-gray-900 relative overflow-hidden min-h-0 flex flex-col">
                             {activeRightTab === 'preview' ? (
                                 <>
@@ -4091,7 +4070,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                     </div>
 
                                     <PromptStructureView
-                                        form={hasPediatricProfile ? { ...form, title: '', sections: form.sections.map(section => ({ ...section, textBlocks: [] })) } : form}
+                                        form={form}
                                         t={t}
                                         onRemoveStyle={(style) => toggleStyle(style)}
                                         onAddStyle={(style) => {
@@ -4134,14 +4113,18 @@ const hasPediatricProfile = React.useMemo(() => {
                                                         </div>
                                                         <div className="flex gap-2">
                                                             <button
-                                                                onClick={() => writeClipboard(item.prompt)}
+                                                                onClick={() => navigator.clipboard.writeText(item.prompt)}
                                                                 className="text-gray-500 hover:text-green-600 dark:text-green-400 p-1"
                                                                 title={t('複製', 'Copy')}
                                                             >
                                                                 <Copy size={16} />
                                                             </button>
                                                             <button
-                                                                onClick={() => restoreFromHistory(item)}
+                                                                onClick={() => {
+                                                                    if (confirm(t('確定要載入此記錄嗎？目前的設定將被覆蓋。', 'Load this record? Current settings will be overwritten.'))) {
+                                                                        restoreFromHistory(item);
+                                                                    }
+                                                                }}
                                                                 className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:text-blue-300 p-1"
                                                                 title={t('載入', 'Load')}
                                                             >
