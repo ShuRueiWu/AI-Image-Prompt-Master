@@ -27,5 +27,7 @@
 - `styles` 內的風格選項（如 "YouTube Thumbnail"、"Lego Style"、"Instagram Carousel"）是 App 的風格選項值，未改動；已在 subject 加上「以虛構名稱取代」的指示。
 - 圖中真實地標（台北 101）與真實書名（Atomic Habits 等）不屬品牌標誌，未處理。
 
-## 真實人物／藝術家名稱（待你決定）
+## 真實人物／藝術家名稱（使用者 2026-10-04 決定：保留）
 App 的**風格選項**本身含真實人名與品牌（梵谷、慕夏、韋斯·安德森、安迪沃荷、宮崎駿／Studio Ghibli、Pixar、Kodak／Fujifilm 底片、Polaroid、倫勃朗光、Star Wars、Minecraft）。這些是 `configData` 的風格選項值，會直接進 prompt；未擅自改動。已改的只有「會被印在圖上的人名」（雜誌 credit 的攝影師）。
+
+**決定**：只處理「會被畫在圖上的名稱」（校名、品牌、平台、刊物、攝影師署名）。風格選項（梵谷、慕夏、韋斯·安德森、沃荷、宮崎駿／Ghibli、Pixar、Kodak／Fujifilm、Polaroid、倫勃朗光、Star Wars、Minecraft）保留，作為創作風格參考詞，不改、不另開工。
