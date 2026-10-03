@@ -2079,6 +2079,21 @@ const [showPresetModal, setShowPresetModal] = useState(false);
             const [presetSearchQuery, setPresetSearchQuery] = useState('');
             const [currentPresetName, setCurrentPresetName] = useState('');
             const [currentPresetImageKey, setCurrentPresetImageKey] = useState('');
+            // 重新開啟預設彈窗時，捲到上次選取的範本（並已展開其分組），而不是回到最前面。
+            useEffect(() => {
+                if (!showPresetModal || !currentPresetImageKey) return;
+                const sep = currentPresetImageKey.lastIndexOf('/');
+                const group = currentPresetImageKey.slice(0, sep);
+                const key = currentPresetImageKey.slice(sep + 1);
+                const scrollToCurrent = () => {
+                    const card = [...document.querySelectorAll('[data-preset-key]')]
+                        .find(el => el.dataset.presetKey === key && el.dataset.presetGroup === group);
+                    if (card) card.scrollIntoView({ block: 'center' });
+                };
+                const t1 = setTimeout(scrollToCurrent, 50);
+                const t2 = setTimeout(scrollToCurrent, 400);
+                return () => { clearTimeout(t1); clearTimeout(t2); };
+            }, [showPresetModal]);
             const [styleSearchQuery, setStyleSearchQuery] = useState('');
             const [activeStyleCategory, setActiveStyleCategory] = useState(Object.keys(configData.categories)[0]);
             const [expandedCategories, setExpandedCategories] = React.useState(configData.ui.defaultExpandedCategories);
@@ -2730,6 +2745,7 @@ const hasPediatricProfile = React.useMemo(() => {
                 if (p) {
                     setCurrentPresetName(p.name);
                     setCurrentPresetImageKey(selectedGroup ? `${selectedGroup}/${key}` : '');
+                    if (selectedGroup) setExpandedPresetGroups(prev => ({ ...prev, [selectedGroup]: true }));
                     setForm({
                         subject: (lang === 'en' && p.subject_en) ? p.subject_en : (p.subject || ''),
                         title: (lang === 'en' && p.title_en) ? p.title_en : (p.title || ''),
@@ -3673,7 +3689,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                                                     data-preset-key={key}
                                                                     data-preset-group={groupName}
                                                                     onClick={() => applyPreset(key, groupName)}
-                                                                    className="relative group overflow-hidden rounded-xl border border-slate-300 dark:border-slate-700/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-blue-500/50 bg-stone-200 dark:bg-slate-900/40"
+                                                                    className={`relative group overflow-hidden rounded-xl border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-blue-500/50 bg-stone-200 dark:bg-slate-900/40 ${currentPresetImageKey === `${groupName}/${key}` ? 'border-blue-500 ring-2 ring-blue-500/70' : 'border-slate-300 dark:border-slate-700/50'}`}
                                                                 >
                                                                     <PresetReferenceImages mapKey={`${groupName}/${key}`} compact />
                                                                     <div className="p-3">
