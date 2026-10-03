@@ -1,0 +1,132 @@
+[
+ {
+  "group": "🔥 十大佈局實戰範本 (Top 10 Layouts)",
+  "key": "layout_vogue_cover",
+  "name": "時尚醫療雜誌 (Fashion Cover)",
+  "index": 13,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "dd1783a62300d606aa0f6395977ce51e107d8fd832c36a78d2f2b946a3185de7",
+  "new_prompt_sha256": "fbad943a1495e5f3207b628afd516743f1094d999f6603753b03e56c0f799bd9",
+  "new_prompt": "**Subject:** High fashion portrait of a confident male surgeon\n**Title:** \"Solenne Medical\"\n**Body:** 穿著剪裁俐落的白袍，眼神銳利，背景純粹。\n**Art Styles & Tech:** Editorial Photography, High Fashion, Studio Lighting\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Studio backdrop | Param: dark grey\n[Section 2]\n* Visual: Massive magazine title text | Param: partially hidden behind subject | Text: 'SOLENNE MED' written in massive heavy typography (Font: Serif)\n[Section 3]\n* Visual: Confident male surgeon | Param: sharp focus\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** magazine cover, professional photography\naspect ratio 3:4 8k resolution, highly detailed"
+ },
+ {
+  "group": "📐 經典切版佈局 (Classic Layouts)",
+  "key": "layout_youtube_thumb",
+  "name": "YouTube 爆款縮圖 (YT Thumbnail)",
+  "index": 22,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "03df409335bc956471c8933ee5b98cb1bdd9b5b55f4572a85c6590822a85740b",
+  "new_prompt_sha256": "967a8232b42bea669febd60d2d8838429ddd7bf05f90f0f095ab49bd8a3682f9",
+  "new_prompt": "**Subject:** Clickbait video thumbnail (generic video platform; any play-button or platform logo must be the fictional \"Taldora Play\", never a real platform logo)\n**Title:** \"YT Thumbnail\"\n**Body:** 高對比度、鮮豔的色彩與邊緣發光效果。\n**Art Styles & Tech:** Vibrant Colors, Flat Design\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurred colorful studio background | Param: depth of field, bright colors\n[Section 2]\n* Visual: Surprised person pointing to the left | Param: white outline sticker effect\n[Section 3]\n* Visual: Space for massive impact text | Param: high contrast dark space | Text: 'OMG!!' written in massive heavy typography (Font: Bold Display)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** video thumbnail style, high contrast, vibrant, eye-catching\naspect ratio 16:9 1k resolution"
+ },
+ {
+  "group": "🎨 插畫與動漫 (Illustration & Anime)",
+  "key": "lego_city",
+  "name": "樂高城市 (Lego City)",
+  "index": 49,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "12792a12eae663b4e4cdacd28e0489edca6f512b617707ad31199840d59d56e6",
+  "new_prompt_sha256": "ac4c46fc80502c36120c1855fbe4f3488aa773cbcf08e3c08b3fd172422f443c",
+  "new_prompt": "**Subject:** Busy toy-brick city street (any brand sign must be the fictional \"Brikmora\", never a real toy-brick logo)\n**Title:** \"Brikmora World\"\n**Art Styles & Tech:** Lego Style, Vibrant Colors, 3D Render, Plastic\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 16:9 4k resolution"
+ },
+ {
+  "group": "📢 商業與社群 (Business & Social)",
+  "key": "social_yt_thumb",
+  "name": "YouTube 縮圖 (Thumbnail)",
+  "index": 76,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "3f59595994a5d1120ed6dd1a294ae39f283c22fc5c8769587f6eaf186245f17e",
+  "new_prompt_sha256": "fbaf088306e7e2abac310940e55654216c1e2b658b92169fb811e2e9af62dc0a",
+  "new_prompt": "**Subject:** Shocked person pointing at glowing object (generic video platform; any play-button or platform logo must be the fictional \"Taldora Play\", never a real platform logo)\n**Title:** \"OMG\"\n**Art Styles & Tech:** YouTube Thumbnail, High Contrast, Vibrant Colors, Bold Display, Action Lines\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Expressive Subject | Param: Close-up, shocked expression, pointing finger, glowing outline\n[Section 2]\n* Visual: Text Overlay | Param: Massive bold sans-serif text, yellow or red color, stroke effect | Text: 'SHOCKING!' written in massive heavy typography (Font: Bold Display) | Text: 'MUST SEE' written in prominent semi-bold font (Font: Bold Display)\n[Section 3]\n* Visual: Background | Param: Blurred, high saturation, dramatic lighting, arrow pointing to subject\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 16:9 4k resolution"
+ },
+ {
+  "group": "📐 UI 與排版 (UI & Layout)",
+  "key": "ui_dashboard_dark",
+  "name": "深色儀表板 (Dark Dash)",
+  "index": 103,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "ee7c211236a916c23a84acc39980c6a99c6b525c5692bee190c40884373cd779",
+  "new_prompt_sha256": "3e56768c5d384450a37ec7bb777f41f9c6569790d6b5a16703110e16653818a0",
+  "new_prompt": "**Subject:** Data analytics dashboard dark mode\n**Title:** \"Analytics\"\n**Art Styles & Tech:** Dashboard UI, Dark Mode, Neon Lights, Cyberpunk\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Graphs and charts | Text: 'Traffic sources: Oskerin Social, Quillon Search, Taldora Mail' written in tiny minimalist text | Text: 'Live Data' written in massive heavy typography (Font: Monospace)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 16:9 4k resolution"
+ },
+ {
+  "group": "📐 UI 與排版 (UI & Layout)",
+  "key": "complex_magazine",
+  "name": "時尚雜誌封面 (Magazine Cover)",
+  "index": 123,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "b061607fad87e527d5ffbecbebc638f4ee168a2a63f86d2a11ccade4b4089b30",
+  "new_prompt_sha256": "27d612edff1458968f8341cd742d655d8a2068c3b6084f3ea536e181a25f60c0",
+  "new_prompt": "**Subject:** High fashion model posing in elegant dress\n**Title:** \"SOLENNE\"\n**Art Styles & Tech:** Magazine Layout, High Fashion, Studio Lighting, Typography, Elegant, Glossy\n**Texture:** on glossy plastic texture\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Skyline (Top Strip) | Param: Top edge text, small sans-serif, uppercase | Text: 'SPECIAL EDITION' written in tiny minimalist text (Font: Sans-serif [Light]) | Text: 'THE SUMMER ISSUE' written in tiny minimalist text (Font: Sans-serif [Medium])\n[Section 2]\n* Visual: Masthead (Title) | Param: Top center, massive bold serif font, overlaying model head slightly, gold or white color | Text: 'SOLENNE' written in massive heavy typography (Font: Serif [ExtraBold])\n[Section 3]\n* Visual: Tagline | Param: Small text immediately below masthead, centered | Text: 'FASHION & LIFESTYLE' written in tiny minimalist text (Font: Sans-serif [Regular])\n[Section 4]\n* Visual: Model Portrait | Param: Center, medium shot, direct eye contact, elegant pose, studio gray background, high fashion makeup\n[Section 5]\n* Visual: Main Headline | Param: Bottom center, massive bold display font, high contrast color | Text: 'NEW LOOK' written in massive heavy typography (Font: Bold Display [Heavy])\n[Section 6]\n* Visual: Sub-headline | Param: Below main headline, smaller serif font | Text: 'Exclusive Interview with the Star' written in prominent semi-bold font (Font: Serif [Medium])\n[Section 7]\n* Visual: Cover Lines (Left) | Param: Left side list, aligned left, varied font weights | Text: '100+ Summer Trends' written in clear body text (Font: Sans-serif [Bold]) | Text: 'Beauty Secrets Revealed' written in clear body text (Font: Sans-serif [Light])\n[Section 8]\n* Visual: Cover Lines (Right) | Param: Right side list, aligned right, varied font weights | Text: 'Travel: Paris Guide' written in clear body text (Font: Sans-serif [Bold]) | Text: 'Healthy Living' written in clear body text (Font: Sans-serif [Light])\n[Section 9]\n* Visual: Puff / Badge | Param: Circular badge element, bright color, containing text | Text: 'WIN!' written in prominent semi-bold font (Font: Bold Display [Black]) | Text: 'Luxury Trip' written in tiny minimalist text (Font: Sans-serif [Bold])\n[Section 10]\n* Visual: Footer Info | Param: Bottom edge, tiny text, spacing | Text: 'WWW.VOGUE.COM' written in tiny minimalist text (Font: Sans-serif [Regular]) | Text: 'SEPTEMBER 2025' written in tiny minimalist text (Font: Sans-serif [Regular])\n[Section 11]\n* Visual: Barcode & Price | Param: Bottom right corner, realistic barcode box | Text: '$5.99' written in tiny minimalist text (Font: Monospace [Regular])\n[Section 12]\n* Visual: Model Credit | Param: Bottom left or vertical along edge, tiny text | Text: 'Photo by Annie Leibovitz' written in tiny minimalist text (Font: Sans-serif [Light])\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
+ },
+ {
+  "group": "📚 教育與解說 (Education & Info)",
+  "key": "edu_poster",
+  "name": "學術研討海報 (Academic Poster)",
+  "index": 133,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "7fda454cf76f17e181ebf2c7f0467c99c955e49ea55519e17e772339c7d8171c",
+  "new_prompt_sha256": "68ce357a9f83a3360a4c4a14e2f262dfbe2a48ea948312b567f220ed6a99d7c1",
+  "new_prompt": "**Subject:** Scientific research poster\n**Title:** \"Research\"\n**Art Styles & Tech:** Professional, Clean, Infographic, Academic\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Title | Param: Top, fictional institution emblem and name only, never a real university or logo | Text: 'Aldenwick University 奧登威克大學' written in prominent semi-bold font (Font: Serif) | Text: 'Climate Change Impact' written in massive heavy typography (Font: Bold Display)\n[Section 2]\n* Visual: Abstract | Param: Left column | Text: 'Background and methods...' written in prominent semi-bold font (Font: Sans-serif)\n[Section 3]\n* Visual: Results | Param: Center, charts | Text: 'Key Findings' written in massive heavy typography (Font: Sans-serif)\n[Section 4]\n* Visual: Conclusion | Param: Right column | Text: 'Summary and future work...' written in prominent semi-bold font (Font: Sans-serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "📸 攝影、電影與寫真 (Photography & Portraits)",
+  "key": "photo_film",
+  "name": "底片攝影 (Film Photography)",
+  "index": 170,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "34fd3854d829dc1883886e01181c88fd773b6feca2069d3cb045d85fe3a13452",
+  "new_prompt_sha256": "3df962f49dc132e5ae39a2fe03285795b3945754b70499e51c568168b740d619",
+  "new_prompt": "**Subject:** Vintage film photography (any visible camera or product brand text must be the fictional \"Oskerin\", never a real brand)\n**Title:** \"Film\"\n**Art Styles & Tech:** Film Grain, Warm Tones, Nostalgic, 35mm Lens\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "📸 攝影、電影與寫真 (Photography & Portraits)",
+  "key": "port_fashion",
+  "name": "時尚大片 (Fashion Editorial)",
+  "index": 175,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "8736ba13b4be8d9466bbffa5d1f5cd4067619966afb616e0dc950373eaf390cc",
+  "new_prompt_sha256": "1f95768edbcc2aeed6d3258ca2af75428cf1f5d1b36b44e4f201609aa2508a7d",
+  "new_prompt": "**Subject:** Fashion model in urban setting\n**Title:** \"Solenne\"\n**Art Styles & Tech:** Fashion Photography, Dramatic Lighting, High Fashion, Stylish\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
+ },
+ {
+  "group": "風格示範 攝影題材 (Photography Genres)",
+  "key": "style_example_1_13",
+  "name": "運動攝影 (Sports)・示範",
+  "index": 210,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "a1400f7f6d74095815a5cb43bcb7731bbf8e7372706456e2204485d2ad47a86f",
+  "new_prompt_sha256": "3f765c3ac0c1ccc3ca4f03defcec85262caa9fb9e12ed0fd9f5802300b9bf809",
+  "new_prompt": "**Subject:** A runner crossing a finish line, clear athletic motion and focused expression; the event banner reads the fictional \"Aldenwick City Marathon\" and sponsor marks are the fictional \"Tavorn\" and \"Taldora\", no real brands\n**Art Styles & Tech:** Sports Photography\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ }
+]
