@@ -30,3 +30,10 @@
 - 分組由 App 啟動時的合併程式處理（原資料定義未動）；分組由 27 個減為 24 個，preset 總數 312 不變。保留未動：臨床與診所素材、醫學教材與圖解、其餘風格示範分類。
 - **連帶處理**：preset 的圖片 id 是「分組/鍵」，搬移後都變了；另外移除環形燈使光影與氛圍分類中後面的示範鍵整體前移一格（`style_example_3_N`→`N-1`）。已用 `rekey_presets.py` 改寫兩家 manifest、`presets_prompts.json`、重生清單與隱藏清單（備份在 `preset-previews/_rekey_backup/`），並重建縮圖與原圖對照表；圖檔本身未改名。
 - 驗證：312 個 preset 中 302 個有縮圖、10 個依規定隱藏、0 個遺漏；示範 preset 的風格與對照表逐一相符（0 不一致）；Chrome 實測三個合併分類（10 筆佈局／11 筆兒科／8 筆台日）與搬移後的縮圖都正常顯示。
+
+## 圖上文字被翻譯／混用（starter_double_exposure「Mind Forest」，使用者 2026-10-04）
+- **現象**：標題寫英文 `Mind Forest`，Codex 同時畫出「心之森」與 Mind Forest，AGY 只畫「心的森林」。
+- **原因**：prompt 內互相矛盾——標題是英文，但「Text Language: Use Traditional Chinese for text rendered in the image」叫模型把圖上文字用中文；中文 Body 也可能被當成圖上文字。
+- **這個 preset 的處理（方案 A）**：Body 開頭標「（場景描述，不是圖上文字）」；新增「Title text」區塊，要求逐字、用英文、不翻譯；Quality 加「圖上唯一文字是英文標題 "Mind Forest"、不要中文字、不要翻譯」。Text Language 那行仍在（全域設定，未動）。
+- **仍待決定（方案 B）**：讓 App 依圖上實際文字自動決定那一行（沒文字→拿掉 135 個；全英文／中英混合→逐字、原語言、不翻譯 174 個；全中文→維持）。影響約 300 個 preset 的 prompt，並要改測試。
+- 重生驗證：用 starter_double_exposure 對照新舊 prompt，看英文標題是否穩定出現（Codex、AGY 都有圖，皆在重生清單）。

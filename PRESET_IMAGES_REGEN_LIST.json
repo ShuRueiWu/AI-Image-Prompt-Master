@@ -1,6 +1,19 @@
 [
  {
   "group": "🔰 新手啟發範本 (Starter Inspiration)",
+  "key": "starter_double_exposure",
+  "name": "雙重曝光剪影 (Double Exposure)",
+  "index": 1,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "fa04b135b471882b265dc3453096112bf5bd7b296ca601800c48a7882a14eb3f",
+  "new_prompt_sha256": "05ddbf40bfce5f5d4917d2457e47958bcecdfa9a76fe1464fb260db5d70706ec",
+  "new_prompt": "**Subject:** Profile silhouette of a person thinking\n**Title:** \"Mind Forest\"\n**Body:** （場景描述，不是圖上文字）人物的剪影內部透出了茂密的森林與星空，充滿詩意。\n**Art Styles & Tech:** Double Exposure, Silhouette, Surrealism, Monochrome\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Person profile silhouette | Param: dark contrast\n[Section 2]\n* Visual: Pine forest and starry night | Param: inside the silhouette\n[Section 3]\n* Visual: Title text | Param: small, bottom center; render exactly \"Mind Forest\" in English, letter for letter, never translate it into Chinese | Text: 'Mind Forest' written in prominent semi-bold font (Font: Serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** fine art photography, double exposure masterpiece, the only text in the image is the English title \"Mind Forest\" written exactly as given, no Chinese characters, no translation\naspect ratio 3:4 8k resolution, highly detailed"
+ },
+ {
+  "group": "🔰 新手啟發範本 (Starter Inspiration)",
   "key": "starter_over_shoulder",
   "name": "過肩鏡頭對話 (Over-the-shoulder)",
   "index": 3,
@@ -63,6 +76,19 @@
   "old_prompt_sha256": "91d99242847b810ab4cdfddcd5c34230a852ec7de1f7b230acadb8222079e762",
   "new_prompt_sha256": "bf23f7fc6a499b75d6f30399413c62c5934f3f2f3ac83f1e16496e201fa6a343",
   "new_prompt": "**Scene context (not image text):** 一位平凡親切、值得信任的兒科醫護人員肖像（約 35–55 歲、台灣人外貌、自然素顏，不像模特兒、不擺拍），穿簡潔白袍或醫療服，眼神溫和、略帶笑意，背景是溫暖的診間；原創非可辨識人物，不要美顏濾鏡感\n**Constraints:** Text-free illustration. Do not render any letters, titles, labels, captions, or watermarks. Treat all scene descriptions as visual context only.\n**Art Styles & Tech:** pencil and wash portrait illustration\n\n--- PARAMETERS ---\n**Quality:** clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic\naspect ratio 4:5 2k resolution"
+ },
+ {
+  "group": "🧸 兒科衛教 (Pediatric Education)",
+  "key": "he_fb_handwash",
+  "name": "衛教: 洗手衛教 (Handwash FB)",
+  "index": 148,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "8028a2727e7efe78966e5e26ac830a0310e29fcb88e57f6d9a5444eeef07255b",
+  "new_prompt_sha256": "6ff3329c838705821b0a431f451d65d9e115575507e3e8915cba0e4b7156217e",
+  "new_prompt": "**Subject:** Cute cartoon boy washing hands with soap bubbles\n**Title:** \"Wash Hands\"\n**Art Styles & Tech:** Flat Design, Vector Art, Minimalist, Clean UI\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Step-by-step hand washing illustration | Param: large clear legible Traditional Chinese labels, render exactly these characters and no other text | Text: '步驟1: 沖濕雙手' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟2: 塗抹肥皂' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟3: 搓揉20秒' written in prominent semi-bold font (Font: Noto Sans TC)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "🎨 插畫與動漫 (Illustration & Anime)",
@@ -180,19 +206,6 @@
   "old_prompt_sha256": "7fda454cf76f17e181ebf2c7f0467c99c955e49ea55519e17e772339c7d8171c",
   "new_prompt_sha256": "68ce357a9f83a3360a4c4a14e2f262dfbe2a48ea948312b567f220ed6a99d7c1",
   "new_prompt": "**Subject:** Scientific research poster\n**Title:** \"Research\"\n**Art Styles & Tech:** Professional, Clean, Infographic, Academic\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Title | Param: Top, fictional institution emblem and name only, never a real university or logo | Text: 'Aldenwick University 奧登威克大學' written in prominent semi-bold font (Font: Serif) | Text: 'Climate Change Impact' written in massive heavy typography (Font: Bold Display)\n[Section 2]\n* Visual: Abstract | Param: Left column | Text: 'Background and methods...' written in prominent semi-bold font (Font: Sans-serif)\n[Section 3]\n* Visual: Results | Param: Center, charts | Text: 'Key Findings' written in massive heavy typography (Font: Sans-serif)\n[Section 4]\n* Visual: Conclusion | Param: Right column | Text: 'Summary and future work...' written in prominent semi-bold font (Font: Sans-serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
- },
- {
-  "group": "🧸 兒科衛教 (Pediatric Education)",
-  "key": "he_fb_handwash",
-  "name": "衛教: 洗手衛教 (Handwash FB)",
-  "index": 148,
-  "had_images": {
-   "codex": true,
-   "agy": false
-  },
-  "old_prompt_sha256": "8028a2727e7efe78966e5e26ac830a0310e29fcb88e57f6d9a5444eeef07255b",
-  "new_prompt_sha256": "6ff3329c838705821b0a431f451d65d9e115575507e3e8915cba0e4b7156217e",
-  "new_prompt": "**Subject:** Cute cartoon boy washing hands with soap bubbles\n**Title:** \"Wash Hands\"\n**Art Styles & Tech:** Flat Design, Vector Art, Minimalist, Clean UI\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Step-by-step hand washing illustration | Param: large clear legible Traditional Chinese labels, render exactly these characters and no other text | Text: '步驟1: 沖濕雙手' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟2: 塗抹肥皂' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟3: 搓揉20秒' written in prominent semi-bold font (Font: Noto Sans TC)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "📸 攝影、電影與寫真 (Photography & Portraits)",
