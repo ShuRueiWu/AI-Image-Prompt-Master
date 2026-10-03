@@ -1,5 +1,18 @@
 [
  {
+  "group": "🔰 新手啟發範本 (Starter Inspiration)",
+  "key": "starter_over_shoulder",
+  "name": "過肩鏡頭對話 (Over-the-shoulder)",
+  "index": 3,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "3b3228df47a5e5ab462396e0e50bed72c6066d9f6d4c7347814132aa8193ad00",
+  "new_prompt_sha256": "72489b8086d75880b255f593ba81767f46d7998386a09492d8d0097d4347cbda",
+  "new_prompt": "**Subject:** A patient talking to an ordinary-looking, kind middle-aged doctor (natural un-glamorous appearance, glasses welcome, not model-like)\n**Title:** \"The Consult\"\n**Body:** 從病人的肩膀後方看過去，焦點清楚地落在醫生的臉上，背景有電影感的散景。\n**Art Styles & Tech:** Cinematic Lighting, 35mm Lens, Bokeh, Storytelling\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurry shoulder of patient | Param: out of focus foreground\n[Section 2]\n* Visual: Compassionate doctor listening | Param: sharp focus\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** cinematic still, emotional, depth of field\naspect ratio 21:9 4k resolution"
+ },
+ {
   "group": "🔥 十大佈局實戰範本 (Top 10 Layouts)",
   "key": "layout_vogue_cover",
   "name": "時尚醫療雜誌 (Fashion Cover)",
@@ -26,6 +39,32 @@
   "new_prompt": "**Subject:** Clickbait video thumbnail (generic video platform; any play-button or platform logo must be the fictional \"Taldora Play\", never a real platform logo)\n**Title:** \"YT Thumbnail\"\n**Body:** 高對比度、鮮豔的色彩與邊緣發光效果。\n**Art Styles & Tech:** Vibrant Colors, Flat Design\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurred colorful studio background | Param: depth of field, bright colors\n[Section 2]\n* Visual: Surprised person pointing to the left | Param: white outline sticker effect\n[Section 3]\n* Visual: Space for massive impact text | Param: high contrast dark space | Text: 'OMG!!' written in massive heavy typography (Font: Bold Display)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** video thumbnail style, high contrast, vibrant, eye-catching\naspect ratio 16:9 1k resolution"
  },
  {
+  "group": "🧸 兒科衛教 (Pediatric Education)",
+  "key": "pedu_mechanism",
+  "name": "機轉比喻",
+  "index": 36,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "388c8c9ee485bba5d34574f22213bfed8f4b2bc5571ac98824e533afdc398d21",
+  "new_prompt_sha256": "72dfb644ca6402de774d20900630bbc841082b2492f71730adcfd4ec7449bd06",
+  "new_prompt": "**Scene context (not image text):** 用「水管」比喻氣道變窄與打開的對照：畫面左右兩側——左側水管被輕輕捏住、水流變細（象徵發炎腫脹而變窄的氣道），右側水管通暢、水流順暢（象徵放鬆打開的氣道）；中間一位微笑的卡通小守護者在旁輕鬆示意；只用圖形、色彩與箭頭形狀表達，不暗示未提供的醫療主張，不出現任何文字或數字\n**Constraints:** Text-free illustration. Do not render any letters, titles, labels, captions, or watermarks. Treat all scene descriptions as visual context only.\n**Art Styles & Tech:** vivid 3D animation style\n\n--- PARAMETERS ---\n**Quality:** clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic\naspect ratio 4:5 2k resolution"
+ },
+ {
+  "group": "🧸 兒科衛教 (Pediatric Education)",
+  "key": "pedu_portrait",
+  "name": "人像信任",
+  "index": 37,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "91d99242847b810ab4cdfddcd5c34230a852ec7de1f7b230acadb8222079e762",
+  "new_prompt_sha256": "bf23f7fc6a499b75d6f30399413c62c5934f3f2f3ac83f1e16496e201fa6a343",
+  "new_prompt": "**Scene context (not image text):** 一位平凡親切、值得信任的兒科醫護人員肖像（約 35–55 歲、台灣人外貌、自然素顏，不像模特兒、不擺拍），穿簡潔白袍或醫療服，眼神溫和、略帶笑意，背景是溫暖的診間；原創非可辨識人物，不要美顏濾鏡感\n**Constraints:** Text-free illustration. Do not render any letters, titles, labels, captions, or watermarks. Treat all scene descriptions as visual context only.\n**Art Styles & Tech:** pencil and wash portrait illustration\n\n--- PARAMETERS ---\n**Quality:** clean composition, natural diverse Taiwanese family, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic\naspect ratio 4:5 2k resolution"
+ },
+ {
   "group": "🎨 插畫與動漫 (Illustration & Anime)",
   "key": "lego_city",
   "name": "樂高城市 (Lego City)",
@@ -39,6 +78,19 @@
   "new_prompt": "**Subject:** Busy toy-brick city street (any brand sign must be the fictional \"Brikmora\", never a real toy-brick logo)\n**Title:** \"Brikmora World\"\n**Art Styles & Tech:** Lego Style, Vibrant Colors, 3D Render, Plastic\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 16:9 4k resolution"
  },
  {
+  "group": "🎨 插畫與動漫 (Illustration & Anime)",
+  "key": "ai_avatar",
+  "name": "AI 頭像 (Avatar)",
+  "index": 68,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "d2bb05452dd08de1ca7facae96f2f6ac42080e02ca60f6c45869177e3e9f0963",
+  "new_prompt_sha256": "0469d21172f3fc790bd2a0f171699f65a33b7236fca3a4d232d45e0f4baa0693",
+  "new_prompt": "**Subject:** Friendly natural portrait of an ordinary adult for a profile picture (relaxed everyday look, natural skin and expression, not glamour or model-like)\n**Title:** \"Avatar\"\n**Art Styles & Tech:** Portrait Photography, Soft Light, Neutral Background, Clean\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 1:1 4k resolution"
+ },
+ {
   "group": "📢 商業與社群 (Business & Social)",
   "key": "social_yt_thumb",
   "name": "YouTube 縮圖 (Thumbnail)",
@@ -50,6 +102,19 @@
   "old_prompt_sha256": "3f59595994a5d1120ed6dd1a294ae39f283c22fc5c8769587f6eaf186245f17e",
   "new_prompt_sha256": "fbaf088306e7e2abac310940e55654216c1e2b658b92169fb811e2e9af62dc0a",
   "new_prompt": "**Subject:** Shocked person pointing at glowing object (generic video platform; any play-button or platform logo must be the fictional \"Taldora Play\", never a real platform logo)\n**Title:** \"OMG\"\n**Art Styles & Tech:** YouTube Thumbnail, High Contrast, Vibrant Colors, Bold Display, Action Lines\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Expressive Subject | Param: Close-up, shocked expression, pointing finger, glowing outline\n[Section 2]\n* Visual: Text Overlay | Param: Massive bold sans-serif text, yellow or red color, stroke effect | Text: 'SHOCKING!' written in massive heavy typography (Font: Bold Display) | Text: 'MUST SEE' written in prominent semi-bold font (Font: Bold Display)\n[Section 3]\n* Visual: Background | Param: Blurred, high saturation, dramatic lighting, arrow pointing to subject\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 16:9 4k resolution"
+ },
+ {
+  "group": "📢 商業與社群 (Business & Social)",
+  "key": "ecommerce_lifestyle",
+  "name": "生活風格產品 (Lifestyle)",
+  "index": 88,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "301f48a4065237326160472f97b4c7dd501a9fde470daaee0dc58a94b918bf55",
+  "new_prompt_sha256": "0d4e4535017e3b420c5669ce74edd61802d8e8ea3a17c06218f99ecf1929313a",
+  "new_prompt": "**Subject:** Product in lifestyle setting (an unbranded household product; any visible brand name or logo must be the fictional \"Quillon\", never a real brand)\n**Title:** \"In Use\"\n**Art Styles & Tech:** Lifestyle, Natural Light, Cozy, Bokeh\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "📐 UI 與排版 (UI & Layout)",
@@ -66,6 +131,32 @@
  },
  {
   "group": "📐 UI 與排版 (UI & Layout)",
+  "key": "layout_magazine_spread",
+  "name": "雜誌跨頁 (Mag Spread)",
+  "index": 109,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "daec515a448057972e4aa59d7552fc241d73162b6e602baf4d73c60ae92adfc9",
+  "new_prompt_sha256": "29e53928e7f6ce243404699f6c7a2417a8b61bfd0fd73cf8807a648fa0adc5f2",
+  "new_prompt": "**Subject:** Editorial interview portrait of an intelligent, composed middle-aged Taiwanese woman (about 45–55, natural makeup, thoughtful expression, reading glasses welcome; not a glamour or fashion model)\n**Title:** \"Interview\"\n**Art Styles & Tech:** Magazine Layout, Editorial, Typography\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Full page photo left | Param: calm natural light, intellectual setting such as a study or library\n[Section 2]\n* Visual: Text columns right | Param: body text as light grey placeholder lines, no readable body text | Text: 'The Interview' written in massive heavy typography | Text: 'SOLENNE' written in tiny minimalist text\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "📐 UI 與排版 (UI & Layout)",
+  "key": "layout_mag_cover",
+  "name": "雜誌封面 (Magazine)",
+  "index": 118,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "9cfed79ddf2ba2a06bcf8c5902981be00941b59a01ff359ca662faf105a3b821",
+  "new_prompt_sha256": "6d8180b62be494c18e3c6931e1b603cbc74accc5107f91154ad9a2ef2686fac8",
+  "new_prompt": "**Subject:** Close-up portrait of a distinguished, thoughtful middle-aged person (natural look, not a glamour model)\n**Title:** \"SOLENNE\"\n**Art Styles & Tech:** Magazine Layout, High Key, Fashion Photography, Elegant\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Subject gazing at camera | Text: 'SUMMER TRENDS' written in massive heavy typography (Font: Serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
+ },
+ {
+  "group": "📐 UI 與排版 (UI & Layout)",
   "key": "complex_magazine",
   "name": "時尚雜誌封面 (Magazine Cover)",
   "index": 123,
@@ -74,8 +165,8 @@
    "agy": true
   },
   "old_prompt_sha256": "b061607fad87e527d5ffbecbebc638f4ee168a2a63f86d2a11ccade4b4089b30",
-  "new_prompt_sha256": "d69621a5744eed158927eb48a17c2b32fbb729475cd6c9f3f87dfce8666cb542",
-  "new_prompt": "**Subject:** High fashion model posing in elegant dress\n**Title:** \"SOLENNE\"\n**Art Styles & Tech:** Magazine Layout, High Fashion, Studio Lighting, Typography, Elegant, Glossy\n**Texture:** on glossy plastic texture\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Skyline (Top Strip) | Param: Top edge text, small sans-serif, uppercase | Text: 'SPECIAL EDITION' written in tiny minimalist text (Font: Sans-serif [Light]) | Text: 'THE SUMMER ISSUE' written in tiny minimalist text (Font: Sans-serif [Medium])\n[Section 2]\n* Visual: Masthead (Title) | Param: Top center, massive bold serif font, overlaying model head slightly, gold or white color | Text: 'SOLENNE' written in massive heavy typography (Font: Serif [ExtraBold])\n[Section 3]\n* Visual: Tagline | Param: Small text immediately below masthead, centered | Text: 'FASHION & LIFESTYLE' written in tiny minimalist text (Font: Sans-serif [Regular])\n[Section 4]\n* Visual: Model Portrait | Param: Center, medium shot, direct eye contact, elegant pose, studio gray background, high fashion makeup\n[Section 5]\n* Visual: Main Headline | Param: Bottom center, massive bold display font, high contrast color | Text: 'NEW LOOK' written in massive heavy typography (Font: Bold Display [Heavy])\n[Section 6]\n* Visual: Sub-headline | Param: Below main headline, smaller serif font | Text: 'Exclusive Interview with the Star' written in prominent semi-bold font (Font: Serif [Medium])\n[Section 7]\n* Visual: Cover Lines (Left) | Param: Left side list, aligned left, varied font weights | Text: '100+ Summer Trends' written in clear body text (Font: Sans-serif [Bold]) | Text: 'Beauty Secrets Revealed' written in clear body text (Font: Sans-serif [Light])\n[Section 8]\n* Visual: Cover Lines (Right) | Param: Right side list, aligned right, varied font weights | Text: 'Travel: Paris Guide' written in clear body text (Font: Sans-serif [Bold]) | Text: 'Healthy Living' written in clear body text (Font: Sans-serif [Light])\n[Section 9]\n* Visual: Puff / Badge | Param: Circular badge element, bright color, containing text | Text: 'WIN!' written in prominent semi-bold font (Font: Bold Display [Black]) | Text: 'Luxury Trip' written in tiny minimalist text (Font: Sans-serif [Bold])\n[Section 10]\n* Visual: Footer Info | Param: Bottom edge, tiny text, spacing | Text: 'WWW.VOGUE.COM' written in tiny minimalist text (Font: Sans-serif [Regular]) | Text: 'SEPTEMBER 2025' written in tiny minimalist text (Font: Sans-serif [Regular])\n[Section 11]\n* Visual: Barcode & Price | Param: Bottom right corner, realistic barcode box | Text: '$5.99' written in tiny minimalist text (Font: Monospace [Regular])\n[Section 12]\n* Visual: Model Credit | Param: Bottom left or vertical along edge, tiny text | Text: 'Photo by Calder Winsloe' written in tiny minimalist text (Font: Sans-serif [Light])\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
+  "new_prompt_sha256": "b03c3347141825738bbf41b1c547e7194fb57ee82be2568bb10c9c3ee6adb2f7",
+  "new_prompt": "**Subject:** Elegant portrait of an accomplished middle-aged woman in a tailored jacket, natural makeup, calm confident expression (not a glamour model)\n**Title:** \"SOLENNE\"\n**Art Styles & Tech:** Magazine Layout, High Fashion, Studio Lighting, Typography, Elegant, Glossy\n**Texture:** on glossy plastic texture\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Skyline (Top Strip) | Param: Top edge text, small sans-serif, uppercase | Text: 'SPECIAL EDITION' written in tiny minimalist text (Font: Sans-serif [Light]) | Text: 'THE SUMMER ISSUE' written in tiny minimalist text (Font: Sans-serif [Medium])\n[Section 2]\n* Visual: Masthead (Title) | Param: Top center, massive bold serif font, overlaying model head slightly, gold or white color | Text: 'SOLENNE' written in massive heavy typography (Font: Serif [ExtraBold])\n[Section 3]\n* Visual: Tagline | Param: Small text immediately below masthead, centered | Text: 'FASHION & LIFESTYLE' written in tiny minimalist text (Font: Sans-serif [Regular])\n[Section 4]\n* Visual: Model Portrait | Param: Center, medium shot, direct eye contact, composed pose, studio gray background, natural makeup\n[Section 5]\n* Visual: Main Headline | Param: Bottom center, massive bold display font, high contrast color | Text: 'NEW LOOK' written in massive heavy typography (Font: Bold Display [Heavy])\n[Section 6]\n* Visual: Sub-headline | Param: Below main headline, smaller serif font | Text: 'Exclusive Interview with the Star' written in prominent semi-bold font (Font: Serif [Medium])\n[Section 7]\n* Visual: Cover Lines (Left) | Param: Left side list, aligned left, varied font weights | Text: '100+ Summer Trends' written in clear body text (Font: Sans-serif [Bold]) | Text: 'Beauty Secrets Revealed' written in clear body text (Font: Sans-serif [Light])\n[Section 8]\n* Visual: Cover Lines (Right) | Param: Right side list, aligned right, varied font weights | Text: 'Travel: Paris Guide' written in clear body text (Font: Sans-serif [Bold]) | Text: 'Healthy Living' written in clear body text (Font: Sans-serif [Light])\n[Section 9]\n* Visual: Puff / Badge | Param: Circular badge element, bright color, containing text | Text: 'WIN!' written in prominent semi-bold font (Font: Bold Display [Black]) | Text: 'Luxury Trip' written in tiny minimalist text (Font: Sans-serif [Bold])\n[Section 10]\n* Visual: Footer Info | Param: Bottom edge, tiny text, spacing | Text: 'WWW.VOGUE.COM' written in tiny minimalist text (Font: Sans-serif [Regular]) | Text: 'SEPTEMBER 2025' written in tiny minimalist text (Font: Sans-serif [Regular])\n[Section 11]\n* Visual: Barcode & Price | Param: Bottom right corner, realistic barcode box | Text: '$5.99' written in tiny minimalist text (Font: Monospace [Regular])\n[Section 12]\n* Visual: Model Credit | Param: Bottom left or vertical along edge, tiny text | Text: 'Photo by Calder Winsloe' written in tiny minimalist text (Font: Sans-serif [Light])\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
  },
  {
   "group": "📚 教育與解說 (Education & Info)",
@@ -89,6 +180,19 @@
   "old_prompt_sha256": "7fda454cf76f17e181ebf2c7f0467c99c955e49ea55519e17e772339c7d8171c",
   "new_prompt_sha256": "68ce357a9f83a3360a4c4a14e2f262dfbe2a48ea948312b567f220ed6a99d7c1",
   "new_prompt": "**Subject:** Scientific research poster\n**Title:** \"Research\"\n**Art Styles & Tech:** Professional, Clean, Infographic, Academic\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Title | Param: Top, fictional institution emblem and name only, never a real university or logo | Text: 'Aldenwick University 奧登威克大學' written in prominent semi-bold font (Font: Serif) | Text: 'Climate Change Impact' written in massive heavy typography (Font: Bold Display)\n[Section 2]\n* Visual: Abstract | Param: Left column | Text: 'Background and methods...' written in prominent semi-bold font (Font: Sans-serif)\n[Section 3]\n* Visual: Results | Param: Center, charts | Text: 'Key Findings' written in massive heavy typography (Font: Sans-serif)\n[Section 4]\n* Visual: Conclusion | Param: Right column | Text: 'Summary and future work...' written in prominent semi-bold font (Font: Sans-serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "📚 教育與解說 (Education & Info)",
+  "key": "he_fb_handwash",
+  "name": "衛教: 洗手衛教 (Handwash FB)",
+  "index": 148,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "8028a2727e7efe78966e5e26ac830a0310e29fcb88e57f6d9a5444eeef07255b",
+  "new_prompt_sha256": "6ff3329c838705821b0a431f451d65d9e115575507e3e8915cba0e4b7156217e",
+  "new_prompt": "**Subject:** Cute cartoon boy washing hands with soap bubbles\n**Title:** \"Wash Hands\"\n**Art Styles & Tech:** Flat Design, Vector Art, Minimalist, Clean UI\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Step-by-step hand washing illustration | Param: large clear legible Traditional Chinese labels, render exactly these characters and no other text | Text: '步驟1: 沖濕雙手' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟2: 塗抹肥皂' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟3: 搓揉20秒' written in prominent semi-bold font (Font: Noto Sans TC)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "📸 攝影、電影與寫真 (Photography & Portraits)",
@@ -128,5 +232,317 @@
   "old_prompt_sha256": "a1400f7f6d74095815a5cb43bcb7731bbf8e7372706456e2204485d2ad47a86f",
   "new_prompt_sha256": "3f765c3ac0c1ccc3ca4f03defcec85262caa9fb9e12ed0fd9f5802300b9bf809",
   "new_prompt": "**Subject:** A runner crossing a finish line, clear athletic motion and focused expression; the event banner reads the fictional \"Aldenwick City Marathon\" and sponsor marks are the fictional \"Tavorn\" and \"Taldora\", no real brands\n**Art Styles & Tech:** Sports Photography\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 相機與鏡頭 (Camera & Gear)",
+  "key": "style_example_2_4",
+  "name": "85mm鏡頭 (85mm)・示範",
+  "index": 216,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "a3131bf1777e5517dbb9a26d9320af1b0ebdbba6f3834c9b8ef6f975e8ce9a07",
+  "new_prompt_sha256": "b0f641abf25c827469647e636d285b75875a1f712493eb13556f1e70135c45d4",
+  "new_prompt": "**Subject:** An ordinary middle-aged person with a lived-in face and natural expression, softly separated garden background, no glamour or beauty styling\n**Art Styles & Tech:** 85mm Lens\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_0",
+  "name": "春天櫻花 (Spring)・示範",
+  "index": 279,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "3757ce3c3931e4f2a2b3d70e1441f21bce1eac2b0544d90ef26bd86e75766910",
+  "new_prompt_sha256": "60b88c767958c258a74aff78a7bee3347defb5f3e5c0fd81bce47ddc32e5e617",
+  "new_prompt": "**Subject:** Cherry blossoms beside a quiet riverside path in spring; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Spring Blossom\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_1",
+  "name": "夏日海灘 (Summer)・示範",
+  "index": 280,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "4037ae80541c85fd74e7092ed7288c9eb17fdcb59a4fa4b2e402117c7dc75c9b",
+  "new_prompt_sha256": "3ea7facbfecc96416a0b571dca2b18c897c525071945ce07ba4a1f4f5dcd1b38",
+  "new_prompt": "**Subject:** A sunny beach with a striped parasol and gentle turquoise waves; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Summer Beach\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_2",
+  "name": "秋天楓葉 (Autumn)・示範",
+  "index": 281,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "587f7be8f63ad41f4289537392a2bccedf1001fcbeb37ef9df182b2b92b039ae",
+  "new_prompt_sha256": "58361d26135d46a735041f23b94e5be53259d955766eeddcf0f61b50f8dc9043",
+  "new_prompt": "**Subject:** A woodland path covered in red and gold autumn leaves; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Autumn Leaves\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_3",
+  "name": "冬季雪景 (Winter)・示範",
+  "index": 282,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "76aef45a9ed71ccd283140766eb9553cd5dd079f97210a04a8b0a6b7beb33673",
+  "new_prompt_sha256": "3a1448336228534720dc6657f5ac7e5578cde03cfe2439f9688bb511b8d3da8a",
+  "new_prompt": "**Subject:** A small wooden cabin surrounded by fresh snow and pine trees; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Winter Snow\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_4",
+  "name": "農曆新年 (CNY)・示範",
+  "index": 283,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "52d84b295546da14ac1484afdebb749791ebe7533e2083d3bbcbf9380c63613f",
+  "new_prompt_sha256": "7149c9b5ce43c53ec56aad2e3298f1058e6ddb3ce7685aa77a679a38b93b13e1",
+  "new_prompt": "**Subject:** A family reunion table with red lanterns and festive dishes, no lettering; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Chinese New Year\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_5",
+  "name": "聖誕節 (Christmas)・示範",
+  "index": 284,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "3d0ce00e9223d36bddd10e55a7a86f1617d89f5f1100a42c63925913f079b902",
+  "new_prompt_sha256": "c1dbeda2f8be0985b6dbeebab8f5c921d7bfbdf4598e605d76800b45f3099ba5",
+  "new_prompt": "**Subject:** A warmly lit Christmas tree beside a window on a snowy evening; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Christmas\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_6",
+  "name": "萬聖節 (Halloween)・示範",
+  "index": 285,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "6ebc0336328ba41802e05a9bcf3b2aad42f55f2ba50127e315516305c9be2ed4",
+  "new_prompt_sha256": "0c63eb43c90a09936cd0d041bf8e08bc4cedf536ef3554863c7fff8c5fdcc493",
+  "new_prompt": "**Subject:** Friendly carved pumpkins outside a cozy house at dusk; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Halloween\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_7",
+  "name": "中秋節 (Mid-Autumn)・示範",
+  "index": 286,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "c0f98e0dddfd4c03ff87c7662ae73ebe6735e73c46f248df2bac6985c6d2fc5b",
+  "new_prompt_sha256": "295d6ddab4f24de3145f4bc909edfeb8b6f5da14e14432033f6fe0699a3d18bd",
+  "new_prompt": "**Subject:** Mooncakes and tea on a balcony beneath a full moon; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Mid-Autumn Festival\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_8",
+  "name": "端午節 (Dragon Boat)・示範",
+  "index": 287,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "75a0a1e157724cd975daaa45fda93aff7de630cad7c3dd287c003e3bc5fcff5f",
+  "new_prompt_sha256": "e799d4b2fc078807f7bef591f899dc11d447693cd62f6e98cab12806de34ebd2",
+  "new_prompt": "**Subject:** A dragon boat team paddling in rhythm with festive riverside spectators; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Dragon Boat Festival\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_9",
+  "name": "情人節 (Valentine)・示範",
+  "index": 288,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "0faf05e9dae6a78fee95d6ce0f6bda2d2f44f7b25584031116adb3b082536630",
+  "new_prompt_sha256": "a110c01614785e655ae897fcf82bdb51fa9ec02e12b75758ba9f9273e23142f9",
+  "new_prompt": "**Subject:** Two ceramic cups and a small bouquet on a breakfast table; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Valentines Day\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_10",
+  "name": "復活節 (Easter)・示範",
+  "index": 289,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "c3f13f101ff23a491f0350a313390a58f1810440cbad1cf266c707b350895a58",
+  "new_prompt_sha256": "9ab54aec8e26951244c9f1d11ffe2f60eac782ef03f0684c358c0245a43bead0",
+  "new_prompt": "**Subject:** Decorated eggs in a wicker basket among spring flowers; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Easter\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_11",
+  "name": "感恩節 (Thanksgiving)・示範",
+  "index": 290,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "db07a0c456f20a8c4be4b8d200796ed6cea84f84dc700d3cbc75c245878b1fda",
+  "new_prompt_sha256": "90b3d8e29bbc4e1e89a5e7c07416be46d7e6c9e00297fa69be9a7e7056e6a76f",
+  "new_prompt": "**Subject:** A harvest table with pumpkins, autumn leaves and a shared family meal; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Thanksgiving\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 季節與節慶 (Seasons & Festivals)",
+  "key": "style_example_8_12",
+  "name": "七夕 (Qixi)・示範",
+  "index": 291,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "f90afc64554e3b0449ac93dccafd80126874ffef3ee64da5748195ad5b8fec5e",
+  "new_prompt_sha256": "901a62389b1aec4d05991b3be58b7985dfaca65d3bafb00e2773e35d4fd4de31",
+  "new_prompt": "**Subject:** Two figures on opposite riverbanks under a starry sky linked by a bridge of birds; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Qixi Festival\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_0",
+  "name": "維多利亞 (Victorian)・示範",
+  "index": 296,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "d17adac74cc797f633656642ff065e241d5fb11773e617997faebadadcaaf294",
+  "new_prompt_sha256": "b9f5384253e0156f74bf82f44940e36b995c40c284d05ad8b23432d110b0ba95",
+  "new_prompt": "**Subject:** A gaslit Victorian London street with brick terraces, a horse-drawn carriage and pedestrians in period dress; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Victorian Era\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_1",
+  "name": "裝飾藝術 (Art Deco)・示範",
+  "index": 297,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "67b0df8c91dbb24864b78b5d8f311fd15d6499deaf78f0d76a22bc04f41405bf",
+  "new_prompt_sha256": "0f8f0aa2d4230f24be8d292561a6e104e5ef9f9aab56eb4935422cf59ca9877c",
+  "new_prompt": "**Subject:** The grand lobby of a 1920s Art Deco hotel with geometric gold-and-black patterns and elegantly dressed guests; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Art Deco\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_2",
+  "name": "中世紀 (Medieval)・示範",
+  "index": 298,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "837cfff90a8fa469aecba1a7f6a37006444f54bf3fd70a81e805b0928d1a506c",
+  "new_prompt_sha256": "8ce249e3ede0b8b9ea322d9a60b1b658f0db009063815ff4d3307a844a19c582",
+  "new_prompt": "**Subject:** A medieval European market square below a stone castle, with timber houses, knights and townsfolk in period clothing; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Medieval\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_3",
+  "name": "文藝復興 (Renaissance)・示範",
+  "index": 299,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "496995e8281d0d755f3708a5b47a8dde60953029a21ff11bba1e77819b2b3f2f",
+  "new_prompt_sha256": "6e82b3e94e0f05765ee51ef649f9793163eafafcdae87382cfbe3244c965dc60",
+  "new_prompt": "**Subject:** A Florentine Renaissance courtyard with classical arches, a painter at an easel and nobles in period dress; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Renaissance\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_4",
+  "name": "蒸氣龐克 (Steampunk)・示範",
+  "index": 300,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "5ef74dbc07ea679372a8c444aa823c6a979907a85e7c97669cc5a80c630125a0",
+  "new_prompt_sha256": "a6b16d508f6b5e534494ca65f95c68b7287d0ed00c85ebc5f0709b43f905fecc",
+  "new_prompt": "**Subject:** A brass-and-copper steampunk airship dock with gears, steam pipes and goggled engineers; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Steampunk\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_5",
+  "name": "希臘羅馬 (Greco-Roman)・示範",
+  "index": 301,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "28477986c008253240b6e6639070100a044cd09469297a8577314e5881fdf3c2",
+  "new_prompt_sha256": "3fa1405b857c4ac5a4bc4b8136991b7ec58460081289c4d1d7ba55a998ce9108",
+  "new_prompt": "**Subject:** A sunlit Greco-Roman temple forum with marble columns, statues and citizens in togas; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Greco-Roman\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_7",
+  "name": "巴洛克 (Baroque)・示範",
+  "index": 302,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "f4224bcfe27d90184c889c026b993af4802994dd561b055aa6d4938475ba3fda",
+  "new_prompt_sha256": "07d682df8760c0a4c4c8d195c5e18f9e58841b602f1f777b406642ccae7efe43",
+  "new_prompt": "**Subject:** An ornate Baroque palace hall with gilded details, a grand staircase and dramatic chiaroscuro light; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Baroque\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_9",
+  "name": "Y2K 美學 (Y2K)・示範",
+  "index": 303,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "56e54052a9188ccede370293f3c1e8820a7b7d9cf88704d55393955e2723d868",
+  "new_prompt_sha256": "ce6bc88eeb636d768ee0f4eb8666691ac58358ea51ea403ff49c6c7cb14312a2",
+  "new_prompt": "**Subject:** A glossy Y2K-style bedroom with inflatable furniture, a translucent colorful gadget and chrome accents; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Y2K aesthetic\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 時代與文化 (Era & Culture)",
+  "key": "style_example_10_10",
+  "name": "酸性設計 (Acid Graphics)・示範",
+  "index": 304,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "effa157763c10bf339ea8bdfda8cd0e6c029c3627724baeb014a7cbbc3d618be",
+  "new_prompt_sha256": "d55974d71d32fd4e74dbf6f3d15c20fdbb3daa63f9ed38630c4e63650a764967",
+  "new_prompt": "**Subject:** An abstract acid-graphics composition of warped shapes and iridescent gradients around a central figure; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Acid Graphics\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 AI 熱門風格 (AI Trending)",
+  "key": "style_example_11_2",
+  "name": "田園風 (Cottagecore)・示範",
+  "index": 307,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "47582852124042483f09d08de9f65da18a534997ab2c3122827324049ceac872",
+  "new_prompt_sha256": "3a2f5b190424e9f2e7929fb146f0f12369252f97e7040437389e3a7acf894b32",
+  "new_prompt": "**Subject:** A cottage kitchen with freshly baked bread, wildflowers and soft garden light; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Cottagecore\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  }
 ]
