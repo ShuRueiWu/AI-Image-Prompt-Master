@@ -37,3 +37,9 @@
 - **這個 preset 的處理（方案 A）**：Body 開頭標「（場景描述，不是圖上文字）」；新增「Title text」區塊，要求逐字、用英文、不翻譯；Quality 加「圖上唯一文字是英文標題 "Mind Forest"、不要中文字、不要翻譯」。Text Language 那行仍在（全域設定，未動）。
 - **仍待決定（方案 B）**：讓 App 依圖上實際文字自動決定那一行（沒文字→拿掉 135 個；全英文／中英混合→逐字、原語言、不翻譯 174 個；全中文→維持）。影響約 300 個 preset 的 prompt，並要改測試。
 - 重生驗證：用 starter_double_exposure 對照新舊 prompt，看英文標題是否穩定出現（Codex、AGY 都有圖，皆在重生清單）。
+
+## 示範 preset 改以「風格值」命名（防止錯位）
+- **事故**：同時有人在主檔新增 8 個風格選項（Ink Illustration、Comic Book、Action Lines、Dramatic Lighting、Flat Lay、Pattern Design、Poster Design、Split Screen）並把 4 個 preset 的風格對齊正式選項。示範 preset 的 id 原本含風格在清單中的**順序**（`style_example_<分類>_<序號>`），新增／移除風格使後面的序號整體位移：13 個示範的縮圖被配到別的風格上，14 個示範沒有記錄。
+- **修正**：示範 id 改為含風格值的 slug（例如 `style_example_0_linocut`）；以 `rekey_demos.py` 依「風格值相同」把 119 筆示範記錄改成新 id（兩家 manifest、presets_prompts、重生清單、隱藏清單；備份在 `preset-previews/_rekey_backup/`）。4 個示範的風格現在已被正式 preset 使用而不再有示範（Aerial Photography、Wide Angle Lens、Movie Poster、Claymation），記錄放在 `preset-previews/orphaned_demo_records.json`，圖檔未刪。
+- **驗證**：308 個 preset 逐一核對：示範的風格與對照表 0 不一致、0 無記錄；298 個有縮圖、10 個依規定隱藏、0 個遺漏；全部測試通過（247／247 風格、308 個 preset 套用）。
+- 之後新增或移除風格不會再讓其他示範錯位。

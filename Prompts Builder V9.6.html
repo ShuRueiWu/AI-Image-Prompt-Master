@@ -1441,7 +1441,9 @@
                 const baseScene = STYLE_SCENES[style.val] || CATEGORY_SCENES[categoryIndex];
                 const noTextScene = /Seasons & Festivals|Era & Culture/.test(category) || style.val === 'Cottagecore';
                 const scene = noTextScene ? `${baseScene}; no written text, signs, banners or lettering anywhere in the image` : baseScene;
-                examples[`style_example_${categoryIndex}_${styleIndex}`] = {
+                // 以風格值（而非順序）命名，新增／移除風格時不會讓其他示範的編號整體位移。
+                const styleSlug = String(style.val).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || String(styleIndex);
+                examples[`style_example_${categoryIndex}_${styleSlug}`] = {
                     name: `${style.label}・示範`, name_en: `${style.val} · Example`,
                     desc: style.desc, desc_en: style.desc_en,
                     subject: scene, subject_en: scene, title: '', title_en: '',
