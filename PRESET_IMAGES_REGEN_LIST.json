@@ -235,7 +235,7 @@
  },
  {
   "group": "風格示範 攝影題材 (Photography Genres)",
-  "key": "style_example_1_13",
+  "key": "style_example_1_sports_photography",
   "name": "運動攝影 (Sports)・示範",
   "index": 210,
   "had_images": {
@@ -248,7 +248,7 @@
  },
  {
   "group": "風格示範 相機與鏡頭 (Camera & Gear)",
-  "key": "style_example_2_4",
+  "key": "style_example_2_85mm_lens",
   "name": "85mm鏡頭 (85mm)・示範",
   "index": 216,
   "had_images": {
@@ -261,7 +261,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_0",
+  "key": "style_example_8_spring_blossom",
   "name": "春天櫻花 (Spring)・示範",
   "index": 279,
   "had_images": {
@@ -274,7 +274,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_1",
+  "key": "style_example_8_summer_beach",
   "name": "夏日海灘 (Summer)・示範",
   "index": 280,
   "had_images": {
@@ -287,7 +287,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_2",
+  "key": "style_example_8_autumn_leaves",
   "name": "秋天楓葉 (Autumn)・示範",
   "index": 281,
   "had_images": {
@@ -300,7 +300,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_3",
+  "key": "style_example_8_winter_snow",
   "name": "冬季雪景 (Winter)・示範",
   "index": 282,
   "had_images": {
@@ -313,7 +313,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_4",
+  "key": "style_example_8_chinese_new_year",
   "name": "農曆新年 (CNY)・示範",
   "index": 283,
   "had_images": {
@@ -326,7 +326,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_5",
+  "key": "style_example_8_christmas",
   "name": "聖誕節 (Christmas)・示範",
   "index": 284,
   "had_images": {
@@ -339,7 +339,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_6",
+  "key": "style_example_8_halloween",
   "name": "萬聖節 (Halloween)・示範",
   "index": 285,
   "had_images": {
@@ -352,7 +352,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_7",
+  "key": "style_example_8_mid_autumn_festival",
   "name": "中秋節 (Mid-Autumn)・示範",
   "index": 286,
   "had_images": {
@@ -365,7 +365,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_8",
+  "key": "style_example_8_dragon_boat_festival",
   "name": "端午節 (Dragon Boat)・示範",
   "index": 287,
   "had_images": {
@@ -378,7 +378,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_9",
+  "key": "style_example_8_valentines_day",
   "name": "情人節 (Valentine)・示範",
   "index": 288,
   "had_images": {
@@ -391,7 +391,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_10",
+  "key": "style_example_8_easter",
   "name": "復活節 (Easter)・示範",
   "index": 289,
   "had_images": {
@@ -404,7 +404,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_11",
+  "key": "style_example_8_thanksgiving",
   "name": "感恩節 (Thanksgiving)・示範",
   "index": 290,
   "had_images": {
@@ -417,7 +417,7 @@
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
-  "key": "style_example_8_12",
+  "key": "style_example_8_qixi_festival",
   "name": "七夕 (Qixi)・示範",
   "index": 291,
   "had_images": {
@@ -430,7 +430,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_0",
+  "key": "style_example_10_victorian_era",
   "name": "維多利亞 (Victorian)・示範",
   "index": 296,
   "had_images": {
@@ -443,7 +443,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_1",
+  "key": "style_example_10_art_deco",
   "name": "裝飾藝術 (Art Deco)・示範",
   "index": 297,
   "had_images": {
@@ -456,7 +456,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_2",
+  "key": "style_example_10_medieval",
   "name": "中世紀 (Medieval)・示範",
   "index": 298,
   "had_images": {
@@ -469,7 +469,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_3",
+  "key": "style_example_10_renaissance",
   "name": "文藝復興 (Renaissance)・示範",
   "index": 299,
   "had_images": {
@@ -482,7 +482,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_4",
+  "key": "style_example_10_steampunk",
   "name": "蒸氣龐克 (Steampunk)・示範",
   "index": 300,
   "had_images": {
@@ -495,7 +495,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_5",
+  "key": "style_example_10_greco_roman",
   "name": "希臘羅馬 (Greco-Roman)・示範",
   "index": 301,
   "had_images": {
@@ -508,7 +508,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_7",
+  "key": "style_example_10_baroque",
   "name": "巴洛克 (Baroque)・示範",
   "index": 302,
   "had_images": {
@@ -521,7 +521,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_9",
+  "key": "style_example_10_y2k_aesthetic",
   "name": "Y2K 美學 (Y2K)・示範",
   "index": 303,
   "had_images": {
@@ -534,7 +534,7 @@
  },
  {
   "group": "風格示範 時代與文化 (Era & Culture)",
-  "key": "style_example_10_10",
+  "key": "style_example_10_acid_graphics",
   "name": "酸性設計 (Acid Graphics)・示範",
   "index": 304,
   "had_images": {
@@ -547,7 +547,7 @@
  },
  {
   "group": "風格示範 AI 熱門風格 (AI Trending)",
-  "key": "style_example_11_2",
+  "key": "style_example_11_cottagecore",
   "name": "田園風 (Cottagecore)・示範",
   "index": 307,
   "had_images": {
