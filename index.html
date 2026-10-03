@@ -1450,6 +1450,35 @@
             });
             if (Object.keys(examples).length) BUILTIN_PRESETS[`風格示範 ${category}`] = examples;
         });
+        // 分類整合（使用者 2026-10-04 決定）：兒科衛教、佈局、台灣與日本各合併為單一分類。
+        (() => {
+            const MERGES = [
+                { into: '🧸 兒科衛教 (Pediatric Education)', from: [
+                    { group: '風格示範 兒科衛教 (Pediatric Education)' },
+                    { group: '📚 教育與解說 (Education & Info)', keys: ['he_fb_watercolor', 'he_fb_handwash', 'he_fb_baby_hero'] }] },
+                { into: '📐 經典切版佈局 (Classic Layouts)', from: [{ group: '📐 實戰佈局與排版 (Layouts & Editorials)' }] },
+                { into: '🇹🇼 台灣與日本 (Taiwan & Japan)', rename: '🇹🇼 繁體中文精選 (Traditional Chinese Picks)', from: [{ group: '風格示範 台灣與日本流行 (TW & JP Trends)' }] }
+            ];
+            MERGES.forEach(m => {
+                if (m.rename && BUILTIN_PRESETS[m.rename]) {
+                    const entries = Object.entries(BUILTIN_PRESETS).map(([g, v]) => g === m.rename ? [m.into, v] : [g, v]);
+                    Object.keys(BUILTIN_PRESETS).forEach(g => delete BUILTIN_PRESETS[g]);
+                    entries.forEach(([g, v]) => { BUILTIN_PRESETS[g] = v; });
+                }
+                const target = BUILTIN_PRESETS[m.into];
+                if (!target) return;
+                m.from.forEach(src => {
+                    const grp = BUILTIN_PRESETS[src.group];
+                    if (!grp) return;
+                    Object.keys(grp).forEach(k => {
+                        if (src.keys && !src.keys.includes(k)) return;
+                        target[k] = grp[k];
+                        delete grp[k];
+                    });
+                    if (Object.keys(grp).length === 0) delete BUILTIN_PRESETS[src.group];
+                });
+            });
+        })();
         Object.keys(BUILTIN_PRESETS).forEach(g => Object.freeze(BUILTIN_PRESETS[g]));
 ;
 

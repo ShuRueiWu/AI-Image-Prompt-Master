@@ -19,3 +19,14 @@
 **根因（示範圖文字過多）**：示範 preset 的 prompt 都帶「Text Language: Use Traditional Chinese for text rendered in the image」，即使畫面沒有任何文字需求，模型也會硬加中文招牌。這次只對上述三類示範處理；其他示範類別（藝術風格、相機與鏡頭等）仍有此行，若也有類似問題可比照處理（或改成「沒有文字內容時就不輸出 Text Language 行」的全域規則，需另行決定）。
 
 **待重生**：共 42 個 preset（Codex 全部；其中 7 個 AGY 也有圖：complex_magazine、layout_magazine_spread、layout_vogue_cover、layout_youtube_thumb、starter_over_shoulder、style_example_1_13、style_example_2_4）。清單與新 prompt：`PRESET_IMAGES_REGEN_LIST.json`、`regen-prompts/`。
+
+## 分類整合（使用者 2026-10-04「都作」）
+| 合併後分類 | 內容 |
+|---|---|
+| 🧸 兒科衛教（11） | 原兒科衛教 6＋風格示範兒科衛教 2＋「衛教:」水彩／洗手／寶寶超人 3 |
+| 📐 經典切版佈局（5） | 原經典切版佈局 4＋實戰佈局與排版 1（醫療雜誌跨頁） |
+| 🇹🇼 台灣與日本（8） | 原繁體中文精選 4＋風格示範台灣與日本流行 4 |
+
+- 分組由 App 啟動時的合併程式處理（原資料定義未動）；分組由 27 個減為 24 個，preset 總數 312 不變。保留未動：臨床與診所素材、醫學教材與圖解、其餘風格示範分類。
+- **連帶處理**：preset 的圖片 id 是「分組/鍵」，搬移後都變了；另外移除環形燈使光影與氛圍分類中後面的示範鍵整體前移一格（`style_example_3_N`→`N-1`）。已用 `rekey_presets.py` 改寫兩家 manifest、`presets_prompts.json`、重生清單與隱藏清單（備份在 `preset-previews/_rekey_backup/`），並重建縮圖與原圖對照表；圖檔本身未改名。
+- 驗證：312 個 preset 中 302 個有縮圖、10 個依規定隱藏、0 個遺漏；示範 preset 的風格與對照表逐一相符（0 不一致）；Chrome 實測三個合併分類（10 筆佈局／11 筆兒科／8 筆台日）與搬移後的縮圖都正常顯示。

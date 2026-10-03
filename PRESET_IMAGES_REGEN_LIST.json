@@ -182,7 +182,7 @@
   "new_prompt": "**Subject:** Scientific research poster\n**Title:** \"Research\"\n**Art Styles & Tech:** Professional, Clean, Infographic, Academic\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Title | Param: Top, fictional institution emblem and name only, never a real university or logo | Text: 'Aldenwick University 奧登威克大學' written in prominent semi-bold font (Font: Serif) | Text: 'Climate Change Impact' written in massive heavy typography (Font: Bold Display)\n[Section 2]\n* Visual: Abstract | Param: Left column | Text: 'Background and methods...' written in prominent semi-bold font (Font: Sans-serif)\n[Section 3]\n* Visual: Results | Param: Center, charts | Text: 'Key Findings' written in massive heavy typography (Font: Sans-serif)\n[Section 4]\n* Visual: Conclusion | Param: Right column | Text: 'Summary and future work...' written in prominent semi-bold font (Font: Sans-serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
-  "group": "📚 教育與解說 (Education & Info)",
+  "group": "🧸 兒科衛教 (Pediatric Education)",
   "key": "he_fb_handwash",
   "name": "衛教: 洗手衛教 (Handwash FB)",
   "index": 148,
