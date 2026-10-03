@@ -36,3 +36,6 @@ TASK_SPEC_*.md
 /presets_extract.txt
 /Prompts Builder V8.*.html
 /Prompts Builder V9.[0-3].html
+preset-originals/
+__pycache__/
+preset-previews/preset-originals-map.js
