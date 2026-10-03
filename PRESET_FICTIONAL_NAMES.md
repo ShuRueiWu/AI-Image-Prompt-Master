@@ -13,6 +13,7 @@
 | 玩具積木 | Brikmora | lego_city |
 | 電子／相機等產品 | Oskerin | photo_film（可見廠牌字樣） |
 | 儀表板流量來源 | Oskerin Social、Quillon Search、Taldora Mail | ui_dashboard_dark |
+| 攝影師署名（雜誌封面 credit） | Calder Winsloe | complex_magazine（原為真實攝影師姓名） |
 | 運動賽事與贊助 | Aldenwick City Marathon；Tavorn、Taldora | 運動攝影示範（style_example_1_13） |
 
 ## 需要重生的圖（舊圖含真實名稱／標誌，已從網頁隱藏）
@@ -25,3 +26,6 @@
 - 偵測靠 OCR 與逐張目視（tesseract 文字比對 368 張＋目視 5 張）；**OCR 看不到只有圖形的商標**（例如運動品牌勾形標誌），所以未列入的 preset 不保證沒有真實標誌。
 - `styles` 內的風格選項（如 "YouTube Thumbnail"、"Lego Style"、"Instagram Carousel"）是 App 的風格選項值，未改動；已在 subject 加上「以虛構名稱取代」的指示。
 - 圖中真實地標（台北 101）與真實書名（Atomic Habits 等）不屬品牌標誌，未處理。
+
+## 真實人物／藝術家名稱（待你決定）
+App 的**風格選項**本身含真實人名與品牌（梵谷、慕夏、韋斯·安德森、安迪沃荷、宮崎駿／Studio Ghibli、Pixar、Kodak／Fujifilm 底片、Polaroid、倫勃朗光、Star Wars、Minecraft）。這些是 `configData` 的風格選項值，會直接進 prompt；未擅自改動。已改的只有「會被印在圖上的人名」（雜誌 credit 的攝影師）。
