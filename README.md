@@ -71,7 +71,7 @@ React 18.2 (via esm.sh), in-browser Babel, Tailwind CSS (Play CDN), Lucide icons
 
 ### License and author
 
-MIT License. Author: **Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
+MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
 
 ---
 
@@ -120,7 +120,7 @@ React 18.2（esm.sh）、瀏覽器內 Babel、Tailwind CSS（Play CDN）、Lucid
 
 ### 授權與作者
 
-MIT 授權。作者：**Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
+MIT 授權（[LICENSE](LICENSE)）。作者：**Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
 
 ---
 
