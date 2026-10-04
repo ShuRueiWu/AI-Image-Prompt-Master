@@ -11,6 +11,6 @@
     "test:all": "npm test && npm run test:presets && npm run test:edges"
   },
   "devDependencies": {
-    "playwright": "1.59.1"
+    "playwright": "1.63.0"
   }
 }
