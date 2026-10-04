@@ -157,11 +157,9 @@
     </script>
 
     <script>
-        if (localStorage.getItem('prompt_builder_theme') === 'dark' || (!('prompt_builder_theme' in localStorage))) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        try {
+            document.documentElement.classList.toggle('dark', (localStorage.getItem('prompt_builder_theme') || 'dark') === 'dark');
+        } catch (error) { document.documentElement.classList.add('dark'); }
     </script>
 </head>
 
@@ -2109,7 +2107,11 @@
 
         const App = () => {
             const [lang, setLang] = useState('zh');
-            const [theme, setTheme] = useState(() => localStorage.getItem('prompt_builder_theme') || 'dark');
+            const [theme, setTheme] = useState(() => {
+                try { return localStorage.getItem('prompt_builder_theme') || 'dark'; }
+                catch (error) { return 'dark'; }
+            });
+            const [storageError, setStorageError] = useState(false);
 
             useEffect(() => {
                 const root = document.documentElement;
@@ -2118,7 +2120,8 @@
                 } else {
                     root.classList.remove('dark');
                 }
-                localStorage.setItem('prompt_builder_theme', theme);
+                try { localStorage.setItem('prompt_builder_theme', theme); }
+                catch (error) { setStorageError(true); }
             }, [theme]);
  // 'zh' or 'en'
             const [showHelp, setShowHelp] = useState(false);
@@ -2152,15 +2155,19 @@ const [showPresetModal, setShowPresetModal] = useState(false);
 
             const [userPresets, setUserPresets] = useState({ version: 1, groups: {} });
             const userPresetsHydratedRef = useRef(false);
+            const lastSavedPresets = useRef(JSON.stringify(userPresets));
 
             useEffect(() => {
                 try {
                     const saved = localStorage.getItem('prompt_builder_presets_v1');
                     if (saved) {
-                        setUserPresets(JSON.parse(saved));
+                        const parsed = JSON.parse(saved);
+                        if (!validatePresetPayload(parsed.groups).ok) throw new Error('Invalid saved presets');
+                        setUserPresets(parsed);
                     }
                 } catch (e) {
                     console.error("Failed to parse user presets", e);
+                    setStorageError(true);
                 } finally {
                     userPresetsHydratedRef.current = true;
                 }
@@ -2168,7 +2175,12 @@ const [showPresetModal, setShowPresetModal] = useState(false);
 
             useEffect(() => {
                 if (!userPresetsHydratedRef.current) return;
-                localStorage.setItem('prompt_builder_presets_v1', JSON.stringify(userPresets));
+                const serialized = JSON.stringify(userPresets);
+                if (serialized === lastSavedPresets.current) return;
+                try {
+                    localStorage.setItem('prompt_builder_presets_v1', serialized);
+                    lastSavedPresets.current = serialized;
+                } catch (error) { setStorageError(true); }
             }, [userPresets]);
 
             const mergedPresets = React.useMemo(() => {
@@ -2220,7 +2232,10 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                 const groups = Object.keys(data);
                 if (groups.length > 50) errors.push(`群組數量超過上限 (50)，目前: ${groups.length}`);
                 
-                const validKeys = new Set(['name', 'desc', 'desc_en', 'subject', 'title', 'body', 'styles', 'sections', 'ar', 'resolution', 'texture', 'quality']);
+                const object = value => value && typeof value === 'object' && !Array.isArray(value);
+                const str = value => typeof value === 'string' && value.length <= 5000;
+                const stringKeys = ['name', 'name_en', 'desc', 'desc_en', 'subject', 'subject_en', 'title', 'title_en', 'body', 'body_en', 'ar', 'resolution', 'texture', 'quality'];
+                const validKeys = new Set([...stringKeys, 'styles', 'camera', 'isCustomAr', 'sections']);
                 let totalStrLen = JSON.stringify(data).length;
                 if (totalStrLen > 2 * 1024 * 1024) errors.push(`檔案大小超過上限 (2MB)`);
 
@@ -2241,26 +2256,33 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                         }
                         
                         // Check keys
+                        if (!str(preset.name) || !preset.name.trim()) errors.push(`群組「${groupName}」的「${key}」：name 必須為非空字串`);
                         for (const k of Object.keys(preset)) {
                             if (!validKeys.has(k)) {
                                 errors.push(`群組「${groupName}」的「${key}」：包含未知鍵「${k}」 (已剔除)`);
                                 delete preset[k];
-                            } else if (typeof preset[k] === 'string' && preset[k].length > 5000) {
-                                errors.push(`群組「${groupName}」的「${key}」：欄位 ${k} 字元數超過上限 (5000)`);
+                            } else if (stringKeys.includes(k) && !str(preset[k])) {
+                                errors.push(`群組「${groupName}」的「${key}」：欄位 ${k} 必須為字串（上限 5000 字元）`);
                             }
                         }
                         
                         if (!Array.isArray(preset.styles)) {
                             errors.push(`群組「${groupName}」的「${key}」：欄位 styles 應為陣列，實得 ${typeof preset.styles}`);
-                        } else if (!preset.styles.every(s => typeof s === 'string')) {
+                        } else if (preset.styles.length > 500 || !preset.styles.every(str)) {
                             errors.push(`群組「${groupName}」的「${key}」：欄位 styles 必須是字串陣列`);
                         }
                         
-                        if (!Array.isArray(preset.sections)) {
+                        if (preset.camera !== undefined && (!Array.isArray(preset.camera) || preset.camera.length > 500 || !preset.camera.every(str))) {
+                            errors.push(`群組「${groupName}」的「${key}」：camera 必須為字串陣列`);
+                        }
+                        if (preset.isCustomAr !== undefined && typeof preset.isCustomAr !== 'boolean') {
+                            errors.push(`群組「${groupName}」的「${key}」：isCustomAr 必須為 boolean`);
+                        }
+                        if (!Array.isArray(preset.sections) || preset.sections.length > 100) {
                             errors.push(`群組「${groupName}」的「${key}」：欄位 sections 應為陣列，實得 ${typeof preset.sections}`);
                         } else {
                             preset.sections.forEach((sec, idx) => {
-                                if (typeof sec !== 'object' || sec === null || !('visual' in sec) || !('param' in sec) || !('textBlocks' in sec)) {
+                                if (!object(sec) || !str(sec.visual) || !str(sec.param) || (sec.dir !== undefined && !str(sec.dir)) || !Array.isArray(sec.textBlocks) || sec.textBlocks.length > 100 || !sec.textBlocks.every(block => object(block) && ['content', 'level', 'font'].every(field => str(block[field])) && (block.weight === undefined || str(block.weight)))) {
                                     errors.push(`群組「${groupName}」的「${key}」：欄位 sections 第 ${idx} 項格式錯誤，必須含 visual/param/textBlocks`);
                                 }
                             });
@@ -2332,23 +2354,35 @@ const [showPresetModal, setShowPresetModal] = useState(false);
 
             // Load history from localStorage on mount
             const hydratedRef = useRef(false);
+            const lastSavedHistory = useRef(JSON.stringify(history));
             useEffect(() => {
-                const savedHistory = localStorage.getItem('prompt_builder_history');
-                if (savedHistory) {
-                    try {
-                        setHistory(JSON.parse(savedHistory));
-                    } catch (e) {
-                        console.error("Failed to parse history", e);
-                        localStorage.setItem(`prompt_builder_history_corrupt_${Date.now()}`, savedHistory);
+                try {
+                    const savedHistory = localStorage.getItem('prompt_builder_history');
+                    if (savedHistory) {
+                        try {
+                            const parsed = JSON.parse(savedHistory);
+                            if (!Array.isArray(parsed)) throw new Error('Invalid history');
+                            setHistory(parsed);
+                        } catch (e) {
+                            console.error("Failed to parse history", e);
+                            setStorageError(true);
+                            localStorage.setItem(`prompt_builder_history_corrupt_${Date.now()}`, savedHistory);
+                        }
                     }
-                }
+                } catch (error) { setStorageError(true); }
                 hydratedRef.current = true;
             }, []);
 
             // Save history to localStorage whenever it changes
             useEffect(() => {
                 if (!hydratedRef.current) return;
-                localStorage.setItem('prompt_builder_history', JSON.stringify(history));
+                const serialized = JSON.stringify(history);
+                if (serialized === lastSavedHistory.current) return;
+                try {
+                    localStorage.setItem('prompt_builder_history', serialized);
+                    lastSavedHistory.current = serialized;
+                }
+                catch (error) { setStorageError(true); }
             }, [history]);
 
             const addToHistory = (currentForm, promptText) => {
@@ -2605,6 +2639,7 @@ const hasPediatricProfile = React.useMemo(() => {
                 if (styles.length > 0) {
                     parts.push(`**Art Styles & Tech:** ${styles.join(', ')}`);
                 }
+                if (form.camera.length > 0) parts.push(`**Camera & Composition:** ${form.camera.join(', ')}`);
 
                 if (form.texture) {
                     parts.push(`**Texture:** ${form.texture}`);
@@ -2618,6 +2653,7 @@ const hasPediatricProfile = React.useMemo(() => {
 
                         if (sec.visual) lines.push(`Visual: ${sec.visual}`);
                         if (sec.param) lines.push(`Param: ${sec.param}`);
+                        if (sec.dir && sec.dir !== 'stack') lines.push(`Layout: ${{ left: 'left half', right: 'right half', top: 'top', bottom: 'bottom', bg: 'full background', center: 'center focal point', surround: 'surrounding edges', row: 'horizontal row' }[sec.dir] || sec.dir}`);
 
                         if (!hasPediatricProfile && sec.textBlocks && sec.textBlocks.length > 0) {
                             sec.textBlocks.forEach(tb => {
@@ -2804,7 +2840,7 @@ const hasPediatricProfile = React.useMemo(() => {
                         body: (lang === 'en' && p.body_en) ? p.body_en : (p.body || ''),
                         selectedStyles: [...(p.styles || [])],
                         camera: [...(p.camera || [])],
-                        isCustomAr: false,
+                        isCustomAr: !!p.isCustomAr,
                         sections: (p.sections || []).map(s => ({
                             visual: s.visual || '',
                             param: s.param || '',
@@ -2994,21 +3030,21 @@ const hasPediatricProfile = React.useMemo(() => {
                                         <ul className="space-y-3">
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-blue-600 dark:text-blue-400 font-bold">Primary (主視覺)</span>
+                                                    <span className="text-blue-600 dark:text-blue-400 font-bold">{t('Primary (主視覺)', 'Primary (Main Visual)')}</span>
                                                     <span className="text-xs text-gray-500">Massive, Heavy</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('用於標題或主要文字。', 'For titles or main text.')}</p>
                                             </li>
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-green-600 dark:text-green-400 font-bold">Secondary (副標)</span>
+                                                    <span className="text-green-600 dark:text-green-400 font-bold">{t('Secondary (副標)', 'Secondary (Subtitle)')}</span>
                                                     <span className="text-xs text-gray-500">Prominent, Semi-bold</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('用於副標題或次要資訊。', 'For subtitles or secondary info.')}</p>
                                             </li>
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-purple-400 font-bold">Detail (內文)</span>
+                                                    <span className="text-purple-400 font-bold">{t('Detail (內文)', 'Detail (Body Text)')}</span>
                                                     <span className="text-xs text-gray-500">Tiny, Minimalist</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('用於內文、日期或版權聲明。', 'For body text, dates, or copyright.')}</p>
@@ -3252,30 +3288,30 @@ const hasPediatricProfile = React.useMemo(() => {
                                                 </p>
                                                 <div className="grid grid-cols-2 gap-2 text-[10px] text-gray-700 dark:text-gray-300">
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 1 (窗邊光影)</span>
-                                                        <span className="text-gray-500">Visual:</span> 窗邊光影<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 柔和，過曝，百葉窗影子
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 1 (窗邊光影)', 'SEC 1 (Window Light)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('窗邊光影', 'Window light')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('柔和，過曝，百葉窗影子', 'Soft light, overexposure, blind shadows')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 2 (手沖咖啡)</span>
-                                                        <span className="text-gray-500">Visual:</span> 手沖咖啡<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 玻璃壺，濾紙，正在滴濾
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 2 (手沖咖啡)', 'SEC 2 (Pour-over Coffee)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('手沖咖啡', 'Pour-over coffee')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('玻璃壺，濾紙，正在滴濾', 'Glass pot, paper filter, dripping coffee')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 3 (甜點)</span>
-                                                        <span className="text-gray-500">Visual:</span> 甜點<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 戚風蛋糕，鮮奶油，草莓
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 3 (甜點)', 'SEC 3 (Dessert)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('甜點', 'Dessert')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('戚風蛋糕，鮮奶油，草莓', 'Chiffon cake, whipped cream, strawberries')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 4 (植物)</span>
-                                                        <span className="text-gray-500">Visual:</span> 植物<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 龜背芋，綠意，背景模糊
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 4 (植物)', 'SEC 4 (Plants)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('植物', 'Plants')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('龜背芋，綠意，背景模糊', 'Monstera, greenery, blurred background')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700 col-span-2">
-                                                        <span className="text-purple-400 font-bold block">SEC 5 (標語)</span>
-                                                        <span className="text-gray-500">Visual:</span> 標語<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 手寫字，文青，貼在窗戶上<br />
-                                                        <span className="text-blue-700 dark:text-blue-300">Text:</span> 歲月靜好
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 5 (標語)', 'SEC 5 (Tagline)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('標語', 'Tagline')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('手寫字，文青，貼在窗戶上', 'Handwriting, artistic atmosphere, attached to the window')}<br />
+                                                        <span className="text-blue-700 dark:text-blue-300">Text:</span> {t('歲月靜好', 'Peaceful days')}
                                                     </div>
                                                 </div>
                                             </div>
@@ -3289,31 +3325,31 @@ const hasPediatricProfile = React.useMemo(() => {
                                                 </p>
                                                 <div className="grid grid-cols-1 gap-2 text-[10px] text-gray-700 dark:text-gray-300">
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 1 (遠景山城)</span>
-                                                        <span className="text-gray-500">Visual:</span> 遠景山城<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 霧氣，冷色調，層疊房屋
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 1 (遠景山城)', 'SEC 1 (Distant Mountain Town)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('遠景山城', 'Distant mountain town')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('霧氣，冷色調，層疊房屋', 'Mist, cool tones, layered houses')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 2 (主角背影)</span>
-                                                        <span className="text-gray-500">Visual:</span> 主角背影<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 孤獨，撐著雨傘，站在階梯
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 2 (主角背影)', 'SEC 2 (Protagonist from Behind)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('主角背影', 'Protagonist from behind')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('孤獨，撐著雨傘，站在階梯', 'Solitary figure holding an umbrella on the steps')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 3 (標題)</span>
-                                                        <span className="text-gray-500">Visual:</span> 標題<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 垂直排版，書法字體，右側<br />
-                                                        <span className="text-blue-700 dark:text-blue-300">Text:</span> 悲情城市
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 3 (標題)', 'SEC 3 (Title)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('標題', 'Title')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('垂直排版，書法字體，右側', 'Vertical layout, calligraphy, right side')}<br />
+                                                        <span className="text-blue-700 dark:text-blue-300">Text:</span> {t('悲情城市', 'A City of Sadness')}
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 4 (副標題)</span>
-                                                        <span className="text-gray-500">Visual:</span> 副標題<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 底部居中，宋體，白色<br />
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 4 (副標題)', 'SEC 4 (Subtitle)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('副標題', 'Subtitle')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('底部居中，宋體，白色', 'Bottom center, serif font, white')}<br />
                                                         <span className="text-blue-700 dark:text-blue-300">Text:</span> A City of Sadness
                                                     </div>
                                                     <div className="bg-stone-100 dark:bg-gray-900/50 p-1.5 rounded border border-gray-300 dark:border-gray-700">
-                                                        <span className="text-purple-400 font-bold block">SEC 5 (演職員表)</span>
-                                                        <span className="text-gray-500">Visual:</span> 演職員表<br />
-                                                        <span className="text-green-700 dark:text-green-300">Param:</span> 極小字，底部排列<br />
+                                                        <span className="text-purple-400 font-bold block">{t('SEC 5 (演職員表)', 'SEC 5 (Cast & Crew)')}</span>
+                                                        <span className="text-gray-500">Visual:</span> {t('演職員表', 'Cast and crew')}<br />
+                                                        <span className="text-green-700 dark:text-green-300">Param:</span> {t('極小字，底部排列', 'Tiny text aligned along the bottom')}<br />
                                                         <span className="text-blue-700 dark:text-blue-300">Text:</span> Directed by Hou Hsiao-hsien
                                                     </div>
                                                 </div>
@@ -3392,25 +3428,25 @@ const hasPediatricProfile = React.useMemo(() => {
                                             </li>
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-green-600 dark:text-green-400 font-bold">Resolution (解析度)</span>
+                                                    <span className="text-green-600 dark:text-green-400 font-bold">{t('Resolution (解析度)', 'Resolution')}</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('設定圖片細節等級，支援 Standard, HD, 4K, 8K。', 'Sets detail level, supports Standard, HD, 4K, 8K.')}</p>
                                             </li>
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-purple-400 font-bold">--stylize (風格化)</span>
+                                                    <span className="text-purple-400 font-bold">{t('--stylize (風格化)', '--stylize (Stylization)')}</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('數值 0-1000。數值越高，AI 藝術性越強但可能偏離提示詞；數值越低越忠實於提示詞。', 'Value 0-1000. Higher values make it more artistic but less faithful to prompt; lower values are more faithful.')}</p>
                                             </li>
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-yellow-600 dark:text-yellow-400 font-bold">--seed (種子碼)</span>
+                                                    <span className="text-yellow-600 dark:text-yellow-400 font-bold">{t('--seed (種子碼)', '--seed (Random Seed)')}</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('固定隨機數種子，使用相同種子與提示詞可生成相似圖片。', 'Fixes the random seed. Using the same seed and prompt generates similar images.')} <span className="text-gray-500 italic">{t('(註：並非每個生圖AI都支援)', '(Note: Not supported by all AI generators)')}</span></p>
                                             </li>
                                             <li className="bg-stone-200 dark:bg-gray-800 p-3 rounded border border-gray-300 dark:border-gray-600">
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <span className="text-red-600 dark:text-red-400 font-bold">--no (負面提示)</span>
+                                                    <span className="text-red-600 dark:text-red-400 font-bold">{t('--no (負面提示)', '--no (Negative Prompt)')}</span>
                                                 </div>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">{t('排除畫面中不想要的元素，例如：text, watermark, blurry。', 'Excludes unwanted elements, e.g., text, watermark, blurry.')}</p>
                                             </li>
@@ -3438,7 +3474,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                 </div>
                                 <div className="p-5 border-t border-gray-300 dark:border-gray-700 bg-stone-100 dark:bg-gray-900 flex justify-end">
                                     <button onClick={() => setShowHelp(false)} className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold transition shadow-lg hover:shadow-blue-500/20">
-                                        開始創作 (Start Creating)
+                                        {t('開始創作 (Start Creating)', 'Start Creating')}
                                     </button>
                                 </div>
                             </div>
@@ -3597,12 +3633,19 @@ const hasPediatricProfile = React.useMemo(() => {
                                                         title: form.title,
                                                         body: form.body,
                                                         styles: [...form.selectedStyles],
+                                                        camera: [...form.camera],
+                                                        isCustomAr: form.isCustomAr,
                                                         sections: JSON.parse(JSON.stringify(form.sections)),
                                                         ar: form.ar,
                                                         resolution: form.resolution,
                                                         texture: form.texture,
                                                         quality: form.quality
                                                     };
+                                                }
+                                                const validation = validatePresetPayload({ [finalGroup]: { [key]: payload } });
+                                                if (!validation.ok) {
+                                                    alert(t('預設格式無效，請檢查欄位與文字長度。', 'Invalid preset format. Check the fields and text lengths.'));
+                                                    return;
                                                 }
 
                                                 setUserPresets(prev => {
@@ -3919,7 +3962,7 @@ const hasPediatricProfile = React.useMemo(() => {
                             <div className="rounded border border-gray-300 dark:border-gray-700 bg-stone-200 dark:bg-gray-800 p-3 space-y-2">
                                 <div className="flex flex-wrap items-center gap-3">
                                     <span role="status" data-testid="draft-status" className="text-xs text-stone-700 dark:text-gray-200">
-                                        {({ ready: t('草稿：編輯後自動儲存於此瀏覽器', 'Draft: autosaves in this browser after editing'), saving: t('草稿儲存中…', 'Saving draft…'), saved: t('草稿已儲存', 'Draft saved'), restored: t('已恢復上次草稿', 'Previous draft restored'), error: t('草稿讀取或儲存失敗，請匯出作品備份。', 'Draft read/save failed. Export your work as a backup.') })[draftStatus]}
+                                        {({ ready: t('草稿：編輯後自動儲存於此瀏覽器', 'Draft: autosaves in this browser after editing'), saving: t('草稿儲存中…', 'Saving draft…'), saved: t('草稿已儲存', 'Draft saved'), restored: t('已恢復上次草稿', 'Previous draft restored'), error: t('本機資料讀取或儲存失敗，請匯出作品備份。', 'Local data read/save failed. Export your work as a backup.') })[storageError ? 'error' : draftStatus]}
                                     </span>
                                     <button onClick={exportWork} className="px-3 py-1.5 rounded bg-blue-700 text-white text-xs">{t('匯出作品', 'Export work')}</button>
                                     <button onClick={() => workInput.current.click()} className="px-3 py-1.5 rounded bg-blue-700 text-white text-xs">{t('匯入作品', 'Import work')}</button>

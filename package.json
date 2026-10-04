@@ -5,7 +5,7 @@
   "scripts": {
     "sync:site": "node sync-site.cjs --apply",
     "check:site": "node sync-site.cjs",
-    "test": "npm run check:site && node verify_v95.cjs && node verify_v96.cjs && node verify-style-coverage.cjs",
+    "test": "npm run check:site && node verify_v95.cjs && node verify_v96.cjs && node verify-style-coverage.cjs && node verify-review-fixes.cjs",
     "test:presets": "node verify-presets.cjs"
   },
   "devDependencies": {

@@ -23,6 +23,8 @@ const presets = vm.runInNewContext(html.slice(html.indexOf('        const config
         await page.getByTestId('browse-presets').waitFor({ timeout: 60000 });
         await page.getByRole('button', { name: 'EN', exact: true }).click();
         await page.getByTitle('User Guide').click();
+        const guideText = await page.getByRole('heading', { name: 'User Guide', exact: true }).locator('../..').innerText();
+        assert(!/[\u3400-\u9fff]/.test(guideText), 'Entire English user guide should contain no Chinese characters');
         const credits = page.getByTestId('credits-section');
         const creditsText = await credits.innerText();
         assert(!/[\u3400-\u9fff]/.test(creditsText), 'English credits section should contain no Chinese characters');
