@@ -2327,13 +2327,13 @@
   "風格示範 藝術風格 (Art Styles)/style_example_0_ukiyo_e_style": {
     "key": "風格示範 藝術風格 (Art Styles)/style_example_0_8",
     "original": "preset-originals/codex/g14-art-styles__style_example_0_8.png",
-    "prompt_sha256": "5688099bda3d3419a08cd4c680d4926b4e25dddba250c27a0b519f8b0d41f11a",
-    "generated_at": "2026-10-02T16:19:06.384Z",
+    "prompt_sha256": "a535411b4922e742a0e17ccf63ce24c5c757a75e3fa01af06678e7269b10d716",
+    "generated_at": "2026-10-04T18:17:02Z",
     "status": "ok",
     "watermark": false,
     "width": 1448,
     "height": 1086,
-    "bytes": 3395701
+    "bytes": 2880721
   },
   "風格示範 藝術風格 (Art Styles)/style_example_0_linocut": {
     "key": "風格示範 藝術風格 (Art Styles)/style_example_0_9",

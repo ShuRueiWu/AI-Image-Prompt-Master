@@ -1,0 +1,77 @@
+{
+  "codex": {
+    "風格示範 攝影題材 (Photography Genres)/style_example_1_16": {
+      "original": "preset-originals/codex/g15-photography-genres__style_example_1_16.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 3393867,
+      "prompt_sha256": "89e056f7c0d15a93a11894d796f68549b5df7aeda24953dc72cabd79c67d697b",
+      "generated_at": "2026-10-02T18:12:49.297Z",
+      "status": "ok"
+    },
+    "風格示範 相機與鏡頭 (Camera & Gear)/style_example_2_0": {
+      "original": "preset-originals/codex/g16-camera-gear__style_example_2_0.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 3063613,
+      "prompt_sha256": "edff3b17c53e4d39004cf5c03ad8172ed54de4b7236792a9b5048b7b89130ba9",
+      "generated_at": "2026-10-02T18:16:24.961Z",
+      "status": "ok"
+    },
+    "風格示範 設計排版 (Design Layout)/style_example_6_5": {
+      "key": "風格示範 設計排版 (Design Layout)/style_example_6_5",
+      "original": "preset-originals/codex/g20-design-layout__style_example_6_5.png",
+      "prompt_sha256": "c29a9259b04cd9d3aed15ca51a75b252d960bd72724a2cce7f1858c297f21487",
+      "generated_at": "2026-10-02T16:48:07.400Z",
+      "status": "ok",
+      "watermark": false,
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2774160
+    },
+    "風格示範 數位與 3D (Digital & 3D)/style_example_7_6": {
+      "key": "風格示範 數位與 3D (Digital & 3D)/style_example_7_6",
+      "original": "preset-originals/codex/g21-3d-digital-3d__style_example_7_6.png",
+      "prompt_sha256": "fa425a2b1526fb4cf08f957debb29a14a16c9063d9e5c1b0523082e602acd0ef",
+      "generated_at": "2026-10-02T16:52:37.556Z",
+      "status": "ok",
+      "watermark": false,
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2464946
+    },
+    "🎨 插畫與動漫 (Illustration & Anime)/tw_puppetry_hero": {
+      "key": "🎨 插畫與動漫 (Illustration & Anime)/tw_pili_hero",
+      "original": "preset-originals/codex/g08-illustration-anime__tw_pili_hero.png",
+      "prompt_sha256": "397dd1d42e479b791ec0f6bdb02dd8a0af7df096d9268037fe18659988db7c3b",
+      "generated_at": "2026-10-02T15:11:17.079Z",
+      "status": "ok",
+      "watermark": false,
+      "width": 1086,
+      "height": 1448,
+      "bytes": 2738324
+    }
+  },
+  "agy": {
+    "風格示範 攝影題材 (Photography Genres)/style_example_1_16": {
+      "original": "preset-originals/agy/風格示範_攝影題材_(Photography_Genres)__style_example_1_16.jpg",
+      "width": 1200,
+      "height": 896,
+      "bytes": 1316679,
+      "prompt_sha256": "89e056f7c0d15a93a11894d796f68549b5df7aeda24953dc72cabd79c67d697b",
+      "generated_at": "2026-10-02T14:45:36.621108+00:00",
+      "status": "ok",
+      "watermark": false
+    },
+    "風格示範 相機與鏡頭 (Camera & Gear)/style_example_2_0": {
+      "original": "preset-originals/agy/風格示範_相機與鏡頭_(Camera_&_Gear)__style_example_2_0.jpg",
+      "width": 1200,
+      "height": 896,
+      "bytes": 934619,
+      "prompt_sha256": "edff3b17c53e4d39004cf5c03ad8172ed54de4b7236792a9b5048b7b89130ba9",
+      "generated_at": "2026-10-02T14:46:03.306904+00:00",
+      "status": "ok",
+      "watermark": false
+    }
+  }
+}

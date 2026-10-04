@@ -1540,8 +1540,8 @@
     "group": "風格示範 藝術風格 (Art Styles)",
     "key": "style_example_0_ukiyo_e_style",
     "name": "浮世繪 (Ukiyo-e)・示範",
-    "prompt": "**Subject:** A vase of seasonal flowers and a small bowl of fruit beside a window, showing the chosen artistic medium clearly\n**Art Styles & Tech:** Ukiyo-e Style\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution",
-    "prompt_sha256": "5688099bda3d3419a08cd4c680d4926b4e25dddba250c27a0b519f8b0d41f11a"
+    "prompt": "**Subject:** An original Edo-period Japanese nishiki-e landscape: a traveler in patterned kosode and woven kasa on the Tokaido coastal road, Mount Fuji above Suruga Bay, Japanese pine trees along the shore, and Pacific waves. Balance the foreground traveler with the expansive Japanese scenery. Flowing carved keyblock contours, flat mineral-pigment color planes, deep indigo and Prussian blue bokashi gradients, warm muted earth colors, and visible washi paper grain. Set the Japanese title \"東海道 駿河湾富士眺望\" vertically in the cream cartouche, with the fictional printmaker signature \"汐路斎 波丸\" in delicate vertical calligraphy and a small vermilion seal bearing \"波丸\".\n**Art Styles & Tech:** Ukiyo-e Style\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution",
+    "prompt_sha256": "a535411b4922e742a0e17ccf63ce24c5c757a75e3fa01af06678e7269b10d716"
   },
   {
     "index": 194,

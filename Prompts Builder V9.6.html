@@ -1354,6 +1354,7 @@
             };
         // Focused examples cover every selectable style without combining unrelated aesthetics.
         const STYLE_SCENES = {
+            'Ukiyo-e Style': 'An original Edo-period Japanese nishiki-e landscape: a traveler in patterned kosode and woven kasa on the Tokaido coastal road, Mount Fuji above Suruga Bay, Japanese pine trees along the shore, and Pacific waves. Balance the foreground traveler with the expansive Japanese scenery. Flowing carved keyblock contours, flat mineral-pigment color planes, deep indigo and Prussian blue bokashi gradients, warm muted earth colors, and visible washi paper grain. Set the Japanese title "東海道 駿河湾富士眺望" vertically in the cream cartouche, with the fictional printmaker signature "汐路斎 波丸" in delicate vertical calligraphy and a small vermilion seal bearing "波丸".',
             'Documentary Photography': 'A candid morning at a Taiwanese traditional market, vendors arranging vegetables',
             'E-commerce Photography': 'A reusable stainless steel water bottle on a seamless white background, accurate product proportions',
             'Taiwanese Glove Puppetry Style': 'An original wuxia hero glove puppet with an ornate carved head, layered embroidered costume and drifting stage smoke on a small traditional puppet stage (not any existing character or brand)',
@@ -1445,8 +1446,9 @@
             styles.forEach((style, styleIndex) => {
                 if (usedStyleValues.has(style.val) || usedStyleValues.has(style.label)) return;
                 const baseScene = STYLE_SCENES[style.val] || CATEGORY_SCENES[categoryIndex];
-                const noTextScene = true; // 風格示範是展示風格，不需要圖上文字；一律要求無文字，避免過多字影響美感
-                const scene = noTextScene ? `${baseScene}; no written text, signs, banners or lettering anywhere in the image` : baseScene;
+                const scene = style.val === 'Ukiyo-e Style'
+                    ? baseScene
+                    : `${baseScene}; no written text, signs, banners or lettering anywhere in the image`;
                 // 以風格值（而非順序）命名，新增／移除風格時不會讓其他示範的編號整體位移。
                 const styleSlug = String(style.val).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || String(styleIndex);
                 examples[`style_example_${categoryIndex}_${styleSlug}`] = {

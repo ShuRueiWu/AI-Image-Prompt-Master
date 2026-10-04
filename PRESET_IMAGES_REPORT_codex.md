@@ -122,3 +122,10 @@ Task：`prompt-master-preset-images-20261002`
 - 因使用者認為原圖聽診器結構不理想，再生 1 次。新圖強調單一完整器材：兩個對稱耳塞與金屬耳管、連續 Y 形分岔、單一 U 形軟管、單一圓形聽診頭；旁置空白筆記本、無品牌腕錶及鋼筆，僅保留 `Doctor EDC` 標題。目視結構清楚；`apply_regen.py` OCR 真實名稱命中 0，無可見浮水印。新圖 1672×941 PNG，prompt 未變，SHA-256 仍為 `b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071`。
 - 新原圖：`preset-originals/codex/g00-starter-inspiration__starter_knolling.png`；舊原圖保留：`preset-originals/_replaced/codex/20261005-001553-g00-starter-inspiration__starter_knolling.png`。manifest 更新時間與尺寸／bytes，原始尺寸保留。640px WebP 已重建；縮圖腳本 `created=0, skipped=308, missing_originals=0, failed=0`；map 308 presets／357 originals。
 - 驗證：apply dry-run 與 apply 通過；`npm run test:presets` 308/308 通過。Chrome 以本機頁面檢查範本卡，Codex WebP 載入成功（自然寬 640px），AGY 圖亦載入；目前頁面可並排顯示兩來源。未改 HTML、AGY 原圖／manifest；未 commit／push。
+
+### 浮世繪示範改為日本旅人與海岸風景（Codex，2026-10-05）
+
+- 使用者核准定稿：原創江戶浮世繪風格，旅人行經東海道海岸，背景為富士山、駿河灣、松林與太平洋；題簽為日文「東海道 駿河湾富士眺望」，虛構版畫師落款「汐路斎 波丸」及「波丸」朱印。首張曾出現廣重風格落款，未套用；第二張空白題簽版先供檢視，之後依使用者意見編修補上標題與虛構落款，最終採用第三個圖像操作結果。
+- 只用 Codex 內建 ImageGen，未使用 API key；總計 2 次生成、1 次定向編修。採用圖 1448×1086 PNG；`apply_regen.py` OCR 真實名稱命中 0。新原圖 `preset-originals/codex/g14-art-styles__style_example_0_8.png`；舊圖保留於 `_replaced/codex/20261005-015824-g14-art-styles__style_example_0_8.png` 及 `_replaced/codex/20261005-021702-g14-art-styles__style_example_0_8.png`。原圖不入 Git。
+- `Ukiyo-e Style` 示範 prompt 使用正向描述，精確包含日文標題與虛構落款，僅此風格略過自動補上的否定式文字排除句；重生清單由 `node make_regen_list.cjs` 產生（46 筆），沒有手改 JSON。最終 prompt SHA-256：`a535411b4922e742a0e17ccf63ce24c5c757a75e3fa01af06678e7269b10d716`。
+- `apply_regen.py` dry-run／apply 通過；Codex WebP 與圖片 map 更新，縮圖腳本 `created=1, missing_originals=0, failed=0`；`generate_originals_map.py` 輸出 306 presets／355 originals。未改 AGY 原圖或 manifest，未 commit／push。

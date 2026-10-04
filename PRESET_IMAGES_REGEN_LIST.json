@@ -9,8 +9,8 @@
    "agy": true
   },
   "old_prompt_sha256": "05ddbf40bfce5f5d4917d2457e47958bcecdfa9a76fe1464fb260db5d70706ec",
-  "new_prompt_sha256": "05ddbf40bfce5f5d4917d2457e47958bcecdfa9a76fe1464fb260db5d70706ec",
-  "new_prompt": "**Subject:** Profile silhouette of a person thinking\n**Title:** \"Mind Forest\"\n**Body:** （場景描述，不是圖上文字）人物的剪影內部透出了茂密的森林與星空，充滿詩意。\n**Art Styles & Tech:** Double Exposure, Silhouette, Surrealism, Monochrome\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Person profile silhouette | Param: dark contrast\n[Section 2]\n* Visual: Pine forest and starry night | Param: inside the silhouette\n[Section 3]\n* Visual: Title text | Param: small, bottom center; render exactly \"Mind Forest\" in English, letter for letter, never translate it into Chinese | Text: 'Mind Forest' written in prominent semi-bold font (Font: Serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** fine art photography, double exposure masterpiece, the only text in the image is the English title \"Mind Forest\" written exactly as given, no Chinese characters, no translation\naspect ratio 3:4 8k resolution, highly detailed"
+  "new_prompt_sha256": "265faf363e9816a9d2ab373f9a46e3773340b28b1f0e5115313beceb61bec830",
+  "new_prompt": "**Subject:** Profile silhouette of a person thinking\n**Title:** \"Mind Forest\"\n**Body:** （場景描述，不是圖上文字）人物的剪影內部透出了茂密的森林與星空，充滿詩意。\n**Art Styles & Tech:** Double Exposure, Silhouette, Surrealism, Monochrome\n**Camera & Composition:** Eye Level Shot, Fill the Frame\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Person profile silhouette | Param: dark contrast | Layout: center focal point\n[Section 2]\n* Visual: Pine forest and starry night | Param: inside the silhouette | Layout: full background\n[Section 3]\n* Visual: Title text | Param: small, bottom center; render exactly \"Mind Forest\" in English, letter for letter, never translate it into Chinese | Layout: bottom | Text: 'Mind Forest' written in prominent semi-bold font (Font: Serif)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** fine art photography, double exposure masterpiece, the only text in the image is the English title \"Mind Forest\" written exactly as given, no Chinese characters, no translation\naspect ratio 3:4 8k resolution, highly detailed"
  },
  {
   "group": "🔰 新手啟發範本 (Starter Inspiration)",
@@ -22,8 +22,8 @@
    "agy": true
   },
   "old_prompt_sha256": "b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071",
-  "new_prompt_sha256": "b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071",
-  "new_prompt": "**Subject:** Everyday carry of a modern doctor or surgeon\n**Title:** \"Doctor EDC\"\n**Body:** A neatly coiled stethoscope with Y-shaped twin ear tubes and a single round chestpiece, alongside a notebook, wristwatch, and fountain pen, arranged in a precise right-angle grid. Use generic unbranded objects only; no personal names, clinic or hospital names, brand names, or logos. The only readable text may be the generic title \"Doctor EDC\".\n**Art Styles & Tech:** Knolling, Product Photography, Minimalist\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Medical gear and everyday items perfectly aligned | Param: grid layout\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** commercial product photography, strict knolling\naspect ratio 16:9 4k resolution"
+  "new_prompt_sha256": "83fa3fd5be0f1d81271b9a61a22d1b82cf70e78f9d667cbb45278e7b56595ab2",
+  "new_prompt": "**Subject:** Everyday carry of a modern doctor or surgeon\n**Title:** \"Doctor EDC\"\n**Body:** A neatly coiled stethoscope with Y-shaped twin ear tubes and a single round chestpiece, alongside a notebook, wristwatch, and fountain pen, arranged in a precise right-angle grid. Use generic unbranded objects only; no personal names, clinic or hospital names, brand names, or logos. The only readable text may be the generic title \"Doctor EDC\".\n**Art Styles & Tech:** Knolling, Product Photography, Minimalist\n**Camera & Composition:** Top Down, Neutral Background\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Medical gear and everyday items perfectly aligned | Param: grid layout | Layout: center focal point\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** commercial product photography, strict knolling\naspect ratio 16:9 4k resolution"
  },
  {
   "group": "🔰 新手啟發範本 (Starter Inspiration)",
@@ -35,8 +35,8 @@
    "agy": true
   },
   "old_prompt_sha256": "72489b8086d75880b255f593ba81767f46d7998386a09492d8d0097d4347cbda",
-  "new_prompt_sha256": "72489b8086d75880b255f593ba81767f46d7998386a09492d8d0097d4347cbda",
-  "new_prompt": "**Subject:** A patient talking to an ordinary-looking, kind middle-aged doctor (natural un-glamorous appearance, glasses welcome, not model-like)\n**Title:** \"The Consult\"\n**Body:** 從病人的肩膀後方看過去，焦點清楚地落在醫生的臉上，背景有電影感的散景。\n**Art Styles & Tech:** Cinematic Lighting, 35mm Lens, Bokeh, Storytelling\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurry shoulder of patient | Param: out of focus foreground\n[Section 2]\n* Visual: Compassionate doctor listening | Param: sharp focus\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** cinematic still, emotional, depth of field\naspect ratio 21:9 4k resolution"
+  "new_prompt_sha256": "feca5cfec7e4ea70a3ff17466866f1e63f3e2702c36b70831645d616a0ad5b70",
+  "new_prompt": "**Subject:** A patient talking to an ordinary-looking, kind middle-aged doctor (natural un-glamorous appearance, glasses welcome, not model-like)\n**Title:** \"The Consult\"\n**Body:** 從病人的肩膀後方看過去，焦點清楚地落在醫生的臉上，背景有電影感的散景。\n**Art Styles & Tech:** Cinematic Lighting, 35mm Lens, Bokeh, Storytelling\n**Camera & Composition:** Over-the-shoulder Shot, Rule of Thirds\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurry shoulder of patient | Param: out of focus foreground | Layout: left half\n[Section 2]\n* Visual: Compassionate doctor listening | Param: sharp focus | Layout: right half\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** cinematic still, emotional, depth of field\naspect ratio 21:9 4k resolution"
  },
  {
   "group": "🔥 十大佈局實戰範本 (Top 10 Layouts)",
@@ -48,8 +48,8 @@
    "agy": true
   },
   "old_prompt_sha256": "fbad943a1495e5f3207b628afd516743f1094d999f6603753b03e56c0f799bd9",
-  "new_prompt_sha256": "fbad943a1495e5f3207b628afd516743f1094d999f6603753b03e56c0f799bd9",
-  "new_prompt": "**Subject:** High fashion portrait of a confident male surgeon\n**Title:** \"Solenne Medical\"\n**Body:** 穿著剪裁俐落的白袍，眼神銳利，背景純粹。\n**Art Styles & Tech:** Editorial Photography, High Fashion, Studio Lighting\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Studio backdrop | Param: dark grey\n[Section 2]\n* Visual: Massive magazine title text | Param: partially hidden behind subject | Text: 'SOLENNE MED' written in massive heavy typography (Font: Serif)\n[Section 3]\n* Visual: Confident male surgeon | Param: sharp focus\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** magazine cover, professional photography\naspect ratio 3:4 8k resolution, highly detailed"
+  "new_prompt_sha256": "57c3056ecd5a25d820270d77cd370e398dd959db50bad07ad37bd2e8d01593a6",
+  "new_prompt": "**Subject:** High fashion portrait of a confident male surgeon\n**Title:** \"Solenne Medical\"\n**Body:** 穿著剪裁俐落的白袍，眼神銳利，背景純粹。\n**Art Styles & Tech:** Editorial Photography, High Fashion, Studio Lighting\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Studio backdrop | Param: dark grey | Layout: full background\n[Section 2]\n* Visual: Massive magazine title text | Param: partially hidden behind subject | Layout: top | Text: 'SOLENNE MED' written in massive heavy typography (Font: Serif)\n[Section 3]\n* Visual: Confident male surgeon | Param: sharp focus | Layout: center focal point\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** magazine cover, professional photography\naspect ratio 3:4 8k resolution, highly detailed"
  },
  {
   "group": "📐 經典切版佈局 (Classic Layouts)",
@@ -61,8 +61,8 @@
    "agy": true
   },
   "old_prompt_sha256": "967a8232b42bea669febd60d2d8838429ddd7bf05f90f0f095ab49bd8a3682f9",
-  "new_prompt_sha256": "967a8232b42bea669febd60d2d8838429ddd7bf05f90f0f095ab49bd8a3682f9",
-  "new_prompt": "**Subject:** Clickbait video thumbnail (generic video platform; any play-button or platform logo must be the fictional \"Taldora Play\", never a real platform logo)\n**Title:** \"YT Thumbnail\"\n**Body:** 高對比度、鮮豔的色彩與邊緣發光效果。\n**Art Styles & Tech:** Vibrant Colors, Flat Design\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurred colorful studio background | Param: depth of field, bright colors\n[Section 2]\n* Visual: Surprised person pointing to the left | Param: white outline sticker effect\n[Section 3]\n* Visual: Space for massive impact text | Param: high contrast dark space | Text: 'OMG!!' written in massive heavy typography (Font: Bold Display)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** video thumbnail style, high contrast, vibrant, eye-catching\naspect ratio 16:9 1k resolution"
+  "new_prompt_sha256": "54b409570111b23231a5e4078ac10b5633044f91542241a241c07ccb5d1373da",
+  "new_prompt": "**Subject:** Clickbait video thumbnail (generic video platform; any play-button or platform logo must be the fictional \"Taldora Play\", never a real platform logo)\n**Title:** \"YT Thumbnail\"\n**Body:** 高對比度、鮮豔的色彩與邊緣發光效果。\n**Art Styles & Tech:** Vibrant Colors, Flat Design\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Blurred colorful studio background | Param: depth of field, bright colors | Layout: full background\n[Section 2]\n* Visual: Surprised person pointing to the left | Param: white outline sticker effect | Layout: right half\n[Section 3]\n* Visual: Space for massive impact text | Param: high contrast dark space | Layout: left half | Text: 'OMG!!' written in massive heavy typography (Font: Bold Display)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** video thumbnail style, high contrast, vibrant, eye-catching\naspect ratio 16:9 1k resolution"
  },
  {
   "group": "🧸 兒科衛教 (Pediatric Education)",
@@ -258,6 +258,19 @@
   "old_prompt_sha256": "f7864b77b45014a4a0d0fca2734fedcb3c98f86166dd370a8073d5710aa0bb76",
   "new_prompt_sha256": "f7864b77b45014a4a0d0fca2734fedcb3c98f86166dd370a8073d5710aa0bb76",
   "new_prompt": "**Subject:** Fashion editorial portrait of an adult in a tailored coat on a quiet urban street, natural confident pose\n**Title:** \"Solenne\"\n**Art Styles & Tech:** Fashion Photography, Dramatic Lighting, High Fashion, Stylish\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
+ },
+ {
+  "group": "風格示範 藝術風格 (Art Styles)",
+  "key": "style_example_0_ukiyo_e_style",
+  "name": "浮世繪 (Ukiyo-e)・示範",
+  "index": 193,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "476cbbbd119ba36a3bcf02cbd2f6dbf2baa318143e155143fd148ae5b3440fb3",
+  "new_prompt_sha256": "a535411b4922e742a0e17ccf63ce24c5c757a75e3fa01af06678e7269b10d716",
+  "new_prompt": "**Subject:** An original Edo-period Japanese nishiki-e landscape: a traveler in patterned kosode and woven kasa on the Tokaido coastal road, Mount Fuji above Suruga Bay, Japanese pine trees along the shore, and Pacific waves. Balance the foreground traveler with the expansive Japanese scenery. Flowing carved keyblock contours, flat mineral-pigment color planes, deep indigo and Prussian blue bokashi gradients, warm muted earth colors, and visible washi paper grain. Set the Japanese title \"東海道 駿河湾富士眺望\" vertically in the cream cartouche, with the fictional printmaker signature \"汐路斎 波丸\" in delicate vertical calligraphy and a small vermilion seal bearing \"波丸\".\n**Art Styles & Tech:** Ukiyo-e Style\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "風格示範 攝影題材 (Photography Genres)",
