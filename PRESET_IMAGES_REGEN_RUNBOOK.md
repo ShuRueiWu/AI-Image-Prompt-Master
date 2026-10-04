@@ -15,3 +15,7 @@
 - 只用各自內建圖像生成；禁用任何 API key（付費）。
 - 每個 preset 最多 2 次生成（第 2 次僅在 OCR 命中時）；Codex 總上限 20 次。
 - 多餘或亂碼文字可接受，不因此丟圖。
+
+## 縮圖（使用者提醒：重生的圖要補上縮圖）
+- `apply_regen.py --apply` 會自動重跑該家的 `generate_preset_previews.py` 與原圖對照表；縮圖以修改時間判斷，**原圖比縮圖新就會重做**，所以重生的圖不會留著舊縮圖。
+- 全部做完後請再手動收尾一次：`python3.13 generate_preset_previews.py --agent codex`（AGY 的則 `--agent agy`）與 `python3.13 generate_originals_map.py`，並確認輸出的 `failed` 為 0、沒有 MISSING；新 preset（`--new`）的縮圖也靠這一步產生。
