@@ -11,7 +11,7 @@
 8. port_fashion（時尚大片；刊名 Solenne）
 9. style_example_1_sports_photography（運動攝影示範；Aldenwick City Marathon、Tavorn、Taldora）
 
-**B. 重做（上次驗收不合格）：** pedu_portrait（單人肖像，不要家人）
+**B. 重做／使用者特別要的（A 組之後立刻做，依序）：** pedu_portrait（單人肖像，不要家人）→ style_example_2_85mm_lens（85mm 示範；平凡中年人、無網美風）
 
 **C. 其餘（目前仍顯示舊圖，不算缺圖）：** layout_mag_cover、he_fb_handwash（核對無錯字）、starter_over_shoulder、ai_avatar、ecommerce_lifestyle、layout_magazine_spread、pedu_mechanism、85mm 示範、季節與節慶 13 個、時代與文化 9 個、田園風示範。
 
