@@ -66,7 +66,7 @@ React 18.2 (via esm.sh), in-browser Babel, Tailwind CSS (Play CDN), Lucide icons
 
 ### Disclaimers
 
-- Reference images are AI-generated (Codex/OpenAI and Antigravity/Google Gemini image generation). Copyright and usage follow each service's terms.
+- Reference images are AI-generated. Codex images use the built-in OpenAI ImageGen tool (underlying model/version not disclosed). AGY images use Antigravity's built-in image generation tool; AGY reports the model as `gemini-3.1-flash-image`. Copyright and usage follow each service's terms.
 - Artist, studio, film-stock, camera and platform names in the style options belong to their owners and are used only to describe a look; no affiliation or endorsement is implied.
 
 ### License and author
@@ -115,7 +115,7 @@ React 18.2（esm.sh）、瀏覽器內 Babel、Tailwind CSS（Play CDN）、Lucid
 
 ### 聲明
 
-- 參考圖為 AI 生成（Codex／OpenAI 與 Antigravity／Google Gemini 影像生成），著作權與使用限制依各服務條款。
+- 參考圖為 AI 生成。Codex 圖片由 Codex 內建 OpenAI ImageGen 產生（底層型號與版本未揭露）；AGY 圖片由 Antigravity 內建影像生成工具產生，AGY 回報型號為 `gemini-3.1-flash-image`。著作權與使用限制依各服務條款。
 - 風格選項中的藝術家、影視、底片、相機與平台名稱，其商標屬各自所有者，僅作風格描述，與本工具無隸屬或背書關係。
 
 ### 授權與作者

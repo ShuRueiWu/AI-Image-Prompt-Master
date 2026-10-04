@@ -56,7 +56,9 @@ PERFORMANCE OF THIS SOFTWARE.
 頁面開啟時，瀏覽器會連線到 `fonts.googleapis.com`、`fonts.gstatic.com`（Google Fonts）、`cdn.tailwindcss.com`、`unpkg.com`、`esm.sh` 載入上述元件，這些服務可能看到訪客的 IP 位址與瀏覽器資訊。本工具本身不蒐集、不上傳你輸入的提示詞（草稿只存在你的瀏覽器 localStorage）。
 
 ## 參考圖片 / Reference images
-預設範本旁的參考圖是 **AI 生成**的示意圖，使用 Codex 內建影像生成（OpenAI）與 Antigravity 內建的 Google Gemini 影像模型產生；圖中出現的校名、品牌、刊物、人物與標誌皆為**虛構**，不代表任何真實個人、機構或品牌。AI 生成圖的著作權歸屬與使用限制依各服務條款而定，轉用前請自行確認。圖檔以 640px WebP 縮圖形式公開；原圖僅存於作者本機。
+預設範本旁的參考圖是 **AI 生成**的示意圖。Codex 圖片由 Codex 內建的 OpenAI ImageGen 產生；底層型號與版本未揭露。AGY 圖片由 Antigravity 內建影像生成工具產生；AGY 回報使用型號 `gemini-3.1-flash-image`（此型號資訊為 AGY 回報）。圖中出現的校名、品牌、刊物、人物與標誌皆為**虛構**，不代表任何真實個人、機構或品牌。AI 生成圖的著作權歸屬與使用限制依各服務條款而定，轉用前請自行確認。圖檔以 640px WebP 縮圖形式公開；原圖僅存於作者本機。
+
+Preset reference images are AI-generated illustrations. Codex images are generated with the built-in OpenAI ImageGen tool; its underlying model and version are not disclosed. AGY images are generated with Antigravity's built-in image generation tool; AGY reports the model as `gemini-3.1-flash-image`. Names, brands, publications, people, and logos shown are fictional and do not represent real people, organizations, or brands. Copyright and usage of generated images follow each service's terms; check those terms before reuse. Public files are 640px WebP thumbnails; originals remain on the author's local machine.
 
 ## 商標與風格名稱 / Trademarks and style names
 風格選項與說明中提到的藝術家、影視／動畫、底片與相機、平台等名稱（例如 Pixar、Studio Ghibli、Kodak、Fujifilm、Polaroid 等），其商標或名稱屬於各自所有者，僅作**描述風格的參考用語**，與本工具無隸屬、贊助或背書關係。

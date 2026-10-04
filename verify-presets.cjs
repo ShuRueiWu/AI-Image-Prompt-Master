@@ -7,6 +7,10 @@ const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright');
 const source = path.join(__dirname, 'Prompts Builder V9.6.html');
 const html = fs.readFileSync(source, 'utf8');
+assert.match(html, /agent === 'codex' \? 'OpenAI ImageGen' : 'gemini-3\.1-flash-image'/,
+    'reference image labels should reflect the recorded source/model evidence');
+assert.match(html, /underlying model and version are not disclosed[\s\S]*AGY reports the model as gemini-3\.1-flash-image/,
+    'English credits should state only the disclosed model evidence');
 const presets = vm.runInNewContext(html.slice(html.indexOf('        const configData ='), html.indexOf('        // Helper to find Chinese label')) + '; BUILTIN_PRESETS');
 (async () => {
     const browser = await chromium.launch({ channel: 'chrome', headless: true });
@@ -17,6 +21,17 @@ const presets = vm.runInNewContext(html.slice(html.indexOf('        const config
         await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { value: { writeText: async text => { window.testPrompt = text; } } }));
         await page.goto(pathToFileURL(source).href);
         await page.getByTestId('browse-presets').waitFor({ timeout: 60000 });
+        await page.getByRole('button', { name: 'EN', exact: true }).click();
+        await page.getByTitle('User Guide').click();
+        const credits = page.getByTestId('credits-section');
+        const creditsText = await credits.innerText();
+        assert(!/[\u3400-\u9fff]/.test(creditsText), 'English credits section should contain no Chinese characters');
+        assert(creditsText.includes('OpenAI ImageGen') && creditsText.includes('underlying model and version are not disclosed'),
+            'English credits should describe Codex ImageGen without claiming a model ID');
+        assert(creditsText.includes('gemini-3.1-flash-image') && creditsText.includes('AGY reports'),
+            'English credits should attribute the AGY model string to AGY');
+        await page.getByRole('button', { name: 'Start Creating' }).click();
+        await page.getByRole('button', { name: '中', exact: true }).click();
         let count = 0;
         let checkedTaiwanLabel = false;
         for (const [groupName, group] of Object.entries(presets)) {
