@@ -68,7 +68,7 @@ The root TSX/Vite files are kept from earlier repository history; the single-fil
 
 ### Tech stack and third-party components
 
-React 18.2 (via esm.sh), in-browser Babel, Tailwind CSS (Play CDN), Lucide icons, Inter / Outfit / Noto Sans TC (Google Fonts). They load from public CDNs when the page opens, so those hosts can see the visitor's IP address; your prompts are never uploaded. Licenses and copyright notices: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+React 18.2 (via esm.sh), in-browser Babel Standalone 7.29.9 (exact version pinned), Tailwind CSS (Play CDN), Lucide icons, Inter / Outfit / Noto Sans TC (Google Fonts). They load from public CDNs when the page opens, so those hosts can see the visitor's IP address; your prompts are never uploaded. Licenses and copyright notices: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
 ### Disclaimers
 
@@ -125,7 +125,7 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 ### 技術與第三方元件
 
-React 18.2（esm.sh）、瀏覽器內 Babel、Tailwind CSS（Play CDN）、Lucide 圖示、Inter／Outfit／Noto Sans TC（Google Fonts）。開啟頁面時從公開 CDN 載入，這些主機會看到訪客的 IP；你輸入的提示詞不會上傳。授權與版權聲明見 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
+React 18.2（esm.sh）、瀏覽器內 Babel Standalone 7.29.9（精確釘版）、Tailwind CSS（Play CDN）、Lucide 圖示、Inter／Outfit／Noto Sans TC（Google Fonts）。開啟頁面時從公開 CDN 載入，這些主機會看到訪客的 IP；你輸入的提示詞不會上傳。授權與版權聲明見 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
 
 ### 聲明
 

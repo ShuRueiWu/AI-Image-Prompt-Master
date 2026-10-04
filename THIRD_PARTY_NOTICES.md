@@ -7,7 +7,7 @@ AI Image Prompt Master 是單一 HTML 頁面。下列元件在**瀏覽器開啟�
 
 | 元件 | 版本（頁面載入的） | 授權 | 版權 | 來源 |
 |---|---|---|---|---|
-| Babel Standalone（瀏覽器內 JSX 轉譯） | `@babel/standalone`（unpkg，未釘版本，取最新） | MIT | Copyright (c) 2014-present Sebastian McKenzie and other contributors | https://github.com/babel/babel |
+| Babel Standalone（瀏覽器內 JSX 轉譯） | `@babel/standalone@7.29.9`（unpkg，精確釘版 / exact version pinned） | MIT | Copyright (c) 2014-present Sebastian McKenzie and other contributors | https://github.com/babel/babel |
 | Tailwind CSS（Play CDN） | `cdn.tailwindcss.com`（Tailwind v3 系列） | MIT | Copyright (c) Tailwind Labs, Inc. | https://github.com/tailwindlabs/tailwindcss |
 | React / ReactDOM | 18.2.0（esm.sh） | MIT | Copyright (c) Facebook, Inc. and its affiliates | https://github.com/facebook/react |
 | Lucide（圖示，`lucide-react`） | 0.292.0（esm.sh） | ISC（部分源自 Feather，MIT） | Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022. | https://github.com/lucide-icons/lucide |

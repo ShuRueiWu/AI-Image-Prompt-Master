@@ -28,7 +28,7 @@
         }
     </script>
     <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.29.9/babel.min.js"></script>
     <script>
         window.onerror = function (message, source, lineno, colno, error) {
             var errorDiv = document.createElement('div');
@@ -3462,7 +3462,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                             <span className="text-blue-600 dark:text-blue-400">©</span> {t('授權與來源 (Credits & Licenses)', 'Credits & Licenses')}
                                         </h4>
                                         <ul className="space-y-2 text-xs text-gray-700 dark:text-gray-300 list-disc pl-5">
-                                            <li>{t('第三方元件於開啟頁面時從公開 CDN 載入，未內嵌、未修改：', 'Third-party components are loaded at runtime from public CDNs, not bundled or modified:')} Babel Standalone (MIT), Tailwind CSS (MIT), React / ReactDOM 18.2.0 (MIT), Lucide 0.292.0 (ISC); {t('字型：', 'fonts: ')}Inter, Outfit, Noto Sans TC (SIL OFL 1.1, Google Fonts).</li>
+                                            <li>{t('第三方元件於開啟頁面時從公開 CDN 載入，未內嵌、未修改：', 'Third-party components are loaded at runtime from public CDNs, not bundled or modified:')} Babel Standalone 7.29.9 (MIT), Tailwind CSS (MIT), React / ReactDOM 18.2.0 (MIT), Lucide 0.292.0 (ISC); {t('字型：', 'fonts: ')}Inter, Outfit, Noto Sans TC (SIL OFL 1.1, Google Fonts).</li>
                                             <li>{t('Codex 圖片由 Codex 內建的 OpenAI ImageGen 產生；底層型號與版本未揭露。AGY 圖片由 Antigravity 內建影像生成工具產生；AGY 回報使用型號 gemini-3.1-flash-image。圖中名稱、品牌、人物皆為虛構；AI 圖可能出現與實際物件、器材或情境不符之處，僅供風格參考，請以文字提示詞為準。著作權與使用限制依各服務條款。', 'Codex images are generated with the built-in OpenAI ImageGen tool; its underlying model and version are not disclosed. AGY images are generated with Antigravity\'s built-in image generation tool; AGY reports the model as gemini-3.1-flash-image. All names, brands and people shown are fictional. AI images may contain details that differ from real objects, equipment or settings and are for style reference only; the text prompt takes precedence. Copyright and usage follow each service\'s terms.')}</li>
                                             <li>{t('風格選項中提到的藝術家、影視、底片、相機與平台名稱，其商標屬各自所有者，僅作風格描述，與本工具無隸屬或背書關係。', 'Artist, studio, film-stock, camera and platform names in the style options belong to their owners and are used only to describe a look; no affiliation or endorsement is implied.')}</li>
                                             <li>{t('開啟頁面時瀏覽器會連線 Google Fonts、unpkg、esm.sh、cdn.tailwindcss.com；你輸入的提示詞不會被上傳，草稿只存在瀏覽器本機。', 'Opening the page connects your browser to Google Fonts, unpkg, esm.sh and cdn.tailwindcss.com; your prompts are never uploaded — drafts stay in your browser.')}</li>
