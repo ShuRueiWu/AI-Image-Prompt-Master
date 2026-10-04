@@ -69,6 +69,10 @@ React 18.2 (via esm.sh), in-browser Babel, Tailwind CSS (Play CDN), Lucide icons
 - Reference images are AI-generated. Codex images use the built-in OpenAI ImageGen tool (underlying model/version not disclosed). AGY images use Antigravity's built-in image generation tool; AGY reports the model as `gemini-3.1-flash-image`. Copyright and usage follow each service's terms.
 - Artist, studio, film-stock, camera and platform names in the style options belong to their owners and are used only to describe a look; no affiliation or endorsement is implied.
 
+### Credits for AI assistance
+
+This project was developed collaboratively by the author and AI tools. Claude Code (Anthropic) and Codex (OpenAI) assisted with development and documentation. Preset reference images were generated with OpenAI ImageGen (built into Codex) and `gemini-3.1-flash-image` (model reported by AGY).
+
 ### License and author
 
 MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
@@ -117,6 +121,10 @@ React 18.2（esm.sh）、瀏覽器內 Babel、Tailwind CSS（Play CDN）、Lucid
 
 - 參考圖為 AI 生成。Codex 圖片由 Codex 內建 OpenAI ImageGen 產生（底層型號與版本未揭露）；AGY 圖片由 Antigravity 內建影像生成工具產生，AGY 回報型號為 `gemini-3.1-flash-image`。著作權與使用限制依各服務條款。
 - 風格選項中的藝術家、影視、底片、相機與平台名稱，其商標屬各自所有者，僅作風格描述，與本工具無隸屬或背書關係。
+
+### 製作協助
+
+本專案由作者與 AI 工具協作完成。Claude Code（Anthropic）與 Codex（OpenAI）參與開發與文件整理。範本參考圖由 OpenAI ImageGen（Codex 內建）及 `gemini-3.1-flash-image`（AGY 回報型號）產生。
 
 ### 授權與作者
 
