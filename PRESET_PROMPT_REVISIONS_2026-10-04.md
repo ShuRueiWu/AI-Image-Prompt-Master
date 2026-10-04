@@ -43,3 +43,8 @@
 - **修正**：示範 id 改為含風格值的 slug（例如 `style_example_0_linocut`）；以 `rekey_demos.py` 依「風格值相同」把 119 筆示範記錄改成新 id（兩家 manifest、presets_prompts、重生清單、隱藏清單；備份在 `preset-previews/_rekey_backup/`）。4 個示範的風格現在已被正式 preset 使用而不再有示範（Aerial Photography、Wide Angle Lens、Movie Poster、Claymation），記錄放在 `preset-previews/orphaned_demo_records.json`，圖檔未刪。
 - **驗證**：308 個 preset 逐一核對：示範的風格與對照表 0 不一致、0 無記錄；298 個有縮圖、10 個依規定隱藏、0 個遺漏；全部測試通過（247／247 風格、308 個 preset 套用）。
 - 之後新增或移除風格不會再讓其他示範錯位。
+
+## 霹靂布袋戲（品牌名，使用者 2026-10-04）
+- 風格選項「霹靂布袋戲 (Pili Puppetry)」改為通用的「台灣布袋戲 (Taiwan Glove Puppetry)」（值 `Taiwanese Glove Puppetry Style`）。
+- preset「霹靂布袋戲 (Pili Hero)」依使用者指示**整個移除**；其舊圖記錄停放在 `preset-previews/orphaned_demo_records.json`，圖檔未刪。
+- 因風格選項不再被任何 preset 使用，App 自動產生一個示範 preset（`style_example_9_taiwanese_glove_puppetry_style`，台灣與日本分類），情境為「原創武俠手套偶（非任何既有角色或品牌）」。它還沒有圖，需 Codex 以 `apply_regen.py --new` 建立第一張（prompt 檔：`regen-prompts/NEW_style_example_9_taiwanese_glove_puppetry_style.txt`）。
