@@ -1,49 +1,14 @@
 # 🎨 AI Image Prompt Master
 
-## Current release: V9.6
-
-`Prompts Builder V9.6.html` is the canonical source. Open it directly in a modern browser; internet access is required for CDN dependencies. V9.4 and V9.5 remain as previous local baselines.
-
-V9.6 automatically saves the current work in this browser and restores it on reload. Export/import a complete work JSON to transfer content, layout and language instructions between browsers. Imports ask before replacing current work; invalid files leave the editor unchanged. Conflict reminders are advisory and dismissible. Drafts are local to the browser/site, not cloud-synced; exporting a work file is the portable backup.
-
-All 240 selectable styles appear in at least one of 313 built-in presets. Focused style examples are grouped by category. See `STYLE_COVERAGE_V9.6.md` for the complete mapping; coverage does not imply a generated-image quality evaluation.
-
-The merged preset display category is **台灣風格 (Taiwan)**. This is a display label only; underlying source-category identifiers remain unchanged.
-
-`index.html` is an exact deployment copy, not a second editing source:
-
-```sh
-npm ci
-npm run sync:site   # explicitly copy V9.6 to the Pages entry
-npm test           # equality check and isolated Chrome interaction tests
-npm run test:presets # apply all built-in presets through the UI
-node verify-style-coverage.cjs --report # regenerate the coverage table
-```
-
-Tests require Google Chrome installed. They mock clipboard access and never call an image model. See `RELEASE_V9.6.md` and `FIXES_2026-10-02.md` for verification scope and changes.
-
-GitHub Pages currently publishes from `main` at `/`. Pushing a changed `index.html` to `main` can publish the site. Local commits alone do not publish anything.
-
-### Preset image previews (local-only)
-
-Original PNGs stay under `preset-originals/<agent>/` and are never overwritten or added to Git. To create or refresh 640px WebP derivatives and rebuild the image map from each preset's manifest entry, run `/opt/homebrew/bin/python3.13 generate_preset_previews.py --agent codex` or `--agent agy`. The operation is idempotent and does not call an image model or paid API.
-
-The root TSX/Vite files are retained from the existing repository history; this single-file release does not build or use them. The older overview below describes earlier versions; V9.5 uses editable image-text language instructions rather than the old Avoid Simplified Chinese switch.
-
----
-
 <div align="center">
 
-**A professional, structured AI image prompt builder based on Google's Golden Formula**
+**A structured, bilingual AI image prompt builder based on Google's Golden Prompt Formula**
 
-**基於 Google 黃金公式的專業結構化 AI 圖像提示詞建構工具**
+**基於 Google 黃金公式的結構化雙語 AI 圖像提示詞建構工具**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB?logo=react)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[**▶ Open the live site / 線上使用**](https://shurueiwu.github.io/AI-Image-Prompt-Master/)
 
-[English](#english) | [繁體中文](#繁體中文)
+[English](#english) | [繁體中文](#繁體中文) | [Credits & licenses](THIRD_PARTY_NOTICES.md)
 
 </div>
 
@@ -51,261 +16,116 @@ The root TSX/Vite files are retained from the existing repository history; this 
 
 ## English
 
-### 📖 Overview
+### Overview
 
-**AI Image Prompt Master** is a comprehensive, web-based tool designed to help creators craft high-quality prompts for AI image generation platforms like Midjourney, Stable Diffusion, and Ideogram. Built following **Google's recommended Golden Prompt Formula**, it transforms complex prompt engineering into an intuitive, structured workflow.
+A single-file web app (React in the browser, no build step) that turns prompt writing into a structured workflow: pick a preset or start blank, describe the subject and context, choose styles and camera settings, lay out text sections, then copy the final prompt into Midjourney, Stable Diffusion, Ideogram or any other image generator. Traditional Chinese and English are both first-class.
 
-### ✨ Key Features
+### Current release: V9.6
 
-#### 🎯 **200+ Professional Art Styles**
-- **12 major categories** covering everything from traditional art to cutting-edge 3D rendering
-- Digital & 3D (Photorealistic, Unreal Engine 5, Ray Tracing, etc.)
-- Traditional Art (Watercolor, Oil Painting, Sumi-e, etc.)
-- Illustration & Anime (Pixar Style, Studio Ghibli, Manga styles)
-- Camera & Lighting (35mm, f/1.2-f/16 apertures, Golden Hour, Volumetric lighting)
-- Materials & Textures (Glass, Metal, Holographic, etc.)
-- Artist Styles (Van Gogh, Makoto Shinkai, Banksy, etc.)
+- **247 selectable styles**, each covered by at least one of **308 built-in presets** in 24 categories (coverage table: [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)). Coverage does not imply a quality evaluation of generated images.
+- **Reference images for presets**: most presets show a small AI-generated reference thumbnail; click it to enlarge. Images are illustrations only and may contain errors; all names, brands and people shown are fictional.
+- **Autosaved work**: the current work is saved in your browser and restored on reload. Export/import a complete work JSON to move between browsers; imports ask before replacing, and invalid files leave the editor unchanged. Drafts are local, not cloud-synced.
+- **Advisory conflict reminders** (dismissible, never blocking), e.g. text-free profile with text content, or photorealistic combined with flat/vector/pixel styles.
+- **Editable image-text language instructions** instead of the old "avoid Simplified Chinese" switch.
+- Light/dark theme, search and collapsible categories, responsive layout, built-in help with credits.
 
-#### 📦 **80+ Ready-to-Use Presets**
-Curated templates for real-world applications:
-- **Medical & Health Education**: Hygiene posters, health infographics, medical diagrams
-- **Business & Marketing**: Event posters, social media graphics, presentations
-- **Education & Academic**: Textbook diagrams, flashcards, scientific posters
-- **Manga & Anime**: Shonen/Shojo styles, Webtoon layouts, Game assets
-- **Taiwan Local Culture**: Night markets, temple art, Pili puppetry, vintage tiles
-- **Food & Dining**: Restaurant menus, recipe cards, food photography
-- **Special Events**: Wedding invitations, certificates, tickets
+Recent changes: see [`RELEASE_V9.6.md`](RELEASE_V9.6.md), [`FIXES_2026-10-02.md`](FIXES_2026-10-02.md) and [`PRESET_PROMPT_REVISIONS_2026-10-04.md`](PRESET_PROMPT_REVISIONS_2026-10-04.md).
 
+### Quick start
 
-#### 🛠️ **Advanced Features**
-- **Bilingual Interface**: Seamless switching between Traditional Chinese and English
-- **Structured Layout Sections**: Multi-section design with customizable text blocks
-- **Font Management**: 15+ font families optimized for Traditional Chinese
-- **Quality Boost**: Auto-inject quality keywords (8K, masterpiece, sharp focus, etc.)
-- **Negative Prompts**: Built-in avoidance of common issues (blur, watermark, simplified Chinese characters)
-- **Real-time Preview**: Editable final prompt output
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Search & Filter**: Quick preset search with collapsible categories
+1. Open the [live site](https://shurueiwu.github.io/AI-Image-Prompt-Master/), or open `Prompts Builder V9.6.html` directly in a modern browser (internet access is needed for the CDN dependencies).
+2. **Browse Presets** and pick a template, or start from scratch.
+3. Edit **Subject** and **Context**, choose styles, camera and composition, add layout sections if needed.
+4. Set aspect ratio and resolution, then **Copy Prompt** into your image generator.
 
-### 🚀 Quick Start
+### Preset categories
 
-#### Direct Download
-1. Download `Prompts Builder V9.4.html`
-2. Open it in any modern web browser
-3. Start creating prompts immediately (no installation required!)
+Starter inspiration · Top 10 layouts · Classic layouts · Medical education and diagrams · Clinic assets · Pediatric education · Taiwan style · Illustration & anime · Mockups · Business & social · UI & layout · Education · Photography & portraits, plus focused style examples grouped by art style, photography genre, camera & gear, lighting, color, material, design layout, digital & 3D, seasons & festivals, era & culture and AI trending styles.
 
-### 💡 How to Use
+### For developers
 
-1. **Browse Presets**: Click the "⚡ Browse Presets" button to explore 80+ templates
-2. **Adjust Content**: Modify "Subject" and "Context" fields to describe your vision
-3. **Select Styles**: Choose art styles, lighting, camera angles from 200+ options
-4. **Add Layout Sections** (optional): Define multi-section layouts with text overlays
-5. **Set Parameters**: Configure aspect ratio, resolution, seed, and stylize values
-6. **Copy & Generate**: Click "Copy Prompt" and paste into your AI image generator
+`Prompts Builder V9.6.html` is the canonical source. `index.html` is an exact deployment copy, never a second editing source.
 
-### 🎓 Pro Tips
+```sh
+npm ci
+npm run sync:site        # copy V9.6 to the Pages entry
+npm test                 # equality check + isolated Chrome interaction tests
+npm run test:presets     # apply every built-in preset through the UI
+node verify-style-coverage.cjs --report   # regenerate the coverage table
+```
 
-- **Weight Adjustment**: Add `::2` or `::3` after style tags to increase their influence (e.g., `Cyberpunk::2`)
-- **Text Generation**: Use `Noto Sans TC` font and enable "Quality Boost" for better Traditional Chinese rendering
-- **Negative Prompts**: Enable "Avoid Simplified Chinese" to prevent unwanted character styles
-- **Multi-Section Layouts**: Create complex designs like magazine covers, game UIs, infographics
+Tests require Google Chrome, mock clipboard access and never call an image model. GitHub Pages publishes `main` at `/`; pushing a changed `index.html` publishes the site, local commits do not.
 
+**Preset image pipeline**: original PNGs stay local under `preset-originals/<agent>/` and are not in Git. Public 640px WebP thumbnails live under `preset-previews/<agent>/` and are listed in `preset-previews/preset-image-map.js`. The local tool `generate_preset_previews.py` is idempotent and never calls an image model or paid API; the image list to regenerate is produced by `node make_regen_list.cjs`. Details: [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md), fictional-name rules: [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md).
 
-### 🛠️ Tech Stack
+The root TSX/Vite files are kept from earlier repository history; the single-file release does not build or use them.
 
-- **Frontend Framework**: React 19
-- **Styling**: Tailwind CSS 3.4
-- **Icons**: Lucide React
-- **Build**: Single-file HTML (no build process required)
-- **CDN Dependencies**: 
-  - React & ReactDOM via aistudiocdn.com
-  - Tailwind CSS via cdn.tailwindcss.com
+### Tech stack and third-party components
 
+React 18.2 (via esm.sh), in-browser Babel, Tailwind CSS (Play CDN), Lucide icons, Inter / Outfit / Noto Sans TC (Google Fonts). They load from public CDNs when the page opens, so those hosts can see the visitor's IP address; your prompts are never uploaded. Licenses and copyright notices: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
-### 🤝 Contributing
+### Disclaimers
 
-Contributions are welcome! 
+- Reference images are AI-generated (Codex/OpenAI and Antigravity/Google Gemini image generation). Copyright and usage follow each service's terms.
+- Artist, studio, film-stock, camera and platform names in the style options belong to their owners and are used only to describe a look; no affiliation or endorsement is implied.
 
+### License and author
 
-### 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👨‍💻 Author
-
-**Shu-Ruei Wu**
-- Website: [https://allergy.tw](https://allergy.tw)
-
-### 🙏 Acknowledgments
-
-- Prompt formula inspired by Google's AI image generation best practices
-- Icon library: [Lucide](https://lucide.dev/)
-- UI framework: [Tailwind CSS](https://tailwindcss.com/)
-
-### 📊 Stats
-
-- **200+** Art styles across 12 categories
-- **80+** Ready-to-use preset templates
-- **15+** Font families
-- **20+** Texture options
-- **10** Aspect ratios
-- **Bilingual** (Traditional Chinese / English)
+MIT License. Author: **Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
 
 ---
 
 ## 繁體中文
 
-### 📖 專案簡介
+### 專案簡介
 
-**AI Image Prompt Master** 是一個全面的網頁工具，專為協助創作者為 Midjourney、Stable Diffusion 和 Ideogram 等 AI 圖像生成平台製作高品質提示詞而設計。本工具遵循 **Google 建議的黃金提示詞公式**，將複雜的提示詞工程轉化為直觀且結構化的工作流程。
+單一 HTML 檔的網頁工具（瀏覽器內執行 React，無需建置），把寫提示詞變成結構化流程：選範本或從空白開始、描述主體與情境、選風格與鏡頭、安排文字版面，最後複製提示詞到 Midjourney、Stable Diffusion、Ideogram 等圖像生成器。繁體中文與英文完整並行。
 
+### 目前版本：V9.6
 
-### 🚀 v9.4 重大更新 (The Layout & Spatial Engine Update)
-- **🎥 攝影機視角與全域構圖模組**：將攝影機視角（如：俯視、仰角、過肩鏡頭）與全域構圖（如：三分法、對稱）從風格區獨立出來，與「版面分區」完美結合，大幅提升 AI 對空間指令的精準度。
-- **🔰 新手啟發範本 (Starter Inspiration)**：新增 10 種展示極端風格的範本（如：微縮等距、雙重曝光剪影、極致紙雕、空拍上帝視角、魚眼極限），幫助您挖掘冷門但強大的風格組合。
-- **🔥 實戰排版庫擴充 (50+ Quick Layouts)**：內建超過 50 種專業排版，從基礎雙拼、醫療雜誌、社群梗圖到 UI/UX 登入頁，一鍵套用自動切版。
-- **🎬 範本資訊透明化 (Rich Preset UI)**：直接在範本卡片上顯示實際套用的「主體」與「場景動作」，不再只有抽象的設計理念，讓您在套用前完全掌握畫面構圖！
-- **✨ 完美雙語分類 (Unified Categories)**：重構並精簡了全域範本與風格的分類，無論是醫療衛教、攝影寫真還是設計排版，尋找靈感更加直覺。
+- **247 種風格**，每一種至少出現在 **308 個內建範本**之一（共 24 個分類；對照表見 [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)）。覆蓋不代表已評估生成圖品質。
+- **範本參考圖**：多數範本附小張 AI 生成參考縮圖，點擊可放大。圖片僅為示意，可能有誤；圖中名稱、品牌與人物皆為虛構。
+- **自動儲存**：目前作品會存在瀏覽器並在重新載入時還原；可匯出／匯入完整作品 JSON 在不同瀏覽器間搬移，匯入前會詢問，無效檔案不會改動編輯器。草稿只存在本機，不同步雲端。
+- **衝突提醒**（可關閉、不阻擋複製），例如「無文字」設定卻填了文字內容，或寫實與扁平／向量／像素風格並用。
+- **可編輯的圖中文字語言指示**，取代舊版「避免簡體字」開關。
+- 淺色／深色主題、搜尋與可摺疊分類、響應式版面，說明視窗內含授權與來源。
 
-### ✨ 主要功能
+近期更動見 [`RELEASE_V9.6.md`](RELEASE_V9.6.md)、[`FIXES_2026-10-02.md`](FIXES_2026-10-02.md)、[`PRESET_PROMPT_REVISIONS_2026-10-04.md`](PRESET_PROMPT_REVISIONS_2026-10-04.md)。
 
-#### 🎯 **200+ 專業藝術風格**
-涵蓋 12 大類別，從傳統藝術到尖端 3D 渲染：
-- 數位與 3D（照片寫實、虛幻引擎5、光線追蹤等）
-- 傳統繪畫（水彩、油畫、水墨畫等）
-- 插畫與動漫（皮克斯、吉卜力、漫畫風格）
-- 鏡頭與光影（35mm、f/1.2-f/16 光圈、黃金時刻、體積光）
-- 材質質感（玻璃、金屬、全息等）
-- 藝術家風格（梵谷、新海誠、班克斯等）
+### 快速開始
 
-#### 📦 **80+ 即用範本**
-為真實應用場景精心策劃的模板：
-- **醫療與衛教**：衛生海報、健康資訊圖、醫學圖解
-- **商業與行銷**：活動海報、社群媒體圖、簡報
-- **教育與學術**：教科書圖解、學習卡、科學海報
-- **漫畫與二次元**：少年/少女漫畫、韓漫、遊戲素材
-- **台灣在地特色**：夜市、廟宇藝術、霹靂布袋戲、復古花磚
-- **餐飲與美食**：餐廳菜單、食譜卡、美食攝影
-- **活動與慶典**：婚禮邀請卡、證書、票券
+1. 開啟[線上版](https://shurueiwu.github.io/AI-Image-Prompt-Master/)，或用現代瀏覽器直接開啟 `Prompts Builder V9.6.html`（CDN 依賴需要網路）。
+2. 點「瀏覽預設範本」選擇範本，或從空白開始。
+3. 修改「主體」與「情境」，選擇風格、鏡頭與構圖，需要時加入版面分區。
+4. 設定長寬比與解析度，按「複製提示詞」貼到你的圖像生成器。
 
-#### 🇹🇼 **台灣在地化**
-獨特的台灣專屬元素：
-- 傳統圖案（客家花布、馬約利卡花磚）
-- 文化地標（九份老街、光之穹頂、廟宇剪黏）
-- 原住民藝術（原住民圖騰）
-- 街頭文化（機車瀑布、台灣夜市）
-- 本地風格（霹靂布袋戲、City Pop、昭和復古）
+### 範本分類
 
-#### 🛠️ **進階功能**
-- **雙語介面**：繁體中文與英文無縫切換
-- **結構化版面分區**：多分區設計，可自訂文字區塊
-- **字體管理**：15+ 種優化繁體中文的字體
-- **畫質增強**：自動注入品質關鍵字（8K、傑作、銳利對焦等）
-- **負面提示詞**：內建避免常見問題（模糊、浮水印、簡體字）
-- **即時預覽**：可編輯的最終提示詞輸出
-- **響應式設計**：針對桌機、平板、手機優化
-- **搜尋與篩選**：快速查找預設，可摺疊分類
+新手啟發、十大佈局、經典切版、醫學教材與圖解、臨床與診所素材、兒科衛教、台灣風格、插畫與動漫、樣機、商業與社群、UI 與排版、教育與解說、攝影電影與寫真；另有依藝術風格、攝影題材、相機與鏡頭、光影、色彩、材質、設計排版、數位與 3D、季節與節慶、時代與文化、AI 熱門風格分組的風格示範。
 
-### 🚀 快速開始
+### 開發者資訊
 
-#### 直接下載
-1. 下載 `Prompts Builder V9.4.html`
-2. 用任何現代瀏覽器開啟
-3. 立即開始創作提示詞（無需安裝！）
+`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是它的完整部署副本，不另行編輯。指令見上方英文區（`npm ci`、`npm run sync:site`、`npm test`、`npm run test:presets`）。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
 
-### 💡 使用方式
+**範本圖片流程**：原始 PNG 只留本機（`preset-originals/<agent>/`，不進 Git）；公開的是 640px WebP 縮圖（`preset-previews/<agent>/`），對照表為 `preset-previews/preset-image-map.js`。縮圖由本機腳本 `generate_preset_previews.py` 產生（可重複執行、不呼叫模型或付費 API）；要重生的清單由 `node make_regen_list.cjs` 產生。詳見 [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md) 與 [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md)。
 
-1. **瀏覽預設範本**：點擊「⚡ 瀏覽預設範本」按鈕探索 80+ 模板
-2. **調整內容**：修改「主體描述」與「情境細節」欄位
-3. **選擇風格**：從 200+ 選項中選擇藝術風格、光影、鏡頭角度
-4. **新增版面分區**（選用）：定義多分區佈局與文字覆蓋層
-5. **設定參數**：配置長寬比、解析度、種子碼、風格化數值
-6. **複製並生成**：點擊「複製提示詞」並貼到您的 AI 圖像生成器
+### 技術與第三方元件
 
-### 🎓 專業技巧
+React 18.2（esm.sh）、瀏覽器內 Babel、Tailwind CSS（Play CDN）、Lucide 圖示、Inter／Outfit／Noto Sans TC（Google Fonts）。開啟頁面時從公開 CDN 載入，這些主機會看到訪客的 IP；你輸入的提示詞不會上傳。授權與版權聲明見 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
 
-- **文字生成**：使用 `Noto Sans TC` 字體並啟用「畫質增強」以改善繁體中文渲染
-- **負面提示詞**：啟用「避免簡體字」防止不想要的字體風格
-- **多分區佈局**：創建複雜設計如雜誌封面、遊戲介面、資訊圖表
+### 聲明
 
-### 📸 範例工作流程
+- 參考圖為 AI 生成（Codex／OpenAI 與 Antigravity／Google Gemini 影像生成），著作權與使用限制依各服務條款。
+- 風格選項中的藝術家、影視、底片、相機與平台名稱，其商標屬各自所有者，僅作風格描述，與本工具無隸屬或背書關係。
 
-#### 商業海報
-```
-主體：新產品智慧型手機
-風格：產品攝影、影棚光、乾淨介面
-版面：3 個分區（主視覺、功能列表、購買按鈕）
-長寬比：2:3
-```
+### 授權與作者
 
-#### 動漫創作
-```
-主體：櫻花公園的高中女孩
-風格：吉卜力工作室、動畫、自然光、柔和色彩
-材質：水彩紙質感
-長寬比：16:9
-```
-
-#### 醫療衛教海報
-```
-主體：洗手步驟插圖
-風格：扁平設計、向量藝術、教育性、乾淨
-版面：分步驟區塊含說明文字
-解析度：4K
-```
-
-### 🛠️ 技術架構
-
-- **前端框架**：React 19
-- **樣式**：Tailwind CSS 3.4
-- **圖示**：Lucide React
-- **建置**：單一 HTML 檔案（無需建置流程）
-- **CDN 依賴項**：
-  - React 與 ReactDOM 經由 aistudiocdn.com
-  - Tailwind CSS 經由 cdn.tailwindcss.com
-
-### 🤝 貢獻
-
-歡迎貢獻！以下是一些您可以幫忙的方式：
-
-- **新增更多預設**：提交特定用途的新模板
-- **擴展風格類別**：建議新的藝術風格或技術
-- **改進翻譯**：增強英文/中文描述
-- **回報錯誤**：針對遇到的任何問題開啟 issue
-- **分享範例**：發布使用本工具生成的圖像
-
-### 📝 授權
-
-本專案採用 MIT 授權 - 詳見 [LICENSE](LICENSE) 檔案
-
-### 👨‍💻 作者
-
-**Shu-Ruei Wu**
-- 網站：[https://allergy.tw](https://allergy.tw)
-
-### 🙏 致謝
-
-- 提示詞公式靈感來自 Google 的 AI 圖像生成最佳實踐
-- 圖示函式庫：[Lucide](https://lucide.dev/)
-- UI 框架：[Tailwind CSS](https://tailwindcss.com/)
-
-### 📊 統計數據
-
-- **200+** 跨 12 類別的藝術風格
-- **80+** 即用預設範本
-- **15+** 字體系列
-- **20+** 材質選項
-- **10** 種長寬比
-- **雙語** （繁體中文 / 英文）
+MIT 授權。作者：**Shu-Ruei Wu** — [allergy.tw](https://allergy.tw)
 
 ---
 
 <div align="center">
 
-**⭐ If you find this tool helpful, please give it a star! ⭐**
-
-**如果您覺得這個工具有幫助，請給它一顆星！**
-
-Made with ❤️ by Shu-Ruei Wu
+**⭐ If you find this tool helpful, please give it a star! ⭐　如果覺得有幫助，請給它一顆星！**
 
 </div>
