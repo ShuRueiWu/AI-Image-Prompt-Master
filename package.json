@@ -2,6 +2,9 @@
   "name": "ai-image-prompt-master",
   "private": true,
   "version": "9.6.0",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "sync:site": "node sync-site.cjs --apply",
     "check:site": "node sync-site.cjs",

@@ -46,6 +46,8 @@ Starter inspiration · Top 10 layouts · Classic layouts · Medical education an
 
 `Prompts Builder V9.6.html` is the canonical source. `index.html` is an exact deployment copy, never a second editing source.
 
+Development requires Node.js >=22.18.0 and an installed Google Chrome. Use `npm ci` for a clean installation from the committed lockfile; it replaces `node_modules` and rejects package/lock mismatches. Tests launch local Google Chrome (`channel: 'chrome'`), not a downloaded Playwright Chromium.
+
 ```sh
 npm ci
 npm run sync:site        # copy V9.6 to the Pages entry
@@ -112,6 +114,8 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 新手啟發、十大佈局、經典切版、醫學教材與圖解、臨床與診所素材、兒科衛教、台灣風格、插畫與動漫、樣機、商業與社群、UI 與排版、教育與解說、攝影電影與寫真；另有依藝術風格、攝影題材、相機與鏡頭、光影、色彩、材質、設計排版、數位與 3D、季節與節慶、時代與文化、AI 熱門風格分組的風格示範。
 
 ### 開發者資訊
+
+開發需要 Node.js >=22.18.0 與已安裝的 Google Chrome。乾淨安裝使用 `npm ci`，依已提交的 lockfile 安裝、取代 `node_modules`，並拒絕 package／lock 不一致。測試使用本機 Google Chrome（`channel: 'chrome'`），不是 Playwright 下載的 Chromium。
 
 依賴或共用 UI 修改請跑 `npm run test:all`，依序執行一般測試、全部範本與 `test:edges` 邊界測試；`npm test` 保留為較短的回歸測試。
 
