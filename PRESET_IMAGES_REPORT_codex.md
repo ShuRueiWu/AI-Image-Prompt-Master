@@ -116,3 +116,9 @@ Task：`prompt-master-preset-images-20261002`
 - 使用 Codex 內建 ImageGen 生圖 1 次（無 API key）；新圖 1672×941 PNG。目視為俯視 knolling，聽診器是 Y 形雙耳管連單一圓形聽診頭，唯一文字為 `Doctor EDC`；`apply_regen.py` OCR 真實名稱命中 0。Dry-run 與 `--apply` 均通過；新原圖 `preset-originals/codex/g00-starter-inspiration__starter_knolling.png`，舊原圖保留至 `preset-originals/_replaced/codex/20261004-192922-g00-starter-inspiration__starter_knolling.png`。縮圖生成 `failed=0`。由於此 preset 的 AGY 圖尚未用新 prompt 重生，依既有規則仍隱藏，未解除 `regen-hold`。
 - 分類顯示名稱只改為 `台灣風格 (Taiwan)`；底層來源分類與 preset key 不變。`presets_prompts.json` 及 Codex manifest 的 9 個合併分類 key 已重鍵，原始 `.key`／圖片路徑與 prompt hash 保留；AGY manifest 無這 9 筆，未修改。重跑 `make_regen_list.cjs` 後共 45 筆，僅布袋戲示範一筆落在新分類；map 重建後新分類有 9 個 Codex 預覽、0 個 AGY 預覽，所有 Codex WebP 存在，舊分類 map key 為 0。`generate_originals_map.py` 輸出 308 presets／357 originals。
 - 驗證：`npm test` PASS（含 247/247 styles）；`npm run test:presets` PASS（308/308，含新分類名稱精確斷言）；`generate_preset_previews.py --agent codex` `missing_originals=0, failed=0`。Chrome 桌機與手機 smoke test 均實際載入新分類的 Codex 640×360 WebP；AGY 對應路徑載入失敗後隱藏，Codex 圖仍正常顯示。未 push。
+
+### `starter_knolling` 聽診器圖再次重生（Codex，2026-10-05）
+
+- 因使用者認為原圖聽診器結構不理想，再生 1 次。新圖強調單一完整器材：兩個對稱耳塞與金屬耳管、連續 Y 形分岔、單一 U 形軟管、單一圓形聽診頭；旁置空白筆記本、無品牌腕錶及鋼筆，僅保留 `Doctor EDC` 標題。目視結構清楚；`apply_regen.py` OCR 真實名稱命中 0，無可見浮水印。新圖 1672×941 PNG，prompt 未變，SHA-256 仍為 `b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071`。
+- 新原圖：`preset-originals/codex/g00-starter-inspiration__starter_knolling.png`；舊原圖保留：`preset-originals/_replaced/codex/20261005-001553-g00-starter-inspiration__starter_knolling.png`。manifest 更新時間與尺寸／bytes，原始尺寸保留。640px WebP 已重建；縮圖腳本 `created=0, skipped=308, missing_originals=0, failed=0`；map 308 presets／357 originals。
+- 驗證：apply dry-run 與 apply 通過；`npm run test:presets` 308/308 通過。Chrome 以本機頁面檢查範本卡，Codex WebP 載入成功（自然寬 640px），AGY 圖亦載入；目前頁面可並排顯示兩來源。未改 HTML、AGY 原圖／manifest；未 commit／push。
