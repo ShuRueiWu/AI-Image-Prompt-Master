@@ -1,0 +1,13 @@
+**Subject:** Everyday carry of a modern doctor or surgeon
+**Title:** "Doctor EDC"
+**Body:** A neatly coiled stethoscope with Y-shaped twin ear tubes and a single round chestpiece, alongside a notebook, wristwatch, and fountain pen, arranged in a precise right-angle grid. Use generic unbranded objects only; no personal names, clinic or hospital names, brand names, or logos. The only readable text may be the generic title "Doctor EDC".
+**Art Styles & Tech:** Knolling, Product Photography, Minimalist
+
+--- LAYOUT SECTIONS ---
+[Section 1]
+* Visual: Medical gear and everyday items perfectly aligned | Param: grid layout
+
+--- PARAMETERS ---
+**Text Language:** Use Traditional Chinese for text rendered in the image.
+**Quality:** commercial product photography, strict knolling
+aspect ratio 16:9 4k resolution

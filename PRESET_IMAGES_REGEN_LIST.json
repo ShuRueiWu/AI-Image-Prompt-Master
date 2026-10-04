@@ -14,6 +14,19 @@
  },
  {
   "group": "🔰 新手啟發範本 (Starter Inspiration)",
+  "key": "starter_knolling",
+  "name": "裝備平鋪解構 (Knolling Layout)",
+  "index": 2,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071",
+  "new_prompt_sha256": "b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071",
+  "new_prompt": "**Subject:** Everyday carry of a modern doctor or surgeon\n**Title:** \"Doctor EDC\"\n**Body:** A neatly coiled stethoscope with Y-shaped twin ear tubes and a single round chestpiece, alongside a notebook, wristwatch, and fountain pen, arranged in a precise right-angle grid. Use generic unbranded objects only; no personal names, clinic or hospital names, brand names, or logos. The only readable text may be the generic title \"Doctor EDC\".\n**Art Styles & Tech:** Knolling, Product Photography, Minimalist\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Medical gear and everyday items perfectly aligned | Param: grid layout\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** commercial product photography, strict knolling\naspect ratio 16:9 4k resolution"
+ },
+ {
+  "group": "🔰 新手啟發範本 (Starter Inspiration)",
   "key": "starter_over_shoulder",
   "name": "過肩鏡頭對話 (Over-the-shoulder)",
   "index": 3,
@@ -91,13 +104,15 @@
   "new_prompt": "**Subject:** Cute cartoon boy washing hands with soap bubbles\n**Title:** \"Wash Hands\"\n**Art Styles & Tech:** Flat Design, Vector Art, Minimalist, Clean UI\n\n--- LAYOUT SECTIONS ---\n[Section 1]\n* Visual: Step-by-step hand washing illustration | Param: large clear legible Traditional Chinese labels, render exactly these characters and no other text | Text: '步驟1: 沖濕雙手' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟2: 塗抹肥皂' written in prominent semi-bold font (Font: Noto Sans TC) | Text: '步驟3: 搓揉20秒' written in prominent semi-bold font (Font: Noto Sans TC)\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
-  "group": "🇹🇼 台灣與日本 (Taiwan & Japan)",
+  "group": "台灣風格 (Taiwan)",
   "key": "style_example_9_taiwanese_glove_puppetry_style",
   "name": "台灣布袋戲 (Taiwan Glove Puppetry)・示範",
+  "index": 313,
   "had_images": {
    "codex": true,
    "agy": false
   },
+  "old_prompt_sha256": "03717256b326dfba90b5f085b37d22ddf048f7447a7c3af0a1a0c4ba3854080c",
   "new_prompt_sha256": "03717256b326dfba90b5f085b37d22ddf048f7447a7c3af0a1a0c4ba3854080c",
   "new_prompt": "**Subject:** An original wuxia hero glove puppet with an ornate carved head, layered embroidered costume and drifting stage smoke on a small traditional puppet stage (not any existing character or brand); no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Taiwanese Glove Puppetry Style\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
@@ -240,7 +255,7 @@
    "codex": true,
    "agy": false
   },
-  "old_prompt_sha256": "8736ba13b4be8d9466bbffa5d1f5cd4067619966afb616e0dc950373eaf390cc",
+  "old_prompt_sha256": "f7864b77b45014a4a0d0fca2734fedcb3c98f86166dd370a8073d5710aa0bb76",
   "new_prompt_sha256": "f7864b77b45014a4a0d0fca2734fedcb3c98f86166dd370a8073d5710aa0bb76",
   "new_prompt": "**Subject:** Fashion editorial portrait of an adult in a tailored coat on a quiet urban street, natural confident pose\n**Title:** \"Solenne\"\n**Art Styles & Tech:** Fashion Photography, Dramatic Lighting, High Fashion, Stylish\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 3:4 4k resolution"
  },
@@ -253,7 +268,7 @@
    "codex": true,
    "agy": true
   },
-  "old_prompt_sha256": "a1400f7f6d74095815a5cb43bcb7731bbf8e7372706456e2204485d2ad47a86f",
+  "old_prompt_sha256": "3334f1265580c4a77ef57481dfef911eaf0dd2031f726537bc125f23acf92145",
   "new_prompt_sha256": "3334f1265580c4a77ef57481dfef911eaf0dd2031f726537bc125f23acf92145",
   "new_prompt": "**Subject:** A runner in motion on an open coastal road, clear athletic motion and focused expression, no finish line, flags, banners or signage; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Sports Photography\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
@@ -383,7 +398,7 @@
    "codex": true,
    "agy": false
   },
-  "old_prompt_sha256": "75a0a1e157724cd975daaa45fda93aff7de630cad7c3dd287c003e3bc5fcff5f",
+  "old_prompt_sha256": "c253857f93161df455bf2c4e803490561448231cb82b860985388d6021dc2c82",
   "new_prompt_sha256": "c253857f93161df455bf2c4e803490561448231cb82b860985388d6021dc2c82",
   "new_prompt": "**Subject:** A dragon boat team paddling in rhythm on a river with festive riverside spectators, no flags or banners; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Dragon Boat Festival\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
@@ -474,7 +489,7 @@
    "codex": true,
    "agy": false
   },
-  "old_prompt_sha256": "837cfff90a8fa469aecba1a7f6a37006444f54bf3fd70a81e805b0928d1a506c",
+  "old_prompt_sha256": "48a998910191427a6e5eef79862953f93a7c40691acf712c3ec7a8b849e925f5",
   "new_prompt_sha256": "48a998910191427a6e5eef79862953f93a7c40691acf712c3ec7a8b849e925f5",
   "new_prompt": "**Subject:** A medieval European market square below a stone castle, with timber houses, knights and townsfolk in period clothing, plain stone walls with no flags, banners or heraldry; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Medieval\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },

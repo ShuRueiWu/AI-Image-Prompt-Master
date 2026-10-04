@@ -8,6 +8,8 @@ V9.6 automatically saves the current work in this browser and restores it on rel
 
 All 240 selectable styles appear in at least one of 313 built-in presets. Focused style examples are grouped by category. See `STYLE_COVERAGE_V9.6.md` for the complete mapping; coverage does not imply a generated-image quality evaluation.
 
+The merged preset display category is **台灣風格 (Taiwan)**. This is a display label only; underlying source-category identifiers remain unchanged.
+
 `index.html` is an exact deployment copy, not a second editing source:
 
 ```sh

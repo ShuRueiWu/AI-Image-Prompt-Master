@@ -18,9 +18,17 @@ const presets = vm.runInNewContext(html.slice(html.indexOf('        const config
         await page.goto(pathToFileURL(source).href);
         await page.getByTestId('browse-presets').waitFor({ timeout: 60000 });
         let count = 0;
+        let checkedTaiwanLabel = false;
         for (const [groupName, group] of Object.entries(presets)) {
             for (const [key, preset] of Object.entries(group)) {
                 await page.getByTestId('browse-presets').click();
+                if (!checkedTaiwanLabel) {
+                    assert.equal(await page.getByRole('heading', { name: /^台灣風格 \(Taiwan\) \(\d+\)$/ }).count(), 1,
+                        'merged Taiwan preset category should use the approved display name');
+                    assert.equal(await page.getByRole('heading', { name: /^🇹🇼 台灣與日本 \(Taiwan & Japan\)/ }).count(), 0,
+                        'old merged Taiwan/Japan category name should no longer be displayed');
+                    checkedTaiwanLabel = true;
+                }
                 await page.getByPlaceholder('🔍 搜尋預設 (Search presets)...').fill(preset.name);
                 await page.locator(`[data-preset-group=${JSON.stringify(groupName)}][data-preset-key="${key}"]`).click();
                 assert.equal(await page.getByPlaceholder('描述畫面的核心主體...').inputValue(), preset.subject || '', key);

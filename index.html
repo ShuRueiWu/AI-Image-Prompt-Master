@@ -613,7 +613,7 @@
                         desc_en: 'Orderly arrangement of items using Knolling and Neutral Background, perfect for gear display.',
                         subject: 'Everyday carry of a modern doctor or surgeon', subject_en: 'Everyday carry of a modern doctor or surgeon',
                         title: 'Doctor EDC', title_en: 'Doctor EDC',
-                        body: '聽診器（Y 形雙耳管、單一圓形聽診頭，管線自然盤繞）、筆記本、手錶、鋼筆以 90 度平行排列得非常整齊。', body_en: 'A stethoscope (Y-shaped binaural tubing, one round chestpiece, tubing neatly coiled), notebook, watch, and pen are perfectly aligned in a 90-degree parallel grid.',
+                        body: 'A neatly coiled stethoscope with Y-shaped twin ear tubes and a single round chestpiece, alongside a notebook, wristwatch, and fountain pen, arranged in a precise right-angle grid. Use generic unbranded objects only; no personal names, clinic or hospital names, brand names, or logos. The only readable text may be the generic title "Doctor EDC".', body_en: 'A neatly coiled stethoscope with Y-shaped twin ear tubes and a single round chestpiece, alongside a notebook, wristwatch, and fountain pen, arranged in a precise right-angle grid. Use generic unbranded objects only; no personal names, clinic or hospital names, brand names, or logos. The only readable text may be the generic title "Doctor EDC".',
                         styles: ['Knolling', 'Product Photography', 'Minimalist'],
                         camera: ['Top Down', 'Neutral Background'],
                         sections: [{ visual: 'Medical gear and everyday items perfectly aligned', param: 'grid layout', dir: 'center', textBlocks: [] }],
@@ -1460,14 +1460,14 @@
             });
             if (Object.keys(examples).length) BUILTIN_PRESETS[`風格示範 ${category}`] = examples;
         });
-        // 分類整合（使用者 2026-10-04 決定）：兒科衛教、佈局、台灣與日本各合併為單一分類。
+        // 分類整合（使用者 2026-10-04 決定）：兒科衛教、佈局、台灣各合併為單一分類。
         (() => {
             const MERGES = [
                 { into: '🧸 兒科衛教 (Pediatric Education)', from: [
                     { group: '風格示範 兒科衛教 (Pediatric Education)' },
                     { group: '📚 教育與解說 (Education & Info)', keys: ['he_fb_watercolor', 'he_fb_handwash', 'he_fb_baby_hero'] }] },
                 { into: '📐 經典切版佈局 (Classic Layouts)', from: [{ group: '📐 實戰佈局與排版 (Layouts & Editorials)' }] },
-                { into: '🇹🇼 台灣與日本 (Taiwan & Japan)', rename: '🇹🇼 繁體中文精選 (Traditional Chinese Picks)', from: [{ group: '風格示範 台灣與日本流行 (TW & JP Trends)' }] }
+                { into: '台灣風格 (Taiwan)', rename: '🇹🇼 繁體中文精選 (Traditional Chinese Picks)', from: [{ group: '風格示範 台灣與日本流行 (TW & JP Trends)' }] }
             ];
             MERGES.forEach(m => {
                 if (m.rename && BUILTIN_PRESETS[m.rename]) {

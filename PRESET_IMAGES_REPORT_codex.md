@@ -102,3 +102,17 @@ Task：`prompt-master-preset-images-20261002`
 - `style_example_8_dragon_boat_festival`：1 次生成；龍舟與觀賽人群，無旗幟／橫幅／文字；OCR 無真實名稱，dry-run／`--apply` 通過。原圖 `preset-originals/codex/g22-seasons-festivals__style_example_8_8.png`（1448×1086）；舊圖保留。
 - 四張各自縮圖更新均 `failed=0`。收尾執行 `generate_preset_previews.py --agent codex`：`created=0, skipped=308, missing_originals=0, failed=0`；執行 `generate_originals_map.py` 成功，輸出 308 presets／357 originals。全量比對現行 44 筆：44/44 manifest `status=ok`、hash 相符，原圖與 WebP 預覽均存在。
 - `npm test` PASS（含 site 同步、V9.5/V9.6、桌機／手機淺深色及 style coverage 247/247）；`npm run test:presets` PASS（308/308）。累計約 58/72 次 Codex 內建圖像生成／編修呼叫，串行，未使用 API key。未 commit／push；未改 AGY 原圖／manifest 或 Colab。
+
+### 酸性設計示範圖替換（Codex，2026-10-04）
+
+- 只替換 `style_example_10_acid_graphics` 圖片；保留使用者提供的主描述與現行 prompt/hash，不修改 preset 文案或 `index.html`。
+- 以 Codex 內建 imagegen 產生 2 張候選並目視比較；採用第一張較平衡、以流動抽象造型為主的版本。最終為 1448×1086 PNG（4:3），人物穿著完整；未見文字、品牌、招牌或可見生成器浮水印。`apply_regen.py` OCR 真實名稱命中為無。
+- 舊原圖與未採用候選均保留在 `preset-originals/_replaced/codex/`；新原圖沿用既有檔名 `preset-originals/codex/g24-era-culture__style_example_10_10.png`。Codex manifest 狀態 `ok`、prompt hash 與 `presets_prompts.json` 相符；對應 WebP 與 maps 已重建。重跑縮圖結果 `created=0, skipped=308, missing_originals=0, failed=0`；`npm run test:presets` 通過（308/308）。
+- 未修改 AGY 圖片／manifest。內建 imagegen 未提供可驗證的底層模型 ID；依使用者後續澄清，只變更圖片卡片顯示標籤為 `OpenAI ImageGen`／`AGY ImageGen`，不改圖片、prompt 或圖檔名稱。標籤更新已通過 `check:site` 與 Chrome 單項 smoke test。
+
+### `starter_knolling` 聽診器重生與台灣分類改名（Codex，2026-10-04）
+
+- `starter_knolling` Body Context 已改為英文並限制僅可見通用標題 `Doctor EDC`、無人名／院所名／品牌／標誌；prompt 由 `node make_regen_list.cjs` 產生，SHA-256 `b391114d3a34f832c63324e2c121fb3d18084fb240e462104760a2386fee2071`。
+- 使用 Codex 內建 ImageGen 生圖 1 次（無 API key）；新圖 1672×941 PNG。目視為俯視 knolling，聽診器是 Y 形雙耳管連單一圓形聽診頭，唯一文字為 `Doctor EDC`；`apply_regen.py` OCR 真實名稱命中 0。Dry-run 與 `--apply` 均通過；新原圖 `preset-originals/codex/g00-starter-inspiration__starter_knolling.png`，舊原圖保留至 `preset-originals/_replaced/codex/20261004-192922-g00-starter-inspiration__starter_knolling.png`。縮圖生成 `failed=0`。由於此 preset 的 AGY 圖尚未用新 prompt 重生，依既有規則仍隱藏，未解除 `regen-hold`。
+- 分類顯示名稱只改為 `台灣風格 (Taiwan)`；底層來源分類與 preset key 不變。`presets_prompts.json` 及 Codex manifest 的 9 個合併分類 key 已重鍵，原始 `.key`／圖片路徑與 prompt hash 保留；AGY manifest 無這 9 筆，未修改。重跑 `make_regen_list.cjs` 後共 45 筆，僅布袋戲示範一筆落在新分類；map 重建後新分類有 9 個 Codex 預覽、0 個 AGY 預覽，所有 Codex WebP 存在，舊分類 map key 為 0。`generate_originals_map.py` 輸出 308 presets／357 originals。
+- 驗證：`npm test` PASS（含 247/247 styles）；`npm run test:presets` PASS（308/308，含新分類名稱精確斷言）；`generate_preset_previews.py --agent codex` `missing_originals=0, failed=0`。Chrome 桌機與手機 smoke test 均實際載入新分類的 Codex 640×360 WebP；AGY 對應路徑載入失敗後隱藏，Codex 圖仍正常顯示。未 push。
