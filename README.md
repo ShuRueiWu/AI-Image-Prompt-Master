@@ -51,10 +51,14 @@ npm ci
 npm run sync:site        # copy V9.6 to the Pages entry
 npm test                 # equality check + isolated Chrome interaction tests
 npm run test:presets     # apply every built-in preset through the UI
+npm run test:edges       # import, data preservation and draft lifecycle edge cases
+npm run test:all         # test, then test:presets, then test:edges
 node verify-style-coverage.cjs --report   # regenerate the coverage table
 ```
 
 Tests require Google Chrome, mock clipboard access and never call an image model. GitHub Pages publishes `main` at `/`; pushing a changed `index.html` publishes the site, local commits do not.
+
+Use `npm run test:all` for dependency or shared UI changes; `npm test` remains the shorter regression suite.
 
 **Preset image pipeline**: original PNGs stay local under `preset-originals/<agent>/` and are not in Git. Public 640px WebP thumbnails live under `preset-previews/<agent>/` and are listed in `preset-previews/preset-image-map.js`. The local tool `generate_preset_previews.py` is idempotent and never calls an image model or paid API; the image list to regenerate is produced by `node make_regen_list.cjs`. Details: [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md), fictional-name rules: [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md).
 
@@ -108,6 +112,8 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 新手啟發、十大佈局、經典切版、醫學教材與圖解、臨床與診所素材、兒科衛教、台灣風格、插畫與動漫、樣機、商業與社群、UI 與排版、教育與解說、攝影電影與寫真；另有依藝術風格、攝影題材、相機與鏡頭、光影、色彩、材質、設計排版、數位與 3D、季節與節慶、時代與文化、AI 熱門風格分組的風格示範。
 
 ### 開發者資訊
+
+依賴或共用 UI 修改請跑 `npm run test:all`，依序執行一般測試、全部範本與 `test:edges` 邊界測試；`npm test` 保留為較短的回歸測試。
 
 `Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是它的完整部署副本，不另行編輯。指令見上方英文區（`npm ci`、`npm run sync:site`、`npm test`、`npm run test:presets`）。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
 

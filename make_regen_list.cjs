@@ -6,7 +6,7 @@
  * which presets are listed. Local only; run: node make_regen_list.cjs
  */
 const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),crypto=require('node:crypto');
-const {pathToFileURL}=require('node:url');const {chromium}=require('./node_modules/playwright');
+const {pathToFileURL}=require('node:url');const {chromium}=require('playwright');
 const root=__dirname;const source=path.join(root,'Prompts Builder V9.6.html');
 const html=fs.readFileSync(source,'utf8');
 const presets=vm.runInNewContext(html.slice(html.indexOf('        const configData ='),html.indexOf('        // Helper to find Chinese label'))+'; BUILTIN_PRESETS');
