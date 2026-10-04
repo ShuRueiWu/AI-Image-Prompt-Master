@@ -84,6 +84,15 @@ Task：`prompt-master-preset-images-20261002`
 - 本輪曾因工具回傳格式誤觸額外 1 次內建生圖（山景測試圖，未採用、未複製進專案）；此呼叫仍計入硬上限。累計約 53/60 次，串行；只使用 Codex 內建圖像生成，未使用 API key。未 commit／push；Colab、AGY 原圖／manifest、`index.html` 均未修改。
 - 驗證：`npm run test:presets` PASS，308 個 presets 全部通過；`npm test` 在第一步 `check:site` 停止，訊息為 `index.html differs from V9.6. Run npm run sync:site to update it.`。本任務明確禁止改 `index.html`，因此未執行會改檔的 `sync-site`；其後 V9.5/V9.6/style-coverage 測試未由 `npm test` 執行。
 
+### 男性醫師與男性寫真人像（Codex，2026-10-04 收尾核對）
+
+- 既有四張 Codex 圖已完成更新；本次續接沒有再次呼叫圖像生成。重新核對目前 `presets_prompts.json` 與 Codex manifest，四筆 prompt SHA-256 完全一致、狀態均為 `ok`，原尺寸 PNG 與對應 WebP 均存在：
+  - `layout_vogue_cover` — 1086×1448；目視為男性外科醫師，刊物使用虛構 SOLENNE 品牌。
+  - `friendly_staff` — 1536×1024；目視為男性醫師。
+  - `med_consult` — 1448×1086；目視為男性醫師與病人進行諮詢。
+  - `photo_film_portra` — 1086×1448；目視為男性人像。
+- 未修改 AGY 原圖或 manifest。AGY 對應圖仍由 AGY 任務持有，待其額度重置後處理；不得以 Codex 四張已完成代表 AGY 亦完成。
+
 ### 2026-10-04 剩餘四項完成（清單 prompt 已由 Claude 更新）
 
 - 依重建後的 `PRESET_IMAGES_REGEN_LIST.json`／`regen-prompts/`，四筆新 SHA-256 均逐字相符；未手改產生清單。
