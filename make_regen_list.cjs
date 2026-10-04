@@ -10,7 +10,7 @@ const {pathToFileURL}=require('node:url');const {chromium}=require('./node_modul
 const root=__dirname;const source=path.join(root,'Prompts Builder V9.6.html');
 const html=fs.readFileSync(source,'utf8');
 const presets=vm.runInNewContext(html.slice(html.indexOf('        const configData ='),html.indexOf('        // Helper to find Chinese label'))+'; BUILTIN_PRESETS');
-const keys=['edu_poster','complex_magazine','layout_vogue_cover','port_fashion','layout_youtube_thumb','social_yt_thumb','lego_city','photo_film','ui_dashboard_dark','pedu_portrait','pedu_mechanism','starter_over_shoulder','ai_avatar','ecommerce_lifestyle','layout_magazine_spread','layout_mag_cover','he_fb_handwash','style_example_2_85mm_lens','style_example_11_cottagecore','starter_double_exposure','style_example_9_taiwanese_glove_puppetry_style'];
+const keys=['edu_poster','complex_magazine','layout_vogue_cover','port_fashion','layout_youtube_thumb','social_yt_thumb','lego_city','photo_film','ui_dashboard_dark','pedu_portrait','pedu_mechanism','starter_over_shoulder','starter_knolling','ai_avatar','ecommerce_lifestyle','layout_magazine_spread','layout_mag_cover','he_fb_handwash','style_example_2_85mm_lens','style_example_11_cottagecore','starter_double_exposure','style_example_9_taiwanese_glove_puppetry_style'];
 const old=JSON.parse(fs.readFileSync(path.join(root,'presets_prompts.json'),'utf8'));
 const oldBy=Object.fromEntries(old.map(p=>[p.group+'/'+p.key,p]));
 const cm=JSON.parse(fs.readFileSync(path.join(root,'preset-previews/codex/manifest.json'),'utf8'));
