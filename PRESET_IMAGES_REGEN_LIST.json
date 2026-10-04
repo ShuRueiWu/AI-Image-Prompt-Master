@@ -73,7 +73,7 @@
    "codex": true,
    "agy": false
   },
-  "old_prompt_sha256": "bf23f7fc6a499b75d6f30399413c62c5934f3f2f3ac83f1e16496e201fa6a343",
+  "old_prompt_sha256": "2ec8264c882999c74532579557eb74fe2f34da329b31e194088535baf3a8fffd",
   "new_prompt_sha256": "2ec8264c882999c74532579557eb74fe2f34da329b31e194088535baf3a8fffd",
   "new_prompt": "**Scene context (not image text):** 畫面只有這一位醫護人員、沒有其他人。一位平凡親切、值得信任的兒科醫護人員肖像（約 35–55 歲、台灣人外貌、自然素顏，不像模特兒、不擺拍），穿簡潔白袍或醫療服，眼神溫和、略帶笑意，背景是溫暖的診間；原創非可辨識人物，不要美顏濾鏡感\n**Constraints:** Text-free illustration. Do not render any letters, titles, labels, captions, or watermarks. Treat all scene descriptions as visual context only.\n**Art Styles & Tech:** pencil and wash portrait illustration\n\n--- PARAMETERS ---\n**Quality:** clean composition, single person only, no family, no children, no other people, unbranded generic devices, no text, no letters, no numbers, no labels, no charts, no logos, no watermarks, non-photorealistic\naspect ratio 4:5 2k resolution"
  },
@@ -256,6 +256,19 @@
   "old_prompt_sha256": "a1400f7f6d74095815a5cb43bcb7731bbf8e7372706456e2204485d2ad47a86f",
   "new_prompt_sha256": "3f765c3ac0c1ccc3ca4f03defcec85262caa9fb9e12ed0fd9f5802300b9bf809",
   "new_prompt": "**Subject:** A runner crossing a finish line, clear athletic motion and focused expression; the event banner reads the fictional \"Aldenwick City Marathon\" and sponsor marks are the fictional \"Tavorn\" and \"Taldora\", no real brands\n**Art Styles & Tech:** Sports Photography\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 相機與鏡頭 (Camera & Gear)",
+  "key": "style_example_2_85mm_lens",
+  "name": "85mm鏡頭 (85mm)・示範",
+  "index": 216,
+  "had_images": {
+   "codex": true,
+   "agy": true
+  },
+  "old_prompt_sha256": "a3131bf1777e5517dbb9a26d9320af1b0ebdbba6f3834c9b8ef6f975e8ce9a07",
+  "new_prompt_sha256": "b0f641abf25c827469647e636d285b75875a1f712493eb13556f1e70135c45d4",
+  "new_prompt": "**Subject:** An ordinary middle-aged person with a lived-in face and natural expression, softly separated garden background, no glamour or beauty styling\n**Art Styles & Tech:** 85mm Lens\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
@@ -542,5 +555,18 @@
   "old_prompt_sha256": "effa157763c10bf339ea8bdfda8cd0e6c029c3627724baeb014a7cbbc3d618be",
   "new_prompt_sha256": "d55974d71d32fd4e74dbf6f3d15c20fdbb3daa63f9ed38630c4e63650a764967",
   "new_prompt": "**Subject:** An abstract acid-graphics composition of warped shapes and iridescent gradients around a central figure; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Acid Graphics\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+ },
+ {
+  "group": "風格示範 AI 熱門風格 (AI Trending)",
+  "key": "style_example_11_cottagecore",
+  "name": "田園風 (Cottagecore)・示範",
+  "index": 307,
+  "had_images": {
+   "codex": true,
+   "agy": false
+  },
+  "old_prompt_sha256": "47582852124042483f09d08de9f65da18a534997ab2c3122827324049ceac872",
+  "new_prompt_sha256": "3a2f5b190424e9f2e7929fb146f0f12369252f97e7040437389e3a7acf894b32",
+  "new_prompt": "**Subject:** A cottage kitchen with freshly baked bread, wildflowers and soft garden light; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Cottagecore\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  }
 ]
