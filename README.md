@@ -22,6 +22,10 @@ Tests require Google Chrome installed. They mock clipboard access and never call
 
 GitHub Pages currently publishes from `main` at `/`. Pushing a changed `index.html` to `main` can publish the site. Local commits alone do not publish anything.
 
+### Preset image previews (local-only)
+
+Original PNGs stay under `preset-originals/<agent>/` and are never overwritten or added to Git. To create or refresh 640px WebP derivatives and rebuild the image map from each preset's manifest entry, run `/opt/homebrew/bin/python3.13 generate_preset_previews.py --agent codex` or `--agent agy`. The operation is idempotent and does not call an image model or paid API.
+
 The root TSX/Vite files are retained from the existing repository history; this single-file release does not build or use them. The older overview below describes earlier versions; V9.5 uses editable image-text language instructions rather than the old Avoid Simplified Chinese switch.
 
 ---

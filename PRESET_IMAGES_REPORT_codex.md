@@ -26,6 +26,8 @@ Task：`prompt-master-preset-images-20261002`
 - 重跑 Codex：本輪新增 3 張縮圖；313 張成功縮圖均有原圖，0 缺原圖、0 轉檔錯誤。
 - UI map 重建為 313 筆，313 項均有 Codex 圖片路徑。AGY 缺少的預覽候選路徑由 `PresetReferenceImages` 的 `<img onError>` 隱藏，符合單邊缺圖顯示另一邊／雙邊缺圖不顯示的 fallback。
 - `layout_central_hero` Codex 與 AGY 原圖、WebP 預覽及 map 項均存在；畫面若仍標示無圖，並非因該 preset 尚未產圖。
+- 2026-10-03 後續查到 map 有 25 條 Codex 路徑指向不存在的舊 prefix：Codex 原圖與 WebP 各 313 張均完整，但同一 UI／攝影群組含多個歷史 prefix，舊 map builder 誤以群組共用單一 prefix。已改為逐筆依 manifest `original` stem 產生 WebP 路徑，且只列入實際存在的縮圖；重跑後全量檢查 313/313 Codex map 路徑存在。`index.html`、原圖與 manifest 未修改，未 push。
+- 本輪 `npm test` 與 `npm run test:presets` 均 PASS；瀏覽器安全政策拒絕直接開啟新的本機 `file://` gallery 分頁，因此本輪未做實際畫面目視確認。路徑一致性與自動化測試通過不等同目視驗收；使用者可重載已開啟的本機頁面確認。
 - `npm test` 通過（含 sync-site 一致性及桌機／手機、淺／深色測試）；`npm run test:presets` 全 313 項通過。Chrome 真實瀏覽器目視尚未驗證：本機 file URL 導覽遭瀏覽器安全政策拒絕，未嘗試繞過；未 push。
 
 ## 範圍界線
