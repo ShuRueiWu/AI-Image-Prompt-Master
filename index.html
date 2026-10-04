@@ -1447,7 +1447,7 @@
             styles.forEach((style, styleIndex) => {
                 if (usedStyleValues.has(style.val) || usedStyleValues.has(style.label)) return;
                 const baseScene = STYLE_SCENES[style.val] || CATEGORY_SCENES[categoryIndex];
-                const noTextScene = /Seasons & Festivals|Era & Culture/.test(category) || style.val === 'Cottagecore';
+                const noTextScene = true; // 風格示範是展示風格，不需要圖上文字；一律要求無文字，避免過多字影響美感
                 const scene = noTextScene ? `${baseScene}; no written text, signs, banners or lettering anywhere in the image` : baseScene;
                 // 以風格值（而非順序）命名，新增／移除風格時不會讓其他示範的編號整體位移。
                 const styleSlug = String(style.val).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || String(styleIndex);

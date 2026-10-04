@@ -98,8 +98,8 @@
    "codex": false,
    "agy": false
   },
-  "new_prompt_sha256": "c13f926267d658d40fa994a0ec38292dfbe776e177f3b2d07f4fcb9dfdd4c1e1",
-  "new_prompt": "**Subject:** An original wuxia hero glove puppet with an ornate carved head, layered embroidered costume and drifting stage smoke on a small traditional puppet stage (not any existing character or brand)\n**Art Styles & Tech:** Taiwanese Glove Puppetry Style\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+  "new_prompt_sha256": "03717256b326dfba90b5f085b37d22ddf048f7447a7c3af0a1a0c4ba3854080c",
+  "new_prompt": "**Subject:** An original wuxia hero glove puppet with an ornate carved head, layered embroidered costume and drifting stage smoke on a small traditional puppet stage (not any existing character or brand); no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Taiwanese Glove Puppetry Style\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "🎨 插畫與動漫 (Illustration & Anime)",
@@ -254,8 +254,8 @@
    "agy": true
   },
   "old_prompt_sha256": "a1400f7f6d74095815a5cb43bcb7731bbf8e7372706456e2204485d2ad47a86f",
-  "new_prompt_sha256": "3f765c3ac0c1ccc3ca4f03defcec85262caa9fb9e12ed0fd9f5802300b9bf809",
-  "new_prompt": "**Subject:** A runner crossing a finish line, clear athletic motion and focused expression; the event banner reads the fictional \"Aldenwick City Marathon\" and sponsor marks are the fictional \"Tavorn\" and \"Taldora\", no real brands\n**Art Styles & Tech:** Sports Photography\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+  "new_prompt_sha256": "3903794b008e4543de03b7cb9f8b074e32270e07bf298a65910fbdcee62aeea7",
+  "new_prompt": "**Subject:** A runner crossing a finish line, clear athletic motion and focused expression; the event banner reads the fictional \"Aldenwick City Marathon\" and sponsor marks are the fictional \"Tavorn\" and \"Taldora\", no real brands; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** Sports Photography\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "風格示範 相機與鏡頭 (Camera & Gear)",
@@ -267,8 +267,8 @@
    "agy": true
   },
   "old_prompt_sha256": "a3131bf1777e5517dbb9a26d9320af1b0ebdbba6f3834c9b8ef6f975e8ce9a07",
-  "new_prompt_sha256": "b0f641abf25c827469647e636d285b75875a1f712493eb13556f1e70135c45d4",
-  "new_prompt": "**Subject:** An ordinary middle-aged person with a lived-in face and natural expression, softly separated garden background, no glamour or beauty styling\n**Art Styles & Tech:** 85mm Lens\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
+  "new_prompt_sha256": "dec4653e6554800a0633c4f4ffceb6ffb1eea1db8f953598792323cbe169ce72",
+  "new_prompt": "**Subject:** An ordinary middle-aged person with a lived-in face and natural expression, softly separated garden background, no glamour or beauty styling; no written text, signs, banners or lettering anywhere in the image\n**Art Styles & Tech:** 85mm Lens\n\n--- PARAMETERS ---\n**Text Language:** Use Traditional Chinese for text rendered in the image.\n**Quality:** sharp focus, high quality, detailed, professional\naspect ratio 4:3 4k resolution"
  },
  {
   "group": "風格示範 季節與節慶 (Seasons & Festivals)",
