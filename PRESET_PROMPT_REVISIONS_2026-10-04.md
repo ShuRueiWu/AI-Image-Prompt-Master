@@ -48,3 +48,10 @@
 - 風格選項「霹靂布袋戲 (Pili Puppetry)」改為通用的「台灣布袋戲 (Taiwan Glove Puppetry)」（值 `Taiwanese Glove Puppetry Style`）。
 - preset「霹靂布袋戲 (Pili Hero)」依使用者指示**整個移除**；其舊圖記錄停放在 `preset-previews/orphaned_demo_records.json`，圖檔未刪。
 - 因風格選項不再被任何 preset 使用，App 自動產生一個示範 preset（`style_example_9_taiwanese_glove_puppetry_style`，台灣與日本分類），情境為「原創武俠手套偶（非任何既有角色或品牌）」。它還沒有圖，需 Codex 以 `apply_regen.py --new` 建立第一張（prompt 檔：`regen-prompts/NEW_style_example_9_taiwanese_glove_puppetry_style.txt`）。
+
+## 驗收紀錄（Codex 重生的前 5 張，2026-10-04）
+- 通過：starter_double_exposure（圖上只有英文 Mind Forest，無中文翻譯）、layout_vogue_cover（虛構 SOLENNE MED）、layout_youtube_thumb（虛構 Taldora Play）。
+- **不通過、已調整 prompt 待重做**：
+  - pedu_portrait：出現醫師＋父母＋嬰兒的家庭場景，違反單人肖像。原因是兒科衛教預設品質描述帶「natural diverse Taiwanese family」。已改為「single person only…」並在場景加「畫面只有這一位醫護」。
+  - complex_magazine：仍是光鮮的明星臉。已改為「自然未修飾、平凡中年女性作家」，並移除 High Fashion／Glossy 風格詞。layout_mag_cover 的 Fashion Photography 也改為 Editorial Photography。
+- 隱藏邏輯改為**各家各自**：含真實名稱的 preset，只要「該家」已用新 prompt 重生就顯示該家的圖（原本要兩家都重生才顯示）。因此 Codex 已重生的 layout_vogue_cover、layout_youtube_thumb 已重新出現。
