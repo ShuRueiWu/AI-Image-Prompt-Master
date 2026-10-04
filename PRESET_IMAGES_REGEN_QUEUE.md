@@ -16,3 +16,5 @@
 **C. 其餘（目前仍顯示舊圖，不算缺圖）：** layout_mag_cover、he_fb_handwash（核對無錯字）、starter_over_shoulder、ai_avatar、ecommerce_lifestyle、layout_magazine_spread、pedu_mechanism、85mm 示範、季節與節慶 13 個、時代與文化 9 個、田園風示範。
 
 每張：用 `regen-prompts/` 的最新 prompt 生圖 → 目視核對 → `apply_regen.py` 乾跑 → `--apply`（會自動補縮圖與地圖）。全部做完再手動跑一次縮圖與原圖對照表，確認 failed=0。
+
+**範圍（使用者 2026-10-04 15:27）：只重生本清單（44 個）。** 其餘約 260 個預設／示範不重生，不要自行擴大；它們的 prompt 雖已更新（示範一律無文字），既有圖維持不動。
