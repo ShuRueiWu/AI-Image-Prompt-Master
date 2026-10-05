@@ -9,6 +9,8 @@
     "sync:site": "node sync-site.cjs --apply",
     "check:site": "node sync-site.cjs",
     "check:preset": "node check-presets.cjs",
+    "prepare:preset": "node prepare-preset.cjs",
+    "test:prepare": "node verify-prepare-preset.cjs",
     "test:build": "node verify-build.cjs",
     "test:ac": "node verify-ac.cjs",
     "test": "npm run check:preset && node verify-preset-checker.cjs && npm run check:site && node verify_v95.cjs && node verify_v96.cjs && node verify-style-coverage.cjs && node verify-review-fixes.cjs",

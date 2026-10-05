@@ -58,8 +58,10 @@ npm ci
 node build-site.cjs      # preview generated outputs, no writes
 npm run sync:site        # compile local offline release and public Pages entry
 npm run check:preset     # read-only addition/change metadata and image-state check
+npm run prepare:preset -- --key 'GROUP/key' --image '/path/to/image.png'  # dry-run one new preset
 npm test                 # reproducible-build check + isolated Chrome interaction tests
 npm run test:preset -- 'GROUP/key'  # targeted browser validation for one preset
+npm run test:prepare     # isolated end-to-end check of the preset preparation helper
 npm run test:presets     # apply every built-in preset through the UI
 npm run test:edges       # import, data preservation and draft lifecycle edge cases
 npm run test:all         # regression, every preset, data edges, A/C, offline build smoke
@@ -71,6 +73,8 @@ Tests require Google Chrome, mock clipboard access and never call an image model
 Use `npm run test:all` for dependency or shared UI changes; `npm test` remains the shorter regression suite.
 
 **Preset image pipeline**: original PNGs stay local under `preset-originals/<agent>/` and are not in Git. Public 640px WebP thumbnails live under `preset-previews/<agent>/` and are listed in `preset-previews/preset-image-map.js`. The local tool `generate_preset_previews.py` is idempotent and never calls an image model or paid API; the image list to regenerate is produced by `node make_regen_list.cjs`. Details: [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md), fictional-name rules: [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md).
+
+To write the prepared preset records and build outputs, append `--apply` to `prepare:preset`. For a preset with `pending` or `none` image state, omit `--image`. Run `npm run sync:site` before `npm run test:all` after editing the canonical HTML.
 
 The root TSX/Vite files are kept from earlier repository history; the single-file release does not build or use them.
 
@@ -131,7 +135,7 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 依賴或共用 UI 修改請跑 `npm run test:all`，依序執行一般測試、全部範本、`test:edges` 資料邊界、`test:ac` 新功能及 `test:build` 離線建置測試；`npm test` 保留為較短的回歸測試。
 
-`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是建置產物，不另行編輯。新增範本流程見 [`docs/preset-workflow.md`](docs/preset-workflow.md)，並使用 `npm run check:preset`、`npm run test:preset -- 'GROUP/key'` 及完整 `npm run test:all`。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
+`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是建置產物，不另行編輯。新增範本流程見 [`docs/preset-workflow.md`](docs/preset-workflow.md)：`npm run prepare:preset -- --key 'GROUP/key' --image '/path/to/image.png'` 預設乾跑，加 `--apply` 才產生衍生資料；無圖範本省略 `--image`。修改來源後先 `npm run sync:site`，再跑 `npm run test:preset -- 'GROUP/key'` 與完整 `npm run test:all`。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
 
 **範本圖片流程**：原始 PNG 只留本機（`preset-originals/<agent>/`，不進 Git）；公開的是 640px WebP 縮圖（`preset-previews/<agent>/`），對照表為 `preset-previews/preset-image-map.js`。縮圖由本機腳本 `generate_preset_previews.py` 產生（可重複執行、不呼叫模型或付費 API）；要重生的清單由 `node make_regen_list.cjs` 產生。詳見 [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md) 與 [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md)。
 
