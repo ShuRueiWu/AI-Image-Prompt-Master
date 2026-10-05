@@ -21,6 +21,18 @@ const presets = vm.runInNewContext(html.slice(html.indexOf('        const config
         await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { value: { writeText: async text => { window.testPrompt = text; } } }));
         await page.goto((process.env.PROMPT_MASTER_TEST_TARGET || pathToFileURL(source).href));
         await page.getByTestId('browse-presets').waitFor({ timeout: 60000 });
+        const imageFailures = await page.evaluate(async keys => {
+            const failures = [];
+            for (const key of keys) {
+                const src = window.PRESET_IMAGE_MAP?.[key]?.codex;
+                if (!src) { failures.push(`${key}: missing image mapping`); continue; }
+                const image = new Image();
+                image.src = src;
+                try { await image.decode(); } catch { failures.push(`${key}: image failed to decode`); }
+            }
+            return failures;
+        }, Object.entries(presets).flatMap(([group, items]) => Object.keys(items).map(key => `${group}/${key}`)));
+        assert.deepEqual(imageFailures, [], 'Every built-in preset must have a loadable Codex reference image');
         await page.getByRole('button', { name: 'EN', exact: true }).click();
         await page.getByTitle('User Guide').click();
         const guideText = await page.getByRole('heading', { name: 'User Guide', exact: true }).locator('../..').innerText();
