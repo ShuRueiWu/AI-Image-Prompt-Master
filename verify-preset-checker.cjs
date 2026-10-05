@@ -28,8 +28,8 @@ try {
     let result = writeFixture('purpose', source.replace('"purpose": "design"', '"purpose": "invalid"'));
     assert(result.errors.some(error => error.includes(`${mistwood}: purpose must be one of`)));
 
-    result = writeFixture('required-text', source.replace('"desc_en": "An original forest cartographer poster with tactile fabric, leather, brass, and weathered gold titles."', '"desc_en": ""'));
-    assert(result.errors.includes(`${mistwood}: missing required desc_en`));
+    result = writeFixture('required-text', source.replace(/("desc_en"\s*:\s*)"An original forest cartographer poster with tactile fabric, leather, brass, and weathered gold titles\."/, '$1""'));
+    assert(result.errors.includes(`${mistwood}: existing required desc_en was removed or emptied`));
 
     result = writeFixture('unknown-style', source.replace('"Epic"', '"OneOffStyle"'));
     assert(result.errors.includes(`${mistwood}: unknown style "OneOffStyle"`));

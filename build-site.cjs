@@ -82,9 +82,7 @@ function transformJsx(jsx, mode) {
   let output = jsx;
   if (mode === 'public') {
     output = replaceTextOnce(output, 'const originals = window.PRESET_ORIGINAL_MAP?.[mapKey] || {};', 'const originals = {};', 'public original map access');
-    output = replaceTextOnce(output, "title={originals[agent] ? tt('點擊查看原圖', 'Click to view original') : tt('點擊放大', 'Click to enlarge')}", "title={tt('預設圖參考', 'Preset reference')}", 'public thumbnail tooltip');
-    output = replaceTextOnce(output, "onClick={e => { e.preventDefault(); e.stopPropagation(); setViewer({ src: originals[agent] || paths[agent], label, isOriginal: !!originals[agent] }); }}", '', 'public thumbnail click handler');
-    output = replaceTextOnce(output, "className={`w-full ${compact ? 'h-24 sm:h-28' : 'h-28'} object-contain cursor-zoom-in`}", "className={`w-full ${compact ? 'h-24 sm:h-28' : 'h-28'} object-contain`}", 'public thumbnail cursor style');
+    output = replaceTextOnce(output, "onClick={e => { e.preventDefault(); e.stopPropagation(); setViewer({ src: originals[agent] || paths[agent], label, isOriginal: !!originals[agent] }); }}", "onClick={e => { e.preventDefault(); e.stopPropagation(); setViewer({ src: paths[agent], label, isOriginal: false }); }}", 'public thumbnail click handler');
   }
   output = replaceTextOnce(output,
     "{t('第三方元件於開啟頁面時從公開 CDN 載入，未內嵌、未修改：', 'Third-party components are loaded at runtime from public CDNs, not bundled or modified:')} Babel Standalone 7.29.9 (MIT), Tailwind CSS (MIT), React / ReactDOM 18.2.0 (MIT), Lucide 0.292.0 (ISC); {t('字型：', 'fonts: ')}Inter, Outfit, Noto Sans TC (SIL OFL 1.1, Google Fonts).",

@@ -2108,16 +2108,52 @@
 
         const PresetImageViewer = ({ src, label, isOriginal, lang, onClose }) => {
             const tt = (zh, en) => lang === 'en' ? en : zh;
+            const [zoom, setZoom] = useState(1);
+            const clampZoom = value => Math.min(3, Math.max(1, Number(value.toFixed(2))));
+            const changeZoom = delta => setZoom(current => clampZoom(current + delta));
             useEffect(() => {
-                const onKey = e => { if (e.key === 'Escape') onClose(); };
+                const onKey = e => {
+                    if (e.key === 'Escape') onClose();
+                    if (e.key === '+' || e.key === '=') changeZoom(0.25);
+                    if (e.key === '-') changeZoom(-0.25);
+                    if (e.key === '0') setZoom(1);
+                };
                 window.addEventListener('keydown', onKey);
                 return () => window.removeEventListener('keydown', onKey);
             }, [onClose]);
             return createPortal(
-                <div className="fixed inset-0 z-[10000] bg-black/85 flex flex-col items-center justify-center p-4" role="dialog" aria-label={`${label} ${tt('放大圖', 'enlarged image')}`} onClick={onClose}>
-                    <div className="text-xs text-slate-200 mb-2">{label} {isOriginal ? tt('原圖', 'original') : tt('放大圖', 'enlarged')} {tt('（點擊或按 Esc 關閉）', '(click or press Esc to close)')}</div>
-                    <img src={src} alt={`${label} ${tt('放大圖', 'enlarged image')}`} className="max-w-full max-h-[85vh] object-contain" />
-                    <div className="text-[11px] text-slate-300 mt-2 max-w-xl text-center">{tt('AI 生成示意圖，內容可能與實際物件、器材或情境有出入；圖中名稱、品牌與人物皆為虛構，請以文字提示詞為準。', 'AI-generated illustration. Details may differ from real objects, equipment or settings; all names, brands and people shown are fictional. The text prompt takes precedence.')}</div>
+                <div
+                    className="fixed inset-0 z-[10000] bg-black/85 flex flex-col items-center justify-center p-4 select-none overflow-auto"
+                    role="dialog"
+                    aria-label={`${label} ${tt('放大圖', 'enlarged image')}`}
+                    onClick={onClose}
+                    onWheel={e => { e.preventDefault(); changeZoom(e.deltaY < 0 ? 0.15 : -0.15); }}
+                >
+                    <div className="w-full max-w-6xl flex items-center justify-between gap-3 text-xs text-slate-200 mb-2" onClick={e => e.stopPropagation()}>
+                        <span>{label} {isOriginal ? tt('原圖', 'original') : tt('放大圖', 'enlarged')}</span>
+                        <div className="flex items-center gap-1.5">
+                            <button type="button" onClick={() => changeZoom(-0.25)} disabled={zoom <= 1} className="rounded bg-white/15 px-2 py-1 text-sm hover:bg-white/25 disabled:opacity-40" aria-label={tt('縮小', 'Zoom out')}>−</button>
+                            <span className="min-w-12 text-center font-mono">{Math.round(zoom * 100)}%</span>
+                            <button type="button" onClick={() => changeZoom(0.25)} disabled={zoom >= 3} className="rounded bg-white/15 px-2 py-1 text-sm hover:bg-white/25 disabled:opacity-40" aria-label={tt('放大', 'Zoom in')}>＋</button>
+                            <button type="button" onClick={() => setZoom(1)} className="rounded bg-white/15 px-2 py-1 hover:bg-white/25" aria-label={tt('重設大小', 'Reset zoom')}>{tt('重設', 'Reset')}</button>
+                            <button type="button" onClick={onClose} className="rounded bg-white/15 px-2 py-1 hover:bg-white/25" aria-label={tt('關閉', 'Close')}>×</button>
+                        </div>
+                    </div>
+                    <div className="max-w-full max-h-[80vh] overflow-auto rounded bg-black/20" onClick={e => e.stopPropagation()}>
+                        <img
+                            src={src}
+                            alt={`${label} ${tt('放大圖', 'enlarged image')}`}
+                            draggable="false"
+                            onDragStart={e => e.preventDefault()}
+                            onMouseDown={e => e.preventDefault()}
+                            className="max-w-[90vw] max-h-[80vh] object-contain origin-center transition-transform duration-150"
+                            style={{ transform: `scale(${zoom})` }}
+                        />
+                    </div>
+                    <div className="text-[11px] text-slate-300 mt-2 max-w-xl text-center" onClick={e => e.stopPropagation()}>
+                        {tt('滾輪或＋／−放大；點擊背景或按 Esc 關閉。', 'Use the wheel or +/− to zoom; click the background or press Esc to close.')}
+                    </div>
+                    <div className="text-[11px] text-slate-300 mt-1 max-w-xl text-center" onClick={e => e.stopPropagation()}>{tt('AI 生成示意圖，內容可能與實際物件、器材或情境有出入；圖中名稱、品牌與人物皆為虛構，請以文字提示詞為準。', 'AI-generated illustration. Details may differ from real objects, equipment or settings; all names, brands and people shown are fictional. The text prompt takes precedence.')}</div>
                 </div>,
                 document.body
             );
@@ -2156,7 +2192,9 @@
                                     loading="lazy"
                                     title={originals[agent] ? tt('點擊查看原圖', 'Click to view original') : tt('點擊放大', 'Click to enlarge')}
                                     onClick={e => { e.preventDefault(); e.stopPropagation(); setViewer({ src: originals[agent] || paths[agent], label, isOriginal: !!originals[agent] }); }}
-                                    className={`w-full ${compact ? 'h-24 sm:h-28' : 'h-28'} object-contain cursor-zoom-in`}
+                                    draggable="false"
+                                    onDragStart={e => e.preventDefault()}
+                                    className={`w-full ${compact ? 'h-24 sm:h-28' : 'h-28'} object-contain cursor-zoom-in select-none`}
                                     onLoad={() => setStatus(prev => ({ ...prev, [agent]: 'loaded' }))}
                                     onError={() => setStatus(prev => ({ ...prev, [agent]: 'error' }))}
                                 />

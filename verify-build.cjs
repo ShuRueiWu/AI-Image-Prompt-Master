@@ -149,9 +149,10 @@ async function main() {
     await publicPreview.evaluate(img => { img.loading = 'eager'; img.scrollIntoView({ block: 'center' }); });
     await publicPreview.evaluate(img => img.decode()).catch(() => {});
     assert.ok(await publicPreview.evaluate(img => img.naturalWidth > 0), 'public preset thumbnail did not load');
-    assert.doesNotMatch(await publicPreview.getAttribute('class'), /cursor-zoom-in/, 'public thumbnail still presents as interactive');
+    assert.match(await publicPreview.getAttribute('class'), /cursor-zoom-in/, 'public thumbnail is not presented as interactive');
     await publicPreview.click();
-    assert.equal(await publicPage.locator('[role="dialog"]').count(), 0, 'public thumbnail opened an image viewer');
+    assert.equal(await publicPage.locator('[role="dialog"]').count(), 1, 'public thumbnail did not open an image viewer');
+    assert.equal(await publicPage.locator('[role="dialog"] img[src^="preset-previews/"]').count(), 1, 'public viewer did not use the thumbnail image');
     assert.equal(await publicPage.locator('img[src^="preset-originals/"]').count(), 0, 'public page requested an original image');
 
     const originalStatus = originalCheck.testCase ? 'local original viewer passed' : `original test skipped: ${originalCheck.reason}`;
