@@ -17,7 +17,7 @@ const { chromium } = require('playwright');
             localStorage.setItem('prompt_builder_history', JSON.stringify([{ id: 1, timestamp: '2026-10-02T00:00:00Z', form, prompt: 'legacy' }]));
             Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { if (window.failCopy) throw new Error('denied'); window.copiedText = text; } } });
         }, form);
-        await page.goto(pathToFileURL(path.join(__dirname, 'Prompts Builder V9.6.html')).href);
+        await page.goto((process.env.PROMPT_MASTER_TEST_TARGET || pathToFileURL(path.join(__dirname, 'Prompts Builder V9.6.html')).href));
         await page.getByPlaceholder('描述畫面的核心主體...').waitFor({ timeout: 60000 });
         assert.equal(await page.title(), 'AI Prompt Master V9.6');
         await page.getByRole('button', { name: '歷史紀錄', exact: true }).click();

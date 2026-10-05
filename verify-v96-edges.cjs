@@ -154,7 +154,7 @@ const cases = [
             page.on('pageerror', error => errors.push(error.message));
             page.on('dialog', dialog => dialog.accept());
             try {
-                await page.goto(pathToFileURL(target).href);
+                await page.goto((process.env.PROMPT_MASTER_TEST_TARGET || pathToFileURL(target).href));
                 await subject(page).waitFor({ timeout: 60000 });
                 await run(page);
                 assert.deepEqual(errors, [], 'no browser runtime errors');

@@ -19,7 +19,7 @@ const presets = vm.runInNewContext(html.slice(html.indexOf('        const config
         const errors = [];
         page.on('pageerror', e => { errors.push(e.message); console.error(e.message); });
         await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { value: { writeText: async text => { window.testPrompt = text; } } }));
-        await page.goto(pathToFileURL(source).href);
+        await page.goto((process.env.PROMPT_MASTER_TEST_TARGET || pathToFileURL(source).href));
         await page.getByTestId('browse-presets').waitFor({ timeout: 60000 });
         await page.getByRole('button', { name: 'EN', exact: true }).click();
         await page.getByTitle('User Guide').click();

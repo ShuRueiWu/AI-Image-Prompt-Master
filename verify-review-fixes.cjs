@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const { pathToFileURL } = require('node:url');
 const path = require('node:path');
-const url = pathToFileURL(path.join(__dirname, 'Prompts Builder V9.6.html')).href;
+const url = (process.env.PROMPT_MASTER_TEST_TARGET || pathToFileURL(path.join(__dirname, 'Prompts Builder V9.6.html')).href);
 (async () => {
     const browser = await chromium.launch({ channel: 'chrome', headless: true });
     try {

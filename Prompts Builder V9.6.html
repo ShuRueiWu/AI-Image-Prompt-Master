@@ -173,7 +173,7 @@
         import { createPortal } from 'react-dom';
         import { HelpCircle, ChevronDown, ChevronUp, X, Plus, Copy, Check, Trash2, ChevronRight, Info, ExternalLink,
             Search, Edit3, Eye, Sparkles, Lock, ArrowLeft, Upload, Download
-        , Sun, Moon } from 'lucide-react';
+        , Sun, Moon, Star, Undo2, Redo2 } from 'lucide-react';
 
         const APP_VERSION = '9.6';
         const WORK_KEY = 'prompt_builder_draft_v1';
@@ -2412,6 +2412,7 @@ const [showPresetModal, setShowPresetModal] = useState(false);
 
             const restoreFromHistory = (item) => {
                 if (confirm(t('確定要載入此紀錄嗎？目前的編輯將會遺失。', 'Load this record? Current edits will be lost.'))) {
+                    commitPendingSnapshot();
                     setForm({ ...item.form, camera: item.form.camera || [], isCustomAr: !!item.form.isCustomAr });
                     setTextLanguage(item.textLanguage ?? 'zh-Hant');
                     setLanguagePromptOverrides(item.languagePromptOverrides ?? {});
@@ -2514,6 +2515,123 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                 quality: 'sharp focus, high quality, detailed, professional'
             });
 
+            const [editorMode, setEditorMode] = useState(() => {
+                try { return localStorage.getItem('prompt_builder_editor_mode') || 'advanced'; }
+                catch (error) { return 'advanced'; }
+            });
+            const [promptTarget, setPromptTarget] = useState('generic');
+            const [presetFavorites, setPresetFavorites] = useState(() => {
+                try { const value = JSON.parse(localStorage.getItem('prompt_builder_favorites_v1') || '[]'); return Array.isArray(value) ? value.filter(x => Array.isArray(x) && x.length === 2 && x.every(v => typeof v === 'string')) : []; }
+                catch (error) { return []; }
+            });
+            const [recentPresets, setRecentPresets] = useState(() => {
+                try { const value = JSON.parse(localStorage.getItem('prompt_builder_recent_v1') || '[]'); return Array.isArray(value) ? value.filter(x => Array.isArray(x) && x.length === 2 && x.every(v => typeof v === 'string')).slice(0, 50) : []; }
+                catch (error) { return []; }
+            });
+            const [presetView, setPresetView] = useState('all');
+            const [presetPurpose, setPresetPurpose] = useState('all');
+            const [presetTextFilter, setPresetTextFilter] = useState('all');
+            const [canUndo, setCanUndo] = useState(false);
+            const [canRedo, setCanRedo] = useState(false);
+            const makeSnapshot = (nextForm = form, nextTextLanguage = textLanguage, nextOverrides = languagePromptOverrides) => ({
+                form: structuredClone(nextForm), textLanguage: nextTextLanguage, languagePromptOverrides: structuredClone(nextOverrides)
+            });
+            const undoStackRef = useRef([makeSnapshot()]);
+            const redoStackRef = useRef([]);
+            const snapshotTimerRef = useRef(null);
+            const ignoreSnapshotRef = useRef('');
+            const snapshotBaselineRef = useRef(JSON.stringify(makeSnapshot()));
+            const refreshUndoButtons = () => {
+                setCanUndo(undoStackRef.current.length > 1);
+                setCanRedo(redoStackRef.current.length > 0);
+            };
+            const applySnapshot = snapshot => {
+                const serialized = JSON.stringify(snapshot);
+                clearTimeout(snapshotTimerRef.current);
+                snapshotBaselineRef.current = serialized;
+                ignoreSnapshotRef.current = serialized;
+                setForm(structuredClone(snapshot.form));
+                setTextLanguage(snapshot.textLanguage);
+                setLanguagePromptOverrides(structuredClone(snapshot.languagePromptOverrides));
+            };
+            useEffect(() => {
+                try { localStorage.setItem('prompt_builder_editor_mode', editorMode); }
+                catch (error) { setStorageError(true); }
+            }, [editorMode]);
+            useEffect(() => {
+                try {
+                    localStorage.setItem('prompt_builder_favorites_v1', JSON.stringify(presetFavorites));
+                    localStorage.setItem('prompt_builder_recent_v1', JSON.stringify(recentPresets.slice(0, 50)));
+                } catch (error) { setStorageError(true); }
+            }, [presetFavorites, recentPresets]);
+            useEffect(() => {
+                const snapshot = makeSnapshot(form, textLanguage, languagePromptOverrides);
+                const serialized = JSON.stringify(snapshot);
+                if (serialized === snapshotBaselineRef.current) {
+                    if (ignoreSnapshotRef.current === serialized) ignoreSnapshotRef.current = '';
+                    return;
+                }
+                snapshotBaselineRef.current = serialized;
+                if (ignoreSnapshotRef.current === serialized) {
+                    ignoreSnapshotRef.current = '';
+                    return;
+                }
+                // A real edit after undo starts a new branch immediately; redo must not remain available during coalescing.
+                redoStackRef.current = [];
+                setCanRedo(false);
+                setCanUndo(undoStackRef.current.length > 0);
+                clearTimeout(snapshotTimerRef.current);
+                snapshotTimerRef.current = setTimeout(() => {
+                    const stack = undoStackRef.current;
+                    if (JSON.stringify(stack[stack.length - 1]) !== serialized) {
+                        stack.push(snapshot);
+                        if (stack.length > 50) stack.shift();
+                    }
+                    redoStackRef.current = [];
+                    refreshUndoButtons();
+                }, 450);
+            }, [form, textLanguage, languagePromptOverrides]);
+            const commitPendingSnapshot = () => {
+                clearTimeout(snapshotTimerRef.current);
+                const current = makeSnapshot();
+                const stack = undoStackRef.current;
+                if (JSON.stringify(stack[stack.length - 1]) !== JSON.stringify(current)) {
+                    stack.push(current);
+                    if (stack.length > 50) stack.shift();
+                    redoStackRef.current = [];
+                }
+                refreshUndoButtons();
+            };
+            const undo = () => {
+                commitPendingSnapshot();
+                const stack = undoStackRef.current;
+                if (stack.length < 2) return;
+                redoStackRef.current.push(stack.pop());
+                applySnapshot(stack[stack.length - 1]);
+                refreshUndoButtons();
+            };
+            const redo = () => {
+                commitPendingSnapshot();
+                const next = redoStackRef.current.pop();
+                if (!next) return;
+                undoStackRef.current.push(next);
+                if (undoStackRef.current.length > 50) undoStackRef.current.shift();
+                applySnapshot(next);
+                refreshUndoButtons();
+            };
+            useEffect(() => {
+                const onKeyDown = event => {
+                    if (!(event.metaKey || event.ctrlKey) || event.altKey) return;
+                    const target = event.target;
+                    if (target?.isContentEditable || target?.matches?.('input, textarea, select, [contenteditable="true"]')) return;
+                    const key = event.key.toLowerCase();
+                    if (key === 'z') { event.preventDefault(); event.shiftKey ? redo() : undo(); }
+                    else if (key === 'y') { event.preventDefault(); redo(); }
+                };
+                window.addEventListener('keydown', onKeyDown);
+                return () => window.removeEventListener('keydown', onKeyDown);
+            }, [form, textLanguage, languagePromptOverrides]);
+
             const [draftStatus, setDraftStatus] = useState(initialDraft.error ? 'error' : initialDraft.work ? 'restored' : 'ready');
             const [workMessage, setWorkMessage] = useState('');
             const [dismissedWarnings, setDismissedWarnings] = useState([]);
@@ -2560,6 +2678,7 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                     if (file.size > 2 * 1024 * 1024) throw new Error('Too large');
                     const next = validateWork(JSON.parse(await file.text()));
                     if (!confirm(t('匯入將取代目前作品與草稿。建議先匯出目前作品；確定繼續？', 'Import replaces the current work and draft. Export your current work first if needed. Continue?'))) return;
+                    commitPendingSnapshot();
                     setForm(next.form);
                     setTextLanguage(next.textLanguage);
                     setLanguagePromptOverrides(next.languagePromptOverrides);
@@ -2727,6 +2846,46 @@ const hasPediatricProfile = React.useMemo(() => {
                 setManualPrompt(parts.join('\n'));
             }, [form, effectiveTextLanguage, languagePrompt, hasPediatricProfile]);
 
+            const normalizeAspectRatio = value => {
+                const ratio = String(value || '').match(/^(\d+(?:\.\d+)?):(\d+(?:\.\d+)?)$/);
+                if (!ratio || !Number.isFinite(Number(ratio[1])) || !Number.isFinite(Number(ratio[2]))) return null;
+                const digits = Math.max((ratio[1].split('.')[1] || '').length, (ratio[2].split('.')[1] || '').length);
+                const scale = 10 ** digits;
+                if (!Number.isSafeInteger(scale)) return null;
+                let width = Math.round(Number(ratio[1]) * scale);
+                let height = Math.round(Number(ratio[2]) * scale);
+                if (!Number.isSafeInteger(width) || !Number.isSafeInteger(height) || width <= 0 || height <= 0) return null;
+                const gcd = (a, b) => { while (b) [a, b] = [b, a % b]; return a; };
+                const divisor = gcd(width, height);
+                return divisor > 0 ? `${width / divisor}:${height / divisor}` : null;
+            };
+            const outputPrompt = React.useMemo(() => {
+                if (promptTarget === 'generic') return manualPrompt;
+                if (promptTarget === 'midjourney') {
+                    let prompt = manualPrompt
+                        .replace(/^--- PARAMETERS ---\s*$/m, '')
+                        .split('\n')
+                        .filter(line => !/^\s*aspect ratio\s+\S+/i.test(line))
+                        .join('\n').trim();
+                    const aspectRatio = normalizeAspectRatio(form.ar);
+                    if (aspectRatio) prompt = `${prompt}${prompt ? ' ' : ''}--ar ${aspectRatio}`;
+                    return prompt;
+                }
+                let prompt = manualPrompt
+                    .replace(/^--- PARAMETERS ---\s*$/m, '')
+                    .split('\n')
+                    .filter(line => !/^\s*aspect ratio\s+\S+/i.test(line) && !/^\s*\d+(?:k)?\s+resolution(?:,.*)?$/i.test(line))
+                    .join('\n')
+                    .replace(/\*\*(.+?):\*\*/g, '$1:')
+                    .replace(/^--- LAYOUT SECTIONS ---$/m, 'Layout sections:')
+                    .trim();
+                const instructions = [];
+                if (form.ar) instructions.push(`Compose the image in a ${form.ar} aspect ratio.`);
+                if (form.resolution) instructions.push(`Desired detail wording: ${form.resolution}. Actual output dimensions must be set in the image generator.`);
+                if (instructions.length) prompt += `${prompt ? '\n\n' : ''}${instructions.join(' ')}`;
+                return prompt;
+            }, [manualPrompt, promptTarget, form.ar, form.resolution]);
+
             // Auto-expand categories when styles are selected (e.g. from presets)
             useEffect(() => {
                 if (form.selectedStyles.length > 0) {
@@ -2800,6 +2959,7 @@ const hasPediatricProfile = React.useMemo(() => {
             };
 
             const applyPreset = (key, selectedGroup) => {
+                commitPendingSnapshot();
                 setShowPresetModal(false);
                 setPresetSearchQuery('');
 
@@ -2833,6 +2993,10 @@ const hasPediatricProfile = React.useMemo(() => {
                 }
 
                 if (p) {
+                    const resolvedGroup = selectedGroup || Object.keys(mergedPresets).find(group => mergedPresets[group]?.[key] === p);
+                    if (resolvedGroup) {
+                        setRecentPresets(previous => [[resolvedGroup, key], ...previous.filter(item => item[0] !== resolvedGroup || item[1] !== key)].slice(0, 50));
+                    }
                     setCurrentPresetName(p.name);
                     setCurrentPresetImageKey(selectedGroup ? `${selectedGroup}/${key}` : '');
                     if (selectedGroup) setExpandedPresetGroups(prev => ({ ...prev, [selectedGroup]: true }));
@@ -2857,19 +3021,29 @@ const hasPediatricProfile = React.useMemo(() => {
                 }
             };
 
-            // Filter presets based on search query
+            const toggleFavorite = (groupName, key) => {
+                setPresetFavorites(previous => previous.some(item => item[0] === groupName && item[1] === key)
+                    ? previous.filter(item => item[0] !== groupName || item[1] !== key)
+                    : [[groupName, key], ...previous]);
+            };
+            const presetHasImageText = preset => !!(preset.title?.trim() || preset.sections?.some(section => section.textBlocks?.some(block => block.content?.trim())));
+            const getPresetPurpose = (groupName, preset) => {
+                const text = `${groupName} ${preset.name} ${preset.desc || ''} ${preset.desc_en || ''} ${(preset.styles || []).join(' ')}`.toLowerCase();
+                if (/medical|pediatric|health|兒科|醫療|衛教|健康/.test(text)) return 'medical';
+                if (/portrait|人物|人像|photograph|photography|攝影|相機|鏡頭/.test(text)) return 'photo';
+                if (/product|ecommerce|商品|電商|包裝/.test(text)) return 'product';
+                if (/layout|poster|presentation|infographic|版面|海報|簡報|圖表|資訊圖/.test(text)) return 'design';
+                return 'general';
+            };
+
+            // Search, purpose, text, favorites and recent filters are combined.
             const getFilteredPresets = () => {
-                if (!presetSearchQuery.trim()) {
-                    return mergedPresets;
-                }
-
-                const query = presetSearchQuery.toLowerCase();
+                const query = presetSearchQuery.trim().toLowerCase();
                 const filtered = {};
-
                 Object.entries(mergedPresets).forEach(([groupName, presets]) => {
                     const matchingPresets = {};
                     Object.entries(presets).forEach(([key, preset]) => {
-                        if (
+                        const matchesSearch = !query || (
                             preset.name.toLowerCase().includes(query) ||
                             getPresetName(preset.name).toLowerCase().includes(query) ||
                             getLabel(groupName).toLowerCase().includes(query) ||
@@ -2877,16 +3051,30 @@ const hasPediatricProfile = React.useMemo(() => {
                             preset.subject_en?.toLowerCase().includes(query) ||
                             preset.desc?.toLowerCase().includes(query) ||
                             preset.subject?.toLowerCase().includes(query)
-                        ) {
-                            matchingPresets[key] = preset;
-                        }
+                        );
+                        const matchesView = presetView === 'all' || (presetView === 'favorites'
+                            ? presetFavorites.some(item => item[0] === groupName && item[1] === key)
+                            : recentPresets.some(item => item[0] === groupName && item[1] === key));
+                        const matchesPurpose = presetPurpose === 'all' || getPresetPurpose(groupName, preset) === presetPurpose;
+                        const hasText = presetHasImageText(preset);
+                        const matchesText = presetTextFilter === 'all' || (presetTextFilter === 'text' ? hasText : !hasText);
+                        if (matchesSearch && matchesView && matchesPurpose && matchesText) matchingPresets[key] = preset;
                     });
-                    if (Object.keys(matchingPresets).length > 0) {
-                        filtered[groupName] = matchingPresets;
-                    }
+                    const order = presetView === 'recent' ? recentPresets : presetView === 'favorites' ? presetFavorites : [];
+                    const sorted = Object.fromEntries(Object.entries(matchingPresets).sort(([a], [b]) => {
+                        const ia = order.findIndex(item => item[0] === groupName && item[1] === a);
+                        const ib = order.findIndex(item => item[0] === groupName && item[1] === b);
+                        return (ia < 0 ? Number.MAX_SAFE_INTEGER : ia) - (ib < 0 ? Number.MAX_SAFE_INTEGER : ib);
+                    }));
+                    if (Object.keys(sorted).length > 0) filtered[groupName] = sorted;
                 });
-
-                return filtered;
+                const groupOrder = presetView === 'recent' ? recentPresets : presetView === 'favorites' ? presetFavorites : [];
+                if (groupOrder.length === 0) return filtered;
+                const groupRank = groupName => Math.min(...Object.keys(filtered[groupName]).map(key => {
+                    const index = groupOrder.findIndex(item => item[0] === groupName && item[1] === key);
+                    return index < 0 ? Number.MAX_SAFE_INTEGER : index;
+                }));
+                return Object.fromEntries(Object.entries(filtered).sort(([a], [b]) => groupRank(a) - groupRank(b)));
             };
 
             const addSection = () => {
@@ -2954,12 +3142,12 @@ const hasPediatricProfile = React.useMemo(() => {
             };
 
             const copyToClipboard = () => {
-                writeClipboard(manualPrompt).then((success) => {
+                writeClipboard(outputPrompt).then((success) => {
                     if (!success) return;
                     setCopied(true);
                     setTimeout(() => setCopied(false), 2000);
                     // Auto-save to history on copy
-                    addToHistory(form, manualPrompt);
+                    addToHistory(form, outputPrompt);
                 });
             };
 
@@ -3758,6 +3946,27 @@ const hasPediatricProfile = React.useMemo(() => {
                                         </div>
                                     </div>
 
+                                    <div data-testid="preset-filters" className="mb-4 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-stone-100 dark:bg-gray-900 space-y-2">
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                ['all', t('全部', 'All')], ['favorites', t('我的收藏', 'Favorites')], ['recent', t('最近使用', 'Recent')]
+                                            ].map(([value, label]) => <button key={value} type="button" data-testid={`preset-view-${value}`} aria-pressed={presetView === value} onClick={() => setPresetView(value)} className={`px-2.5 py-1 rounded text-xs border ${presetView === value ? 'bg-blue-700 text-white border-blue-700' : 'bg-stone-200 dark:bg-gray-800 text-stone-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}>{label}</button>)}
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                            <label className="text-[10px] text-gray-600 dark:text-gray-400">{t('用途', 'Purpose')}
+                                                <select data-testid="preset-purpose-filter" value={presetPurpose} onChange={e => setPresetPurpose(e.target.value)} className="mt-1 block w-full text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2 text-stone-700 dark:text-gray-200">
+                                                    <option value="all">{t('全部用途（含自訂）', 'All purposes (including custom)')}</option><option value="medical">{t('醫療／衛教', 'Medical / education')}</option><option value="photo">{t('攝影／人像', 'Photo / portrait')}</option><option value="product">{t('商品／電商', 'Product / ecommerce')}</option><option value="design">{t('版面／圖表', 'Layout / infographic')}</option><option value="general">{t('一般／其他（含自訂）', 'General / other (including custom)')}</option>
+                                                </select>
+                                            </label>
+                                            <label className="text-[10px] text-gray-600 dark:text-gray-400">{t('圖片文字', 'Image text')}
+                                                <select data-testid="preset-text-filter" value={presetTextFilter} onChange={e => setPresetTextFilter(e.target.value)} className="mt-1 block w-full text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2 text-stone-700 dark:text-gray-200">
+                                                    <option value="all">{t('全部', 'All')}</option><option value="text">{t('含預設文字', 'Contains preset text')}</option><option value="no-text">{t('無預設文字', 'No preset text')}</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        {(presetSearchQuery || presetView !== 'all' || presetPurpose !== 'all' || presetTextFilter !== 'all') && <button type="button" data-testid="clear-preset-filters" onClick={() => { setPresetSearchQuery(''); setPresetView('all'); setPresetPurpose('all'); setPresetTextFilter('all'); }} className="text-xs underline text-blue-700 dark:text-blue-300">{t('清除搜尋與篩選', 'Clear search and filters')}</button>}
+                                    </div>
+
                                     {/* Content */}
                                     <div className="flex-1 overflow-y-auto custom-scrollbar p-4 lg:p-6">
                                         {/* Reset Option */}
@@ -3780,7 +3989,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                         {Object.entries(getFilteredPresets()).map(([groupName, groupPresets]) => {
                                             const isExpanded = !!expandedPresetGroups[groupName] || !!presetSearchQuery.trim();
                                             return (
-                                                <div key={groupName} className="mb-4 glass rounded-xl overflow-hidden border border-slate-300 dark:border-slate-700/50">
+                                                <div key={groupName} data-testid="filtered-preset-group" data-preset-group-filtered={groupName} className="mb-4 glass rounded-xl overflow-hidden border border-slate-300 dark:border-slate-700/50">
                                                     <div
                                                         onClick={() => togglePresetGroup(groupName)}
                                                         className="p-3 bg-stone-100 dark:bg-slate-800/50 cursor-pointer flex justify-between items-center hover:bg-stone-200 dark:bg-slate-700/50 transition select-none backdrop-blur-sm"
@@ -3802,6 +4011,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                                                     onClick={() => applyPreset(key, groupName)}
                                                                     className={`relative group overflow-hidden rounded-xl border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-blue-500/50 bg-stone-200 dark:bg-slate-900/40 ${currentPresetImageKey === `${groupName}/${key}` ? 'border-blue-500 ring-2 ring-blue-500/70' : 'border-slate-300 dark:border-slate-700/50'}`}
                                                                 >
+                                                                    <button type="button" data-testid="toggle-preset-favorite" aria-label={`${presetFavorites.some(item => item[0] === groupName && item[1] === key) ? t('移除收藏', 'Remove favorite') : t('加入收藏', 'Add favorite')}: ${preset.name}`} aria-pressed={presetFavorites.some(item => item[0] === groupName && item[1] === key)} onClick={event => { event.stopPropagation(); toggleFavorite(groupName, key); }} className="absolute right-2 top-2 z-20 rounded-full bg-stone-100/95 dark:bg-slate-950/90 p-2 text-amber-700 dark:text-amber-300 shadow border border-gray-300 dark:border-gray-700" title={t('收藏此預設', 'Favorite this preset')}><Star size={15} fill={presetFavorites.some(item => item[0] === groupName && item[1] === key) ? 'currentColor' : 'none'} /></button>
                                                                     <PresetReferenceImages mapKey={`${groupName}/${key}`} compact lang={lang} />
                                                                     <div className="p-3">
                                                                         <div className="flex justify-between items-start">
@@ -3889,6 +4099,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                             <div className="text-center py-12">
                                                 <p className="text-gray-500 text-sm">{t('找不到符合的預設 😢', 'No matching presets found 😢')}</p>
                                                 <p className="text-gray-600 text-xs mt-2">{t('試試其他關鍵字', 'Try other keywords')}</p>
+                                                <button type="button" data-testid="clear-preset-filters-empty" onClick={() => { setPresetSearchQuery(''); setPresetView('all'); setPresetPurpose('all'); setPresetTextFilter('all'); }} className="mt-3 px-3 py-1.5 rounded bg-blue-700 text-white text-xs">{t('清除搜尋與篩選', 'Clear search and filters')}</button>
                                             </div>
                                         )}
                                     </div>
@@ -3972,6 +4183,37 @@ const hasPediatricProfile = React.useMemo(() => {
                                 </div>
                                 {workMessage && <p role="status" className="text-xs text-stone-700 dark:text-gray-200">{workMessage}</p>}
                             </div>
+                            <section data-testid="basic-advanced-controls" className="rounded border border-gray-300 dark:border-gray-700 bg-stone-100 dark:bg-gray-900 p-3 space-y-3">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                    <div className="text-xs font-bold text-stone-700 dark:text-gray-200">{t('編輯模式', 'Editor mode')}</div>
+                                    <div className="flex items-center gap-2">
+                                        <button type="button" data-testid="undo" disabled={!canUndo} onClick={undo} className="px-2 py-1 rounded border border-gray-300 dark:border-gray-600 text-xs disabled:opacity-40" title={t('復原 (⌘/Ctrl+Z)', 'Undo (⌘/Ctrl+Z)')}><Undo2 size={14} className="inline mr-1" />{t('復原', 'Undo')}</button>
+                                        <button type="button" data-testid="redo" disabled={!canRedo} onClick={redo} className="px-2 py-1 rounded border border-gray-300 dark:border-gray-600 text-xs disabled:opacity-40" title={t('重做 (⌘/Ctrl+Shift+Z)', 'Redo (⌘/Ctrl+Shift+Z)')}><Redo2 size={14} className="inline mr-1" />{t('重做', 'Redo')}</button>
+                                        <button type="button" data-testid="editor-mode-toggle" aria-pressed={editorMode === 'advanced'} onClick={() => setEditorMode(mode => mode === 'advanced' ? 'basic' : 'advanced')} className="px-3 py-1 rounded bg-blue-700 text-white text-xs font-bold">{editorMode === 'advanced' ? t('切換基本模式', 'Switch to Basic') : t('切換進階模式', 'Switch to Advanced')}</button>
+                                    </div>
+                                </div>
+                                {editorMode === 'basic' && <div data-testid="basic-fields" className="grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-gray-300 dark:border-gray-700 pt-3">
+                                    <div>
+                                        <label htmlFor="basic-text-language" className="block text-xs font-bold text-gray-600 dark:text-gray-300 mb-1">{t('圖片文字語言', 'Image Text Language')}</label>
+                                        <select id="basic-text-language" data-testid="basic-text-language" value={textLanguage} disabled={hasPediatricProfile} onChange={e => setTextLanguage(e.target.value)} className="w-full text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2 disabled:opacity-50">
+                                            {TEXT_LANGUAGES.map(item => <option key={item.value} value={item.value}>{t(item.zh, item.en)}</option>)}
+                                        </select>
+                                        <textarea aria-label={t('語言正向提示詞（可直接修改）', 'Language Instruction (editable)')} data-testid="basic-language-prompt" rows={2} value={languagePrompt} disabled={!textLanguage || hasPediatricProfile} onChange={e => setLanguagePromptOverrides(prev => ({ ...prev, [textLanguage]: e.target.value }))} placeholder={t('可指定標題、標籤使用的語言與用途', 'Describe which languages to use and where')} className="mt-2 w-full text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2 disabled:opacity-50" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="basic-aspect-ratio" className="block text-xs font-bold text-gray-600 dark:text-gray-300 mb-1">{t('長寬比', 'Aspect ratio')}</label>
+                                        <select id="basic-aspect-ratio" data-testid="basic-aspect-ratio" value={form.isCustomAr ? 'custom_input' : (configData.ui.aspectRatios.includes(form.ar) ? form.ar : 'custom_input')} onChange={e => {
+                                            if (e.target.value === 'custom_input') setForm(prev => ({ ...prev, isCustomAr: true, ar: configData.ui.aspectRatios.includes(prev.ar) ? '' : prev.ar }));
+                                            else setForm(prev => ({ ...prev, isCustomAr: false, ar: e.target.value }));
+                                        }} className="w-full text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2">
+                                            {configData.ui.aspectRatios.map(ratio => <option key={ratio} value={ratio}>{ratio}</option>)}
+                                            <option value="custom_input">{t('自訂比例...', 'Custom ratio...')}</option>
+                                        </select>
+                                        {form.isCustomAr && <input aria-label={t('自訂長寬比', 'Custom aspect ratio')} data-testid="basic-custom-aspect-ratio" value={form.ar} onChange={e => setForm(prev => ({ ...prev, ar: e.target.value }))} placeholder="2.39:1" className="mt-2 w-full text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2" />}
+                                        <p className="text-[10px] text-gray-500 mt-1">{t('比例只描述提示詞意圖；實際圖片尺寸請在生圖工具設定。', 'Ratio describes prompt intent; set actual image dimensions in the generator.')}</p>
+                                    </div>
+                                </div>}
+                            </section>
                             {visibleWarnings.length > 0 && <aside aria-label={t('提示詞衝突提醒', 'Prompt conflict warnings')} className="rounded border border-amber-400 bg-amber-100 dark:bg-amber-950 p-3 text-amber-900 dark:text-amber-100 text-xs space-y-2">
                                 <strong>{t('提示詞衝突提醒（不會阻止複製）', 'Prompt conflicts (copy is still available)')}</strong>
                                 {visibleWarnings.map(item => <div key={item.id} className="flex justify-between items-start gap-3"><span>{item.message}</span><button className="underline shrink-0" onClick={() => setDismissedWarnings(previous => [...previous, item.id])}>{t('忽略此提醒', 'Dismiss')}</button></div>)}
@@ -4132,7 +4374,7 @@ const hasPediatricProfile = React.useMemo(() => {
                             </section>
 
                             {/* Section 3: Layout Sections */}
-                            <section id="section-layout">
+                            <section id="section-layout" hidden={editorMode === 'basic'}>
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-base font-bold text-purple-700 dark:text-purple-300 flex items-center">
                                         <span className="w-2 h-6 bg-purple-500 mr-2 rounded-sm"></span>
@@ -4366,7 +4608,7 @@ const hasPediatricProfile = React.useMemo(() => {
                             </section>
 
                             {/* Section 4: Technical Parameters (Imagen 4 simplified) */}
-                            <details id="section-params">
+                            <details id="section-params" hidden={editorMode === 'basic'}>
                                 <summary className="text-base font-bold text-amber-900 dark:text-amber-200 mb-3 cursor-pointer rounded bg-amber-100 dark:bg-amber-950 p-2">
                                     <span className="w-2 h-6 bg-yellow-500 mr-2 rounded-sm"></span>
                                     {t('4. 輸出設定・點此展開／收合', '4. Output settings · expand / collapse')}
@@ -4498,14 +4740,23 @@ const hasPediatricProfile = React.useMemo(() => {
                                     <div className="p-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 shrink-0">
                                         <div className="text-[10px] text-gray-500 mb-2 font-bold uppercase tracking-wider flex justify-between items-center">
                                             <span>{t('即時預覽 (Live Preview)', 'Live Preview')}</span>
-                                            <span className="text-xs font-mono text-gray-600">{manualPrompt.length} chars</span>
+                                            <span className="text-xs font-mono text-gray-600">{outputPrompt.length} chars</span>
+                                        </div>
+                                        <div className="mb-2">
+                                            <label htmlFor="prompt-target" className="text-[10px] font-bold text-gray-600 dark:text-gray-400 mr-2">{t('輸出格式', 'Output format')}</label>
+                                            <select id="prompt-target" data-testid="prompt-target" value={promptTarget} onChange={e => setPromptTarget(e.target.value)} className="text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-stone-700 dark:text-gray-200">
+                                                <option value="generic">Generic</option><option value="openai">OpenAI</option><option value="gemini">Gemini</option><option value="midjourney">Midjourney</option>
+                                            </select>
+                                            {promptTarget !== 'generic' && <p data-testid="prompt-target-note" className="mt-1 text-[10px] text-gray-600 dark:text-gray-400">{promptTarget === 'midjourney'
+                                                ? <>{t('僅輸出官方文件記載的長寬比尾碼 --ar；不產生 seed 或其他參數。', 'Adds only the documented --ar suffix; no seed or other parameters are emitted.')}{!normalizeAspectRatio(form.ar) && <span role="status" data-testid="invalid-midjourney-ratio"> {t('長寬比無效或精度超出安全範圍，已省略 --ar。', 'Aspect ratio is invalid or exceeds safe precision; --ar was omitted.')}</span>}</>
+                                                : t('長寬比與畫質是提示詞描述；實際輸出尺寸請在生圖工具設定。', 'Aspect ratio and detail are prompt wording; set actual output dimensions in the image generator.')}</p>}
                                         </div>
                                         <div className="bg-stone-100 dark:bg-gray-900/50 p-3 rounded border border-gray-200 dark:border-gray-800/50 max-h-32 overflow-y-auto custom-scrollbar">
-                                            <SyntaxHighlightedPrompt text={manualPrompt} />
+                                            <div data-testid="output-prompt"><SyntaxHighlightedPrompt text={outputPrompt} /></div>
                                         </div>
                                     </div>
 
-                                    <PromptStructureView
+                                    {editorMode === 'advanced' && <PromptStructureView
                                         form={hasPediatricProfile ? { ...form, title: '', sections: form.sections.map(section => ({ ...section, textBlocks: [] })) } : form}
                                         t={t}
                                         onRemoveStyle={(style) => toggleStyle(style)}
@@ -4521,7 +4772,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                         configData={configData}
                                         getLabel={getLabel}
                                         textLanguageLabel={textLanguageLabel}
-                                    />
+                                    />}
                                 </>
                             ) : (
                                 <div className="h-full overflow-y-auto custom-scrollbar p-4 space-y-4">

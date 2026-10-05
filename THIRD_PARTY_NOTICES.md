@@ -1,18 +1,19 @@
 # Third-party notices / 第三方元件與授權說明
 
-AI Image Prompt Master 是單一 HTML 頁面。下列元件在**瀏覽器開啟頁面時從各自的公開 CDN 載入**；本專案**沒有內嵌、修改或重新散布**它們的原始碼或字型檔，各檔案自帶的授權標頭與版權聲明維持原樣。此處列出來源與授權，供引用與查核。
-(The page loads these components at runtime from their public CDNs. This project does not bundle, modify or redistribute their code or font files; each file keeps its own license header.)
+可編輯來源 HTML 從 CDN 載入元件；建置版則內嵌 React／ReactDOM、Lucide 與編譯後的 Tailwind CSS，並保留元件授權聲明。建置版使用系統字型，不重新散布 Google Fonts。Babel、esbuild、PostCSS 與 Tailwind 建置工具的依賴版本釘於 package-lock.json。
+
+The editable source loads CDN components. Generated releases bundle React/ReactDOM, Lucide and compiled Tailwind CSS with license notices retained. Generated releases use system fonts and do not redistribute Google Fonts. Build dependencies are pinned in package-lock.json.
 
 ## 程式庫 / Libraries
 
 | 元件 | 版本（頁面載入的） | 授權 | 版權 | 來源 |
 |---|---|---|---|---|
 | Babel Standalone（瀏覽器內 JSX 轉譯） | `@babel/standalone@7.29.9`（unpkg，精確釘版 / exact version pinned） | MIT | Copyright (c) 2014-present Sebastian McKenzie and other contributors | https://github.com/babel/babel |
-| Tailwind CSS（Play CDN） | `cdn.tailwindcss.com`（Tailwind v3 系列） | MIT | Copyright (c) Tailwind Labs, Inc. | https://github.com/tailwindlabs/tailwindcss |
-| React / ReactDOM | 18.2.0（esm.sh） | MIT | Copyright (c) Facebook, Inc. and its affiliates | https://github.com/facebook/react |
-| Lucide（圖示，`lucide-react`） | 0.292.0（esm.sh） | ISC（部分源自 Feather，MIT） | Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022. | https://github.com/lucide-icons/lucide |
+| Tailwind CSS | 建置版 3.4.19；來源 Play CDN | MIT | Copyright (c) Tailwind Labs, Inc. | https://github.com/tailwindlabs/tailwindcss |
+| React / ReactDOM | 18.2.0（來源 esm.sh／建置版內嵌） | MIT | Copyright (c) Facebook, Inc. and its affiliates | https://github.com/facebook/react |
+| Lucide（圖示，`lucide-react`） | 0.292.0（來源 esm.sh／建置版內嵌） | ISC（部分源自 Feather，MIT） | Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022. | https://github.com/lucide-icons/lucide |
 
-## 字型 / Fonts（Google Fonts 提供，SIL Open Font License 1.1）
+## 來源檔字型 / Source-only fonts（Google Fonts，SIL Open Font License 1.1）
 
 | 字型 | 版權 | 來源 |
 |---|---|---|
@@ -53,7 +54,7 @@ PERFORMANCE OF THIS SOFTWARE.
 （授權全文以各專案 GitHub 的 LICENSE 檔為準；上表連結可直接查到。）
 
 ## 隱私 / Privacy
-頁面開啟時，瀏覽器會連線到 `fonts.googleapis.com`、`fonts.gstatic.com`（Google Fonts）、`cdn.tailwindcss.com`、`unpkg.com`、`esm.sh` 載入上述元件，這些服務可能看到訪客的 IP 位址與瀏覽器資訊。本工具本身不蒐集、不上傳你輸入的提示詞（草稿只存在你的瀏覽器 localStorage）。
+建置版不從遠端載入介面套件或字型；公開縮圖從網站載入。可編輯來源檔開啟時，瀏覽器會連線到 `fonts.googleapis.com`、`fonts.gstatic.com`（Google Fonts）、`cdn.tailwindcss.com`、`unpkg.com`、`esm.sh` 載入上述元件，這些服務可能看到訪客的 IP 位址與瀏覽器資訊。本工具本身不蒐集、不上傳你輸入的提示詞（草稿只存在你的瀏覽器 localStorage）。
 
 ## 參考圖片 / Reference images
 預設範本旁的參考圖是 **AI 生成**的示意圖。Codex 圖片由 Codex 內建的 OpenAI ImageGen 產生；底層型號與版本未揭露。AGY 圖片由 Antigravity 內建影像生成工具產生；AGY 回報使用型號 `gemini-3.1-flash-image`（此型號資訊為 AGY 回報）。圖中出現的校名、品牌、刊物、人物與標誌皆為**虛構**，不代表任何真實個人、機構或品牌。AI 生成圖的著作權歸屬與使用限制依各服務條款而定，轉用前請自行確認。圖檔以 640px WebP 縮圖形式公開；原圖僅存於作者本機。

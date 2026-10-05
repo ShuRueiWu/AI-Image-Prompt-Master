@@ -18,12 +18,12 @@
 
 ### Overview
 
-A single-file web app (React in the browser, no build step) that turns prompt writing into a structured workflow: pick a preset or start blank, describe the subject and context, choose styles and camera settings, lay out text sections, then copy the final prompt into Midjourney, Stable Diffusion, Ideogram or any other image generator. Traditional Chinese and English are both first-class.
+A single-file web app (React, compiled before deployment) that turns prompt writing into a structured workflow: pick a preset or start blank, describe the subject and context, choose styles and camera settings, lay out text sections, then copy the final prompt into Midjourney, Stable Diffusion, Ideogram or any other image generator. Traditional Chinese and English are both first-class.
 
 ### Current release: V9.6
 
 - **247 selectable styles**, each covered by at least one of **308 built-in presets** in 24 categories (coverage table: [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)). Coverage does not imply a quality evaluation of generated images.
-- **Reference images for presets**: most presets show a small AI-generated reference thumbnail; click it to enlarge. Images are illustrations only and may contain errors; all names, brands and people shown are fictional.
+- **Reference images for presets**: presets can show AI-generated reference thumbnails. Public thumbnails are noninteractive; the local release can open local originals. Images are illustrations only and may contain errors; all names, brands and people shown are fictional.
 - **Autosaved work**: the current work is saved in your browser and restored on reload. Export/import a complete work JSON to move between browsers; imports ask before replacing, and invalid files leave the editor unchanged. Drafts are local, not cloud-synced.
 - **Advisory conflict reminders** (dismissible, never blocking), e.g. text-free profile with text content, or photorealistic combined with flat/vector/pixel styles.
 - **Editable image-text language instructions** instead of the old "avoid Simplified Chinese" switch.
@@ -31,9 +31,14 @@ A single-file web app (React in the browser, no build step) that turns prompt wr
 
 Recent changes: see [`RELEASE_V9.6.md`](RELEASE_V9.6.md), [`FIXES_2026-10-02.md`](FIXES_2026-10-02.md) and [`PRESET_PROMPT_REVISIONS_2026-10-04.md`](PRESET_PROMPT_REVISIONS_2026-10-04.md).
 
+
+### A/C workflow update (2026-10-05)
+
+Preset favorites/recent use and combined purpose/text filters; basic/advanced visibility; bounded undo/redo; Generic, OpenAI/Gemini and Midjourney output formats. Descriptive resolution does not set API dimensions. See [release notes](RELEASE_AC_2026-10-05.md) and [acceptance receipt](ACCEPTANCE_AC_2026-10-05.md).
+
 ### Quick start
 
-1. Open the [live site](https://shurueiwu.github.io/AI-Image-Prompt-Master/), or open `Prompts Builder V9.6.html` directly in a modern browser (internet access is needed for the CDN dependencies).
+1. Open the [live site](https://shurueiwu.github.io/AI-Image-Prompt-Master/), or open the generated `Prompt Master Offline.html` beside the image folders. The interface runs offline; image folders are required to display reference images. The editable source still needs CDN access.
 2. **Browse Presets** and pick a template, or start from scratch.
 3. Edit **Subject** and **Context**, choose styles, camera and composition, add layout sections if needed.
 4. Set aspect ratio and resolution, then **Copy Prompt** into your image generator.
@@ -44,17 +49,18 @@ Starter inspiration · Top 10 layouts · Classic layouts · Medical education an
 
 ### For developers
 
-`Prompts Builder V9.6.html` is the canonical source. `index.html` is an exact deployment copy, never a second editing source.
+`Prompts Builder V9.6.html` is the canonical source. `index.html` is a generated deployment build, never a second editing source.
 
 Development requires Node.js >=22.18.0 and an installed Google Chrome. Use `npm ci` for a clean installation from the committed lockfile; it replaces `node_modules` and rejects package/lock mismatches. Tests launch local Google Chrome (`channel: 'chrome'`), not a downloaded Playwright Chromium.
 
 ```sh
 npm ci
-npm run sync:site        # copy V9.6 to the Pages entry
-npm test                 # equality check + isolated Chrome interaction tests
+node build-site.cjs      # preview generated outputs, no writes
+npm run sync:site        # compile local offline release and public Pages entry
+npm test                 # reproducible-build check + isolated Chrome interaction tests
 npm run test:presets     # apply every built-in preset through the UI
 npm run test:edges       # import, data preservation and draft lifecycle edge cases
-npm run test:all         # test, then test:presets, then test:edges
+npm run test:all         # regression, every preset, data edges, A/C, offline build smoke
 node verify-style-coverage.cjs --report   # regenerate the coverage table
 ```
 
@@ -68,7 +74,7 @@ The root TSX/Vite files are kept from earlier repository history; the single-fil
 
 ### Tech stack and third-party components
 
-React 18.2 (via esm.sh), in-browser Babel Standalone 7.29.9 (exact version pinned), Tailwind CSS (Play CDN), Lucide icons, Inter / Outfit / Noto Sans TC (Google Fonts). They load from public CDNs when the page opens, so those hosts can see the visitor's IP address; your prompts are never uploaded. Licenses and copyright notices: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+The editable source uses CDN React 18.2, Babel Standalone 7.29.9, Tailwind and Lucide. The build bundles React/ReactDOM 18.2.0 and Lucide 0.292.0, compiles JSX with esbuild and generates Tailwind 3.4.19 CSS. Generated releases use system fonts and load no remote interface dependencies. Thumbnails remain separate assets; local originals remain private. Prompts stay in browser storage. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
 ### Disclaimers
 
@@ -89,12 +95,12 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 ### 專案簡介
 
-單一 HTML 檔的網頁工具（瀏覽器內執行 React，無需建置），把寫提示詞變成結構化流程：選範本或從空白開始、描述主體與情境、選風格與鏡頭、安排文字版面，最後複製提示詞到 Midjourney、Stable Diffusion、Ideogram 等圖像生成器。繁體中文與英文完整並行。
+單一 HTML 檔的網頁工具（React 在建置時預先編譯），把寫提示詞變成結構化流程：選範本或從空白開始、描述主體與情境、選風格與鏡頭、安排文字版面，最後複製提示詞到 Midjourney、Stable Diffusion、Ideogram 等圖像生成器。繁體中文與英文完整並行。
 
 ### 目前版本：V9.6
 
 - **247 種風格**，每一種至少出現在 **308 個內建範本**之一（共 24 個分類；對照表見 [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)）。覆蓋不代表已評估生成圖品質。
-- **範本參考圖**：多數範本附小張 AI 生成參考縮圖，點擊可放大。圖片僅為示意，可能有誤；圖中名稱、品牌與人物皆為虛構。
+- **範本參考圖**：範本可顯示 AI 生成參考縮圖。公開版縮圖不開啟放大；本機版可開啟本機原圖。圖片僅為示意，可能有誤；圖中名稱、品牌與人物皆為虛構。
 - **自動儲存**：目前作品會存在瀏覽器並在重新載入時還原；可匯出／匯入完整作品 JSON 在不同瀏覽器間搬移，匯入前會詢問，無效檔案不會改動編輯器。草稿只存在本機，不同步雲端。
 - **衝突提醒**（可關閉、不阻擋複製），例如「無文字」設定卻填了文字內容，或寫實與扁平／向量／像素風格並用。
 - **可編輯的圖中文字語言指示**，取代舊版「避免簡體字」開關。
@@ -102,9 +108,13 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 近期更動見 [`RELEASE_V9.6.md`](RELEASE_V9.6.md)、[`FIXES_2026-10-02.md`](FIXES_2026-10-02.md)、[`PRESET_PROMPT_REVISIONS_2026-10-04.md`](PRESET_PROMPT_REVISIONS_2026-10-04.md)。
 
+### A/C 工作流程更新（2026-10-05）
+
+新增收藏／最近使用與用途／文字篩選、基本／進階顯示、有限筆數的撤銷／重做，以及 Generic、OpenAI／Gemini、Midjourney 輸出格式。解析度描述不等於 API 尺寸設定。詳見 [更新說明](RELEASE_AC_2026-10-05.md) 與 [驗收紀錄](ACCEPTANCE_AC_2026-10-05.md)。
+
 ### 快速開始
 
-1. 開啟[線上版](https://shurueiwu.github.io/AI-Image-Prompt-Master/)，或用現代瀏覽器直接開啟 `Prompts Builder V9.6.html`（CDN 依賴需要網路）。
+1. 開啟[線上版](https://shurueiwu.github.io/AI-Image-Prompt-Master/)，或開啟建置產生的 `Prompt Master Offline.html`（與圖片資料夾放在一起）。介面可離線使用；參考圖需要旁邊的圖片資料夾。可編輯來源檔仍使用 CDN。
 2. 點「瀏覽預設範本」選擇範本，或從空白開始。
 3. 修改「主體」與「情境」，選擇風格、鏡頭與構圖，需要時加入版面分區。
 4. 設定長寬比與解析度，按「複製提示詞」貼到你的圖像生成器。
@@ -117,15 +127,15 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 開發需要 Node.js >=22.18.0 與已安裝的 Google Chrome。乾淨安裝使用 `npm ci`，依已提交的 lockfile 安裝、取代 `node_modules`，並拒絕 package／lock 不一致。測試使用本機 Google Chrome（`channel: 'chrome'`），不是 Playwright 下載的 Chromium。
 
-依賴或共用 UI 修改請跑 `npm run test:all`，依序執行一般測試、全部範本與 `test:edges` 邊界測試；`npm test` 保留為較短的回歸測試。
+依賴或共用 UI 修改請跑 `npm run test:all`，依序執行一般測試、全部範本、`test:edges` 資料邊界、`test:ac` 新功能及 `test:build` 離線建置測試；`npm test` 保留為較短的回歸測試。
 
-`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是它的完整部署副本，不另行編輯。指令見上方英文區（`npm ci`、`npm run sync:site`、`npm test`、`npm run test:presets`）。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
+`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是建置產物，不另行編輯。指令見上方英文區（`npm ci`、`npm run sync:site`、`npm test`、`npm run test:presets`）。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
 
 **範本圖片流程**：原始 PNG 只留本機（`preset-originals/<agent>/`，不進 Git）；公開的是 640px WebP 縮圖（`preset-previews/<agent>/`），對照表為 `preset-previews/preset-image-map.js`。縮圖由本機腳本 `generate_preset_previews.py` 產生（可重複執行、不呼叫模型或付費 API）；要重生的清單由 `node make_regen_list.cjs` 產生。詳見 [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md) 與 [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md)。
 
 ### 技術與第三方元件
 
-React 18.2（esm.sh）、瀏覽器內 Babel Standalone 7.29.9（精確釘版）、Tailwind CSS（Play CDN）、Lucide 圖示、Inter／Outfit／Noto Sans TC（Google Fonts）。開啟頁面時從公開 CDN 載入，這些主機會看到訪客的 IP；你輸入的提示詞不會上傳。授權與版權聲明見 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
+可編輯來源仍使用 CDN；建置版內嵌 React／ReactDOM 18.2.0、Lucide 0.292.0，以 esbuild 編譯 JSX、Tailwind 3.4.19 產生 CSS，並使用系統字型。建置版介面不需從遠端載入套件或字型；縮圖仍是獨立資源，本機原圖不上傳。提示詞只存於瀏覽器。授權見 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
 
 ### 聲明
 

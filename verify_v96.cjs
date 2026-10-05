@@ -12,7 +12,7 @@ const { chromium } = require('playwright');
         page.on('pageerror', e => errors.push(e.message));
         let accept = true;
         page.on('dialog', dialog => accept ? dialog.accept() : dialog.dismiss());
-        const url = pathToFileURL(path.join(__dirname, 'Prompts Builder V9.6.html')).href;
+        const url = (process.env.PROMPT_MASTER_TEST_TARGET || pathToFileURL(path.join(__dirname, 'Prompts Builder V9.6.html')).href);
         await page.goto(url);
         const subject = page.getByPlaceholder('描述畫面的核心主體...');
         await subject.waitFor({ timeout: 60000 });
