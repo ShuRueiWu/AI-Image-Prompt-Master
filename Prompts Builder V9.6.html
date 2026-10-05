@@ -643,6 +643,23 @@
                         sections: [],
                         ar: '1:1', resolution: '4K', texture: 'on thick watercolor paper', quality: 'intricate papercraft, 3D layered, masterpiece'
                     },
+                    crayon_park_play: {
+                        name: '公園遊戲童趣蠟筆畫 (Crayon Park Play)',
+                        name_en: 'Crayon Park Play',
+                        desc: '將孩子在陽光公園中一起遊玩的互動，呈現為像 10 歲孩子畫出的童趣蠟筆插畫。',
+                        desc_en: 'Playful crayon illustration of children interacting in a sunny park, drawn like a creative 10-year-old made it.',
+                        subject: 'Several fully clothed children playing together in a sunny neighborhood park',
+                        subject_en: 'Several fully clothed children playing together in a sunny neighborhood park',
+                        title: '', title_en: '',
+                        body: 'Show clear, age-appropriate interaction, such as running together, sharing a ball, taking turns on playground equipment, or helping one another, with natural gestures, expressive body language, and a joyful cooperative mood.',
+                        body_en: 'Show clear, age-appropriate interaction, such as running together, sharing a ball, taking turns on playground equipment, or helping one another, with natural gestures, expressive body language, and a joyful cooperative mood.',
+                        styles: ['Crayon Drawing'],
+                        camera: ['Eye Level Shot', 'Fill the Frame'],
+                        sections: [],
+                        ar: '4:3', resolution: '2K', texture: 'on clean white paper',
+                        quality: 'visible wax-crayon strokes, uneven hand-drawn outlines, simplified shapes and perspective, cheerful childlike colors, charming imperfections, cute warm lively playful mood, non-photorealistic, all children fully clothed, no text, no letters, no numbers, no logos, no watermarks',
+                        purpose: 'general', referenceImageStatus: 'ready'
+                    },
                     starter_drone_view: {
                         name: '上帝空拍視角 (Drone View)',
                         desc: '結合「空拍攝影(Drone)」與「俯視(Top Down)」，從高空展現令人窒息的幾何地貌。',
@@ -2622,7 +2639,6 @@ const [showPresetModal, setShowPresetModal] = useState(false);
                 try { return localStorage.getItem('prompt_builder_editor_mode') || 'advanced'; }
                 catch (error) { return 'advanced'; }
             });
-            const [promptTarget, setPromptTarget] = useState('generic');
             const [presetFavorites, setPresetFavorites] = useState(() => {
                 try { const value = JSON.parse(localStorage.getItem('prompt_builder_favorites_v1') || '[]'); return Array.isArray(value) ? value.filter(x => Array.isArray(x) && x.length === 2 && x.every(v => typeof v === 'string')) : []; }
                 catch (error) { return []; }
@@ -2949,45 +2965,7 @@ const hasPediatricProfile = React.useMemo(() => {
                 setManualPrompt(parts.join('\n'));
             }, [form, effectiveTextLanguage, languagePrompt, hasPediatricProfile]);
 
-            const normalizeAspectRatio = value => {
-                const ratio = String(value || '').match(/^(\d+(?:\.\d+)?):(\d+(?:\.\d+)?)$/);
-                if (!ratio || !Number.isFinite(Number(ratio[1])) || !Number.isFinite(Number(ratio[2]))) return null;
-                const digits = Math.max((ratio[1].split('.')[1] || '').length, (ratio[2].split('.')[1] || '').length);
-                const scale = 10 ** digits;
-                if (!Number.isSafeInteger(scale)) return null;
-                let width = Math.round(Number(ratio[1]) * scale);
-                let height = Math.round(Number(ratio[2]) * scale);
-                if (!Number.isSafeInteger(width) || !Number.isSafeInteger(height) || width <= 0 || height <= 0) return null;
-                const gcd = (a, b) => { while (b) [a, b] = [b, a % b]; return a; };
-                const divisor = gcd(width, height);
-                return divisor > 0 ? `${width / divisor}:${height / divisor}` : null;
-            };
-            const outputPrompt = React.useMemo(() => {
-                if (promptTarget === 'generic') return manualPrompt;
-                if (promptTarget === 'midjourney') {
-                    let prompt = manualPrompt
-                        .replace(/^--- PARAMETERS ---\s*$/m, '')
-                        .split('\n')
-                        .filter(line => !/^\s*aspect ratio\s+\S+/i.test(line))
-                        .join('\n').trim();
-                    const aspectRatio = normalizeAspectRatio(form.ar);
-                    if (aspectRatio) prompt = `${prompt}${prompt ? ' ' : ''}--ar ${aspectRatio}`;
-                    return prompt;
-                }
-                let prompt = manualPrompt
-                    .replace(/^--- PARAMETERS ---\s*$/m, '')
-                    .split('\n')
-                    .filter(line => !/^\s*aspect ratio\s+\S+/i.test(line) && !/^\s*\d+(?:k)?\s+resolution(?:,.*)?$/i.test(line))
-                    .join('\n')
-                    .replace(/\*\*(.+?):\*\*/g, '$1:')
-                    .replace(/^--- LAYOUT SECTIONS ---$/m, 'Layout sections:')
-                    .trim();
-                const instructions = [];
-                if (form.ar) instructions.push(`Compose the image in a ${form.ar} aspect ratio.`);
-                if (form.resolution) instructions.push(`Desired detail wording: ${form.resolution}. Actual output dimensions must be set in the image generator.`);
-                if (instructions.length) prompt += `${prompt ? '\n\n' : ''}${instructions.join(' ')}`;
-                return prompt;
-            }, [manualPrompt, promptTarget, form.ar, form.resolution]);
+            const outputPrompt = manualPrompt;
 
             // Auto-expand categories when styles are selected (e.g. from presets)
             useEffect(() => {
@@ -4848,14 +4826,10 @@ const hasPediatricProfile = React.useMemo(() => {
                                             <span>{t('即時預覽 (Live Preview)', 'Live Preview')}</span>
                                             <span className="text-xs font-mono text-gray-600">{outputPrompt.length} chars</span>
                                         </div>
-                                        <div className="mb-2">
-                                            <label htmlFor="prompt-target" className="text-[10px] font-bold text-gray-600 dark:text-gray-400 mr-2">{t('輸出格式', 'Output format')}</label>
-                                            <select id="prompt-target" data-testid="prompt-target" value={promptTarget} onChange={e => setPromptTarget(e.target.value)} className="text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-stone-700 dark:text-gray-200">
-                                                <option value="generic">Generic</option><option value="openai">OpenAI</option><option value="gemini">Gemini</option><option value="midjourney">Midjourney</option>
-                                            </select>
-                                            {promptTarget !== 'generic' && <p data-testid="prompt-target-note" className="mt-1 text-[10px] text-gray-600 dark:text-gray-400">{promptTarget === 'midjourney'
-                                                ? <>{t('僅輸出官方文件記載的長寬比尾碼 --ar；不產生 seed 或其他參數。', 'Adds only the documented --ar suffix; no seed or other parameters are emitted.')}{!normalizeAspectRatio(form.ar) && <span role="status" data-testid="invalid-midjourney-ratio"> {t('長寬比無效或精度超出安全範圍，已省略 --ar。', 'Aspect ratio is invalid or exceeds safe precision; --ar was omitted.')}</span>}</>
-                                                : t('長寬比與畫質是提示詞描述；實際輸出尺寸請在生圖工具設定。', 'Aspect ratio and detail are prompt wording; set actual output dimensions in the image generator.')}</p>}
+                                        <div className="mb-2 flex items-center gap-2">
+                                            <label htmlFor="prompt-target" className="text-[10px] font-bold text-gray-600 dark:text-gray-400">{t('輸出格式', 'Output format')}</label>
+                                            <span id="prompt-target" data-testid="prompt-target" className="text-xs bg-stone-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-stone-700 dark:text-gray-200">Generic</span>
+                                            <span className="text-[10px] text-gray-500 dark:text-gray-400">{t('模型中立提示詞', 'Model-neutral prompt')}</span>
                                         </div>
                                         <div className="bg-stone-100 dark:bg-gray-900/50 p-3 rounded border border-gray-200 dark:border-gray-800/50 max-h-32 overflow-y-auto custom-scrollbar">
                                             <div data-testid="output-prompt"><SyntaxHighlightedPrompt text={outputPrompt} /></div>

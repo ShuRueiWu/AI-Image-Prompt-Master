@@ -149,37 +149,13 @@ const cases = [
         await page.getByTestId('undo').click();
         assert.equal((await exported(page)).form.subject, before.form.subject, `reset can be undone after preset ${name}`);
     }],
-    ['Generic, natural language, and documented Midjourney output adapters', async page => {
+    ['Generic output remains model-neutral', async page => {
         await subject(page).fill('A quiet seaside clinic');
         const generic = await page.getByTestId('output-prompt').innerText();
-        await page.getByTestId('prompt-target').selectOption('openai');
-        const openai = await page.getByTestId('output-prompt').innerText();
-        assert(openai.includes('Compose the image in a 16:9 aspect ratio.'));
-        assert(openai.includes('Actual output dimensions must be set in the image generator.'));
-        assert(!openai.includes('--ar'));
-        await page.getByTestId('prompt-target').selectOption('gemini');
-        const gemini = await page.getByTestId('output-prompt').innerText();
-        assert(gemini.includes('Desired detail wording: 4K'));
-        assert(!gemini.includes('--seed'));
-        await page.getByTestId('prompt-target').selectOption('midjourney');
-        await page.getByTestId('basic-advanced-controls').getByTestId('editor-mode-toggle').click();
-        await page.getByTestId('basic-aspect-ratio').selectOption('custom_input');
-        await page.getByTestId('basic-custom-aspect-ratio').fill('2.39:1');
-        await page.getByTestId('prompt-target').selectOption('generic');
-        const genericWithCustomRatio = await page.getByTestId('output-prompt').innerText();
-        await page.getByTestId('prompt-target').selectOption('midjourney');
-        const midjourney = await page.getByTestId('output-prompt').innerText();
-        assert(midjourney.endsWith('--ar 239:100'), midjourney.slice(-80));
-        assert(!midjourney.includes('--seed'));
-        const hugeRatio = `${'9'.repeat(400)}:1`;
-        await page.getByTestId('basic-custom-aspect-ratio').fill(hugeRatio);
-        const unsupported = await page.getByTestId('output-prompt').innerText();
-        assert(!unsupported.includes('--ar'));
-        assert(!unsupported.includes('Infinity'));
-        await page.getByTestId('invalid-midjourney-ratio').waitFor();
-        await page.getByTestId('basic-custom-aspect-ratio').fill('2.39:1');
-        await page.getByTestId('prompt-target').selectOption('generic');
-        assert.equal(await page.getByTestId('output-prompt').innerText(), genericWithCustomRatio, 'Generic remains the existing output');
+        assert.equal(await page.getByTestId('prompt-target').innerText(), 'Generic');
+        assert(generic.includes('aspect ratio 16:9'));
+        assert(generic.includes('4k resolution'));
+        assert(!generic.includes('--ar'));
     }]
 ];
 

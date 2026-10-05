@@ -3268,5 +3268,15 @@
     "watermark": false,
     "width": 1024,
     "height": 1536
+  },
+  "🔰 新手啟發範本 (Starter Inspiration)/crayon_park_play": {
+    "original": "preset-originals/codex/g00-starter-inspiration__crayon_park_play.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 3862180,
+    "prompt_sha256": "70b936296bc2aecde69026b0c62fa5dc608f50bd5b48ccabcd329c723d1045b5",
+    "generated_at": "2026-10-05T18:22:32.873Z",
+    "status": "ok",
+    "watermark": false
   }
 }
