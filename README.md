@@ -22,7 +22,7 @@ A single-file web app (React, compiled before deployment) that turns prompt writ
 
 ### Current release: V9.6
 
-- **247 selectable styles**, each covered by at least one of **308 built-in presets** in 24 categories (coverage table: [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)). Coverage does not imply a quality evaluation of generated images.
+- **248 selectable styles**, each covered by at least one of **309 built-in presets** in 24 categories (coverage table: [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)). Coverage does not imply a quality evaluation of generated images.
 - **Reference images for presets**: presets can show AI-generated reference thumbnails. Public thumbnails are noninteractive; the local release can open local originals. Images are illustrations only and may contain errors; all names, brands and people shown are fictional.
 - **Autosaved work**: the current work is saved in your browser and restored on reload. Export/import a complete work JSON to move between browsers; imports ask before replacing, and invalid files leave the editor unchanged. Drafts are local, not cloud-synced.
 - **Advisory conflict reminders** (dismissible, never blocking), e.g. text-free profile with text content, or photorealistic combined with flat/vector/pixel styles.
@@ -49,7 +49,7 @@ Starter inspiration · Top 10 layouts · Classic layouts · Medical education an
 
 ### For developers
 
-`Prompts Builder V9.6.html` is the canonical source. `index.html` is a generated deployment build, never a second editing source.
+`Prompts Builder V9.6.html` is the canonical source. `index.html` is a generated deployment build, never a second editing source. The preset addition SOP is [`docs/preset-workflow.md`](docs/preset-workflow.md); it separates content validation from reference-image readiness and preserves the full release gate.
 
 Development requires Node.js >=22.18.0 and an installed Google Chrome. Use `npm ci` for a clean installation from the committed lockfile; it replaces `node_modules` and rejects package/lock mismatches. Tests launch local Google Chrome (`channel: 'chrome'`), not a downloaded Playwright Chromium.
 
@@ -57,7 +57,9 @@ Development requires Node.js >=22.18.0 and an installed Google Chrome. Use `npm 
 npm ci
 node build-site.cjs      # preview generated outputs, no writes
 npm run sync:site        # compile local offline release and public Pages entry
+npm run check:preset     # read-only addition/change metadata and image-state check
 npm test                 # reproducible-build check + isolated Chrome interaction tests
+npm run test:preset -- 'GROUP/key'  # targeted browser validation for one preset
 npm run test:presets     # apply every built-in preset through the UI
 npm run test:edges       # import, data preservation and draft lifecycle edge cases
 npm run test:all         # regression, every preset, data edges, A/C, offline build smoke
@@ -99,7 +101,7 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 ### 目前版本：V9.6
 
-- **247 種風格**，每一種至少出現在 **308 個內建範本**之一（共 24 個分類；對照表見 [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)）。覆蓋不代表已評估生成圖品質。
+- **248 種風格**，每一種至少出現在 **309 個內建範本**之一（共 24 個分類；對照表見 [`STYLE_COVERAGE_V9.6.md`](STYLE_COVERAGE_V9.6.md)）。覆蓋不代表已評估生成圖品質。
 - **範本參考圖**：範本可顯示 AI 生成參考縮圖。公開版縮圖不開啟放大；本機版可開啟本機原圖。圖片僅為示意，可能有誤；圖中名稱、品牌與人物皆為虛構。
 - **自動儲存**：目前作品會存在瀏覽器並在重新載入時還原；可匯出／匯入完整作品 JSON 在不同瀏覽器間搬移，匯入前會詢問，無效檔案不會改動編輯器。草稿只存在本機，不同步雲端。
 - **衝突提醒**（可關閉、不阻擋複製），例如「無文字」設定卻填了文字內容，或寫實與扁平／向量／像素風格並用。
@@ -129,7 +131,7 @@ MIT License ([LICENSE](LICENSE)). Author: **Shu-Ruei Wu** — [allergy.tw](https
 
 依賴或共用 UI 修改請跑 `npm run test:all`，依序執行一般測試、全部範本、`test:edges` 資料邊界、`test:ac` 新功能及 `test:build` 離線建置測試；`npm test` 保留為較短的回歸測試。
 
-`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是建置產物，不另行編輯。指令見上方英文區（`npm ci`、`npm run sync:site`、`npm test`、`npm run test:presets`）。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
+`Prompts Builder V9.6.html` 是唯一編輯來源，`index.html` 是建置產物，不另行編輯。新增範本流程見 [`docs/preset-workflow.md`](docs/preset-workflow.md)，並使用 `npm run check:preset`、`npm run test:preset -- 'GROUP/key'` 及完整 `npm run test:all`。測試需要 Google Chrome，會模擬剪貼簿，不呼叫任何圖像模型。GitHub Pages 由 `main` 根目錄發佈；`index.html` 有變更並 push 才會更新網站，本機 commit 不會。
 
 **範本圖片流程**：原始 PNG 只留本機（`preset-originals/<agent>/`，不進 Git）；公開的是 640px WebP 縮圖（`preset-previews/<agent>/`），對照表為 `preset-previews/preset-image-map.js`。縮圖由本機腳本 `generate_preset_previews.py` 產生（可重複執行、不呼叫模型或付費 API）；要重生的清單由 `node make_regen_list.cjs` 產生。詳見 [`PRESET_IMAGES_REGEN_RUNBOOK.md`](PRESET_IMAGES_REGEN_RUNBOOK.md) 與 [`PRESET_FICTIONAL_NAMES.md`](PRESET_FICTIONAL_NAMES.md)。
 

@@ -8,10 +8,12 @@
   "scripts": {
     "sync:site": "node sync-site.cjs --apply",
     "check:site": "node sync-site.cjs",
+    "check:preset": "node check-presets.cjs",
     "test:build": "node verify-build.cjs",
     "test:ac": "node verify-ac.cjs",
-    "test": "npm run check:site && node verify_v95.cjs && node verify_v96.cjs && node verify-style-coverage.cjs && node verify-review-fixes.cjs",
+    "test": "npm run check:preset && node verify-preset-checker.cjs && npm run check:site && node verify_v95.cjs && node verify_v96.cjs && node verify-style-coverage.cjs && node verify-review-fixes.cjs",
     "test:presets": "node verify-presets.cjs",
+    "test:preset": "node verify-presets.cjs",
     "test:edges": "node verify-v96-edges.cjs",
     "test:all": "npm test && npm run test:presets && npm run test:edges && npm run test:ac && npm run test:build"
   },

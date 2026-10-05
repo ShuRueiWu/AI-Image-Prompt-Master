@@ -1,19 +1,20 @@
 # V9.6 Style Coverage
 
-240/240 selectable styles covered; 313 built-in presets.
+248/248 selectable styles covered; 309 built-in presets.
 
 Data coverage only; no generated-image quality claims.
 
 | Category | Style | Example preset |
 |---|---|---|
-| 藝術風格 (Art Styles) | 素描 (Sketch) | 京都街頭速寫 (Kyoto Sketch) |
+| 藝術風格 (Art Styles) | 素描 (Sketch) | 衛教: 水彩插畫 (Watercolor FB) |
 | 藝術風格 (Art Styles) | 色鉛筆 (Colored Pencil) | 美食手帳 (Food Diary) |
 | 藝術風格 (Art Styles) | 蠟筆 (Crayon) | 蠟筆 (Crayon)・示範 |
 | 藝術風格 (Art Styles) | 粉彩 (Pastel Drawing) | 粉彩 (Pastel Drawing)・示範 |
 | 藝術風格 (Art Styles) | 麥克筆 (Marker) | 咖啡廳時光 (Cafe) |
-| 藝術風格 (Art Styles) | 水彩 (Watercolor) | 京都街頭速寫 (Kyoto Sketch) |
+| 藝術風格 (Art Styles) | 水彩 (Watercolor) | 衛教: 水彩插畫 (Watercolor FB) |
 | 藝術風格 (Art Styles) | 油畫 (Oil Painting) | 油畫 (Oil Painting)・示範 |
 | 藝術風格 (Art Styles) | 水墨畫 (Ink Wash) | 水墨畫 (Ink Wash)・示範 |
+| 藝術風格 (Art Styles) | 墨線插畫 (Ink Illustration) | 恐怖漫畫 (Horror Manga) |
 | 藝術風格 (Art Styles) | 浮世繪 (Ukiyo-e) | 浮世繪 (Ukiyo-e)・示範 |
 | 藝術風格 (Art Styles) | 版畫 (Linocut) | 版畫 (Linocut)・示範 |
 | 藝術風格 (Art Styles) | 絲網印刷 (Screen Print) | 絲網印刷 (Screen Print)・示範 |
@@ -28,11 +29,14 @@ Data coverage only; no generated-image quality claims.
 | 藝術風格 (Art Styles) | 皮克斯 (Pixar) | 皮克斯 (Pixar)・示範 |
 | 藝術風格 (Art Styles) | 卡哇伊 (Kawaii) | 卡哇伊 (Kawaii)・示範 |
 | 藝術風格 (Art Styles) | 賽璐璐上色 (Cel-shading) | 賽璐璐上色 (Cel-shading)・示範 |
+| 藝術風格 (Art Styles) | 美式漫畫 (Comic Book) | 經典無奈迷因 (Meme Layout) |
+| 藝術風格 (Art Styles) | 動態線 (Action Lines) | 少年漫畫 (Shonen) |
 | 藝術風格 (Art Styles) | 印象派 (Impressionism) | 印象派 (Impressionism)・示範 |
 | 藝術風格 (Art Styles) | 超現實主義 (Surrealism) | 雙重曝光剪影 (Double Exposure) |
 | 藝術風格 (Art Styles) | 普普藝術 (Pop Art) | 普普藝術 (Pop Art)・示範 |
 | 藝術風格 (Art Styles) | 抽象 (Abstract) | 抽象攝影 (Abstract Photo) |
 | 藝術風格 (Art Styles) | 粗獷主義 (Brutalism) | 新粗獷主義 (Neo-Brutalism) |
+| 藝術風格 (Art Styles) | 史詩 (Epic) | 奇幻魔法陣 (Magic Circle) |
 | 藝術風格 (Art Styles) | 梵谷 (Van Gogh) | 梵谷 (Van Gogh)・示範 |
 | 藝術風格 (Art Styles) | 慕夏 (Mucha) | 慕夏 (Mucha)・示範 |
 | 藝術風格 (Art Styles) | 賽博龐克 (Syd Mead) | 賽博龐克 (Syd Mead)・示範 |
@@ -53,16 +57,16 @@ Data coverage only; no generated-image quality claims.
 | 攝影題材 (Photography Genres) | 產品攝影 (Product) | 裝備平鋪解構 (Knolling Layout) |
 | 攝影題材 (Photography Genres) | 電商攝影 (E-commerce) | 電商攝影 (E-commerce)・示範 |
 | 攝影題材 (Photography Genres) | 食物攝影 (Food) | 氛圍感貼文 (Vibe Post) |
-| 攝影題材 (Photography Genres) | 時尚攝影 (Fashion) | 雜誌封面 (Magazine) |
-| 攝影題材 (Photography Genres) | 建築攝影 (Architecture) | 現代建築 (Modern Arch) |
+| 攝影題材 (Photography Genres) | 時尚攝影 (Fashion) | 時尚大片 (Fashion Editorial) |
+| 攝影題材 (Photography Genres) | 建築攝影 (Architecture) | 對稱全景史詩 (Panoramic Symmetry) |
 | 攝影題材 (Photography Genres) | 室內設計 (Interior) | 海報裱框 (Poster Frame) |
 | 攝影題材 (Photography Genres) | 景觀建築 (Landscape Arch) | 日式庭園 (Zen Garden) |
 | 攝影題材 (Photography Genres) | 夜景攝影 (Night) | 夜景街拍 (CineStill 800T) |
 | 攝影題材 (Photography Genres) | 運動攝影 (Sports) | 運動攝影 (Sports)・示範 |
 | 攝影題材 (Photography Genres) | 野生動物 (Wildlife) | 野生動物 (Wildlife)・示範 |
 | 攝影題材 (Photography Genres) | 水下攝影 (Underwater) | 水下攝影 (Underwater)・示範 |
-| 攝影題材 (Photography Genres) | 空拍攝影 (Aerial/Drone) | 空拍攝影 (Aerial/Drone)・示範 |
-| 相機與鏡頭 (Camera & Gear) | 廣角鏡頭 (Wide Angle) | 廣角鏡頭 (Wide Angle)・示範 |
+| 攝影題材 (Photography Genres) | 空拍攝影 (Aerial/Drone) | 上帝空拍視角 (Drone View) |
+| 相機與鏡頭 (Camera & Gear) | 廣角鏡頭 (Wide Angle) | 賽博龐克 (Cyberpunk) |
 | 相機與鏡頭 (Camera & Gear) | 超廣角 (Ultra Wide) | 超廣角 (Ultra Wide)・示範 |
 | 相機與鏡頭 (Camera & Gear) | 35mm鏡頭 (35mm) | 過肩鏡頭對話 (Over-the-shoulder) |
 | 相機與鏡頭 (Camera & Gear) | 50mm鏡頭 (50mm) | 街頭攝影 (Street Photography) |
@@ -95,11 +99,11 @@ Data coverage only; no generated-image quality claims.
 | 光影與氛圍 (Lighting & Atmosphere) | 藍色時刻 (Blue Hour) | 藍色時刻 (Blue Hour)・示範 |
 | 光影與氛圍 (Lighting & Atmosphere) | 自然光 (Natural Light) | 專業領英大頭照 (LinkedIn Headshot) |
 | 光影與氛圍 (Lighting & Atmosphere) | 電影光感 (Cinematic) | 過肩鏡頭對話 (Over-the-shoulder) |
-| 光影與氛圍 (Lighting & Atmosphere) | 棚拍光 (Studio Lighting) | 時尚醫療雜誌 (Vogue Cover) |
+| 光影與氛圍 (Lighting & Atmosphere) | 棚拍光 (Studio Lighting) | 時尚醫療雜誌 (Fashion Cover) |
 | 光影與氛圍 (Lighting & Atmosphere) | 遮光片 (Gobo) | 遮光片 (Gobo)・示範 |
 | 光影與氛圍 (Lighting & Atmosphere) | 柔光箱 (Softbox) | 柔光箱 (Softbox)・示範 |
-| 光影與氛圍 (Lighting & Atmosphere) | 環形燈 (Ring Light) | 環形燈 (Ring Light)・示範 |
 | 光影與氛圍 (Lighting & Atmosphere) | 倫勃朗光 (Rembrandt) | 林布蘭人像 (Rembrandt) |
+| 光影與氛圍 (Lighting & Atmosphere) | 戲劇性打光 (Dramatic Lighting) | 時尚大片 (Fashion Editorial) |
 | 光影與氛圍 (Lighting & Atmosphere) | 柔光 (Soft Light) | 日系純愛限動 (IG Story) |
 | 光影與氛圍 (Lighting & Atmosphere) | 硬光 (Hard Light) | 硬光 (Hard Light)・示範 |
 | 光影與氛圍 (Lighting & Atmosphere) | 逆光 (Backlighting) | 逆光 (Backlighting)・示範 |
@@ -112,7 +116,7 @@ Data coverage only; no generated-image quality claims.
 | 光影與氛圍 (Lighting & Atmosphere) | 高對比 (High Contrast) | 魚眼極限張力 (Fisheye Lens) |
 | 光影與氛圍 (Lighting & Atmosphere) | 低調 (Low Key) | 林布蘭人像 (Rembrandt) |
 | 光影與氛圍 (Lighting & Atmosphere) | 高調 (High Key) | 現代詩集 (Modern Poetry) |
-| 光影與氛圍 (Lighting & Atmosphere) | 明亮 (Bright) | IG 輪播封面 (Carousel) |
+| 光影與氛圍 (Lighting & Atmosphere) | 明亮 (Bright) | 衛教: 寶寶超人 (Hero Baby FB) |
 | 光影與氛圍 (Lighting & Atmosphere) | 乾淨 (Clean) | 對稱全景史詩 (Panoramic Symmetry) |
 | 光影與氛圍 (Lighting & Atmosphere) | 戲劇性 (Dramatic) | JoJo 立 (JoJo Pose) |
 | 光影與氛圍 (Lighting & Atmosphere) | 陰鬱 (Melancholic) | 台灣新浪潮 (Taiwan New Wave) |
@@ -162,12 +166,16 @@ Data coverage only; no generated-image quality claims.
 | 材質與質感 (Materials & Textures) | 樹脂 (Resin) | 樹脂 (Resin)・示範 |
 | 材質與質感 (Materials & Textures) | 金箔 (Gold Foil) | 金箔 (Gold Foil)・示範 |
 | 材質與質感 (Materials & Textures) | 全息 (Holographic) | 醫學簡報背景 |
+| 設計排版 (Design Layout) | 平鋪攝影 (Flat Lay) | T-Shirt 展示 (T-Shirt) |
 | 設計排版 (Design Layout) | 平鋪 (Knolling) | 裝備平鋪解構 (Knolling Layout) |
+| 設計排版 (Design Layout) | 圖案設計 (Pattern Design) | 復古花磚 (Majolica Tile) |
+| 設計排版 (Design Layout) | 海報設計 (Poster Design) | 好萊塢電影海報 (Movie Poster) |
+| 設計排版 (Design Layout) | 分割畫面 (Split Screen) | 產品比較圖 (Comparison) |
 | 設計排版 (Design Layout) | 等角視圖 (Isometric) | 微縮等距城市 (Isometric Top-Down) |
 | 設計排版 (Design Layout) | 留白 (Negative Space) | 簡報背景 (Clean Slide) |
 | 設計排版 (Design Layout) | 文字留白 (Text Space) | 文字留白 (Text Space)・示範 |
 | 設計排版 (Design Layout) | 雜誌排版 (Magazine) | 雜誌跨頁 (Mag Spread) |
-| 設計排版 (Design Layout) | 電影海報 (Movie Poster) | 電影海報 (Movie Poster)・示範 |
+| 設計排版 (Design Layout) | 電影海報 (Movie Poster) | 動作片海報 (Action) |
 | 設計排版 (Design Layout) | 雙重曝光 (Double Exposure) | 雙重曝光剪影 (Double Exposure) |
 | 設計排版 (Design Layout) | 剖面圖 (Cross-section) | 航空母艦剖面 (Aircraft Carrier) |
 | 設計排版 (Design Layout) | 網格佈局 (Grid Layout) | 瑞士國際主義 (Swiss Style) |
@@ -184,7 +192,7 @@ Data coverage only; no generated-image quality claims.
 | 數位與 3D (Digital & 3D) | 光線追蹤 (Ray Tracing) | 對稱全景史詩 (Panoramic Symmetry) |
 | 數位與 3D (Digital & 3D) | 低面數 (Low Poly) | 等角地圖 (Isometric) |
 | 數位與 3D (Digital & 3D) | 體素藝術 (Voxel Art) | 微縮等距城市 (Isometric Top-Down) |
-| 數位與 3D (Digital & 3D) | 黏土動畫 (Claymation) | 黏土動畫 (Claymation)・示範 |
+| 數位與 3D (Digital & 3D) | 黏土動畫 (Claymation) | 衛教: 寶寶超人 (Hero Baby FB) |
 | 數位與 3D (Digital & 3D) | 8K 解析度 (8k) | 8K 解析度 (8k)・示範 |
 | 數位與 3D (Digital & 3D) | 醫學影像 (Medical Imaging) | 醫學研討會 (Medical Seminar) |
 | 數位與 3D (Digital & 3D) | 顯微鏡 (Microscopic) | 顯微鏡視圖 (Microscope View) |
@@ -213,7 +221,7 @@ Data coverage only; no generated-image quality claims.
 | 台灣與日本流行 (TW & JP Trends) | City Pop | City Pop 兜風 (City Pop) |
 | 台灣與日本流行 (TW & JP Trends) | 昭和復古 (Showa Retro) | 90年代動畫 (90s Anime) |
 | 台灣與日本流行 (TW & JP Trends) | Lo-Fi | 90年代動畫 (90s Anime) |
-| 台灣與日本流行 (TW & JP Trends) | 霹靂布袋戲 (Pili Puppetry) | 霹靂布袋戲 (Pili Hero) |
+| 台灣與日本流行 (TW & JP Trends) | 台灣布袋戲 (Taiwan Glove Puppetry) | 台灣布袋戲 (Taiwan Glove Puppetry)・示範 |
 | 台灣與日本流行 (TW & JP Trends) | 台灣廟宇 (Temple Art) | 台灣廟宇 (Temple Art)・示範 |
 | 台灣與日本流行 (TW & JP Trends) | 少年漫畫 (Shonen) | 少年漫畫 (Shonen) |
 | 台灣與日本流行 (TW & JP Trends) | 少女漫畫 (Shojo) | 少女漫畫 (Shojo) |

@@ -3257,5 +3257,16 @@
     "generated_at": "2026-10-04T07:34:35Z",
     "status": "ok",
     "watermark": false
+  },
+  "🎨 插畫與動漫 (Illustration & Anime)/fantasy_mistwood_wayfarer": {
+    "key": "🎨 插畫與動漫 (Illustration & Anime)/fantasy_mistwood_wayfarer",
+    "original": "preset-originals/codex/fantasy_mistwood_wayfarer.png",
+    "prompt_sha256": "6dd7f37007effd1e46a0ce67120f1af499b5b02e55fbbdc80bac8607e76a62f3",
+    "generation_note": "Imported the user-approved original image generated in this session; preset fields adapted from that generation prompt.",
+    "generated_at": "2026-10-05T16:56:55.021Z",
+    "status": "ok",
+    "watermark": false,
+    "width": 1024,
+    "height": 1536
   }
 }

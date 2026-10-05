@@ -310,6 +310,7 @@
                     { label: '普普藝術 (Pop Art)', val: 'Pop Art', desc: '高飽和度色彩、清晰輪廓線與重複的商業符號（如安迪沃荷風格）。', desc_en: 'High saturation colors, clear outlines, repetitive commercial symbols (Warhol style).' },
                     { label: '抽象 (Abstract)', val: 'Abstract', desc: '以線條、色彩與形狀表達情感。', desc_en: 'Expresses emotion with lines, colors, and shapes.' },
                     { label: '粗獷主義 (Brutalism)', val: 'Brutalism', desc: '未經修飾的原始美感，大膽、高對比、反審美。', desc_en: 'Raw, unpolished aesthetic. Bold, high contrast, anti-aesthetic.' },
+                    { label: '史詩 (Epic)', val: 'Epic', desc: '宏大、戲劇性的敘事與尺度感。', desc_en: 'Grand, dramatic storytelling with a strong sense of scale.' },
                     // === 名家風格 ===
                     { label: '梵谷 (Van Gogh)', val: 'by Vincent van Gogh', desc: '厚重且旋轉的筆觸、強烈的黃藍對比色與充滿情感的表達。', desc_en: 'Thick, swirling brushstrokes. Strong yellow-blue contrast. Emotional expression.' },
                     { label: '慕夏 (Mucha)', val: 'by Alphonse Mucha', desc: '新藝術風格，華麗的裝飾線條、柔美的女性形象與花卉圖騰。', desc_en: 'Art Nouveau. Ornate decorative lines, soft female figures, floral patterns.' },
@@ -1189,6 +1190,63 @@
                     }
                 },
                 "🎨 插畫與動漫 (Illustration & Anime)": {
+                    fantasy_mistwood_wayfarer: {
+                        "name": "霧林行者：奇幻冒險海報 (Mistwood Wayfarer)",
+                        "desc": "原創森林測繪師的電影海報，結合粗織布、皮革、黃銅與斑駁金箔標題。",
+                        "desc_en": "An original forest cartographer poster with tactile fabric, leather, brass, and weathered gold titles.",
+                        "purpose": "design",
+                        "referenceImageStatus": "ready",
+                        "subject": "Original forest cartographer Iro, short dark-brown hair, rounded ears, amber eyes, ochre hooded cape, blue-grey tunic, dark trousers and worn leather boots; three-quarter rear view looking back, full body; circular wood-and-brass surveying instrument on back, amber glass compass in hand, floating seed-shaped lantern",
+                        "subject_en": "Original forest cartographer Iro, short dark-brown hair, rounded ears, amber eyes, ochre hooded cape, blue-grey tunic, dark trousers and worn leather boots; three-quarter rear view looking back, full body; circular wood-and-brass surveying instrument on back, amber glass compass in hand, floating seed-shaped lantern",
+                        "title": "Mistwood Wayfarer",
+                        "title_en": "Mistwood Wayfarer",
+                        "body": "古老霧林、巨根拱門與蜿蜒小徑；冷翡翠綠陰影、暖金逆光、輪廓光與發光花粉。只呈現指定文字，人物、道具與標題皆為原創。",
+                        "body_en": "Ancient misty forest, giant root arch and winding path; cool emerald shadows, warm golden backlight, rim light and luminous pollen. Render only specified text; original character, props and title.",
+                        "styles": [
+                                                "3D Render",
+                                                "Epic"
+                        ],
+                        "sections": [
+                                                {
+                                                                        "visual": "Ancient forest with giant root arch, ferns and moss",
+                                                                        "param": "teal shadows, layered atmospheric haze, sunbeams, winding warm earthen path",
+                                                                        "dir": "bg",
+                                                                        "textBlocks": []
+                                                },
+                                                {
+                                                                        "visual": "Original cartographer in three-quarter rear view looking back",
+                                                                        "param": "full body, slightly left of center, expressive stylized 3D animation character",
+                                                                        "dir": "bottom",
+                                                                        "textBlocks": []
+                                                },
+                                                {
+                                                                        "visual": "Monumental antique-gold title typography",
+                                                                        "param": "heavy serif with wedge serifs, broad strokes, weathered gold foil, fine scratches, shallow embossed relief; upper third, small headline widely tracked",
+                                                                        "dir": "top",
+                                                                        "textBlocks": [
+                                                                                                {
+                                                                                                                        "content": "A TALE BEYOND THE MIST",
+                                                                                                                        "level": "Detail",
+                                                                                                                        "font": "Serif"
+                                                                                                },
+                                                                                                {
+                                                                                                                        "content": "MISTWOOD\nWAYFARER",
+                                                                                                                        "level": "Primary",
+                                                                                                                        "font": "Serif"
+                                                                                                },
+                                                                                                {
+                                                                                                                        "content": "霧林行者",
+                                                                                                                        "level": "Secondary",
+                                                                                                                        "font": "Serif"
+                                                                                                }
+                                                                        ]
+                                                }
+                        ],
+                        "ar": "2:3",
+                        "resolution": "4K",
+                        "texture": "coarse fabric weave, embroidered seams, creased matte leather, chipped wood, brass patina, translucent amber glass, velvety moss, damp stone, fine hair strands",
+                        "quality": "cinematic stylized 3D animation, tactile material detail, soft skin subsurface scattering, atmospheric depth, restrained bloom; only specified text, no logos, watermark or extra symbols"
+},
                     manga_shonen: { name: '少年漫畫 (Shonen)', desc: '熱血戰鬥風格，線條強烈，動態感十足。', desc_en: 'Action-packed Shonen manga style, strong lines, dynamic poses.', subject: 'Hero character using special move', subject_en: 'Hero character using special move', title: 'Battle Scene', title_en: 'Battle Scene', styles: ['Shonen Manga Style', 'Action Lines', 'Dynamic Pose', 'Black and White'], sections: [], ar: '3:4', texture: '' },
                     manga_shojo: { name: '少女漫畫 (Shojo)', desc: '唯美浪漫風格，大眼睛，背景花朵與網點。', desc_en: 'Romantic Shojo manga style, big eyes, floral backgrounds, screen tones.', subject: 'School girl looking at cherry blossoms', subject_en: 'School girl looking at cherry blossoms', title: 'First Love', title_en: 'First Love', styles: ['Shojo Manga Style', 'Romantic', 'Sparkles', 'Soft Focus'], sections: [], ar: '3:4', texture: '' },
                     manga_horror: { name: '恐怖漫畫 (Horror Manga)', desc: '伊藤潤二風格恐怖漫畫，精細的線條與陰暗氛圍。', desc_en: 'Junji Ito style horror manga. Detailed lines and dark atmosphere.', subject: 'Mysterious figure in shadow', subject_en: 'Mysterious figure in shadow', title: 'Horror Story', title_en: 'Horror Story', styles: ['Ink Illustration', 'Hatching', 'Dark', 'Horror'], sections: [], ar: '3:4', texture: '' },
@@ -2065,7 +2123,7 @@
             );
         };
 
-        const PresetReferenceImages = ({ mapKey, compact = false, lang }) => {
+        const PresetReferenceImages = ({ mapKey, compact = false, lang, referenceImageStatus }) => {
             const tt = (zh, en) => lang === 'en' ? en : zh;
             const paths = window.PRESET_IMAGE_MAP?.[mapKey] || {};
             const agents = ['codex', 'agy'].filter(agent => paths[agent]);
@@ -2075,6 +2133,12 @@
             const visibleCount = agents.filter(agent => status[agent] === 'loaded').length;
             const settled = agents.every(agent => status[agent] === 'loaded' || status[agent] === 'error');
 
+            if (agents.length === 0 && (referenceImageStatus === 'pending' || referenceImageStatus === 'none')) {
+                const message = referenceImageStatus === 'pending'
+                    ? tt('參考圖待補；文字內容可先使用。', 'Reference image pending; the text preset is ready to use.')
+                    : tt('此預設刻意不提供參考圖。', 'This preset intentionally has no reference image.');
+                return <div data-testid="preset-no-image" data-image-status={referenceImageStatus} className="mt-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 px-3 py-2 text-[10px] text-slate-500 dark:text-slate-400">{message}</div>;
+            }
             if (settled && visibleCount === 0) return null;
             if (agents.length === 0) return null;
 
@@ -2136,6 +2200,7 @@ const [showPresetModal, setShowPresetModal] = useState(false);
             const [presetSearchQuery, setPresetSearchQuery] = useState('');
             const [currentPresetName, setCurrentPresetName] = useState('');
             const [currentPresetImageKey, setCurrentPresetImageKey] = useState('');
+            const [currentPresetReferenceImageStatus, setCurrentPresetReferenceImageStatus] = useState('');
             // 重新開啟預設彈窗時，捲到上次選取的範本（並已展開其分組），而不是回到最前面。
             useEffect(() => {
                 if (!showPresetModal || !currentPresetImageKey) return;
@@ -2966,6 +3031,7 @@ const hasPediatricProfile = React.useMemo(() => {
                 if (!key) {
                     setCurrentPresetName('');
                     setCurrentPresetImageKey('');
+                    setCurrentPresetReferenceImageStatus('');
                     setForm({
                         subject: '',
                         title: '',
@@ -2999,6 +3065,7 @@ const hasPediatricProfile = React.useMemo(() => {
                     }
                     setCurrentPresetName(p.name);
                     setCurrentPresetImageKey(selectedGroup ? `${selectedGroup}/${key}` : '');
+                    setCurrentPresetReferenceImageStatus(p.referenceImageStatus || '');
                     if (selectedGroup) setExpandedPresetGroups(prev => ({ ...prev, [selectedGroup]: true }));
                     setForm({
                         subject: (lang === 'en' && p.subject_en) ? p.subject_en : (p.subject || ''),
@@ -3028,6 +3095,7 @@ const hasPediatricProfile = React.useMemo(() => {
             };
             const presetHasImageText = preset => !!(preset.title?.trim() || preset.sections?.some(section => section.textBlocks?.some(block => block.content?.trim())));
             const getPresetPurpose = (groupName, preset) => {
+                if (['medical', 'photo', 'product', 'design', 'general'].includes(preset.purpose)) return preset.purpose;
                 const text = `${groupName} ${preset.name} ${preset.desc || ''} ${preset.desc_en || ''} ${(preset.styles || []).join(' ')}`.toLowerCase();
                 if (/medical|pediatric|health|兒科|醫療|衛教|健康/.test(text)) return 'medical';
                 if (/portrait|人物|人像|photograph|photography|攝影|相機|鏡頭/.test(text)) return 'photo';
@@ -4012,7 +4080,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                                                     className={`relative group overflow-hidden rounded-xl border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-blue-500/50 bg-stone-200 dark:bg-slate-900/40 ${currentPresetImageKey === `${groupName}/${key}` ? 'border-blue-500 ring-2 ring-blue-500/70' : 'border-slate-300 dark:border-slate-700/50'}`}
                                                                 >
                                                                     <button type="button" data-testid="toggle-preset-favorite" aria-label={`${presetFavorites.some(item => item[0] === groupName && item[1] === key) ? t('移除收藏', 'Remove favorite') : t('加入收藏', 'Add favorite')}: ${preset.name}`} aria-pressed={presetFavorites.some(item => item[0] === groupName && item[1] === key)} onClick={event => { event.stopPropagation(); toggleFavorite(groupName, key); }} className="absolute right-2 top-2 z-20 rounded-full bg-stone-100/95 dark:bg-slate-950/90 p-2 text-amber-700 dark:text-amber-300 shadow border border-gray-300 dark:border-gray-700" title={t('收藏此預設', 'Favorite this preset')}><Star size={15} fill={presetFavorites.some(item => item[0] === groupName && item[1] === key) ? 'currentColor' : 'none'} /></button>
-                                                                    <PresetReferenceImages mapKey={`${groupName}/${key}`} compact lang={lang} />
+                                                                    <PresetReferenceImages mapKey={`${groupName}/${key}`} compact lang={lang} referenceImageStatus={preset.referenceImageStatus} />
                                                                     <div className="p-3">
                                                                         <div className="flex justify-between items-start">
                                                                             <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-stone-800 dark:text-white mb-1.5 leading-tight pr-2">
@@ -4141,7 +4209,7 @@ const hasPediatricProfile = React.useMemo(() => {
                                         <span className="truncate">{getPresetName(currentPresetName) || t('⚡ 瀏覽預設範本 (Browse Presets)', '⚡ Browse Presets')}</span>
                                         <ChevronDown size={14} className="text-gray-600 dark:text-gray-400 ml-2" />
                                     </button>
-                                    {currentPresetImageKey && <PresetReferenceImages key={currentPresetImageKey} mapKey={currentPresetImageKey} lang={lang} />}
+                                    {currentPresetImageKey && <PresetReferenceImages key={currentPresetImageKey} mapKey={currentPresetImageKey} lang={lang} referenceImageStatus={currentPresetReferenceImageStatus} />}
                                 </div>
                             </div>
                         </div>
