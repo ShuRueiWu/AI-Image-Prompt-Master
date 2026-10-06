@@ -2,6 +2,16 @@
 
 `Prompts Builder V9.6.html` is the only editable preset source. Do not edit `index.html` or `Prompt Master Offline.html` by hand.
 
+## Before adding a preset: review the image
+
+When a candidate reference image is generated, open the full-resolution original in macOS Preview and let the user inspect it before editing the canonical preset source or copying any image into the project:
+
+```sh
+open -a Preview '/absolute/path/to/generated-original.png'
+```
+
+The user decides after seeing the image whether the preset should be added. If they request changes, revise or regenerate the image and open the new original in Preview for another review. Keep generated candidates outside the project until the user approves adding the preset. This image-review step does not apply when the preset is intentionally `pending` or `none` and has no candidate image.
+
 ## 1. Classify the preset
 
 - Reuse an existing browse group when it fits the user's main task; do not create a group for one preset.
@@ -22,7 +32,15 @@ Original PNGs remain local and private. Ready public thumbnails and their map en
 
 ## 3. Prepare one preset
 
-After editing the canonical HTML, preview exactly what will be prepared:
+After editing the canonical HTML, run the read-only static checker **before any preparation that can copy assets or synchronize generated files**:
+
+```sh
+npm run check:preset
+```
+
+If it reports an issue, fix the preset metadata or source first. Do not use `prepare:preset --apply` to discover schema or style-catalog errors after side effects have already started.
+
+Then preview exactly what will be prepared:
 
 ```sh
 npm run prepare:preset -- --key 'GROUP/key'
@@ -35,18 +53,19 @@ npm run prepare:preset -- --key 'GROUP/key' --image '/path/to/approved-image.png
 npm run prepare:preset -- --key 'GROUP/key' --image '/path/to/approved-image.png' --apply
 ```
 
+Run the `--apply` form only after both the static checker and dry-run pass.
+
 The default is a read-only dry run. `--apply` copies a new original, adds the browser-generated prompt and hash to `presets_prompts.json`, adds its Codex manifest entry, generates only that preset's 640px WebP in Chrome, updates just that preset's image and local original maps, and synchronizes both generated HTML outputs. If a prompt or manifest entry already exists, the tool checks its hash before proceeding and does not overwrite it. For `pending` and `none`, omit `--image`. This helper prepares Codex images; existing AGY work stays on its own pipeline.
 
 ## 4. Run the gates
 
 ```sh
-npm run check:preset
 npm run sync:site
 npm run test:preset -- 'GROUP/key'
 npm run test:all
 ```
 
-`check:preset` is read-only and compares the canonical source with `HEAD` to report additions and changes. It validates new metadata, legacy-field preservation, style values, stable identities, image-state/map consistency, safe regular files, and supported image agents. It does not launch Chrome.
+`check:preset` is read-only and compares the canonical source with `HEAD` to report additions and changes. Run it before preparation as described above; it validates new metadata, legacy-field preservation, style values, stable identities, image-state/map consistency, safe regular files, and supported image agents. It does not launch Chrome.
 
 `test:preset` applies one selected preset in Chrome and checks its form fields, selected styles, copied prompt, English fields, and image state. With no identity it runs every built-in preset. Run `sync:site` after source/map changes and before `test:all`, because the full release suite checks that both generated pages match the canonical source. `test:all` itself regenerates no files.
 

@@ -3278,5 +3278,25 @@
     "generated_at": "2026-10-05T18:22:32.873Z",
     "status": "ok",
     "watermark": false
+  },
+  "🔰 新手啟發範本 (Starter Inspiration)/folk_flat_doodle_park": {
+    "original": "preset-originals/codex/folk_flat_doodle_park-3d57fa3d.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2804617,
+    "prompt_sha256": "c135fb6c8343f36002ae8062dcd0a3d7a69207963d14bf13455b740de71deb08",
+    "generated_at": "2026-10-06T07:49:59.110Z",
+    "status": "ok",
+    "watermark": false
+  },
+  "🎨 插畫與動漫 (Illustration & Anime)/kaohsiung_foldout_map": {
+    "original": "preset-originals/codex/kaohsiung_foldout_map-5a3eb982.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2243495,
+    "prompt_sha256": "a91430fa981e0ec9b1c4b1f56d25a4a7c65aa527b30c18c5031f69d878ddd551",
+    "generated_at": "2026-10-06T08:00:20.524Z",
+    "status": "ok",
+    "watermark": false
   }
 }
