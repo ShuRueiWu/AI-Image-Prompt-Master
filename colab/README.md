@@ -6,7 +6,7 @@
 
 本輪煙霧測試與重複批次共用 **8 次生成硬上限**。每次生成前寫入 `call-budget.json`，失敗也計次；重跑設定格不會清零。批次達上限時停止，第一個生成錯誤即停。提高上限需重新取得使用者授權；不要刪除預算檔繞過。下載 zip 會一併保留預算檔。此次只有本機資料、語法與守門測試，尚未在 T4 載入模型或生圖。
 
-- `preset_images_zimage.ipynb`：同上但需上傳 json／掛 Drive（瀏覽器自動化無法開檔案選擇器，故改用 embedded）。
+- `preset_images_zimage.ipynb`：舊上傳版，保留參考；未同步本輪輸入與次數守門，本輪請使用上方 embedded 版。
 - `obsolete/preset_images_flux.ipynb`：FLUX.1-schnell 在 HF 是 gated（要登入並分享聯絡資訊），放棄。
 - `obsolete/preset_images_sdxl.ipynb`：SDXL 的 CLIP 只吃 77 tokens，品質不足，放棄。
 - `presets_prompts.json`、`agy_manifest.json`：筆記本輸入檔的本機副本（來源在上一層）。
