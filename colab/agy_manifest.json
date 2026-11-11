@@ -2146,5 +2146,15 @@
     "generated_at": "2026-11-07T08:12:15.040530+00:00",
     "status": "ok",
     "watermark": false
+  },
+  "風格示範 藝術風格 (Art Styles)/style_example_0_impressionism": {
+    "original": "preset-originals/agy/風格示範_藝術風格_(Art_Styles)__style_example_0_impressionism.jpg",
+    "width": 1200,
+    "height": 896,
+    "bytes": 1101008,
+    "prompt_sha256": "c8a611f35d0c2dd492aca5cac5f2965b42e4c166bb8b0cb0664d9fee80d7f901",
+    "generated_at": "2026-11-11T14:39:58.822162+00:00",
+    "status": "ok",
+    "watermark": false
   }
 }
